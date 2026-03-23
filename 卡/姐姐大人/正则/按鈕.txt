@@ -1,0 +1,86 @@
+```
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳轉按鈕</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .custom-btn {
+            padding: 12px 25px;
+            border: 2px solid #66b196;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #53b4a7;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .custom-btn:hover {
+            background-color: #ffffff;
+            color: #2c2c2c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .custom-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <button class="custom-btn" onclick="copyToClipboard('https://github.com/zonde306/ST-Prompt-Template/')">提示詞模板擴展連結</button>
+
+    <script>
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                // 現代瀏覽器
+                navigator.clipboard.writeText(text).then(success, fail);
+            } else {
+                // 備用方法（相容 iOS Safari / 舊 Android）
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';  // 避免滾動
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) success();
+                    else fail();
+                } catch (err) {
+                    fail();
+                }
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function success() {
+            const btn = document.querySelector('.custom-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '已複製！';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 1500);
+        }
+
+        function fail() {
+            alert('複製失敗，請手動複製');
+        }
+    </script>
+</body>
+</html>    
+```

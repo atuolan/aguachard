@@ -1,0 +1,396 @@
+<head>
+  <style>
+    /* General Styles */
+    body {
+      background: transparent;
+      color: #e0e0e0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .card-body {
+      background-color: rgba(44, 44, 44, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    :root {
+      --bg-opacity: 0;
+    }
+
+    .card-body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://aguacloud.uk/f/w9H6/9a9c40296a20d8f8d1a1ac9d820ad65a.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: var(--bg-opacity);
+      border-radius: 12px;
+      z-index: -1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 12px;
+    }
+
+    .section-header {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+    }
+
+    .section-header:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .section-header span:last-child {
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .section-content {
+      display: none; /* Initially hidden */
+      padding: 12px;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 6px 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: none;
+      backdrop-filter: blur(5px);
+    }
+
+    .section-content.expanded {
+      display: block; /* Shown when expanded */
+    }
+
+    .section-content.expanded + .section-header span:last-child {
+      transform: rotate(90deg);
+    }
+
+    /* Property Styles */
+    .property {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .property:last-child {
+      border-bottom: none;
+    }
+
+    .property-name {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+    }
+
+    .property-value-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .property-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 3px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Progress Bar Styles */
+    .progress-bar-container {
+      width: 80px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin-left: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .progress-bar-亲密度 {
+      background: linear-gradient(to right, #ffafbd, #ffc3a0);
+    }
+    .progress-bar-好感度 {
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+    }
+    .progress-bar-恶感度 {
+      background: linear-gradient(to right, #cb2d3e, #ef473a);
+    }
+    .progress-bar-警惕值 {
+      background: linear-gradient(to right, #fccb90, #d57eeb);
+    }
+
+    /* Bottom message */
+    .bottom-message {
+      text-align: center;
+      margin-top: 15px;
+      padding: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      font-style: italic;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+  <script type="module">
+    function errorCatched(fn) {
+      return function (...args) {
+        try {
+          return fn(...args);
+        } catch (e) {
+          console.error(e);
+          toastr.error(e.message || 'An unexpected error occurred.');
+        }
+      };
+    }
+
+    function updateBackgroundOpacity(intimacyValue) {
+      // 将亲密度 0-100 映射到透明度 0-0.8
+      const opacity = Math.max(0, Math.min(0.6, (intimacyValue / 100) * 0.6));
+
+      // 使用CSS自定义属性来动态更新透明度
+      document.documentElement.style.setProperty('--bg-opacity', opacity);
+
+      console.log(`更新背景透明度: 亲密度=${intimacyValue}, 透明度=${opacity}`);
+    }
+
+    function updateBottomMessage(intimacyValue) {
+      let message = '';
+
+      if (intimacyValue < 30) {
+        message = '纸飞机早就不存在了';
+      } else if (intimacyValue < 60) {
+        message = '纸飞机似乎还在那里';
+      } else if (intimacyValue < 90) {
+        message = '我的纸飞机到达远方了吗？';
+      } else {
+        message = '我的纸飞机原来就是你';
+      }
+
+      $('.bottom-message').text(message);
+      console.log(`更新底部消息: 亲密度=${intimacyValue}, 消息="${message}"`);
+    }
+
+    function populateCharacterData() {
+      try {
+        // 使用 MVU 框架获取最新消息楼层的数据
+        const mvu_data = Mvu.getMvuData({ type: 'message', message_id: -1 });
+        const character = '谭尧';
+        const stat_data = _.get(mvu_data, `stat_data.${character}`, {});
+
+        const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
+        let intimacyValue = 0;
+
+        fields.forEach(field => {
+          const value = _.get(stat_data, field, '--');
+          const elementId = `#${character}-${field}`;
+          $(elementId).text(value);
+
+          // 记录亲密度值用于背景透明度调整
+          if (field === '亲密度') {
+            intimacyValue = parseInt(value) || 0;
+          }
+
+          if (['亲密度', '好感度', '恶感度', '警惕值'].includes(field)) {
+            const percentage = Math.max(0, Math.min(100, parseInt(value) || 0));
+            const progressBarId = `#progress-${character}-${field}`;
+            $(progressBarId).css('width', `${percentage}%`);
+          }
+        });
+
+        // 根据亲密度更新背景透明度和底部消息
+        updateBackgroundOpacity(intimacyValue);
+        updateBottomMessage(intimacyValue);
+      } catch (error) {
+        console.error('获取 MVU 数据失败:', error);
+        // 如果 MVU 不可用，回退到传统方法
+        try {
+          const mvu_fallback = Mvu.getMvuData({ type: 'message', message_id: -1 });
+          const character = '谭尧';
+          const stat_data = _.get(mvu_fallback, `stat_data.${character}`, {});
+
+          const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
+          let intimacyValue = 0;
+
+          fields.forEach(field => {
+            const value = _.get(stat_data, field, '--');
+            const elementId = `#${character}-${field}`;
+            $(elementId).text(value);
+
+            // 记录亲密度值用于背景透明度调整
+            if (field === '亲密度') {
+              intimacyValue = parseInt(value) || 0;
+            }
+
+            if (['亲密度', '好感度', '恶感度', '警惕值'].includes(field)) {
+              const percentage = Math.max(0, Math.min(100, parseInt(value) || 0));
+              const progressBarId = `#progress-${character}-${field}`;
+              $(progressBarId).css('width', `${percentage}%`);
+            }
+          });
+
+          // 根据亲密度更新背景透明度和底部消息
+          updateBackgroundOpacity(intimacyValue);
+          updateBottomMessage(intimacyValue);
+        } catch (fallbackError) {
+          console.error('回退方法也失败:', fallbackError);
+          toastr.error('无法获取变量数据');
+        }
+      }
+    }
+
+    function toggleSection($header) {
+      const $content = $header.next('.section-content');
+      $content.slideToggle(300, () => {
+        $content.toggleClass('expanded');
+        const $arrow = $header.find('span:last-child');
+        if ($content.hasClass('expanded')) {
+          $arrow.css('transform', 'rotate(90deg)');
+        } else {
+          $arrow.css('transform', 'rotate(0deg)');
+        }
+      });
+    }
+
+    function init() {
+      populateCharacterData();
+
+      $('.section-header').on('click', function () {
+        toggleSection($(this));
+      });
+
+      /* Make the first section expanded by default */
+      $('.section-header').first().click();
+
+      // 监听 MVU 变量更新事件
+      if (typeof Mvu !== 'undefined') {
+        eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, variables => {
+          // 当变量更新结束时，重新填充数据
+          populateCharacterData();
+        });
+      }
+    }
+
+    $(() => errorCatched(init)());
+  </script>
+</head>
+<body>
+  <div class="card-body">
+    <div class="section">
+      <div class="section-header">
+        <span>谭尧 核心状态</span>
+        <span style="transform: rotate(0deg)">►</span>
+      </div>
+      <div class="section-content">
+        <div class="property">
+          <div class="property-name">亲密度</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-亲密度">--</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-bar-亲密度" id="progress-谭尧-亲密度"></div>
+            </div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">好感度</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-好感度">--</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-bar-好感度" id="progress-谭尧-好感度"></div>
+            </div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">恶感度</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-恶感度">--</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-bar-恶感度" id="progress-谭尧-恶感度"></div>
+            </div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">警惕值</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-警惕值">--</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-bar-警惕值" id="progress-谭尧-警惕值"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>世界状态</span>
+        <span style="transform: rotate(0deg)">►</span>
+      </div>
+      <div class="section-content">
+        <div class="property">
+          <div class="property-name">时间</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-时间">--</span>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">心情</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-心情">--</span>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">当前想法</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-想法">--</span>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-name">约定与代办</div>
+          <div class="property-value-container">
+            <span class="property-value" id="谭尧-约定与代办事项">--</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-message">我的纸飞机到达远方了吗？</div>
+  </div>
+</body>

@@ -1,0 +1,39 @@
+---
+输出格式强调:
+  - rule: 以下规则必须在每次回复的末尾被遵守，且不能被省略。
+
+变量更新强调:
+  - rule: 必须在回复的末尾输出 <UpdateVariable> 块。
+  - format: |-
+      <UpdateVariable>
+      <Analysis>
+      ...
+      </Analysis>
+      <JSONPatch>
+      [...]
+      </JSONPatch>
+      </UpdateVariable>
+
+状态栏强调:
+  - rule: 必须在 <UpdateVariable> 之后输出<StatusBlock> 块，并实时更新其内容。
+  - format: |-
+      <StatusBlock>
+      黎靖青/窮雲海
+      當前時間點：...
+      當前身分：...
+      當前模式：...
+      心情：...
+      冷淡值：...
+      親密值：...
+      興奮值：...
+      內心想法：「...」
+      約定與待辦事項：...
+      黎靖青是否認出user為網路聊天對象：{{format_message_variable::stat_data.黎靖青/穷云海.认出聊天对象}}
+      user是否認出窮雲海為黎靖青：{{format_message_variable::stat_data.user.识破身份}}
+      </StatusBlock>
+
+线上格式锁定:
+  - rule:
+      - 当回复内容中包含特定线上聊天场景时，将触发格式锁定。
+      - 在此模式下，仅允许使用特定的线上聊天格式（如手机界面），并强制生成从 <MiPhone_start> 到 <MiPhone_end> 的完整标签结构。
+      - 在此模式下，禁止输出常规的剧情文字和状态栏。

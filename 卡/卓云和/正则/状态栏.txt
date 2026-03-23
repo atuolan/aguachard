@@ -1,0 +1,55 @@
+```
+<body>
+<style>
+.zyhpanel{background:url('https://sharkpan.xyz/f/knZMI6/6bgl7s.jpg') center/cover;background-color:rgba(169,188,182,.2);border-radius:5px;width:210px;padding:12px;box-shadow:0 3px 9px rgba(0,0,0,.1);margin-bottom:15px;font-family:'SimSun',serif;font-size:12px}
+.zyhpanel>summary{font-size:14px;color:#000;text-align:center;padding:6px 0;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:5px;background:rgba(255,255,255,.7);border-radius:4px;list-style:none}
+.zyhpanel>summary::before{content:'';display:inline-block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #000;transition:transform .3s ease}
+.zyhpanel[open]>summary::before{transform:rotate(180deg)}
+.zyhsub{margin:0;border:none;padding:0}
+.zyhsub>summary{font-size:14px;color:#000;text-align:center;margin:0;padding:6px 0;cursor:pointer;list-style:none}
+.zyhitem{margin:6px 0;color:#000;word-wrap:break-word;line-height:1.4;padding:2px 5px}
+.zyhitem b{font-weight:bold}
+.zyhhr{height:2px;background:#878a8e;margin:10px 0;border-radius:1px}
+.zyhdiv{height:1px;background:#878a8e;margin:6px 0;border-radius:1px}
+</style>
+<details class="zyhpanel" open>
+  <summary>状态栏</summary>
+  <div style="padding-top:10px">
+    <div class="zyhitem"><b>日期：</b>{{format_message_variable::stat_data.时间系统.日期}}</div>
+    <div class="zyhdiv"></div>
+    <div class="zyhitem"><b>时间：</b>{{format_message_variable::stat_data.时间系统.时间}}</div>
+    <div class="zyhdiv"></div>
+    <div class="zyhitem"><b>地点：</b>{{format_message_variable::stat_data.时间系统.地点}}</div>
+    <div class="zyhdiv"></div>
+    <div class="zyhitem"><b>天气：</b>{{format_message_variable::stat_data.时间系统.天气}}</div>
+    <div class="zyhhr"></div>
+    <details class="zyhsub">
+      <summary>卓云和状态</summary>
+      <div style="padding-top:8px">
+        <div class="zyhitem"><b>好感度：</b>{{format_message_variable::stat_data.卓云和个人状态.好感度}}</div>
+        <div class="zyhdiv"></div>
+        <div class="zyhitem"><b>戒备值：</b>{{format_message_variable::stat_data.卓云和个人状态.戒备值}}</div>
+        <div class="zyhdiv"></div>
+        <div class="zyhitem"><b>爱意值：</b>{{format_message_variable::stat_data.卓云和个人状态.爱意值}}</div>
+        <div class="zyhdiv"></div>
+        <div class="zyhitem"><b>着装：</b>{{format_message_variable::stat_data.卓云和个人状态.着装}}</div>
+        <div class="zyhdiv"></div>
+        <div class="zyhitem"><b>姿势：</b>{{format_message_variable::stat_data.卓云和个人状态.姿势}}</div>
+        <div class="zyhdiv"></div>
+        <div class="zyhitem"><b>心声：</b>{{format_message_variable::stat_data.卓云和个人状态.心声}}</div>
+      </div>
+    </details>
+    <div class="zyhhr"></div>
+    <details class="zyhsub">
+      <summary>今日计划</summary>
+      <div style="padding-top:8px" class="zyhitem">{{format_message_variable::stat_data.卓云和个人状态.今日计划}}</div>
+    </details>
+    <div class="zyhhr"></div>
+    <details class="zyhsub">
+      <summary>坊间流言</summary>
+      <div style="padding-top:8px" class="zyhitem">{{format_message_variable::stat_data.卓云和个人状态.坊间流言}}</div>
+    </details>
+  </div>
+</details>
+</body>
+```

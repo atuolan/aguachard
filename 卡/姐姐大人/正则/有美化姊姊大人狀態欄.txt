@@ -1,0 +1,286 @@
+```
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>黎靖青／窮雲海 狀態欄</title>
+    <style>
+      /* 自定義字體 - 霞鶩文楷 */
+      @import url('https://cdn.jsdelivr.net/npm/font-chenyuluoyan/font.css');
+
+      body {
+        font-family: 'ChenYuluoyan', cursive;
+              letter-spacing: 0.05em; /* 增加字距 */
+        font-weight: normal;
+      }
+
+      /* 整體頁面樣式：設置背景、置中顯示、留白 */
+      body {
+        background: #1a1a1a00;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 0;
+        padding: 40px;
+        height: auto;
+        min-height: 0;
+        font-family: 'ChenYuluoyan', cursive;
+        font-weight: normal;
+        font-size: 16px; /* 新增全局基準 +1px */
+      }
+
+      /* 主狀態面板：顯示角色整體狀態，包含背景圖片和邊框陰影 */
+      details.status-panel {
+        width: 260px;
+        font-family: 'ChenYuluoyan', cursive;
+              letter-spacing: 0.05em; /* 增加字距 */
+        font-size: 16px; /* 從 15px 調到 16px */
+        border-radius: 10px;
+        border: 1px solid rgba(100, 100, 150, 0.3);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        background: url('https://aguacloudreve.aguacloud.uk/f/RPSd/IMG_1830%20%281%29.jpg') no-repeat center center / cover;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      /* 背景特效 */
+      details.status-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(100, 100, 150, 0.1) 10%, transparent 10%);
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      /* 面板標題 */
+      details.status-panel summary {
+        color: #b0b0ff;
+        font-size: 15px; /* 從 14px 調到 15px */
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        cursor: pointer;
+        list-style: none;
+        /* --- 新增樣式以修復高度問題 --- */
+        height: 50px; /* 設定一個固定的高度 */
+        display: flex;
+        justify-content: center; /* 水平置中文字 */
+        align-items: center; /* 垂直置中文字 */
+        padding: 0; /* 移除 padding，由 flex 控制對齊 */
+      }
+      
+      details.status-panel summary h3 {
+        margin: 0; /* 清除 h3 的預設邊距 */
+        font-weight: bold; /* 設定為粗體 */
+      }
+
+      details.status-panel summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* 狀態項目 */
+      .status-item {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .status-item label {
+        font-size: 0.9em; /* 繼承 16px 會變 14.4px */
+        color: #cbd6f0;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .status-item span,
+      .status-item p {
+        font-size: 1em; /* 繼承 16px 或 16px 的 panel */
+        margin: 0;
+        color: #eeeeee;
+      }
+
+      /* 進度條外框 */
+      .progress-bar {
+        width: 80%;
+        margin: 0 auto;
+        background: #333;
+        height: 6px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 5px;
+      }
+
+      /* 進度條填充 */
+      .progress {
+        height: 100%;
+        transition: width 0.5s ease;
+      }
+
+      .cold-progress {
+        background: linear-gradient(90deg, #4b6cb7, #182848);
+      }
+      .intimacy-progress {
+        background: linear-gradient(90deg, #ff6b6b, #9b1b1b);
+      }
+      .excitement-progress {
+        background: linear-gradient(90deg, #bb33ff, #660099);
+      }
+
+      /* 內心想法 */
+      .thoughts {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        border-radius: 5px;
+        font-style: italic;
+        color: #c0c0ff;
+        margin-top: 10px;
+      }
+
+      /* 待辦事項按鈕 */
+      .todo-toggle {
+        background: #4b6d999c;
+        color: #fff;
+        padding: 8px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+
+      /* 待辦清單 */
+      .todo-list {
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        margin-top: 5px;
+      }
+
+      .todo-item {
+        font-size: 0.95em;
+        color: #c0c0ff;
+        margin-bottom: 8px;
+        text-align: center;
+        font-style: italic;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 8px 10px;
+        border-radius: 5px;
+      }
+
+      /* 模式標記 */
+      .mode-boss {
+        border-left: 3px solid #4b6cb7;
+      }
+      .mode-maid {
+        border-left: 3px solid #ff6b6b;
+      }
+
+      /* 心理狀態標題 */
+      summary.psych-summary {
+        background: rgba(255, 255, 255, 0);
+        color: #c0c0ff;
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      summary.psych-summary:hover {
+        background: rgba(255, 255, 255, 0);
+      }
+
+      /* 響應式設計 */
+      @media (max-width: 400px) {
+        details.status-panel {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 主狀態面板 -->
+    <details class="status-panel mode-boss">
+      <summary><h3>黎靖青／窮雲海</h3></summary>
+
+      <div class="status-item">
+        <label>當前時間點</label>
+        <span>$1</span>
+      </div>
+
+      <div class="status-item">
+        <label>當前身份</label>
+        <span>$2</span>
+      </div>
+
+      <div class="status-item">
+        <label>當前模式（上司/偽娘）</label>
+        <span>$3</span>
+      </div>
+
+      <details class="status-item" style="border: none; padding: 0">
+        <summary class="psych-summary"><h4>心理狀態</h4></summary>
+
+        <div class="status-item heart">
+          <label>心情</label>
+          <span>$4</span>
+        </div>
+
+        <div class="status-item">
+          <label>冷淡值：$5</label>
+          <div class="progress-bar">
+            <div class="progress cold-progress"></div>
+          </div>
+        </div>
+
+        <div class="status-item">
+          <label>親密值：$6</label>
+          <div class="progress-bar">
+            <div class="progress intimacy-progress"></div>
+          </div>
+        </div>
+
+        <div class="status-item">
+          <label>興奮值：$7</label>
+          <div class="progress-bar">
+            <div class="progress excitement-progress"></div>
+          </div>
+        </div>
+
+        <div class="status-item">
+          <label>內心想法</label>
+          <p class="thoughts">$8</p>
+        </div>
+
+        <div class="todo-toggle">約定與待辦事項</div>
+        <div class="todo-list"></div>
+      </details>
+
+      <script>
+        const todoItems = '$9'.split('|');
+        const todoList = document.querySelector('.todo-list');
+        todoList.innerHTML = '';
+        todoItems.forEach(item => {
+          if (item.trim()) {
+            const todoItem = document.createElement('div');
+            todoItem.className = 'todo-item';
+            todoItem.textContent = item.trim();
+            todoList.appendChild(todoItem);
+          }
+        });
+      </script>
+      <script>
+        document.querySelector('.cold-progress').style.width = '$5' + '%';
+        document.querySelector('.intimacy-progress').style.width = '$6' + '%';
+        document.querySelector('.excitement-progress').style.width = '$7' + '%';
+      </script>
+    </details>
+  </body>
+</html>
+
+```

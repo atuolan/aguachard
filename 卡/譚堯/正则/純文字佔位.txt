@@ -1,0 +1,14 @@
+<details>
+  <summary>譚堯</summary>
+
+  ```yaml
+    亲密度: '{{get_message_variable::stat_data.谭尧.亲密度}}'
+    好感度: '{{get_message_variable::stat_data.谭尧.好感度}}'
+    恶感度: '{{get_message_variable::stat_data.谭尧.恶感度}}'
+    警惕值: '{{get_message_variable::stat_data.谭尧.警惕值}}'
+    时间: '{{get_message_variable::stat_data.谭尧.时间}}'
+    心情: '{{get_message_variable::stat_data.谭尧.心情}}'
+    想法: '{{get_message_variable::stat_data.谭尧.想法}}'
+    约定与代办事项: '{{get_message_variable::stat_data.谭尧.约定与代办事项}}'
+  ```
+</details>

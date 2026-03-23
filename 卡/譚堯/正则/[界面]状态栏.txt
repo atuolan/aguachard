@@ -1,0 +1,49 @@
+
+```
+<body>
+    <script type="module">
+        const urls = [`https://aguacloudreve.aguacloud.uk/f/g3fR/%E8%AD%9A%E5%A0%AF%E7%8B%80%E6%85%8B%E6%AC%84.html`]
+
+        function Http_Get(url) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    timeout: 5000,
+                    success: function (data, status) {
+                        resolve(data); // 成功时返回数据
+                    },
+                    error: function (xhr, status, error) {
+                        if (status === 'timeout') {
+                            console.error('请求超时，请检查网络或重试');
+                        } else {
+                            console.error('请求失败，错误信息：', error);
+                        }
+                        resolve(<user>);
+                    }
+                });
+            });
+        }
+
+        async function Load() {
+            for (const url of urls) {
+                for (let i = 0; i < 3; i++) {
+                    try {
+                        const html = await Http_Get(url);
+                        if (html && html.indexOf("谭尧 核心状态") > 0) {
+                            $("body").html(html);
+                            return;
+                        }
+                    } catch (e) {
+                        console.error('加载失败:', e);
+                    }
+                }
+            }
+            triggerSlash(`/echo severity=error 谭尧状态栏加载失败,请检查网络问题`);
+        }
+
+        Load();
+    </script>
+</body>
+
+```

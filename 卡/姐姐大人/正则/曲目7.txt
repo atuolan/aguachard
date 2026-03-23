@@ -1,0 +1,240 @@
+```
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音乐播放器</title>
+    <style>
+      /* ========== 頁面整體佈局樣式 ========== */
+      body {
+        display: flex; /* 使用彈性佈局 */
+        justify-content: center; /* 水平置中 */
+        align-items: center; /* 垂直置中 */
+        margin: 0; /* 移除預設邊距 */
+        padding: 20px; /* 頁面內邊距 */
+      }
+
+      /* ========== 音樂播放器主容器樣式 ========== */
+      .music-player {
+        width: 100%; /* 寬度100% */
+        max-width: 280px; /* 最大寬度280px（增加以容納音量控制） */
+        height: 50px; /* 固定高度50px */
+        background: linear-gradient(to right, #bcd4e4ff, #6a85a0ff); /* 從左到右的漸層背景 */
+        border-radius: 6px; /* 圓角6px */
+        padding: 8px 12px; /* 內邊距：上下8px，左右12px */
+        display: flex; /* 使用彈性佈局 */
+        align-items: center; /* 垂直置中對齊 */
+        gap: 12px; /* 子元素間距12px */
+        color: white; /* 文字顏色白色 */
+        font-family: 'DFKai-SB', '標楷體', serif; /* 字體設定：標楷體 */
+      }
+
+      /* ========== 播放按鈕樣式 ========== */
+      .play-btn {
+        background: none; /* 無背景 */
+        border: none; /* 無邊框 */
+        color: white; /* 文字顏色白色 */
+        font-size: 22px; /* 字體大小22px */
+        cursor: pointer; /* 滑鼠指標變手型 */
+        padding: 5px; /* 內邊距5px */
+        min-width: 36px; /* 最小寬度36px */
+        flex-shrink: 0; /* 不允許收縮 */
+        margin-left: 10px; /* 左邊距10px（向右移動） */
+      }
+
+      /* ========== 播放按鈕滑鼠懸停效果 ========== */
+      .play-btn:hover {
+        opacity: 0.8; /* 透明度變為80% */
+      }
+
+      /* ========== 主要內容區域樣式 ========== */
+      .main-content {
+        flex: 1; /* 佔據剩餘空間 */
+        display: flex; /* 使用彈性佈局 */
+        justify-content: center; /* 水平置中 */
+        align-items: center; /* 垂直置中 */
+      }
+
+      /* ========== 歌曲標題樣式 ========== */
+      .song-title {
+        font-size: 16px; /* 字體大小16px */
+        font-weight: bold; /* 粗體 */
+        margin: 0; /* 移除邊距 */
+        text-align: center; /* 文字置中 */
+        white-space: nowrap; /* 不換行 */
+        overflow: hidden; /* 隱藏溢出內容 */
+        text-overflow: ellipsis; /* 溢出時顯示省略號 */
+      }
+
+      /* ========== 音量控制區域樣式 ========== */
+      .volume-control {
+        display: flex; /* 使用彈性佈局 */
+        align-items: center; /* 垂直置中對齊 */
+        gap: 6px; /* 子元素間距6px */
+        flex-shrink: 0; /* 不允許收縮 */
+      }
+
+      /* ========== 音量圖示樣式 ========== */
+      .volume-icon {
+        font-size: 14px; /* 字體大小14px */
+        cursor: pointer; /* 滑鼠指標變手型 */
+        user-select: none; /* 禁止選取文字 */
+      }
+
+      /* ========== 音量滑桿樣式 ========== */
+      .volume-slider {
+        width: 50px; /* 寬度50px */
+        height: 4px; /* 高度4px */
+        background: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
+        border-radius: 2px; /* 圓角2px */
+        appearance: none; /* 移除預設樣式 */
+        outline: none; /* 移除焦點外框 */
+        cursor: pointer; /* 滑鼠指標變手型 */
+      }
+
+      /* ========== 音量滑桿滑塊樣式 ========== */
+      .volume-slider::-webkit-slider-thumb {
+        appearance: none; /* 移除預設樣式 */
+        width: 12px; /* 寬度12px */
+        height: 12px; /* 高度12px */
+        background: white; /* 白色背景 */
+        border-radius: 50%; /* 圓形 */
+        cursor: pointer; /* 滑鼠指標變手型 */
+      }
+
+      /* ========== Firefox 音量滑桿滑塊樣式 ========== */
+      .volume-slider::-moz-range-thumb {
+        width: 12px; /* 寬度12px */
+        height: 12px; /* 高度12px */
+        background: white; /* 白色背景 */
+        border-radius: 50%; /* 圓形 */
+        border: none; /* 無邊框 */
+        cursor: pointer; /* 滑鼠指標變手型 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HTML 結構區域 ========== -->
+    <!-- 音樂播放器主容器 -->
+    <div class="music-player">
+      <!-- 播放/暫停按鈕 -->
+      <button class="play-btn" id="playBtn">▶</button>
+
+      <!-- 主要內容區域 -->
+      <div class="main-content">
+        <!-- 歌曲標題顯示 -->
+        <div class="song-title">一程山路</div>
+      </div>
+
+      <!-- 音量控制區域 -->
+      <div class="volume-control">
+        <span class="volume-icon">🔊</span>
+        <input type="range" class="volume-slider" min="0" max="100" value="50" />
+      </div>
+    </div>
+
+    <!-- ========== JavaScript 功能區域 ========== -->
+    <script>
+      $(function () {
+        // ========== DOM 元素選取 ==========
+        const playBtn = $('.play-btn'); // 播放按鈕
+        const songTitle = $('.song-title'); // 歌曲標題
+        const volumeSlider = $('.volume-slider'); // 音量滑桿
+        const volumeIcon = $('.volume-icon'); // 音量圖示
+
+        // ========== 音樂設定 ==========
+        const songUrl = 'https://aguacloudreve.aguacloud.uk/f/EjUk/%E4%B8%80%E7%A8%8B%E5%B1%B1%E8%B7%AF.mp3'; // 音樂檔案URL
+        const songName = '一程山路'; // 歌曲名稱
+
+        // ========== 狀態變數 ==========
+        let isPlaying = false; // 播放狀態標記
+        let currentVolume = 50; // 當前音量（0-100）
+        let isMuted = false; // 靜音狀態
+        let previousVolume = 50; // 用於取消靜音時恢復音量
+
+        // ========== TavernHelper API 檢查 ==========
+        if (typeof TavernHelper === 'undefined') {
+          songTitle.text('TavernHelper 不可用');
+          return;
+        }
+
+        // ========== 播放/暫停按鈕事件處理 ==========
+        playBtn.on('click', async function () {
+          try {
+            if (isPlaying) {
+              pauseAudio('bgm');
+              playBtn.text('▶');
+              isPlaying = false;
+            } else {
+              playAudio('bgm', { title: songName, url: songUrl });
+              playBtn.text('⏸');
+              isPlaying = true;
+            }
+          } catch (error) {
+            console.error('播放控制失敗:', error);
+          }
+        });
+
+        // ========== 音量控制功能 ==========
+        volumeSlider.on('input', function () {
+          const volumeValue = parseInt(this.value);
+          currentVolume = volumeValue;
+
+          const percentage = volumeValue;
+          this.style.background = `linear-gradient(to right, white ${percentage}%, rgba(255, 255, 255, 0.3) ${percentage}%)`;
+
+          updateVolumeIcon(volumeValue);
+
+          if (!isMuted) {
+            setAudioSettings('bgm', { volume: volumeValue });
+          }
+        });
+
+        volumeIcon.on('click', function () {
+          isMuted = !isMuted;
+          if (isMuted) {
+            previousVolume = currentVolume;
+            setAudioSettings('bgm', { muted: true });
+            volumeSlider.val(0);
+            volumeSlider.trigger('input');
+            volumeIcon.text('🔇');
+          } else {
+            setAudioSettings('bgm', { muted: false, volume: previousVolume });
+            volumeSlider.val(previousVolume);
+            volumeSlider.trigger('input');
+            currentVolume = previousVolume;
+          }
+        });
+
+        function updateVolumeIcon(volume) {
+          if (isMuted || volume === 0) {
+            volumeIcon.text('🔇');
+          } else if (volume < 30) {
+            volumeIcon.text('🔉');
+          } else {
+            volumeIcon.text('🔊');
+          }
+        }
+
+        volumeSlider.trigger('input');
+
+        // ========== 自動播放功能 ==========
+        async function autoPlay() {
+          try {
+            setAudioSettings('bgm', { mode: 'repeat_one', volume: currentVolume });
+            playAudio('bgm', { title: songName, url: songUrl });
+            playBtn.text('⏸');
+            isPlaying = true;
+            console.log('自動播放成功');
+          } catch (error) {
+            console.log('自動播放失敗:', error);
+          }
+        }
+
+        setTimeout(autoPlay, 1000);
+      });
+    </script>
+  </body>
+</html>
+```

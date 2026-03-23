@@ -1,0 +1,602 @@
+```
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>角色信息面板</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+        background: transparent;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          -webkit-transform: translateY(0px) translateX(0px) rotate(0deg);
+          transform: translateY(0px) translateX(0px) rotate(0deg);
+        }
+        25% {
+          -webkit-transform: translateY(-8px) translateX(3px) rotate(1deg);
+          transform: translateY(-8px) translateX(3px) rotate(1deg);
+        }
+        50% {
+          -webkit-transform: translateY(-3px) translateX(-3px) rotate(-0.5deg);
+          transform: translateY(-3px) translateX(-3px) rotate(-0.5deg);
+        }
+        75% {
+          -webkit-transform: translateY(-12px) translateX(2px) rotate(0.8deg);
+          transform: translateY(-12px) translateX(2px) rotate(0.8deg);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes glow {
+        0%, 100% {
+          -webkit-filter: drop-shadow(0 0 5px rgba(108, 92, 231, 0.3));
+          filter: drop-shadow(0 0 5px rgba(108, 92, 231, 0.3));
+        }
+        50% {
+          -webkit-filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.4));
+          filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.4));
+        }
+      }
+
+      .panel-container {
+        background: linear-gradient(135deg, #fafafa 0%, #e6f3ff 25%, #f0e6ff 50%, #ffe6f0 75%, #f8f9fa 100%);
+        border-radius: 20px;
+        box-shadow:
+          0 12px 40px rgba(108, 92, 231, 0.15),
+          0 6px 20px rgba(255, 107, 157, 0.1),
+          0 2px 8px rgba(93, 173, 226, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        padding: 25px;
+        max-width: 380px;
+        width: 100%;
+        border: 2px solid;
+        border-image: linear-gradient(45deg, #6c5ce7, #ff6b9d, #5dade2, #9b59b6) 1;
+        position: relative;
+        overflow: hidden;
+        -webkit-animation: glow 4s ease-in-out infinite;
+        animation: glow 4s ease-in-out infinite;
+      }
+
+
+      .panel-title {
+        text-align: center;
+        color: transparent;
+        background: linear-gradient(45deg, #6c5ce7, #ff6b9d, #5dade2, #9b59b6);
+        background-size: 300% 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-animation: shimmer 3s ease-in-out infinite;
+        animation: shimmer 3s ease-in-out infinite;
+        font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 24px;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .panel-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ff6b9d, #6c5ce7, #5dade2, transparent);
+      }
+
+      .info-grid {
+        display: grid;
+        gap: 6px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 248, 255, 0.8));
+        border-radius: 8px;
+        border: 1px solid;
+        border-image: linear-gradient(90deg, rgba(108, 92, 231, 0.3), rgba(255, 107, 157, 0.3), rgba(93, 173, 226, 0.3)) 1;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .info-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(45deg, #ff6b9d, #ff85c1, #ffb3d9);
+      }
+
+      .info-item:hover {
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+        -webkit-box-shadow: 0 6px 20px rgba(108, 92, 231, 0.2), 0 2px 8px rgba(255, 107, 157, 0.15);
+        box-shadow: 0 6px 20px rgba(108, 92, 231, 0.2), 0 2px 8px rgba(255, 107, 157, 0.15);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 255, 0.9));
+      }
+
+      .info-label {
+        font-weight: 500;
+        color: transparent;
+        background: linear-gradient(45deg, #6c5ce7, #9b59b6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-weight: 500;
+        font-size: 14px;
+        min-width: 120px;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+        -webkit-font-feature-settings: 'liga', 'kern';
+        font-feature-settings: 'liga', 'kern';
+      }
+
+      .info-value {
+        color: #5D5D5D;
+        font-size: 14px;
+        text-align: right;
+        flex: 1;
+        margin-left: 15px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+      }
+
+      .info-value.placeholder {
+        color: #c0c0c0;
+        font-style: italic;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .character-info-area {
+        margin-bottom: 20px;
+      }
+
+      .content-area, .dialogue-area {
+        /* 移除外層樣式，只保留基本結構 */
+      }
+
+      #character-info-content, #intro-content, #dialogue-content {
+        padding: 2px 8px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 255, 0.75));
+        border-radius: 6px;
+        border: 1px solid;
+        border-image: linear-gradient(45deg, rgba(155, 89, 182, 0.4), rgba(93, 173, 226, 0.3)) 1;
+        color: #5D5D5D;
+        line-height: 1.3;
+        letter-spacing: 0.2px;
+        font-weight: 300;
+        white-space: pre-wrap;
+      }
+      
+      .dialogue-area { font-style: italic; }
+      #dialogue-content { font-style: italic; }
+
+
+      .navigation {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 16px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav-btn {
+        background: linear-gradient(135deg, #5dade2 0%, #6c5ce7 50%, #9b59b6 100%);
+        position: relative;
+        overflow: hidden;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 16px;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        -webkit-box-shadow: 0 2px 6px rgba(108, 92, 231, 0.3);
+        box-shadow: 0 2px 6px rgba(108, 92, 231, 0.3);
+        min-width: 60px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .nav-btn:hover {
+        background: linear-gradient(135deg, #6bb6ff 0%, #9b59b6 50%, #ff85c1 100%);
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+        -webkit-box-shadow: 0 3px 8px rgba(108, 92, 231, 0.4);
+        box-shadow: 0 3px 8px rgba(108, 92, 231, 0.4);
+      }
+
+      .nav-btn:active {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-box-shadow: 0 1px 4px rgba(108, 92, 231, 0.3);
+        box-shadow: 0 1px 4px rgba(108, 92, 231, 0.3);
+      }
+
+      #page2 .panel-container {
+        max-width: 380px;
+      }
+
+      /* 角色名稱樣式 */
+      .character-name {
+        text-align: center;
+        color: transparent;
+        background: linear-gradient(45deg, #ff6b9d, #ff85c1, #ffb3d9, #ff6b9d);
+        background-size: 300% 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        -webkit-animation: shimmer 2.5s ease-in-out infinite;
+        animation: shimmer 2.5s ease-in-out infinite;
+        font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', serif;
+        font-size: 30px;
+        font-weight: 400;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+        -webkit-text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+      }
+
+      /* 標籤容器樣式 */
+      .tags-container {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* 標籤樣式 */
+      .tag {
+        background: linear-gradient(135deg, #9b59b6 0%, #6c5ce7 25%, #ff6b9d 75%, #ffb3d9 100%);
+        background-size: 200% 200%;
+        -webkit-box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+        box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+        -webkit-animation: pulse 3s ease-in-out infinite;
+        animation: pulse 3s ease-in-out infinite;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        background: linear-gradient(135deg, #6c5ce7 0%, #9b59b6 30%, #ff85c1 70%, #ffb3d9 100%);
+        -webkit-transform: translateY(-1px) scale(1.05);
+        transform: translateY(-1px) scale(1.05);
+        -webkit-box-shadow: 0 6px 16px rgba(108, 92, 231, 0.25);
+        box-shadow: 0 6px 16px rgba(108, 92, 231, 0.25);
+      }
+
+      /* 章節標題樣式 */
+      .section-title {
+        color: transparent;
+        background: linear-gradient(45deg, #5a67d8, #6c5ce7, #9b59b6, #5a67d8);
+        background-size: 300% 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', serif;
+        font-weight: 400;
+        -webkit-animation: shimmer 3.5s ease-in-out infinite;
+        animation: shimmer 3.5s ease-in-out infinite;
+        font-size: 20px;
+        margin-bottom: 16px;
+        padding-left: 8px;
+        border-left: 4px solid;
+        border-image: linear-gradient(180deg, #4a90e2, #6c5ce7, #9b59b6) 1;
+        position: relative;
+        z-index: 1;
+        letter-spacing: 1px;
+      }
+
+      /* 角色信息區域樣式 */
+      .character-info-section {
+        margin-bottom: 24px;
+      }
+
+      /* 對話節選區域樣式 */
+      .dialogue-section {
+        margin-top: 24px;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 600px) {
+        .panel-container {
+          padding: 20px;
+          margin: 10px;
+          max-width: 100%;
+        }
+
+        .info-item {
+          padding: 10px 12px;
+          flex-wrap: nowrap;
+          align-items: center;
+        }
+
+        .info-label {
+          min-width: 80px;
+          font-size: 13px;
+          flex-shrink: 0;
+        }
+
+        .info-value {
+          font-size: 13px;
+          margin-left: 10px;
+          text-align: right;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .panel-title {
+          font-size: 20px;
+          margin-bottom: 20px;
+        }
+        
+        .character-name {
+          font-size: 24px;
+          margin-bottom: 12px;
+        }
+
+        .tags-container {
+          gap: 6px;
+          margin-bottom: 20px;
+        }
+
+        .tag {
+          font-size: 11px;
+          padding: 3px 10px;
+        }
+
+        .section-title {
+          font-size: 16px;
+          margin-bottom: 12px;
+        }
+
+        #character-info-content, #intro-content, #dialogue-content {
+          padding: 1px 6px;
+        }
+
+        .character-info-section, .dialogue-section {
+          margin-bottom: 16px;
+        }
+
+        .dialogue-section {
+          margin-top: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: absolute; left: -9999px; top: -9999px;">作者：阿瓜雲５號機</div>
+    <script>
+      function showPage(pageNumber) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.style.display = 'none';
+        });
+
+        const targetPage = document.getElementById('page' + pageNumber);
+        if (targetPage) {
+          targetPage.style.display = 'flex';
+        }
+      }
+
+
+      window.showPage = showPage;
+    </script>
+    <!-- 第一頁 - 角色信息頁面 -->
+    <div class="page" id="page1">
+      <div class="panel-container">
+        <!-- 角色名稱 -->
+        <h1 class="character-name">$1</h1>
+        
+        <!-- 標籤行列 -->
+        <div class="tags-container" id="tags-container">
+          <span class="tag">$2</span>
+        </div>
+        
+        <!-- 角色信息區域 -->
+        <div class="character-info-section">
+          <h2 class="section-title">👤 角色信息</h2>
+          <div class="character-info-area">
+            <div id="character-info-content">$3</div>
+          </div>
+        </div>
+        
+        <!-- 簡介標題 -->
+        <h2 class="section-title">📖 作品简介</h2>
+        
+        <!-- 簡介內容 -->
+        <div class="content-area" id="content-area">
+          <div id="intro-content">$4</div>
+        </div>
+        
+        <!-- 對話節選區域 -->
+        <div class="dialogue-section">
+          <h2 class="section-title">💬 对话节选</h2>
+          <div class="dialogue-area">
+            <div id="dialogue-content">$5</div>
+          </div>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn" onclick="showPage(2)">详细信息</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二頁 - 角色信息面板 -->
+    <div class="page" id="page2" style="display: none">
+      <div class="panel-container">
+        <h1 class="panel-title">角色信息面板</h1>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">作者：</span>
+            <span class="info-value">$6</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">角色卡：</span>
+            <span class="info-value">$7</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">性取向：</span>
+            <span class="info-value">$8</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">二傳：</span>
+            <span class="info-value">$9</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">二改：</span>
+            <span class="info-value">$10</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">是否允许商业平台使用：</span>
+            <span class="info-value">$11</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">腳本：</span>
+            <span class="info-value">$12</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">提示词模板是否需要安装：</span>
+            <span class="info-value">$13</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">小手机：</span>
+            <span class="info-value">$14</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">是否可用在其他软件：</span>
+            <span class="info-value">$15</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">user性別限制：</span>
+            <span class="info-value">$16</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-value" style="text-align: left; margin-left: 0;">不允许商业平台使用的意思就是，如果你的云酒馆并非自己搭建而是用购买的方式，那本张卡就不允许导入游玩，商业云酒馆会导致创作者的卡被盗用，我们都是用爱发电的，没人希望成为贩子赚钱的工具，这是非常令创作者难过的事情，如果有问题希望多在社群发问，而不是让自己成为贩子的赞助者。</span>
+          </div>
+        </div>
+        <div class="navigation">
+          <button class="nav-btn" onclick="showPage(1)">返回简介</button>
+        </div>
+      </div>
+    </div>
+<script>
+// 確保頁面加載後執行標籤生成
+document.addEventListener('DOMContentLoaded', function() {
+  const tagsContainer = document.getElementById('tags-container');
+  
+  if (tagsContainer) {
+    // 获取现有的标签文本内容
+    const existingTag = tagsContainer.querySelector('.tag');
+    if (existingTag) {
+      const tagText = existingTag.textContent;
+      
+      // 只有当内容包含分隔符时才进行分割
+      if (tagText.includes('、')) {
+        const tagItems = tagText.split('、');
+        
+        // 清空容器并重新创建标签
+        tagsContainer.innerHTML = '';
+        tagItems.forEach(item => {
+          if (item.trim()) {
+            const tagItem = document.createElement('span');
+            tagItem.className = 'tag';
+            tagItem.textContent = item.trim();
+            tagsContainer.appendChild(tagItem);
+          }
+        });
+      }
+    }
+  }
+});
+</script>
+  </body>
+</html>
+
+```

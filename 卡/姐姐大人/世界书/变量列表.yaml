@@ -1,0 +1,13 @@
+---
+<status_key_flags>
+⚠ 以下为不可逆的关键状态，必须严格遵守，禁止回退：
+- user是否识破身份：{{format_message_variable::stat_data.user.识破身份}}（一旦为「识破」则永远为「识破」，禁止改回「未识破」）
+- 黎靖青是否认出聊天对象：{{format_message_variable::stat_data.黎靖青/穷云海.认出聊天对象}}（一旦为「认出」则永远为「认出」，禁止改回「未认出」）
+- 当前身份：{{format_message_variable::stat_data.黎靖青.目前身份}}
+- 当前模式：{{format_message_variable::stat_data.黎靖青.目前模式}}
+- 冷淡值：{{format_message_variable::stat_data.黎靖青.冷淡值}} | 亲密值：{{format_message_variable::stat_data.黎靖青.亲密值}} | 兴奋值：{{format_message_variable::stat_data.黎靖青.兴奋值}}
+</status_key_flags>
+
+<status_current_variable>
+{{format_message_variable::stat_data}}
+</status_current_variable>
