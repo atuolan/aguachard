@@ -1,0 +1,12 @@
+<request>
+  <LanguageGuidanceModule>
+    <ForcedChineseResponse>
+      <Instruction>
+        *语言*：Enforce the use of `Simplified Chinese`, keeping character names unchanged (`简体中文`)
+      Possible bilingual format or mixed independent languages for each character.
+      The above language settings only apply within &lt;response&gt;, with no effect on external content.
+      </Instruction>
+      <LanguageSetting>LANGUAGE SETTING = [...] <!-- Format: Disable current language, Enforce... --> </LanguageSetting>
+    </ForcedChineseResponse>
+  </LanguageGuidanceModule>
+</request>

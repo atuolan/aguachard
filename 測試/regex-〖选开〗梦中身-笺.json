@@ -1,0 +1,15 @@
+{
+  "id": "3e9ec082-cb24-4014-b860-1d6cfd474a43",
+  "scriptName": "〖选开〗梦中身-笺",
+  "findRegex": "/〔([^：:]+)[：:]([\\s\\S]+?)〕/g",
+  "replaceString": "<span class=\"jbox\" tabindex=\"0\"><span class=\"jtrig\">$1</span><span class=\"jpop\"><span style=\"display:block;background:#2a1f0e;padding:10px 16px;text-align:center\"><span style=\"display:block;font-size:8px;letter-spacing:5px;color:#c8a96e;text-transform:uppercase;margin-bottom:3px\">Journal</span><span style=\"display:block;font-size:0.95em;font-weight:900;color:#f7f0e6;letter-spacing:2px;text-transform:uppercase\">$1</span></span><span style=\"display:block;padding:14px 16px;font-size:0.78em;line-height:1.9;color:#3a2e1a;letter-spacing:0.3px;border-bottom:1px solid #e0d0b0;font-family:Georgia,serif;text-align:justify\">$2</span><span style=\"display:block;padding:7px 16px;text-align:right;font-size:8px;letter-spacing:3px;color:#a08050\">✦ · ✦</span></span><style>.jbox{display:inline-block;position:relative;outline:none;vertical-align:baseline}.jbox .jtrig{border-bottom:1px solid #8b7355;color:inherit;cursor:pointer;padding-bottom:1px;letter-spacing:1px;font-style:italic}.jbox .jpop{display:none;position:absolute;left:0;right:auto;bottom:1.6em;top:auto;min-width:min(240px,78vw);max-width:min(300px,88vw);max-height:min(52vh,320px);overflow-y:auto;background:#f7f0e6;color:#2a1f0e;padding:0;border-radius:2px;z-index:9999;box-shadow:0 12px 40px rgba(0,0,0,0.35)}.jbox:focus .jpop,.jbox:focus-within .jpop{display:block}.jbox:focus .jtrig,.jbox:focus-within .jtrig{color:#8b7355}</style></span>",
+  "trimStrings": [],
+  "placement": [1, 2],
+  "disabled": false,
+  "markdownOnly": true,
+  "promptOnly": false,
+  "runOnEdit": true,
+  "substituteRegex": 0,
+  "minDepth": null,
+  "maxDepth": null
+}

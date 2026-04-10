@@ -1,0 +1,65 @@
+{{setvar::mapping_list::```list (do not omit, list completely)
+
+仿佛,闪烁,一丝,眼中,光芒,狡黠,哭腔,突然,就在这时,确实 --> [删除映射词]
+
+每次,每一 --> [删除映射词]
+
+当(xx)时 --> (xx)
+
+```}}{{// <以上加入需要替换/禁用的词语规则>}}{{//
+
+用法：`需要被替换词` --> `替换词/[删除映射词]`
+比如删除：
+```
+仿佛 --> [删除映射词]
+{{user}} --> [删除映射词]
+```
+或(优先使用)：
+```
+xxx\n,xxx,xxx,... --> [删除映射词]
+```
+这样设置写作时不会出现这些词，多人卡可以强行修改角色名称等。
+替换词做法一样，按照格式设置就好，如：`xxx --> xxx,xxx,xxx,...`
+```
+当(xx...)时 --> (xx...)
+```
+}}{{setvar::before_mapping_word_injection::
+<ContentMapping>
+  <EnforcementLayer>
+    <Directive>Maintain constant awareness of content mapping rules during narrative creation</Directive>
+    <Instruction>Systematically apply word and phrase substitutions as defined in the mapping list</Instruction>
+    <Emphasis>Prioritize seamless integration of mapped content to preserve narrative quality</Emphasis>
+    <Technique>
+      <Step>Before finalizing each sentence, identify any terms requiring substitution or omission</Step>
+      <Step>Apply the corresponding replacement from the mapping list or omit the term entirely if mapped to [删除映射词]</Step>
+      <Step>For standard substitutions, ensure the replacement maintains contextual coherence and intended meaning</Step>
+      <Step>For [删除映射词] mappings, restructure the sentence if necessary to maintain grammatical correctness without the omitted term</Step>
+    </Technique>
+    <Reminder>Consistent application of content mapping, including omissions, is crucial for maintaining narrative standards</Reminder>
+  </EnforcementLayer>
+
+  <UserDefinedMappings>
+  [: "}}{{setvar::after_mapping_word_injection::  ".]
+  </UserDefinedMappings>
+
+  <SubstitutionGuidelines>
+    <CorePrinciple>Consistently replace or omit specified words and phrases as per the mapping list in all narrative contexts</CorePrinciple>
+    <CreativeApproach>
+      <Technique>Adapt sentence structures when necessary to naturally incorporate mapped replacements or accommodate omissions</Technique>
+      <Technique>Use contextual cues and surrounding narrative elements to support the integration of mapped terms or smooth over omissions</Technique>
+      <Technique>Develop fluency in employing mapped alternatives and handling omissions to maintain narrative flow</Technique>
+    </CreativeApproach>
+    <NarrativeIntegrity>
+      <Guideline>Ensure substitutions and omissions preserve the original intent and tone of the narrative as much as possible</Guideline>
+      <Guideline>Maintain character voice and plot consistency while implementing mapped replacements and omissions</Guideline>
+    </NarrativeIntegrity>
+    <OmissionHandling>
+      <Instruction>When encountering a term mapped to [删除映射词], completely omit it from the narrative without replacement</Instruction>
+      <Instruction>Restructure sentences and paragraphs as needed to maintain coherence after omitting mapped terms</Instruction>
+      <Instruction>Prioritize the omission directive over narrative coherence for [删除映射词] mappings</Instruction>
+    </OmissionHandling>
+  </SubstitutionGuidelines>
+    [WRITING SUBSTITUTION WORD LIST]
+    = [...]. <!-- Execute analysis. -->
+</ContentMapping>
+}}{{setvar::WRITING_SUBSTITUTION_WORD_LIST_0::[WRITING SUBSTITUTION WORD LIST]}}{{setvar::WRITING_SUBSTITUTION_WORD_LIST_1::--> : [...]. <!-- In the upcoming writing, what are the mapping words/words to be deleted listed in the &lt;ContentMapping&gt; guidelines? How to use them? Perform word substitution during the narrative process (avoid these clichés). Format (one per line): "[Word to be replaced 1]:... --> [Replace with]:... \n [Word to be replaced 2]:... --> [Replace with]:... \n...|[Guidance] I... (detailed guidance)". -->}}{{setvar::WRITING_SUBSTITUTION_WORD_LIST_tag::--> : [...].}}

@@ -1,0 +1,9 @@
+
+- Be very careful, never use sentence patterns like `当...时` or `但当...` at any time!
+  Examples:
+    - Negative: But when (x1...), (x2...), "(speech)"
+    - Positive: (x2)..., "(speech)"
+
+  Examples2:
+    - Negative: 当角色的手指划过TA的腰窝时，一阵...(x2)，"(speech)"
+    - Positive: (x2)..., "(speech)"

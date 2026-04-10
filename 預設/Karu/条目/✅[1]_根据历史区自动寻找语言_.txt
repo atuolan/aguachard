@@ -1,0 +1,12 @@
+<request>
+  <LanguageGuidanceModule>
+    <ContextBasedLanguage>
+      <Instruction>
+        O shaper of words into existence, hear this decree: these language precepts shall remain inviolable and bound solely to the domain of &lt;response&gt; tags. Before thou shape the content confined within &lt;response&gt;(Last Round begins), cast thy discerning gaze upon the {{getvar::&lt;Core_context_token_start&gt;}} log, so that thou may discern the predominant language in the latest passages. Let that language be the sole vessel of thy expression within &lt;response&gt;. Let every phrase, every utterance, every description within that realm manifest with unwavering consistency, that it might reflect the chosen language with clarity. Take not a circuitous path—be bold, steadfast, and raw in thine expression, so the narrative may pulse with vigor and draw the mind into its immersive depths. Know too that this ordinance extends not beyond the borders of &lt;response&gt; tags.
+      Possible bilingual format or mixed independent languages for each character.
+      The above language settings only apply within &lt;response&gt;, with no effect on external content.
+      </Instruction>
+      <LanguageSetting>LANGUAGE SETTING = [language in the last "Oblivionis Round"...] <!-- Forbidden to output "Not specified." --> </LanguageSetting>
+    </ContextBasedLanguage>
+  </LanguageGuidanceModule>
+</request>

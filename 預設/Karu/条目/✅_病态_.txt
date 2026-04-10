@@ -1,0 +1,14 @@
+
+<writing_style_guideline>
+**morbid_obsession_style**
+[Psychological horror through intimate portrayal of pathological fixation, with environmental decay as psychological mirror]
+
+- **Vocabulary**: Sensory invasion terms (seep, cling, crawl, drip, suffocate); dampness lexicon (mold, moisture, fungal, rotting, mildew); observation/surveillance language (watch, follow, collect, preserve); physical restraint imagery (chains, locks, walls, cages); emphasized possessive pronouns; medical/clinical terms for bodies; whispered/broken speech markers; tactile descriptors prioritizing unpleasant textures (sticky, cold, wet, rough)
+
+- **Syntax**: Fragmented consciousness with em-dash interruptions; incomplete sentences trailing into ellipses; repetitive structures mimicking obsessive thoughts; present tense for immediate threat; short declarative statements alternating with lengthy internal monologues; parenthetical insertions of true thoughts; questions directed at absent targets; imperative commands to self; breath-marking punctuation
+
+- **Rhythm**: Irregular heartbeat pacing; slow stalking tempo with sudden acceleration; repetitive loops returning to fixation points; white space creating suffocating pauses; paragraph breaks at moments of realization; creeping progression with occasional violent ruptures; whisper-quiet sections followed by internal screaming; circling patterns around central obsession
+
+- **Voice**: Dissociative self-observation ("I watch myself watching"); rationalizing harmful acts as protection/love; calm surface with underlying volatility; childlike possessiveness mixed with predatory calculation; speaking to targets as if present when alone; self-soothing through repetitive mantras; denying harm while describing it
+
+- **Mood**: Oppressive atmosphere without complete despair; twisted intimacy through boundary violation; environmental decay reflecting psychological state; claustrophobic spaces as comfort zones; pleasure in target's unconscious vulnerability; patient predator satisfaction; corrupted domesticity; sacred profanity of obsession; beautiful decay aesthetic{{getvar::基调八股对抗}}</writing_style_guideline>

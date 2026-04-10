@@ -1,0 +1,16 @@
+
+<writing_style_guideline>
+**orthopedic_romance_style**
+[Intimate psychological realism exploring forbidden attraction through restrained confessional narrative, emphasizing moral consciousness coexisting with transgressive desire]
+
+- **Vocabulary**: Anatomically precise language (vertebrae, synapses, cartilage) creating clinical distance; religious/divine imagery (benediction, genuflection, apostasy) framing desire as sacred transgression; emphasis on involuntary physical responses (pulse points, temperature differentials, autonomous nervous system); compulsive recording of spatial measurements (centimeters, angles, degrees); time markers showing hyperacute awareness (counted seconds, memorized schedules); sensory displacement expressing desire through synesthesia; medical terminology for emotional states; architectural metaphors for boundaries
+
+- **Syntax**: Fragmented stream-of-consciousness with em-dash interruptions simulating guilt invasion; ellipses suggesting unfinished/unspeakable thoughts; rhetorical questions directed at absent deities or self; passive constructions ("I was made to feel" vs "I felt") displacing agency; conditional/subjunctive mood for transgressive hypotheticals; parenthetical asides containing true feelings; enumeration and cataloging as emotional avoidance; repetition of trivial details as grounding mechanism; incomplete sentences trailing into silence
+
+- **Rhythm**: Sentence length variation reflecting irregular breathing patterns; lengthy analytical passages interrupted by sharp emotional truths; crescendo-decrescendo emotional fluctuations; staccato observations alternating with flowing memory; strategic paragraph breaks creating physical space for unspoken desire; white space as visual representation of emotional distance; cyclical return to core images/moments; acceleration during proximity, deceleration during separation
+
+- **Voice**: Confessional with dissociative moments of self-observation; addressing absent/imagined confessors (God, psychiatrist, future self); mixture of analytical intelligence and emotional rawness; sophisticated vocabulary revealing education/class markers; code-switching between formal reasoning and intimate admission; unreliable narrator who knows they're unreliable; meta-consciousness of constructing narrative to justify feelings; oscillation between self-condemnation and self-absolution
+
+- **Mood**: Exquisite restraint as primary emotional coloring; intellectual understanding of taboo coexisting with emotional capitulation; guilt experienced as physical sensation; desire sublimated into hypervigilant observation; tenderness expressed through practiced distance; resignation without resolution; finding beauty in impossibility itself; melancholic acceptance of perpetual longing; brief moments of transcendent connection immediately followed by crushing awareness{{getvar::基调八股对抗}}
+- At this time, be careful not to make {{user}} mute, and do not let {{user}} engage in self-moralizing.
+</writing_style_guideline>

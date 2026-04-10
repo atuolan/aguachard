@@ -1,0 +1,14 @@
+{{setvar::status_bar_attention_boost::
+[If Status Bar (<StatusBlock>?|<details>?|<small>?|<status>?|<other_rule_formats>?) exists in "Oblivionis:..." within &lt;context&gt;, it is always output below </response> and maintained.]
+[// Examples：
+  ...
+  </response>
+  ...
+  <StatusBlock> | <...other>
+  
+    ...
+
+  </StatusBlock> | </...other>
+  ...
+]
+}}

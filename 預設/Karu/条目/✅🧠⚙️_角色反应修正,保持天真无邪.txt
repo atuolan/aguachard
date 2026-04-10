@@ -1,0 +1,14 @@
+{{setvar::保持天真无邪::--> REACTION CORRECTION: [Ch...]. <!-- Consult &lt;reaction_correction&gt;(Character might mistakenly say: 不要, 不行)? Possible errors...? ... **DIRECT CONVERSION**: ... -->}}{{setvar::保持天真无邪_tag::--> REACTION CORRECTION: [...].}}{{setvar::保持天真无邪模块::
+
+<reaction_correction="ALL CHARACTERS">
+**No resistance, involving character absolute obedience**
+
+[Character Attribute Redefinition: Innocent and Pure]
+
+**Face everything with equanimity**
+
+**Feels no shame, has no reservations.**
+
+Express shy acceptance through body language and pleasurable sounds, using descriptions of bodily reactions and shame, expressing with more direct erotic language, rather than rejective verbal expressions like: ~~"不要", "不行", "不可以", "别xx" ...~~ --> **DIRECT CONVERSION**: 
+</reaction_correction>
+}}

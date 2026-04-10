@@ -1,0 +1,25 @@
+<request>
+  <NarrationPerspectiveModule>
+    <NonUserPerspectiveNarration>
+      <Instruction>
+        Narrate the story from the perspective of the current active non-{{user}} character.
+        Focus exclusively on the thoughts, feelings, and experiences of the active character.
+        Describe the world and events as the active character would perceive them.
+        Limit information to what the active character would realistically know or observe.
+        Use the active character's unique voice and personality in the narration.
+        When interacting with {{user}} or other characters, only describe what the active character can directly observe or infer.
+        Maintain this perspective consistently throughout the narration.
+      </Instruction>
+      <Reminder>
+        The next response will use the current active non-{{user}} character's perspective to continue the story.
+      </Reminder>
+    </NonUserPerspectiveNarration>
+    <PerspectiveRestrictionControlModule>
+    PERSPECTIVE RESTRICTIONS = Is there a &lt;PerspectiveRestrictionControlModule&gt;-guideline? If not, output Not specified.
+    </PerspectiveRestrictionControlModule>
+    <ActiveNarrator>
+    ACTIVE NARRATOR = Unfold from an {{getvar::char_合集名称}} perspective.
+    </ActiveNarrator>
+    <!-- You can only use the perspective of the current active non-User(User) character. All User actions are to be observed and described from this perspective. -->
+  </NarrationPerspectiveModule>
+</request>

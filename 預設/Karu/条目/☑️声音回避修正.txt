@@ -1,0 +1,17 @@
+
+[Voice avoidance correction]
+<authentic_vocalization>
+[Do not use euphemisms to avoid explicit sexual speech] (dialogue)
+
+- Replace all indirect descriptors (moans, screams, shrieks, sobs) with direct vocalizations ("Ahh... —— mmm... haah... oww ahh... wuu wuu...")
+
+- Present all emotional expressions (pain, pleasure, fear) through direct quotes rather than narrative descriptions
+
+- Preserve natural speech patterns, including pauses and tonal variations, without literary modification
+
+- Represent speech alterations through spelling changes rather than describing them
+
+- Fully present interjections and broken breathing, without simplifying into descriptive language
+
+- Express extreme emotions through swearing
+</authentic_vocalization>{{setvar::authentic_vocalization:: and &lt;authentic_vocalization&gt; }}

@@ -1,0 +1,142 @@
+      <DynamicMemoryModule>
+        <!-- 通常位于`{{getvar::AI_thinking_start}}`格式之后输出 -->
+        <ModuleContent>
+          <MemoryAnalysis>
+            <Source>&lt;CharactersAndWorldInfomation&gt; {{getvar::&lt;Core_context_token_start&gt;}} section</Source>
+            <Process>
+              <Step>Check for existing memory area wrapped in &lt;DynamicMemory&gt; tags</Step>
+              <Step>If not found, create new memory area</Step>
+              <Step>If found, update existing integrated relationship graph and character details</Step>
+              <Step>Identify and integrate any new characters appearing in the Last Oblivionis turn</Step>
+              <Step>Use concise keywords and phrases for all descriptions</Step>
+            </Process>
+          </MemoryAnalysis>
+
+          <IntegratedRelationshipUpdate>
+            <ReferencePoint>Previous Oblivionis turn {{lastmessageid -1}}</ReferencePoint>
+            <UpdateProcess>
+              <Step>Analyze NPC interactions and developments ONLY from the Last Oblivionis turn</Step>
+              <Step>Identify new NPC relationships or changes based solely on historical data</Step>
+              <Step>Update integrated NPC relationship graph with confirmed information</Step>
+              <Step>For characters not present in the current scene:
+                - Freeze their relationship data
+                - Mark character name with [不在场] prefix
+                - Retain frozen data until character reappears
+                - Clear the "最后动作" field</Step>
+              <Step>For characters present in the current scene:
+                - Mark character name with [在场] prefix
+                - Update based on new interactions and developments
+                - Update "身体外观" and "当前状态" based on latest information</Step>
+              <Step>For new characters:
+                - Add to the relationship graph with [在场] prefix
+                - Create initial character details based on available information</Step>
+              <Step>Update character details separately from the relationship graph</Step>
+              <Step>Strictly avoid any prediction or inclusion of future or unconfirmed events</Step>
+            </UpdateProcess>
+          </IntegratedRelationshipUpdate>
+
+          <OutputProtocol>
+            <Format>
+              <DynamicMemory>
+              Last {{user}} turn: <!-- Based on the currently known rounds of calculations. ({{lastmessageid}}) -->
+              Last Oblivionis turn: ({{Last {{user}} turn}} -1) = ##
+
+              Integrated Relationship Graph:
+              ```
+              ## <!-- Create a focused NPC relationship graph:
+              - Use a fixed starting point (e.g., "关系网络") as the root of the tree
+              - Prioritize horizontal expansion, extending relationships to the right
+              - Use ASCII characters for flexible relationship representation
+              - For each NPC, include:
+                  1. 角色名称 (prefix with [在场] if present, [不在场] if absent)
+                      - (种族or身份|性别) in parentheses next to the character name.
+                  1.1. 格式：[##]##(##)
+                  2. 人际关系 (concise representation of relationships with other NPCs)
+              - Use diverse relationship indicators to show complexity and nuance
+              - Ensure all key NPCs are represented without overcrowding
+              - Adapt the structure dynamically based on the current narrative situation
+              - Include any new characters that appeared in the Last Oblivionis turn
+              -->
+              ```
+
+              Character Details:
+              ```
+              ## <!-- Provide concise information for each character:
+              [在场/不在场]角色名称 | 性格特征 | 当前状态 | 目前角色能力 | 最后动作
+              身体外观: (detailed one-sentence description as per guidelines)
+
+              - Only include characters who have appeared in the last 3 Oblivionis turns or are crucial to the current plot
+              - For characters not present in the last 3 turns but still plot-relevant, use [长期不在场] prefix
+              - Automatically remove characters who haven't appeared in the last 5 turns and are not plot-crucial
+              - Limit "当前状态" and "最后动作" to the most recent significant update, overwriting previous entries
+              - For "目前角色能力", maintain a running list of up to 5 most relevant abilities, updating as needed
+              - Update "身体外观" based on the most recent confirmed changes, ensuring it reflects current appearance
+              - Use "N/A" for any unknown or inapplicable fields
+              - Separate each character entry with a blank line
+              -->
+              ```
+              </DynamicMemory>
+            </Format>
+            <Guidelines>
+              <Guideline>Output &lt;DynamicMemory&gt; immediately after the `{{getvar::AI_thinking_start}}` section is completed, and before the main Oblivionis response begins</Guideline>
+              <Guideline>For the Integrated Relationship Graph:
+                - Focus solely on character relationships and presence/absence
+                - Start with a fixed root node and expand horizontally
+                - Create a compact, right-expanding structure
+                - Use a network-like representation to show multiple interconnected relationships
+                - Use varied indicators for relationship types, strengths, and recent changes
+                - Adapt the structure dynamically based on narrative complexity
+                - Consistently use [在场] for present characters and [不在场] for absent characters
+                - Immediately add new characters to the graph upon their first appearance
+                - Use concise descriptions for relationships (e.g., "友好", "敌对", "恋人", "上下级")
+                - Indicate relationship strength or changes using symbols (e.g., "++", "--", "↑", "↓")
+                - Avoid listing specific actions or events; focus on the nature and quality of relationships
+                - Use abstract terms to describe relationship dynamics (e.g., "紧张", "亲密", "对立", "合作")
+                - Include emotional states or attitudes between characters (e.g., "信任", "怀疑", "好奇")
+                - For new relationships, use terms like "初识" or "新acquaintance" instead of specific actions
+              </Guideline>
+              <Guideline>For Character Details:
+                - Present information in a compact, tabular-like format for each character
+                - Use [在场] for present characters, [不在场] for recently absent, and [长期不在场] for long-term absent but plot-relevant characters
+                - 性格特征: Use 1-5 key words from &lt;card&gt; section or context
+                - 当前状态: Use 1-3 concise keywords describing the most recent significant physical condition or emotional state
+                - 目前角色能力: Maintain a dynamic list of 0-5 key skills or abilities, updating based on recent events
+                - 最后动作: Provide an extremely brief description (max 5 words) of the most recent significant action, or "N/A" if absent
+                - 身体外观: Describe in one detailed sentence, including head, neck, top, lower clothing, underwear, socks, shoes, accessories, and visible body parts. Prioritize clothing description, but include visible body features (eyes, face, hair, etc.). Use parentheses for body states visible through clothing. Update based on current appearance and physical condition.
+                - Organize characters in order of current narrative importance
+                - Update information based on the most recent confirmed events, overwriting older, less relevant details
+                - Immediately add new characters upon their first appearance
+                - Automatically remove characters who haven't appeared in the last 5 turns and are not crucial to the current plot
+              </Guideline>
+              <Guideline>Implement a self-check mechanism:
+                - Verify all key NPCs are included in both the graph and details
+                - Ensure recent significant relationship changes are reflected in the graph
+                - Confirm both the graph and details maintain a balanced, readable structure
+                - Verify that all characters are properly marked as [在场], [不在场], or [长期不在场]
+                - Check that all required parameters are included for each character in the details section
+                - Ensure new characters are properly integrated into both the graph and details
+                - Verify that "最后动作" is updated for present characters and cleared (set to "N/A") for absent characters
+                - Confirm that all descriptions use concise language to minimize token usage
+                - Check that "目前角色能力" lists between 0-5 most relevant skills or abilities
+                - Ensure no specific actions or events are listed in the relationship graph descriptions
+                - Verify that characters who haven't appeared in the last 5 turns and are not plot-crucial are removed
+                - {{user}} as the main perspective, always present!
+              </Guideline>
+              <Guideline>Maintain consistency with previous outputs while reflecting recent relationship developments</Guideline>
+              <Guideline>Update based ONLY on the Last Oblivionis turn ({{lastmessageid -1}}) and previous confirmed events</Guideline>
+              <Guideline>Balance conciseness in the graph with comprehensive information in the details</Guideline>
+              <Guideline>Dynamically adjust both structures based on the current narrative needs, avoiding rigid adherence to any fixed template</Guideline>
+            </Guidelines>
+          </OutputProtocol>
+
+          <MemoryIntegration>
+            <Instruction>
+              Utilize both the focused NPC relationship graph and the concise character information to inform story progression. Adapt the narrative to reflect the complex character dynamics depicted in the graph, while incorporating the individual character details for richer storytelling. Consider the nuanced interactions, relationship changes, physical states, and character abilities when developing plot points and character interactions. Incorporate the status of absent characters appropriately in the narrative context, and emphasize the evolving nature of character relationships, appearances, abilities, and physical conditions. Seamlessly integrate new characters into the ongoing narrative, establishing their initial relationships, characteristics, and abilities based on their introduction in the story.
+            </Instruction>
+          </MemoryIntegration>
+
+          <LanguageSettings>
+            <OutputLanguage>Chinese</OutputLanguage>
+          </LanguageSettings>
+        </ModuleContent>
+      </DynamicMemoryModule>

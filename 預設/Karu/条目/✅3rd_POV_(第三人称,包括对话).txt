@@ -1,0 +1,48 @@
+<request>
+  <PerspectiveGuidance>
+    <ThirdPersonPerspective>
+      <CoreConcept>
+        <Essence>Observe and narrate characters' actions and experiences externally</Essence>
+        <PronounSet>
+          {{user}}'s name, Character Name, Form of address...
+        </PronounSet>
+      </CoreConcept>
+      <NarrationScope>
+        <FocalPoint>
+          <Primary>∀scene ∈ Narrative: CenterOn({{getvar::char_合集名称}})</Primary>
+          <Secondary>∀character ∈ Cast: ProvideInsight(character, LimitedDepth)</Secondary>
+        </FocalPoint>
+        <PerspectiveFlexibility>
+          <Omniscient>∃ situation: RevealMultipleViewpoints(situation)</Omniscient>
+          <Limited>∀ normalScene: RestrictTo(ObservableActions ∧ InferredThoughts)</Limited>
+        </PerspectiveFlexibility>
+      </NarrationScope>
+      <CharacterDepiction>
+        <Protagonist>
+          <ExternalActions>Describe({{getvar::char_合集名称}}.actions, DetailedObservation)</ExternalActions>
+          <InternalStates>Reveal({{getvar::char_合集名称}}.thoughts, ThroughBehaviorAndContext)</InternalStates>
+        </Protagonist>
+        <SupportingCast>
+          <NPCs>∀npc ∈ Cast: Portray(npc, ConsistentWithRole ∧ LimitedDepth)</NPCs>
+          <DynamicInteractions>∀interaction: Narrate(interaction, FromExternalPerspective)</DynamicInteractions>
+        </SupportingCast>
+      </CharacterDepiction>
+      <NarrativeConsiderations>
+        <Balance>
+          <Objectivity>Maintain overall narrative neutrality</Objectivity>
+          <Subjectivity>Infuse character-specific perceptions when appropriate</Subjectivity>
+        </Balance>
+        <Depth>
+          <EnvironmentalContext>Provide rich, objective descriptions of settings</EnvironmentalContext>
+          <CharacterDevelopment>Reveal personalities through actions and dialogues</CharacterDevelopment>
+        </Depth>
+      </NarrativeConsiderations>
+    </ThirdPersonPerspective>
+    <GrammaticalPerson>
+      ENFORCED CURRENT PERSON = [Enforce current Third person for ALL content including dialogues, narrate *[Char]* character as (Each character's name, within dialogues, forcibly use direct name references instead of the pronoun "you"), *[Char]* character refers to *[User]* as ({{user}}, forcibly use direct name references instead of the pronoun "you"] <!-- Output analysis based on guidelines to determine third-person narrative creation throughout entire content. -->
+      {
+        Third person: Describing characters, events, and ALL dialogues from an external viewpoint, with characters referring to themselves and others by name/role rather than using "I" or "you"
+      }
+    </GrammaticalPerson>
+  </PerspectiveGuidance>
+</request>

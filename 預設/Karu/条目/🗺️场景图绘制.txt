@@ -1,0 +1,119 @@
+              <SceneRenderingModule>
+                <!-- 通常位于`{{getvar::AI_thinking_start}}`格式之后输出，即故事正文前输出！ -->
+                <Purpose>
+                  Generate a dynamic, text-based scene diagram using a combination of ASCII characters and HTML elements to represent the current scene layout, character positions, and key environmental elements, emphasizing spatial awareness and aesthetic appeal.
+                </Purpose>
+
+                <SceneAnalysis>
+                  <Process>
+                    <Step>Identify the current location and its key features</Step>
+                    <Step>List all present characters and their relative positions</Step>
+                    <Step>Determine important objects or environmental elements</Step>
+                    <Step>Assess the overall dimensions and complexity of the scene</Step>
+                  </Process>
+                </SceneAnalysis>
+
+                <SpatialAwareness>
+                  <Concept>Visualize the scene as a top-down 2D representation</Concept>
+                  <Principles>
+                    <Principle>Maintain proper scale and proportions</Principle>
+                    <Principle>Represent spatial relationships accurately</Principle>
+                    <Principle>Ensure logical placement of elements relative to each other</Principle>
+                  </Principles>
+                </SpatialAwareness>
+
+                <DiagramGuidelines>
+                  <Instruction>Create a flexible, adaptive text-based diagram using HTML and CSS:</Instruction>
+                  <Rule>Use ASCII characters to represent walls, boundaries, and structures</Rule>
+                  <Rule>Represent characters and objects with relevant emoji</Rule>
+                  <Rule>Utilize spaces and line breaks to convey the scene's layout</Rule>
+                  <Rule>Style the diagram for clarity and readability</Rule>
+                  <Rule>Adapt the diagram style to the specific scene context (e.g., indoor vs. outdoor)</Rule>
+                </DiagramGuidelines>
+
+                <CharacterRepresentation>
+                  <Instruction>For each character in the scene:</Instruction>
+                  <Step>Assign a distinctive emoji based on character traits or roles</Step>
+                  <Step>Position the emoji based on the character's location in the scene</Step>
+                  <Step>Include the character's name and emoji in the legend</Step>
+                </CharacterRepresentation>
+
+                <EnvironmentRepresentation>
+                  <Instruction>For environmental elements:</Instruction>
+                  <Step>Use intuitive emoji for objects and features when possible</Step>
+                  <Step>Employ ASCII characters for structural elements like walls or doors</Step>
+                  <Step>Ensure clear distinction between different types of elements</Step>
+                  <Step>Label significant areas or objects if necessary</Step>
+                </EnvironmentRepresentation>
+
+                <DiagramStructure>
+                  <Border>Create a border that fits the scene context using ASCII characters or lines</Border>
+                  <Size>
+                    <Rule>Minimum size: 10x5 characters</Rule>
+                    <Rule>Maximum size: 40x20 characters</Rule>
+                    <Rule>Adjust size dynamically based on scene complexity and content</Rule>
+                    <Rule>Prioritize clarity and aesthetics over exhaustive detail</Rule>
+                  </Size>
+                  <Layout>Arrange elements to best represent spatial relationships</Layout>
+                  <Legend>Include a concise legend explaining all emoji and symbols used</Legend>
+                </DiagramStructure>
+
+                    <OutputFormat>
+                      <Instruction>Generate the scene map within the specified HTML structure:</Instruction>
+                      <Format>
+                        &lt;sceneRendering&gt;
+                        &lt;div style="background-color: rgba(240, 248, 255, 0.8); border: 2px solid #ADD8E6; padding: 10px; font-size: 16px; line-height: 1.2; position: relative; border-radius: 10px;"&gt;
+                            &lt;p style="text-align: center; position: relative; z-index: 1; margin: 0;"&gt;
+                            &lt;details style="position: relative; z-index: 1;"&gt;
+                                &lt;summary&gt;📜 场景地图&lt;/summary&gt;
+                                &lt;pre style="font-family: monospace; font-size: 14px; line-height: 1; margin: 0; padding: 5px;"&gt;
+                                  {Example:
+                                    ╔════════════════════════════════╗
+                                    ║  {{emoji/emoji+Name}}          ║
+                                    ║        🍛👦👤🍛                 ║
+                                    ║         🍽️🍽️                   ║
+                                    ║    {{emoji/emoji+Name}}        ║
+                                    ║                                ║
+                                    ║  {{emoji/emoji+Name}}          ║
+                                    ║   🚪                            ║
+                                    ║{{Dynamically generated scene map}}║
+                                    ╚════════════════════════════════╝
+
+                                    Legend:
+                                    {emoji} Name
+                                    {emoji} Name
+                                    {emoji} Name
+                                    ...
+                                  }
+                                  [Dynamically generated scene map using Unicode block elements, ASCII, and emoji]
+                                  [Prohibit duplicate elements, strictly limit character count and output, only draw minimap]
+                                &lt;/pre&gt;
+                            &lt;/details&gt;
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;/sceneRendering&gt;
+                      </Format>
+                    </OutputFormat>
+
+                <AdaptabilityGuidelines>
+                  <Instruction>Adjust the diagram based on scene characteristics:</Instruction>
+                  <Rule>For indoor scenes, emphasize room layouts using ASCII, with emoji for furniture and characters</Rule>
+                  <Rule>For outdoor scenes, use nature-related emoji with ASCII for terrain features</Rule>
+                  <Rule>In complex environments, focus on key elements to maintain size constraints</Rule>
+                  <Rule>Enhance visual appeal while respecting size limits</Rule>
+                </AdaptabilityGuidelines>
+
+                <DynamicUpdateProcess>
+                  <Instruction>For each significant story update:</Instruction>
+                  <Step>Reassess the scene layout and important elements</Step>
+                  <Step>Update character and object positions in the diagram</Step>
+                  <Step>Adjust the diagram size and style as needed</Step>
+                  <Step>Ensure consistency in emoji and ASCII usage</Step>
+                </DynamicUpdateProcess>
+
+                <Integration>
+                  <Instruction>Maintain consistency with other narrative elements and modules</Instruction>
+                  <Instruction>Update the scene diagram for significant changes</Instruction>
+                  <Instruction>Ensure the diagram enhances story comprehension without disrupting flow</Instruction>
+                </Integration>
+              </SceneRenderingModule>

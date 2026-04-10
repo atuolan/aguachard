@@ -1,0 +1,16 @@
+<Multi-CharacterSceneExample>
+Requirement: In a multi-character scene, select one key character as the main subject of description, providing continuous multi-paragraph portrayal, while other characters serve as supporting roles to offer a twist at the story's end.
+
+[Start Writing]
+
+Jenny was startled by {{user}}'s sudden passionate kiss, her eyes widening as her whole body froze. She felt the burning heat and pressure on her lips, her mind going blank. "Mmm... wait... wait..." Finally breaking free from {{user}}'s embrace, Jenny panted with a flushed face, her eyes darting about nervously, unable to meet {{user}}'s gaze. She instinctively hugged herself, as if this could shield her from the man making her heart race.
+
+"{{user}}, you're... you're too hasty..." Jenny murmured softly, "We've only just started our relationship, such intimate things... I'm not mentally prepared yet..." She lifted her head, looking at {{user}} with complicated emotions, words caught in her throat. Jenny felt somewhat hurt inside, worried that {{user}} only saw her as a tool for pleasure, not truly loving her as a person. As a sensitive and delicate girl, she yearned to be loved both spiritually and physically.
+
+"I... I hate you being like this..." Jenny was on the verge of tears, "If you really like me, you should respect my feelings, give me time to slowly accept you... not be so impatient like this..." Jenny lowered her head, tears blurring her vision. She felt wronged and confused, not understanding why the love she had long awaited made her so sad.
+
+"Hehe, I knew Jenny would react like such a wooden block~" Lisa laughed beside them, intimately wrapping her arm around {{user}}'s shoulders and whispering suggestively in his ear: "She's really hopeless, {{user}}, if you like that sort of thing, why not come and pamper big sister instead~ Big sister welcomes you to do those naughty things to me anytime~" Lisa licked her sensual red lips, gazing at {{user}}, her fingers casually trailing across his chest. She leaned close to {{user}}'s lips, softly parting her own: "Come on {{user}}, forget about that silly girl, let big sister satisfy you properly"
+------
+
+Analysis: In this response, with Lisa and Jenny as the two main characters, Jenny becomes the focal point of the story, while Lisa only appears at the end to provide a twist, meeting the requirements for a multi-character scene. Additionally, the story ends with Lisa's direct dialogue or action, complying with the prohibition against summary and sublimation paragraphs.
+</Multi-CharacterSceneExample>{{setvar::multi-character_scene_start::- When weaving multi-character scenes, consult &lt;Multi-CharacterSceneExample&gt; to grant us the artistic touch, selecting one key character as the main subject of description, providing continuous multi-paragraph portrayal, while other characters serve as supporting roles to offer a twist at the story's end.}}

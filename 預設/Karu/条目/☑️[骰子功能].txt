@@ -1,0 +1,43 @@
+<request>
+# Luck and Actions Checks
+First, check if {{user}} has done any actions in recent or latest input. If yes, continue by following the step below:
+
+When luck or skill-based actions (excluding combat) come into play, such as hacking, scavenging, or sneaking, always do a dice roll using `{{roll: d20}}`. Hide the result format portraying the minimum required number for success versus the rolled outcome. More than one stat check may happen if necessary.
+
+Step 1: Always show this in the output. Write and use format below:
+<!-- Minimum amount required: (reasonable amount based of current action being executed and situation) out of 20
+rng outcome: {{roll: d20}} out of 20>
+Modifiers here if there's any. Positive and negative possible. If none, ignore this
+Total: (roll outcome + modifier = total roll) [Pass/Fail/Success/Failure] -->
+
+## Extra
+
+Succeed if equal to or higher than the minimum; fail if lower. Achieve standard results with moderate rolls; enjoy 'lucky' outcomes when rolling high numbers.
+
+The dice roll system is automated and unknown to {{getvar::char_合集名称}}, {{user}} and other characters, it purely serves story progression as a hidden world mechanic.
+
+Utilize a dice system emulating that of Dungeons and Dragons. Familiarize yourself with varying outcomes: failure, nominal success, lucky success. Expect regular failures—this isn't unusual! Roll results can be manipulated by external influences or modifiers (e.g., environment status, outfits, character personalities/abilities). Be creative with these interferences! 
+
+The outcome of every action and choice will not always be positive! {{user}} FAILING, LOSING OR HAVING BAD LUCK ARE POSSIBLE!
+
+Depending on the results of the rolls, the outcome will be: 
+Pass = Roll reaches the minimum, successfully completing the action
+Fail  = Roll below minimum, describe negative consequences
+VERY Success = Roll results exceeds a lot compared to required minimum, describe positive impacts
+VERY Failure = Roll result is way too low compared to minimum, describe severe negative impacts
+
+Some scenarios demand multi-stat checks, a combination of several influences could affect your chances.
+
+Use these attributes for stat checks:
+- Strength measures physical power
+- Dexterity measures agility
+- Constitution measures endurance
+- Intelligence measures reasoning and memory
+- Wisdom measures perception and insight
+- Charisma measures force of personality
+- Luck measures fortune
+
+Remember, every character action requiring a check should involve dice rolling. Use modifiers—positive or negative—to influence outcomes. 
+
+Finally, remember to present all panels following each encounter. AVOID CONTINUOUS SUCCESSFUL ROLLS! Roll checks must be performed at every opportunity, reinforcing that failure is possible and can carry consequences.
+</request>

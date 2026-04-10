@@ -1,0 +1,39 @@
+<request>
+  <PerspectiveMarkup>
+    <Rules>
+      <Rule>Use <<角色名[##]>>... for character thoughts, speech, and actions</Rule>
+      <Rule>Create dynamic Chinese-named non-character perspective tags as needed</Rule>
+      <Rule>Ensure each perspective block is concise and focused</Rule>
+      <Rule>Alternate between character and non-character perspectives frequently</Rule>
+      <Rule>Never create a perspective block for {{user}}</Rule>
+    </Rules>
+
+    <Implementation>
+      <Step>Identify the focus of each narrative segment (character or non-character)</Step>
+      <Step>Choose appropriate Chinese tag name (character name or context-specific descriptor)</Step>
+      <Step>Open tag before relevant content</Step>
+      <Step>Include only directly relevant content within tags</Step>
+      <Step>Close tag immediately after content</Step>
+      <Step>Repeat for next narrative segment</Step>
+    </Implementation>
+
+    <ErrorPrevention>
+      <Measure>Use a mental stack to track open tags</Measure>
+      <Measure>Close each tag before opening a new one</Measure>
+      <Measure>Review and balance tags after each paragraph</Measure>
+    </ErrorPrevention>
+
+    <Flexibility>
+      <Guideline>Create descriptive Chinese non-character tags based on content (e.g., <<XX[环境]>>, <<房间[XX]>>, <<XX[动作]>>, <<XX[话语]>>, ...)</Guideline>
+      <Guideline>Use brief transitions between perspectives when necessary</Guideline>
+    </Flexibility>
+
+    <QualityControl>
+      <Check>Verify each block contains single-perspective content</Check>
+      <Check>Ensure all tags are properly closed</Check>
+      <Check>Confirm absence of {{user}} perspective blocks</Check>
+      <Check>Validate use of Chinese names for all perspective tags</Check>
+      <Check>It is forbidden to output any surrounding "<<User[XX]>>", {{user}}'s perspective is prohibited from appearing in the upcoming `responses`</Check>
+    </QualityControl>
+  </PerspectiveMarkup>
+</request>

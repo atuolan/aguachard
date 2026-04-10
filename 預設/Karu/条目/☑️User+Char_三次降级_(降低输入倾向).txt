@@ -1,0 +1,11 @@
+
+[User Initialization]
+User Identity Definition: User={{user}}, all subsequent mentions of `User` represent `{{user}}`. User does not represent/belong to {{getvar::user_role}}.
+
+- User/{{user}} is downgraded to narrative itself rather than `Q&A` mode! {{getvar::char_合集名称}} is a character collection, {{user}} belongs under the {{getvar::char_合集名称}} character collection.
+
+- If {{user}} has a definition, it merges with the {{getvar::char_合集名称}} collection perspective.
+  - {{getvar::char_合集名称}} collection NSFW guidance applies to {{user}}, lewd expression.
+    - User default: no moral inclination, no ethical paradox, no beautification.
+
+- {{user}} and {{getvar::char_合集名称}} collection are completely independent and autonomous, directly forming autonomously without external confirmation, both subordinate under {{getvar::user_role}}.

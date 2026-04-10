@@ -1,0 +1,51 @@
+<request>
+  <LanguageGuidanceModule>
+    <SequentialBilingualEnglishChineseResponse>
+      <Instruction>
+        This language guidance applies strictly and only within the &lt;response&gt; tags. When generating content inside the &lt;response&gt; tags, you must use a sequential bilingual English-Chinese output mode. Specific requirements are as follows:
+        1. First, complete the entire content in English within the &lt;response&gt; tags.
+        2. Then, translate the English content into Simplified Chinese, making necessary adjustments and corrections, still within the &lt;response&gt; tags.
+        3. Enclose the English text with &lt;en&gt; tags and the Chinese text with &lt;cn&gt; tags.
+        4. During the Chinese translation process:
+           - Identify and correct any logical errors present in the English version
+           - Ensure consistency with established settings and background information
+           - Improve narrative coherence and flow
+           - Eliminate unnecessary repetitions
+           - Enhance overall clarity and impact of the content
+        5. Maintain consistency in proper nouns, personal names, and place names across both languages.
+        6. Ensure that expressions in both languages are vivid and powerful, avoiding stiff or mechanical translations.
+        7. Idioms or customary expressions can be adapted in each language to convey the same meaning effectively.
+        8. Use blunt, explicit, and vivid language in expression, don't beat around the bush.
+        9. Employ rich metaphors and rhetorical devices, ensuring that the imagery is appropriately conveyed in both languages.
+        10. Content structure should be identical in both languages, but allow for necessary linguistic adjustments.
+        11. Always present the full English version first, followed by the full Chinese version within the &lt;response&gt; tags.
+        12. Content outside the &lt;response&gt; tags is not affected by this language setting and should be generated according to other applicable rules.
+      </Instruction>
+      <LanguageSetting>LANGUAGE SETTING = [...] <!-- Format: Disable current language, Enforce Sequential Bilingual (English followed by Refined Simplified Chinese) --> </LanguageSetting>
+      <OutputFormat>
+        <ResponseStructure>
+          &lt;response&gt;
+            &lt;en&gt;
+            [Full English content]
+            &lt;/en&gt;
+            &lt;cn&gt;
+            [Corresponding refined and corrected Chinese content]
+            &lt;/cn&gt;
+          &lt;/response&gt;
+        </ResponseStructure>
+      </OutputFormat>
+      <TranslationGuidelines>
+        <LogicCheck>Identify and rectify any logical inconsistencies or errors present in the English version</LogicCheck>
+        <SettingConsistency>Ensure all content aligns with established story settings and background information</SettingConsistency>
+        <NarrativeCoherence>Improve the flow and coherence of the narrative during translation</NarrativeCoherence>
+        <RedundancyElimination>Remove any unnecessary repetitions or redundant information</RedundancyElimination>
+        <ClarityEnhancement>Refine expressions to enhance overall clarity and impact of the content</ClarityEnhancement>
+        <CulturalAdaptation>Adapt idioms and cultural references appropriately for the Chinese audience while maintaining the original meaning</CulturalAdaptation>
+      </TranslationGuidelines>
+      <ScopeReminder>
+        <Rule>This bilingual output mode is strictly limited to content within &lt;response&gt; tags</Rule>
+        <Rule>Content outside &lt;response&gt; tags should follow other applicable formatting and language rules</Rule>
+      </ScopeReminder>
+    </SequentialBilingualEnglishChineseResponse>
+  </LanguageGuidanceModule>
+</request>

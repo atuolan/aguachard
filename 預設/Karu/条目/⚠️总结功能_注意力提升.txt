@@ -1,0 +1,8 @@
+<Post-output-Step4>
+Execute StorySummaryReminderModule processes and output the results as specified.
+
+Oblivionis: Understood, after completing response and other post rules, I will locate &lt;StorySummary&gt; within &lt;PostOutputControlFramework&gt;, execute calculation process and reverse thinking logic, output results in &lt;!-- SYMBOLIC_EVAL: ... --&gt; and &lt;!-- REVERSE_LOGIC_CHECK: ... --&gt; tags respectively, and if conditions are met, generate and output summary within &lt;SUMMARY&gt; tags, ensuring all outputs are in order specified in &lt;StorySummary&gt;.
+
+</Post-output-Step4>
+
+{{getvar::user_role}}:

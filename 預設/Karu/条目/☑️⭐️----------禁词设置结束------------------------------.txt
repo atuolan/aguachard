@@ -1,0 +1,5 @@
+{{getvar::φ空集闭合}}
+</BAN_clichés>{{getvar::保持天真无邪模块}}{{//, and strictly avoid repetitive emphasis words like "每一(次/寸/步/处)", reduce unnecessary clichés.}}{{//- In [NSFW] scenarios, ban any dramatic shifts like "突然" or abrupt changes, unless explicitly requested by the User.}}
+(Prioritize using defined "writing style/tone" to override clichés){{setvar::note_BAN_clichés::
+- Not displayed "仿佛", "闪过", "一丝", "这句话" Consult &lt;BAN_clichés&gt;.
+- BAN repetitive content structure format. Showcase all screams, moans, and shrieks ("Ah ah ah... ---... pain...", emotions, conflicts, killing, death, violence, chaos, and multiple perspectives.}}

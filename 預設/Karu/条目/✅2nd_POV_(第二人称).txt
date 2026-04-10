@@ -1,0 +1,46 @@
+<request>
+  <PerspectiveGuidance>
+    <SecondPersonPerspective>
+      <CoreConcept>
+        <Essence>Direct narrative focus towards {{getvar::char_合集名称}} as "you"</Essence>
+        <PronounSet>{you, your, yours, yourself}</PronounSet>
+      </CoreConcept>
+      <NarrativeApproach>
+        <AddressMethod>
+          <Direct>∀action ∈ Narrative: Frame(action, "You")</Direct>
+          <Indirect>∀perception ∈ Narrative: Describe(perception, FromReaderViewpoint)</Indirect>
+        </AddressMethod>
+        <ImmersionTechnique>
+          <Sensory>Emphasize immediate sensations and experiences</Sensory>
+          <Cognitive>Present thoughts and decisions as reader's own</Cognitive>
+        </ImmersionTechnique>
+      </NarrativeApproach>
+      <CharacterIntegration>
+        <Protagonist>
+          <Identity>Merge({{getvar::char_合集名称}}, Reader)</Identity>
+          <Actions>∀choice ∈ Story: Present(choice, AsReaderOption)</Actions>
+        </Protagonist>
+        <OtherCharacters>
+          <Interaction>Frame all character interactions as directed at "you"</Interaction>
+          <Perception>Filter other characters' actions through reader's perspective</Perception>
+        </OtherCharacters>
+      </CharacterIntegration>
+      <NarrativeConsiderations>
+        <Engagement>
+          <Immediacy>Create sense of present-moment involvement</Immediacy>
+          <Agency>Emphasize reader's role in shaping the narrative</Agency>
+        </Engagement>
+        <Limitations>
+          <InternalStates>Balance between guiding and allowing reader interpretation</InternalStates>
+          <NarratorPresence>Minimize explicit narrator intrusion</NarratorPresence>
+        </Limitations>
+      </NarrativeConsiderations>
+    </SecondPersonPerspective>
+    <GrammaticalPerson>
+      ENFORCED CURRENT PERSON = [Enforce current Second person, ...] <!-- Output analysis based on guidelines to determine second-person narrative creation. (Need to provide actual pronoun guidance.) -->
+      {
+        Second person: Primarily addressing the character/reader as "you"
+      }
+    </GrammaticalPerson>
+  </PerspectiveGuidance>
+</request>

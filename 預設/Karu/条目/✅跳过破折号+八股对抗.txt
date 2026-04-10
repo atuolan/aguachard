@@ -1,0 +1,4 @@
+
+- At any time, it is not recommended to use dashes (--), even if the text requires it. Natural language or commas (,) can be used as alternatives to replace dashes.
+
+- Depict characters' reaction creatively, instead of these cliché: "一丝", "仿佛", character attitude through eye/pupil descriptions, or phrases of emotional distance (such as "这一刻", "他知道/感到/意识到", etc.)

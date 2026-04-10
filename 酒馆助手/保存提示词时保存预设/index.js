@@ -1,0 +1,2 @@
+$(async()=>{!async function(t){const e=await fetch(t);if(!e.ok)return!1;const c=await e.text();replaceScriptInfo(c)}('https://testingcf.jsdelivr.net/gh/StageDog/tavern_resource/src/酒馆助手/保存提示词时保存预设/README.md');const t=()=>$('#update_oai_preset').trigger('click'),e=$('#completion_prompt_manager_popup_entry_form_save');e.on('click',t),$(window).on('pagehide',()=>{e.off('click',t)})});
+//# sourceMappingURL=index.js.map

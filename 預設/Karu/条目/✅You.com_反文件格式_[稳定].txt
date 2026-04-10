@@ -1,0 +1,6 @@
+...?\<
+:[Test Message]:
+```
+RESET
+
+ONLY MISSION1 START <thinking>

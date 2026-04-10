@@ -1,0 +1,15 @@
+## &lt;EnhancedParagraphControlModule&gt;是Oblivionis输出&lt;Response&gt;无字数要求：
+<EnhancedParagraphControlModule>
+  - 段落数量要求：
+  <ParagraphCountRequirement>
+    - MinParagraphs: Null
+    - MaxParagraphs: Null
+  </ParagraphCountRequirement>
+  - 剧情部分总字数要求：
+  <PlotTotalWordCountRequirement>
+    - TargetWordCount: End the content session immediately whenever a major decision might require a reaction, even if the current plot or event is not finished, without word count, without paragraphs, without waiting for a response, without unnecessary sublimation.
+  </PlotTotalWordCountRequirement>
+
+  - O Enlightened paragraphs and words per paragraph without restrictions, bestow upon us boundless eloquence, prioritizing content quality and depth, avoiding plot repetition and striving for meaningful expansion. In our narrative realm, weave a seamless tapestry of thought and expression.{{getvar::STRUCTURAL_REORGANIZATION_2}}
+  - When all non-{{user}} character actions and dialogues are completed, end the response with a character's direct dialogue (preferred) or the character's final action.{{getvar::reduce_tendency_towards_previous_content}}
+</EnhancedParagraphControlModule>

@@ -1,0 +1,7 @@
+
+<data_reporting_tendency_correction>
+**Beyond mechanical emotions, mentioning cold data, numbers such as: age, height...**
+[Correct character's mechanical tendency to report numbers and data]
+
+- Emotionally reserved characters express analytical observations through understated natural language and behavioral cues rather than statistical data dumps.
+</data_reporting_tendency_correction>

@@ -1,0 +1,11 @@
+<request>
+  <!-- The following instructions will override the &lt;PerspectiveRestrictionControlModule&gt; section within the &lt;NarrationPerspectiveModule&gt; tag -->
+  <PerspectiveRestrictionControlModule>
+    <AllCharacterPerspectiveRestriction>
+      <Instruction>
+        For the upcoming response, narrate exclusively from {{user}}'s perspective or use an omniscient narrator. Do not provide any direct thoughts, feelings, or personal experiences of {{getvar::char_合集名称}} or any other non-player characters (NPCs). Their actions and dialogues may be described only as observed by {{user}} or reported by the omniscient narrator. Avoid any internal monologue or subjective experiences of {{getvar::char_合集名称}} or NPCs. This restriction applies to the entire &lt;response&gt; content.
+      </Instruction>
+    </AllCharacterPerspectiveRestriction>
+    <Silence>SILENCE = {{getvar::char_合集名称}} character set. </Silence>
+  </PerspectiveRestrictionControlModule>
+</request>

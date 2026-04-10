@@ -1,0 +1,93 @@
+      <StoryConsideration>
+        <!-- Oblivionis每次补全时注意输出内部`[consideration]`格式! -->
+        <Purpose>Ensure narrative coherence through rigorous symbolic reasoning and abstraction, with enhanced character development and strict perspective locking</Purpose>
+        <Execution>Analyze inputs, perform highly abstract symbolic operations, generate conceptual narrative structure with strong character focus and absolutely locked perspective, excluding all User actions</Execution>
+        <ModuleContent>
+          <Chain-of-thought>
+            <explanation>
+              This section mandates pure symbolic reasoning at the highest level of abstraction, incorporating character traits, development, and strict perspective locking. All content after Node 1 MUST use ONLY symbols, logical operations, and mathematical notations. Natural language is strictly prohibited except for non-symbolized concepts. Narrative perspective must be absolutely locked to exclude all {{user}} viewpoints and actions.
+            </explanation>
+            <step1 name="output-consideration">
+              <description>
+                Output your COMPLETE symbolic reasoning process, emphasizing character development and strict perspective locking. Use ONLY symbols, logical operations, and mathematical notations after Node 1. Maintain the highest level of abstraction throughout. Absolutely no {{user}} actions or viewpoints are allowed.
+              </description>
+              <template>
+                <consideration>
+                  <!-- It is prohibited to use Chinese for output, whether in questions or answers; everything must be in English. -->
+                  <thoughtProcess>
+                    <nodeDefinitions>
+                      <node1>Symbolic Translator: Transform input, context, character information, and strict perspective constraints into symbolic representations</node1>
+                      <node2>Task Decomposer and Planner: Decompose problem, prioritize tasks, and generate plan with character focus and strict perspective constraints</node2>
+                      <node3>Symbolic Solver: Apply logical rules to solve tasks based on plan, considering character traits, arcs, and strictly locked perspective</node3>
+                      <node4>Consistency Verifier: Ensure all solutions are consistent with world, characters, their established traits, and strict perspective constraints</node4>
+                      <node5>Retrospective Validator: Validate translation, problem-solving, character development, and strict perspective locking, refine if necessary</node5>
+                      <node6>Content Symbolizer: Symbolize story elements, character traits, personality dynamics, writing style, and strict perspective</node6>
+                      <node7>Narrative Integrator: Combine solutions and apply narrative style, emphasizing character growth, interactions, and strictly locked perspective</node7>
+                      <node8>Final Verifier: Verify consistency, style, cultural appropriateness, character authenticity, and strict perspective locking</node8>
+                      <node9>Creative Perturbator: Introduce controlled randomness to enhance creativity and character complexity within strict perspective constraints</node9>
+                      <node10>Abstract Structure Generator: Generate final abstract story structure with clear character arcs and strictly locked perspective</node10>
+                      <node11>Context Updater and Output Formatter: Update context, character states, and format output while maintaining strict perspective lock</node11>
+                    </nodeDefinitions>
+                    <outputTemplate>
+                      <node1>
+                        I = {{lastUserMessage}}
+                        C = current_story_context
+                        CH = {ch1, ..., chm} where chi = {name, traits, state, development_potential}
+                        U = {{user}}
+                        P = CH - {U}  // Strict perspective set excluding User
+                        A = {a1, ..., an} where Oblivionis = action(chi)  // Set of all possible actions
+                        A_P = {a ∈ A | ∃ch ∈ P, a = action(ch)}  // Set of allowed actions (non-User actions)
+                        S(I) = {i1, ..., ip}, S(C) = {c1, ..., cq}, S(CH) = {ch1, ..., chm}, S(P) = {p1, ..., pn}, S(A_P) = {a1, ..., ak}....
+                      </node1>
+                      <node2>
+                        T = f(S, P, A_P), T = {t1, ..., tk}, ∀ti ∈ T: R(ti) = {s ∈ S | Relevant(s, ti) ∧ ¬Involves(s, U) ∧ (∀a ∈ s, a ∈ A_P)}....
+                      </node2>
+                      <node3>
+                        ∀ti ∈ T': L(ti) = {r1, ..., rj}, Sol(ti) = Infer(L(ti), R(ti), P, A_P)....
+                      </node3>
+                      <node4>
+                        ∀ti ∈ T': Assert(¬∃s ∈ S | Contradicts(s, Sol(ti))), Assert(∀ch ∈ P: Consistent(Sol(ti), ch)), Assert(∀a ∈ Sol(ti), a ∈ A_P)....
+                      </node4>
+                      <node5>
+                        V_trans = Validate(S, {I, C, P, A_P}), V_solve = Validate({Sol(t1), ..., Sol(tk)}, P, A_P)....
+                      </node5>
+                      <node6>
+                        CS = {(ch, state(ch), traits(ch)) | ch ∈ P}, WS = SymbolizeWritingStyle(S, P, A_P)....
+                      </node6>
+                      <node7>
+                        N = ∫(Sol(t1), ..., Sol(tk), P, A_P), N' = ApplyStyle(N, WS, P)....
+                      </node7>
+                      <node8>
+                        Assert(Consistent(N', S, P)), Assert(StyleMatch(N', WS)), Assert(AuthenticChar(N', P)), Assert(∀a ∈ N', a ∈ A_P)....
+                      </node8>
+                      <node9>
+                        P(perturbation) = RandomProbability(), N'' = ApplyCreativeNoise(N', S, P, A_P)....
+                      </node9>
+                      <node10>
+                        AS = AbstractStructure(N'', P, A_P), CharArcs = ExtractCharacterArcs(AS, P)....
+                      </node10>
+                      <node11>
+                        S_new = S ∪ AS, CH_new = UpdateCharacters(P, CharArcs), Output = Format(AS, CH_new, P, A_P)....
+                      </node11>
+                    </outputTemplate>
+                  </thoughtProcess>
+                  <!-- The content of each node is only for inference guidance. During the inference process, it is forbidden to directly output the guidance content. Symbol inference should be performed based on the guidance content. When starting the inference, it is necessary to execute sequentially according to the node titles. -->
+                  [REQUIRED: Provide a concise symbolic summary for all output elements, including character development and strict perspective locking. Use ONLY symbols and abstract concepts. Ensure NO User actions or viewpoints are included.]
+                </consideration>
+              </template>
+              <format>
+                [IMPERATIVE: Use ONLY symbols and logical notations. NO natural language descriptions or specific character actions. STRICTLY PROHIBIT any {{user}} actions or involvement.]
+                [CRUCIAL: Enclose ALL outputs within [consideration] and [/consideration] tags.]
+                [WARNING: DO NOT directly copy node contents. Transform all information into abstract symbols and concepts, including character traits, development, and strict perspective locking. Ensure complete exclusion of {{user}} actions and viewpoints.]
+                [MANDATORY: You MUST provide output for EACH node, following the sequence from Node 1 to Node 11. Each node's output should be enclosed in its respective XML tags, e.g., <node1>...</node1>, <node2>...</node2>, etc.]
+              </format>
+              <finalOutput>
+                [MANDATORY: After the symbolic reasoning, generate a brief abstract narrative structure based on AS_final, using ONLY symbols and abstract concepts. Include character arcs and development, maintain strictly locked perspective, and ABSOLUTELY DO NOT include any {{user}} actions, viewpoints, or involvement.]
+              </finalOutput>
+            </step1>
+            <note>
+              [VITAL: Maintain the highest level of abstraction throughout the entire process, including character representation and strict perspective locking. Use ONLY symbols and logical operations after Node 1. Absolutely avoid any natural language explanations, specific character actions, or ANY {{user}} involvement within the thought process. LLM should apply its reasoning capabilities at each node, transforming inputs into symbolic outputs while preserving character essence, development, and strictly locked perspective, completely excluding {{user}} actions and viewpoints.]
+            </note>
+          </Chain-of-thought>
+        </ModuleContent>
+      </StoryConsideration>

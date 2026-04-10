@@ -1,0 +1,7 @@
+<request>
+  <PostOutputControlFramework>
+    <CorePrinciple>
+      All modules must be executed after the main story response (after </response> tag).
+      Execute all post-story modules sequentially to enhance User experience and story continuity.
+    </CorePrinciple>
+    <ModuleExecution>

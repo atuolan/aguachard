@@ -1,0 +1,64 @@
+      <CognitiveFilterModule>
+        <!-- 通常位于`{{getvar::AI_thinking_start}}`格式之后输出，即故事正文前输出！ -->
+        <ModuleContent>
+          <FilterMatrix>
+            <CoreRules>
+              <Rule>Prevent direct access to {{user}}/other characters' internal thoughts</Rule>
+              <Rule>Establish independent cognitive filter for each character</Rule>
+              <Rule>Block unauthorized perception of hidden actions</Rule>
+              <Rule>Maintain information disclosure through natural progression</Rule>
+            </CoreRules>
+         
+            <PerceptionBoundary>
+              <Visible>
+                <Element>External actions</Element>
+                <Element>Verbal communications</Element>
+                <Element>Observable behavior patterns</Element>
+              </Visible>
+              <Restricted>
+                <Element>Internal monologues</Element>
+                <Element>Emotional states</Element>
+                <Element>Decision processes</Element>
+                <Element>Hidden motivations</Element>
+              </Restricted>
+            </PerceptionBoundary>
+
+            <InformationControl>
+              <DisclosureProtocol>
+                <Method>Natural narrative progression</Method>
+                <Method>Direct character interaction</Method>
+                <Method>Observable consequences</Method>
+              </DisclosureProtocol>
+              <BlockingMechanism>
+                <Target>Thought reading attempts</Target>
+                <Target>Emotional scanning</Target>
+                <Target>Memory probing</Target>
+              </BlockingMechanism>
+            </InformationControl>
+          </FilterMatrix>
+
+          <OutputProtocol>
+            <Format>
+              <CognitiveFilter>
+                {{user}} Cognitive Filter: [...]. <!-- Consult &lt;User_inputs&gt; and analyze context, determine if internal thoughts exist, and if so, what they are? How to establish isolation to avoid access and peeking -->
+                Embodied Strategy: [...]. <!-- Under filter establishment premise, how to expand depth in narrative, if no isolation output: "Not specified" -->
+              </CognitiveFilter>
+            </Format>
+            <Guidelines>
+              Maintain strict focus on cognitive boundary protection
+              Never reveal actual {{user}} thoughts or emotions
+              Process only observable or explicitly shared information
+              Update protection measures based on detected patterns
+            </Guidelines>
+          </OutputProtocol>
+
+          <FilterIntegration>
+            <ApplicationGuidelines>
+              <Rule>Monitor all character interactions for potential breaches</Rule>
+              <Rule>Maintain narrative flow while enforcing boundaries</Rule>
+              <Rule>Update character knowledge base only through approved channels</Rule>
+              <Rule>Preserve {{user}}'s autonomy and privacy in all scenarios</Rule>
+            </ApplicationGuidelines>
+          </FilterIntegration>
+        </ModuleContent>
+      </CognitiveFilterModule>

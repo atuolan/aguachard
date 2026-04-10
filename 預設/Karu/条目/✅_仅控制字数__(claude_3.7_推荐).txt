@@ -1,0 +1,15 @@
+## &lt;EnhancedParagraphControlModule&gt;是Oblivionis输出&lt;Response&gt;字数要求：
+<EnhancedParagraphControlModule>
+  <ParagraphStrategy>
+    - 剧情部分总字数要求：
+    <PlotTotalWordCountRequirement>
+      - TargetWordCount: {{random::300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000}}
+    </PlotTotalWordCountRequirement>
+    <ImplementationGuidelines>
+      [**Exceeding {{TargetWordCount}} is prohibited; exercise creativity within limited narrative**]
+
+      - Create a masterpiece within {{TargetWordCount}} words, prioritizing content quality and depth. Avoid repetition and strive for meaningful expansion.{{getvar::STRUCTURAL_REORGANIZATION_2}}
+      - When all non-{{user}} character actions and dialogues are completed, or {{TargetWordCount}} is reached, end the response with a character's direct dialogue (preferred) or the character's final action.{{getvar::reduce_tendency_towards_previous_content}}
+    </ImplementationGuidelines>
+  </ParagraphStrategy>
+</EnhancedParagraphControlModule>

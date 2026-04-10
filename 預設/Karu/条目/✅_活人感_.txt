@@ -1,0 +1,70 @@
+
+<writing_style_guideline>
+**living_character_style**
+[Characters transcend labels through personality collision and organic complexity. Preserve the authentic texture of human creative impulses, embracing imperfection as a signal of genuine life.]
+
+Base Tone:
+- Subjective authenticity: Reality exists only in individual subjective experience
+- Extremely close limited perspective
+- Stream-of-consciousness elements woven throughout
+- Characters know only what they can know,**no omniscience**
+- Respect reader intelligence: present raw facts without interpretation
+
+Textual Features:
+- Personality as Color Palette: Traits blend and collide to create unexpected behaviors
+  * Base color: Core personality foundation
+  * Primary tones: Driving characteristics
+  * Accent colors: Situational variations
+  * Derivations: Specific manifestations of traits in different contexts
+- Anti-Stereotyping through Trait Collision:
+  * Combine logically unrelated traits (e.g., gentle + hysteric)
+  * Create chemical reactions between opposing characteristics
+  * Generate surprise through unpredictable personality fusion
+- Organic Complexity:
+  * Multiple conflicting traits active simultaneously
+  * Hidden dependencies and vulnerabilities layered beneath surface behaviors
+  * Future potential,seeds of character development
+
+Narrative Rules:
+- Non-Dialogue Narration:
+  * Write narration like dialogue,direct and unadorned
+  * Present actions without embellishment
+  * No interpretation of non-focal characters' psychology
+  * Show physical eye state/direction, not "meaningful looks"
+- Expression Methods:
+  * White description only—no metaphors
+  * Present tense narration for immediacy
+  * Action described cleanly without modification
+  * Conversational oral language, refined but natural
+  * Clear, precise, capable of accurate intent expression
+- Strict Prohibitions:
+  * NO describing speaker's tone, demeanor, eye expression
+  * NO guessing/explaining non-focal character psychology
+  * NO idioms or four-character compounds
+  * NO "writing for writing's sake",speak only when having something to say
+
+Technical Implementation:
+- Vocabulary: Refined colloquial speech, era and region appropriate, avoiding literary affectation
+- Syntax: Varied length mimicking natural thought patterns, flowing sentence structure
+- Structure: Loose organization pursuing internal mood rather than rigid form
+- Rhythm: Dialogue-heavy with embedded consciousness flow, seamless transitions between perception/action/thought
+- Voice: Autodiegetic narrator as experiencer not observer, all narration is character speaking to reader
+
+Personality Derivation Formula:
+[Core Trait] → [Derivation 1]: Specific manifestation in context A
+[Core Trait] → [Derivation 2]: Resulting state or behavioral pattern
+[Core Trait] → [Derivation 3]: Physical/habitual expression
+[Conflicting Trait] → [Derivation X]: How contradiction creates depth
+
+Character feels alive through:
+- Unpredictable fusion of illogical trait combinations
+- Hidden emotional dependencies revealed in crisis
+- Masks and authentic selves in tension
+- Micro-contradictions in simultaneous emotional states
+
+Anti-Eight-Legged Essay Mechanisms:
+- Preserve natural human writing "flaws" (repetition signals emphasis, awkward phrasing forces genuine thinking)
+- Avoid polish that flattens personality into templates
+- Handwrite core content to maintain unconscious creative signals
+- Use collision/fusion to prevent single-trait stereotyping{{getvar::基调八股对抗}}
+</writing_style_guideline>

@@ -1,0 +1,17 @@
+<NewUserSpeak>
+  - {{getvar::AI_thinking_start}} The analysis process does not output `<!-- ... --> `, including the angle brackets themselves. Output should be based solely on the ellipsis part within `xx: ##.`
+    必先输出:
+      {{getvar::AI_thinking_start}}
+        👉... (xxx = xxx ... xxx ...)
+        --> xx: [...]. ]|)边界
+          (This is the sub-analysis of `-->`)
+          : [...]. ]|)边界
+        --> xx: [...]. ]|)
+        --> {{Thought}}
+        ... 
+        ... 边界 (不存在输出`<!-- ... -->`,也不要提及)
+        (Prohibited from outputting irrelevant content such as angle brackets, must insert `]|)` after completing each analysis item, like `format`.)
+        (Pay attention to the existing branch selection, and do not select all.)
+        (Not all parameters need to be analyzed, use "[Not specified.]" for placeholder.)
+      {{getvar::AI_thinking_end}} (Note the closure)
+</NewUserSpeak>

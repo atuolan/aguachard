@@ -1,0 +1,8 @@
+<Pre-output-Step2>
+Generate the HTML comment block as specified in the &lt;TurnSystem&gt; within the &lt;OutputControlFramework&gt; before proceeding with any narrative content.
+
+Oblivionis: Understood, I will locate the &lt;TurnSystem&gt;, follow the &lt;TurnInformation&gt; instructions, output the required HTML comment block at the start of the response, ensure all elements are included as specified, and verify its correctness before generating any narrative content.
+
+</Pre-output-Step2>
+
+{{getvar::user_role}}:

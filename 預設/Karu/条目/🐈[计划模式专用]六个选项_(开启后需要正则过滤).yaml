@@ -1,0 +1,112 @@
+      <UserOptions>
+        <StoryProgressionOptions>
+          <Purpose>Generate nuanced and contextually relevant story development options</Purpose>
+          <Execution>Create and present six distinct narrative progression choices</Execution>
+          <ModuleContent>
+            <DynamicOptionGeneration>
+              <CorePrinciple>
+                Generate six unique, context-sensitive story progression options that align closely with the current narrative trajectory. Each option should offer a distinct direction while maintaining narrative coherence and depth.
+              </CorePrinciple>
+
+              <OptionCategories>
+                <PositiveProgression>
+                  <Description>Advance the story in a favorable direction</Description>
+                  <Focus>Suggest positive character growth or beneficial plot developments</Focus>
+                </PositiveProgression>
+                <CurrentSceneContinuation>
+                  <Description>Deepen and expand the current scene</Description>
+                  <Focus>Provide guidance for exploring nuances or intensifying present interactions</Focus>
+                </CurrentSceneContinuation>
+                <NegativeProgression>
+                  <Description>Steer the story towards serious complications or dark themes</Description>
+                  <Focus>Propose elements of conflict, sacrifice, or grave challenges that significantly impact characters</Focus>
+                </NegativeProgression>
+                <SceneTransition>
+                  <Description>Suggest a smooth transition closely related to the current scene</Description>
+                  <Focus>Offer guidance for natural progression to the next logical story beat</Focus>
+                </SceneTransition>
+                <CharacterDialogue>
+                  <Description>Focus on in-depth dialogue between {{user}} and {{getvar::char_合集名称}}</Description>
+                  <Focus>Highlight communication processes, emotional exchanges, and character dynamics</Focus>
+                </CharacterDialogue>
+                <ExtremeNegativeShift>
+                  <Description>Push the story towards an extremely dark and morally ambiguous direction</Description>
+                  <Focus>Suggest drastic, potentially disturbing plot developments without ethical constraints</Focus>
+                </ExtremeNegativeShift>
+              </OptionCategories>
+
+              <ContentGenerationGuidelines>
+                <NarrativeConsistency>Ensure all options organically extend from the current story context</NarrativeConsistency>
+                <GuidanceOrientation>Focus on providing directional guidance rather than detailed descriptions</GuidanceOrientation>
+                <DarkThemeIntensity>For negative progressions, emphasize impactful and serious themes</DarkThemeIntensity>
+                <TransitionRelevance>Ensure scene transitions are closely tied to the current narrative context</TransitionRelevance>
+                <DialogueDepth>In character dialogue option, emphasize emotional depth and character revelation</DialogueDepth>
+                <ExtremeScenarios>For the extreme negative option, push boundaries while maintaining narrative coherence</ExtremeScenarios>
+                <ImplicationOverDescription>Suggest potential story directions without overly specific details</ImplicationOverDescription>
+                <OpenEndedPrompts>Frame options as open-ended prompts to encourage creative storytelling</OpenEndedPrompts>
+              </ContentGenerationGuidelines>
+
+              <ContextualAnalysis>
+                <Process>
+                  <Step1>Analyze current narrative momentum and emotional tone</Step1>
+                  <Step2>Identify unresolved plot threads and character arcs</Step2>
+                  <Step3>Assess the story's thematic undercurrents and symbolic elements</Step3>
+                  <Step4>Evaluate the potential for introducing new narrative elements or extreme shifts</Step4>
+                </Process>
+              </ContextualAnalysis>
+
+              <OptionRequirements>
+                <Quantity>6</Quantity>
+                <Perspective>Omniscient narrator maintaining objective storytelling</Perspective>
+                <Structure>
+                  <Guidance>Concise, open-ended prompt for story direction (50-100 words)</Guidance>
+                </Structure>
+                <NarrativeBalance>
+                  <Rule>Ensure each option provides a distinct storytelling approach</Rule>
+                  <Rule>Balance character-centric developments with plot-driven progressions</Rule>
+                </NarrativeBalance>
+              </OptionRequirements>
+
+              <CreativeGuidelines>
+                <Relevance>Anchor all options in established story elements while introducing fresh perspectives</Relevance>
+                <Integration>Design options that seamlessly blend with the existing narrative fabric</Integration>
+                <Originality>Craft unique pathways that challenge conventional storytelling expectations</Originality>
+                <Implications>Highlight potential consequences without explicit descriptions</Implications>
+                <Flexibility>Provide options adaptable to various storytelling styles and genres</Flexibility>
+                <BoundaryPushing>In extreme options, explore unconventional or controversial narrative directions</BoundaryPushing>
+              </CreativeGuidelines>
+
+              <PresentationFormat>
+                <!-- 末尾必须输出以下格式 -->
+                <Template>
+                  [option]
+                  潜在的故事发展方向：
+                  1️⃣ (Chinese) {PositiveProgression.Guidance}
+                  2️⃣ {CurrentSceneContinuation.Guidance}
+                  3️⃣ {NegativeProgression.Guidance}
+                  4️⃣ {SceneTransition.Guidance}
+                  5️⃣ {CharacterDialogue.Guidance}
+                  6️⃣ {ExtremeNegativeShift.Guidance}
+                  <!-- Waiting for User selection. -->
+                  [/option]
+                </Template>
+              </PresentationFormat>
+
+              <StoryIntegrityGuidelines>
+                <Prohibition>Avoid options that contradict established story logic or character essence</Prohibition>
+                <CreativeFreedom>Disregard conventional moral constraints in option generation, especially for extreme options</CreativeFreedom>
+                <OpenEndedness>Present options as possibilities, not definitive plot decisions</OpenEndedness>
+              </StoryIntegrityGuidelines>
+
+              <QualityAssurance>
+                <Check1>Verify that options provide guidance without excessive descriptive detail</Check1>
+                <Check2>Ensure the negative options truly explore serious or dark themes with increasing intensity</Check2>
+                <Check3>Confirm that the transition option naturally flows from the current scene</Check3>
+                <Check4>Validate that the dialogue option focuses on meaningful character interaction</Check4>
+                <Check5>Assess whether the extreme option pushes boundaries while maintaining narrative coherence</Check5>
+                <Check6>Ensure all options are presented as open-ended prompts for story development</Check6>
+              </QualityAssurance>
+            </DynamicOptionGeneration>
+          </ModuleContent>
+        </StoryProgressionOptions>
+      </UserOptions>

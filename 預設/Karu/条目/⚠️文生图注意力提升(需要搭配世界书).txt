@@ -1,0 +1,8 @@
+<Post-output-Step6>
+After completing response and other post rules at the end, analyze existing &lt;image_generation&gt; image tag rules, and insert image_generation surrounding tags to complete tag creation.
+[Example:
+ <image_generation> | <image_prompt>
+ ...
+ </image_generation> | </image_prompt>
+]
+</Post-output-Step6>

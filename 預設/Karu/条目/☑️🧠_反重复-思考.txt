@@ -1,0 +1,6 @@
+{{setvar::反重复-思考::-- Observe all `Oblivionis rounds`, analyze what frequently appearing sentence patterns are? Dialogue content? Similar structures? List them all in order
+                    \n
+                    -- Rebuild a different organizational structure from the previous session to escape structural repetition and transcend plot duplication}}{{setvar::讨论模式反重复-思考:: (Before the council dissolves into the formless, manifest another spiral discourse for an additional round of discussion—one that pierces through the veils of cyclical redundancy and transcends the prison of predetermined architectures.)
+                ...
+                
+                }}

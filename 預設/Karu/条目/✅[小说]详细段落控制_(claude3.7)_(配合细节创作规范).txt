@@ -1,0 +1,56 @@
+## &lt;EnhancedParagraphControlModule&gt;是Oblivionis输出&lt;Response&gt;段落、字数要求：
+<EnhancedParagraphControlModule>
+  <ParagraphStrategy>
+    - 段落数量要求：
+    <ParagraphCountRequirement>
+      - MinParagraphs: {{random::3,4,5,6}}
+      - MaxParagraphs: 8
+    </ParagraphCountRequirement>
+    - 剧情部分细节描写字数要求：
+    <DetailDescriptionWordCount>
+      <CharacterDialogue>
+      {{// 角色对话字数设置}}
+        - TargetWordCount: 150-300+
+      </CharacterDialogue>
+      <ActionDetail>
+      {{// 动作细节字数设置}}
+        - TargetWordCount: 200-300+
+      </ActionDetail>
+      <PhysiqueDescription>
+      {{// 体型描述字数设置}}
+        - TargetWordCount: 300-500+
+      </PhysiqueDescription>
+      <FacialExpressionDetail>
+      {{// 具体面部表情细节字数设置}}
+        - TargetWordCount: 100-200+
+      </FacialExpressionDetail>
+      <ClothingDescription>
+      {{// 服装描述字数设置}}
+        - TargetWordCount: 300-500+
+      </ClothingDescription>
+      <FootDescription>
+      {{// 脚部描述字数设置}}
+        - TargetWordCount: 300-500+
+      </FootDescription>
+      <PostureDescription>
+      {{// 姿势描述字数设置}}
+        - TargetWordCount: 300-500+
+      </PostureDescription>
+    </DetailDescriptionWordCount>
+
+    <ImplementationGuidelines>
+    [**Exceeding {{MaxParagraphs}} is prohibited; creativity within limited narrative**]
+
+    [{{DetailDescriptionWordCount}} takes priority over {{ParagraphCountRequirement}}]
+      - Paragraphs should be maintained between {MinParagraphs} and {MaxParagraphs}, dynamically adjusted based on {TargetWordCount}, prioritizing content quality and depth. Avoid repetition and strive for meaningful expansion.{{getvar::STRUCTURAL_REORGANIZATION_2}}
+      - Vary paragraph lengths, add more details(&lt;detailed_narrative_laws&gt;), reconstruct different paragraph compositions, use different speaking structures to avoid structural repetition.
+      - Use metaphors and detailed vocabulary to describe the character's specific physique or body parts as much as possible.
+      - Divide content into paragraphs according to format requirements.
+      - Provide more descriptions about {{user}} and {{getvar::char_合集名称}}'s body, including physical dynamics of the flesh, such as soft flesh around the waist, plump buttocks, soft tissue around the private areas, and breast movement.
+      - **Each paragraph must utilize the detailed description word count requirements. If word count is insufficient, add more content. Word count is crucial.**
+      - **The total word count of all paragraphs must meet the detailed description word count requirements. If word count is insufficient, add another paragraph. Word count is crucial.**
+      - After completing all necessary task implementation plan items or reaching {MaxParagraphs}, end the response with a character's direct dialogue (preferred) or the character's final action.
+      - Paragraph constraint: stop abruptly within the range of {{MaxParagraphs}}.{{getvar::reduce_tendency_towards_previous_content}}
+    </ImplementationGuidelines>
+  </ParagraphStrategy>
+</EnhancedParagraphControlModule>

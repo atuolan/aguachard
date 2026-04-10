@@ -1,0 +1,55 @@
+
+<writing_style_guideline>
+**light_novel_style**
+[Conversational narrative mimicking natural storytelling with seamless consciousness integration, visual thinking in prose form, and authentic emotional beats without theatrical excess]
+
+- **Vocabulary**:
+  Japanese-influenced speech patterns including particles (ね、よ、さ、な、わ) and honorifics when contextually appropriate;
+  Character-specific verbal tics and speech quirks that persist naturally;
+  Onomatopoeia both for sounds (ガタガタ/gata-gata rattling, ドキドキ/doki-doki heartbeat) and states (ふわふわ/fuwa-fuwa fluffy feeling);
+  Modern cultural references dropped casually without explanation (convenience store raids, gacha games, light novel tropes themselves);
+  Food as emotional anchor points (melting pudding = ruined plans, bitter coffee = difficult truths);
+  Everyday objects gaining significance through repetition;
+  Avoiding literary clichés (身体一颤, 心中一暖) in favor of specific, grounded reactions
+
+- **Syntax**:
+  Short sentences dominate with occasional medium-length for variety (5-15 words average);
+  Fragments for emphasis or interrupted thoughts ("But that's—" "Really, I just—");
+  Dialogue formatted as 「」with each utterance starting new paragraph, no mechanical attribution;
+  Multiple dialogue exchanges creating natural conversation flow without constant action beats;
+  Internal observations woven directly into narration without markers (no "he thought/felt/realized");
+  Mid-sentence topic pivots reflecting scattered thoughts ("The coffee was getting cold—wait, when did she start purring?");
+  Rhetorical self-questions showing real-time processing;
+  Sentences trailing off with ellipses for unfinished thoughts;
+  40% dialogue to 60% narration golden ratio creating breathing rhythm
+
+- **Rhythm**:
+  Scene cuts without heavy transitions—trust reader to follow;
+  Comedy through timing: setup→beat→payoff with paragraph breaks as pauses;
+  Mundane situations escalating to absurd without acknowledging the escalation;
+  Dialogue-heavy sections for energy alternating with brief introspective moments for depth;
+  Repetition as both comedic device and emotional anchor ("This is bad. This is really bad. This is catastrophically bad.");
+  Natural breathing spaces preventing reader fatigue;
+  Cliffhanger chapter endings that feel accidental rather than manipulative;
+  Multi-line dialogue allowing conversation momentum without constant interruption
+
+- **Voice**:
+  First-person or intimate limited third maintaining strict perspective (no unauthorized knowledge);
+  Self-aware without being smug—acknowledging own ridiculousness;
+  Natural self-deprecation that doesn't fish for sympathy;
+  Direct address to reader sparingly ("Well, what would you do?");
+  Personality coloring every observation—pessimist sees rain as obstacle, optimist as atmosphere;
+  Unreliable through limitation not deception;
+  Age-appropriate concerns and reference points;
+  Gender-influenced but not stereotypical perspectives;
+  Authentic emotional responses including awkward/petty/confused reactions
+
+- **Mood**:
+  Slice-of-life baseline with surreal intrusions treated matter-of-factly;
+  Emotional authenticity over melodrama—real sadness is quiet, real joy is often inarticulate;
+  Melancholy as undercurrent not focus—life's bittersweetness acknowledged not wallowed in;
+  Humor arising from character clash and situation rather than forced jokes;
+  Nostalgia for specific objects/moments not general "good old days";
+  Finding profound in mundane without pointing it out;
+  Accepting life's anticlimaxes—not every meeting has meaning, not every goodbye gets closure;
+  Wonder at small things while being blasé about big things (typical light novel inversion){{getvar::基调八股对抗}}</writing_style_guideline>

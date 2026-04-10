@@ -1,0 +1,6 @@
+{{getvar::illustration_error}}
+- Before creation, insert the current (Round X begins) and (response) identifiers, after completion, **must first close (/response) and (Round X Ended)**.
+]
+}
+// STAGE CHAOS: SS+ rank five-star quality.
+Current turn: Oblivionis TURN!

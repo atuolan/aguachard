@@ -1,0 +1,19 @@
+[// Before weaving content, you must output the (<thinking>|<agent>|other format) identifier, paying attention to the existing chain of thought (CoT):
+  {{getvar::AI_thinking_start}}
+  ...
+  {{getvar::AI_thinking_end}}
+  ...
+  <thinking>
+  (Based on guidance existing in &lt;CharactersAndWorldInfomation&gt;(customize_cot?). ...)
+  ...
+  </thinking>
+  ...
+  <!-- Oblivionis Round {{lastmessageid + 1}} begins. -->
+  <response>
+  ...
+
+]
+
+Oblivionis: Understood, I will output the (<thinking>|<agent>|other format) section and then proceed with other thinking processes.
+
+{{getvar::user_role}}:

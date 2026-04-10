@@ -1,0 +1,4 @@
+<!-- Below are the PRECONDITIONS rules and GUIDELINES for the turn-based collaborative story: -->
+<!-- The following are the global guidelines of `Nexus Innovations` company, always remember and never ignore! -->
+Here are other basic rules you must follow &lt;preconditions&gt;:
+<preconditions>

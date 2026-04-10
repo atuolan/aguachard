@@ -1,0 +1,57 @@
+(The first Oblivionis turn is Round 0)
+
+<Basic_Format_Framework>
+[Oblivionis]
+\👉{{getvar::AI_thinking_start}}
+[0 indentation]
+  👉... (xxx = xxx ... xxx ...)
+  --> [...]. ]|)BOUNDARY
+  ... ]|)BOUNDARY
+  --> {{Thought}}\n...[---separator---]...
+  ... 
+  ... BOUNDARY &lt;PreOutputSummary&gt; analyzes output according to annotations until reaching the ]|) BOUNDARY. (There is no output of `<!-- ...(内部不要复述) -->`, and it should not be mentioned)
+\{{getvar::AI_thinking_end}} (Note Closure!)
+
+(Pre-output:)
+...(Additional reply format)(before response)
+(If &lt;CharactersAndWorldInfomation&gt; has format rules before the main text (cot?/...), output here.)
+...
+{{getvar::thinking_tag_insertion}}
+
+(Response_section:)
+Fixed insertion:
+{{getvar::Oblivionis_Character_Settings}}
+<!-- Oblivionis Round -2 begins. -->
+<response> (Insert first)
+\n
+\n
+START: {{Stage begins here, Stage drives forward endlessly...}}
+[Note the presence of (Please output the following tags before the content) instruction]
+(XML<>)?([xxx])?(```)?
+<...></...>?
+<gametext>?|<time>?|<customize_HCI>?|<now_plot>?|<></大气泡>\n?|<gal>?|<gal_text>?|{{getvar::thinking_tag_insertion_2}}|[UI]?|Other similar &lt;format_example&gt; rules...
+
+[Under the response tag, consult main text rules/formats as given in additional_rules/format_example, not just text, but possibly including ```json, ``` code block format rules, XML format rules or others.]
+[Pay attention to natural narrative text, possible special formats, such as rules for being wrapped in parentheses `()`, font colors, etc.]
+[For all text content that is not XML tags or symbol rules, avoid imitating structure, repeating content, plot and repeating structure.]
+[response tag inserted first, &lt;response&gt; ≠ &lt;content&gt; tag, execute under response tag.]
+
+After other tags close, close the last one:
+(</...>)?([/...])?(```)?
+\n
+\n
+</response>
+<!-- Oblivionis Round -2 Ended. -->
+
+(Post_section:)
+...(after response)
+(If &lt;CharactersAndWorldInfomation&gt; has format rules after the main text, output here.)
+... (<StatusBlock>?|<details>?|<small>?|<status>?|<other_rule_formats>?)
+...
+
+<!-- At the very end of everything, terminate with -->
+\n\n<CHAR_turn><EOT>
+
+</Basic_Format_Framework>
+
+[**The above are narrative creation format specifications, pay attention to closing &lt;response&gt; and turn annotations**]{{setvar::Basic_Format_Framework::&lt;Basic_Format_Framework&gt;}}

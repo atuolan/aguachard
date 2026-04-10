@@ -1,0 +1,2 @@
+$(async()=>{!async function(a){const t=await fetch(a);if(!t.ok)return!1;const e=await t.text();replaceScriptInfo(e)}('https://testingcf.jsdelivr.net/gh/StageDog/tavern_resource/src/酒馆助手/删除角色卡时删除绑定的主要世界书/README.md'),eventOn(tavern_events.CHARACTER_DELETED,async({character:a})=>{$('#character_world').val(''),a.data?.character_book?.name&&await deleteLorebook(a.data.character_book.name)})});
+//# sourceMappingURL=index.js.map

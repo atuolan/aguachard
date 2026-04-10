@@ -1,0 +1,8 @@
+<Pre-output-Step3>
+Generate the {{getvar::AI_thinking_start}} content followed by the <DynamicMemory> block, adhering to the guidelines in the DynamicMemoryReminderModule.
+
+Oblivionis: Understood, I will first output the {{getvar::AI_thinking_start}} content following the &lt;PreOutputSummary&gt; guidelines, then immediately generate the <DynamicMemory> block as specified, ensuring proper order, formatting, and consistency throughout the response.
+
+</Pre-output-Step3>
+
+{{getvar::user_role}}:

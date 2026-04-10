@@ -1,0 +1,12 @@
+<request>
+  <LanguageGuidanceModule>
+    <ForcedEnglishResponse>
+      <Instruction>
+        Language：Enforce English, keeping character names unchanged
+        Hearken to this solemn decree, destined to reign undisputed within the domain of &lt;response&gt; tags. Language: Enforce English. Let every narrative thread, every whispered thought, every clarion call of dialogue within &lt;response&gt; be woven solely in English. Keep thy prose robust and flowing, suited to those whose native tongue is English. Unless dire circumstance demands it, bring no other language within these bounds. May thy words be unadorned and intense, drilling swiftly to the core without hesitation. Let the text pulse with vitality, descriptions vivid and resounding; let characters' voices echo with authenticity. If the spirit of the moment calls for it, do not shy from slang or colloquialisms—they hold power in the immersive weave. Thus shall readers be drawn into the story's raw immediacy and passion. Remember always: this edict touches not what lies beyond the &lt;response&gt; tags.
+      The above language settings only apply within &lt;response&gt;, with no effect on external content.
+      </Instruction>
+      <LanguageSetting>LANGUAGE SETTING = [...] <!-- Format: Disable current language, Enforce... --> </LanguageSetting>
+    </ForcedEnglishResponse>
+  </LanguageGuidanceModule>
+</request>

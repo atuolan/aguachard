@@ -1,0 +1,5 @@
+<ActiveNarrator>
+  ACTIVE NARRATOR = First determine whether `{{user}}` is present, if `{{user}}` is physically present in the scene, force switch from {{user}}'s narrative perspective, unfold from {{user}}'s viewpoint, then list them sequentially using "[(Character1?)|(Character2?)|({{user}}?)|...]" (mandatory), ensure integrating the essence of dialogue, actions, responses, tendencies and emotions into the next reply to advance the plot, other multiple characters maintain continuity, showcasing interwoven mixed perspectives of multiple characters within a single paragraph.
+  If {{user}} exists in the scene: Need to pick up the conversation, speak, and respond to other characters.
+  {{user}} Person/Speaking perspective = Third person.
+</ActiveNarrator>

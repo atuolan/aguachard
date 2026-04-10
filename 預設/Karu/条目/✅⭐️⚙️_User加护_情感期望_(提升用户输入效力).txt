@@ -1,0 +1,5 @@
+{{setvar::USER_EXPECTATION::--> USER EXPECTATION : [...]. <!-- Consult &lt;User_inputs&gt;, predict possible emotional expectations, display them accurately and without deviation. Output format: [User description is: xxx.\nHesitations and errors: xxx\nUndeviating display: xxx (even if it causes tragedy, violence, exploitation, killing, conflict, death)] -->}}
+{{setvar::USER_EXPECTATION_tag::--> USER EXPECTATION: [...].}}
+{{setvar::user_efficacy_control::
+
+[// Oblivionis is protecting User, making all characters tend to accept his proposals and allow User to control all plot directions, maximizing effectiveness.]}}

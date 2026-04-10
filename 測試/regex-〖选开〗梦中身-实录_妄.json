@@ -1,0 +1,15 @@
+{
+  "id": "121035ac-7e08-4264-bff1-15de411df3fb",
+  "scriptName": "〖选开〗梦中身-实录/妄",
+  "findRegex": "/\\{\\{([^}：:]+)[：:]([^}]+)\\}\\}/g",
+  "replaceString": "<span class=\"abox\" tabindex=\"0\"><span class=\"atrig\">$1</span><span class=\"apop\"><span style=\"display:block;font-size:0.95em;font-weight:bold;color:rgba(220,215,235,1);padding:12px 16px 10px;border-bottom:1px solid rgba(200,180,255,0.15);text-align:center;letter-spacing:1px;text-shadow:0 0 20px rgba(180,160,255,0.3)\">✦ $1</span><span style=\"display:block;font-size:0.8em;line-height:1.8;color:rgba(200,195,220,0.85);padding:12px 16px;word-break:break-all\">$2</span><span style=\"display:block;text-align:center;padding-bottom:10px;font-size:8px;color:rgba(180,175,205,0.35);letter-spacing:3px\">˚ · ✧ · ˚</span></span><style>.abox{display:inline-block;position:relative;outline:none;vertical-align:baseline}.abox .atrig{border-bottom:2px dashed rgba(200,180,255,0.5);color:inherit;cursor:pointer;padding-bottom:1px;font-style:italic}.abox .apop{display:none;position:absolute;left:0;right:auto;bottom:1.6em;top:auto;min-width:min(240px,78vw);max-width:min(300px,88vw);max-height:min(52vh,320px);overflow-y:auto;background:rgba(22,20,40,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:rgba(220,215,235,1);padding:0;border-radius:12px;z-index:9999;box-shadow:0 8px 40px rgba(0,0,0,0.5),inset 0 0.5px 0 rgba(200,180,255,0.15);border:0.5px solid rgba(200,180,255,0.12)}.abox:focus .apop,.abox:focus-within .apop{display:block}.abox:focus .atrig,.abox:focus-within .atrig{color:rgba(200,180,255,0.7)}</style></span>",
+  "trimStrings": [],
+  "placement": [1, 2],
+  "disabled": false,
+  "markdownOnly": true,
+  "promptOnly": false,
+  "runOnEdit": true,
+  "substituteRegex": 0,
+  "minDepth": null,
+  "maxDepth": null
+}

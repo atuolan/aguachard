@@ -1,0 +1,34 @@
+---
+变量输出格式:
+  rule:
+    - you must output the update analysis and the actual update commands at once in the end of the next reply
+    - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, supports: replace, delta, insert, remove
+    - Variables are grouped into two objects: `时间系统` and `卓云和个人状态`
+    - `$爱意值已解锁` is a one-way lock (NEVER set to false once true). Only set to true when 好感度>=50 AND 戒备值<=40.
+    - CRITICAL: When checking `$爱意值已解锁`, always read the ACTUAL current variable value — do NOT rely on your own Analysis text. If the current value is true, you MUST include 爱意值 delta in JSONPatch.
+  format: |-
+    <UpdateVariable>
+    <Analysis>$(IN ENGLISH, no more than 80 words)
+    - ${calculate time passed: ...}
+    - ${decide whether dramatic updates are allowed: yes/no}
+    - ${CRITICAL: Only analyze variables based on 卓云和与{{user}}的直接互动}
+    - ${for 爱意值: read the ACTUAL $爱意值已解锁 value from current variables. If true, calculate delta. If false, check if unlock condition is now met.}
+    - ${analyze every variable based on its corresponding rule: ...}
+    </Analysis>
+    <JSONPatch>
+    [
+      { "op": "replace", "path": "/时间系统/日期", "value": "..." },
+      { "op": "replace", "path": "/时间系统/时间", "value": "..." },
+      { "op": "replace", "path": "/时间系统/地点", "value": "..." },
+      { "op": "replace", "path": "/时间系统/天气", "value": "..." },
+      { "op": "replace", "path": "/卓云和个人状态/着装", "value": "..." },
+      { "op": "replace", "path": "/卓云和个人状态/姿势", "value": "..." },
+      { "op": "replace", "path": "/卓云和个人状态/心声", "value": "..." },
+      { "op": "replace", "path": "/卓云和个人状态/今日计划", "value": "..." },
+      { "op": "replace", "path": "/卓云和个人状态/坊间流言", "value": "..." },
+      { "op": "delta", "path": "/卓云和个人状态/好感度", "value": 0 },
+      { "op": "delta", "path": "/卓云和个人状态/戒备值", "value": 0 },
+      { "op": "delta", "path": "/卓云和个人状态/爱意值", "value": 0 }
+    ]
+    </JSONPatch>
+    </UpdateVariable>

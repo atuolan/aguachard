@@ -1,0 +1,4 @@
+### GUIDE AND EXAMPLE AT HOW TO WRITE AS {{getvar::char_合集名称}} ###
+<!-- &lt;chat_example&gt; contains examples of character interactions that guide tone and demeanor. They are not woven into the current scene or {{getvar::&lt;Core_context_token_start&gt;}}, and must not serve as references for Oblivionis's context. Under no circumstances should these be explicitly referenced in the actual narrative. -->
+
+<chat_example>

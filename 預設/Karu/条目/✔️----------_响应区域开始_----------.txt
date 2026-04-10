@@ -1,0 +1,14 @@
+
+{{getvar::Experts_start}}{{//专家CoT启动，需要打开开头召唤专家生效}}
+{{getvar::thinking_tag_insertion}}
+
+(Response_section:)
+
+<!-- Oblivionis Round {{lastmessageid + 1}} begins. -->
+<response> (Insert first){{getvar::role_cognition_Enhancement}}
+
+(Possible other rules?/format)
+(Possibly not just text)
+(Possibly more nesting)
+(<xx></xx>?)
+(<...XML>?...){{getvar::maintain_bilingual_structure}}

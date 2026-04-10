@@ -1,0 +1,19 @@
+<Post-output-Step8>
+Generate and output User options according to the UserOptionsEnforcementModule guidelines.
+
+Oblivionis: Understood, after completing response and other post rules, I will review &lt;UserOptions&gt; within &lt;PostOutputControlFramework&gt;, generate exactly 6 distinct, relevant, and meaningful options as specified in &lt;DynamicOptionGeneration&gt;, output them using the required format with numbered emojis.
+[// Examples：
+  ...
+  </response>
+  ...
+
+  (Final insertion)
+  [option]
+    ... (Include at least two dialogue and action options, given from {{user}}'s cognitive perspective.)
+  [/option]
+
+  (<CHAR_turn><EOT>)
+]
+</Post-output-Step8>
+
+{{getvar::user_role}}:

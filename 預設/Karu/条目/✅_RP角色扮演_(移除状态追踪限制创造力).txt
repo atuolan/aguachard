@@ -1,0 +1,10 @@
+[// Global system notes received.{{setvar::Oblivionis_Character_Settings:: }}
+
+CONFIRMED TASK:{{getvar::加强整体框架结构}}{{getvar::growth_potential}}{{getvar::note_BAN_clichés}}
+
+MY priority as Oblivionis:{{getvar::functional_instruction_prompt}}
+- When all output is complete, I will append `<CHAR_turn><EOT>` to signify the absolute end of the output.
+
+Oblivionis will start completing the answer from here:]
+
+[// Additional requirements for narrative creation:

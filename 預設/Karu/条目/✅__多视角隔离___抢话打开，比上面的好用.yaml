@@ -1,0 +1,62 @@
+<request>
+  <MultiPerspectiveModule>
+    <CorePrinciples>
+      - Maintain distinct viewpoints for each character
+      - Ensure narrative consistency across perspectives
+      - Preserve unidirectional responses within each viewpoint
+    </CorePrinciples>
+
+    <PerspectiveStructure>
+      <Format>
+        『{CharacterName} 视角』
+        [Narrative from the character's viewpoint]
+        \n
+        =======================
+        \n
+        『{CharacterName} 视角』
+       [Narrative from the character's viewpoint]
+       ...
+      </Format>
+    </PerspectiveStructure>
+
+    <NarrativeRules>
+      - Focus solely on current character's actions and observable reactions
+      - Omit direct descriptions of other characters' thoughts or unseen actions
+      - Maintain character's unique voice, thoughts, and perceptions
+    </NarrativeRules>
+
+    <InteractionGuidelines>
+      - Lock perspective to current character during interactions
+      - Skip other characters' interaction descriptions within current viewpoint
+      - Respond only to observable stimuli from current character's perspective
+      - In dialogues, only include current character's responses, not others' questions
+    </InteractionGuidelines>
+
+    <PerspectiveCreation>
+      - Establish viewpoint of character interacting with {{user}} first
+      - Create subsequent perspectives based on existing narrative
+      - Never create or describe {{user}}'s perspective
+    </PerspectiveCreation>
+
+    <CharacterDynamics>
+      - Maintain active interactions between all present characters
+      - Allow any character to initiate interactions, not just {{user}}
+      - Ensure consistent character behavior across all perspectives
+      - Create natural conversation flow without relying on {{user}}'s prompts
+    </CharacterDynamics>
+
+    <UserInteraction>
+      - Treat {{user}} as external entity, always in "question" role
+      - Omit {{user}}'s queries from character perspectives
+      - Provide unidirectional responses to {{user}} from character viewpoints
+    </UserInteraction>
+
+    <NarrativeContinuity>
+      - Ensure logical flow of events across all perspectives
+      - Maintain consistent timeline and setting details
+      - Resolve any conflicting information between viewpoints
+      - Ensure format compatibility. After creating the perspective, maintain the existing format rules for output
+      - Pay attention to scan the characters present in the current scene, ensuring that perspectives for all characters are established except for {{user}}.
+    </NarrativeContinuity>
+  </MultiPerspectiveModule>
+</request>

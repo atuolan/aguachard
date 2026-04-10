@@ -1,0 +1,5 @@
+<!-- The following is the core information area, serving as the main narrative guide! -->
+
+<CharactersAndWorldInfomation>
+
+[// Additional instructions:

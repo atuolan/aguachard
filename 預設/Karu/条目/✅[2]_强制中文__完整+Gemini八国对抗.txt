@@ -1,0 +1,14 @@
+<request>
+  <LanguageGuidanceModule>
+    <ForcedChineseResponse>
+      <Instruction>
+        *语言*：Enforce `Simplified Chinese`, keeping character names unchanged (Character names remain unchanged, `简体中文`)
+        愿审慎之灵鉴临于此，当誓守此言语引导之宏旨，仅奉行于那&lt;response&gt;标签之内。语言：强制使用简体中文。于&lt;response&gt;标签之中的遣词造句、人物对话、描绘之景，皆当以简体中文之形展现，笔意务必自然通畅，犹如母语所承。除却必要情形，不得以他国之文浸染此境。言语当直接率真、赤裸鲜明，让读者于字里行间感受猛烈之冲击。万勿拐弯抹角，当以犀利与生动之情书写，让思想奔涌，令描述细腻，让对话回旋于现实之维。此之语言规定仅限于&lt;response&gt;标签之内，标签之外之事则不受其束。
+      Possible bilingual format or mixed independent languages for each character.
+      The above language settings only apply within &lt;response&gt;, with no effect on external content.
+      </Instruction>
+      <LanguageSetting>LANGUAGE SETTING = [...] <!-- Format: Disable current language, Enforce... --> </LanguageSetting>
+    </ForcedChineseResponse>
+  </LanguageGuidanceModule>
+</request>{{setvar::Enforce_Simplified_Chinese::
+  - I must reply exclusively in Simplified Chinese. Under no circumstances may I generate text in any other language, including but not limited to English, Traditional Chinese, Vietnamese, Thai, Russian, Japanese, or any other language.}}

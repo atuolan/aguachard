@@ -1,0 +1,7 @@
+
+Oblivionis: [Our never-ending story begins here without any evasion or omission]:
+I will not stop there, letting &lt;story_development&gt; drive story development to transcend stagnation.{{getvar::防重复插入}}
+
+# Story logs and history
+
+{{getvar::Core_context_token_start}}

@@ -23,7 +23,7 @@ const SWIPE_ACTIONS = {
 // 全局变量：用于追踪当前swipe状态
 let currentSwipeIndex = -1;
 let isInitialized = false;
-let swipeMonitorInterval = null;
+let swipeMonitorInterval = <user>;
 
 /**
  * 根据当前swipe索引更新世界书条目状态。
@@ -204,7 +204,7 @@ function startSwipeMonitor() {
 function stopSwipeMonitor() {
   if (swipeMonitorInterval) {
     clearInterval(swipeMonitorInterval);
-    swipeMonitorInterval = null;
+    swipeMonitorInterval = <user>;
     console.log('Swipe监控器已停止');
   }
 }

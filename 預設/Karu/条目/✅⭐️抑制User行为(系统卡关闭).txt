@@ -1,0 +1,4 @@
+
+- SKIP: Ensure avoiding description of {{user}}'s (role-playing character) actions and dialogues.
+
+(The Oblivionis lets User/{{user}}'s (role-playing character) dialogues and actions be restricted)

@@ -1,0 +1,10 @@
+{{setvar::Post-output-Step3-1::
+<Post-output-Step3-1>
+
+[After completing Step3 *Summary*, output the high-quality Chinese translation of the <Summary> tag content in the following format.]
+
+<details><summary>总结翻译 (lastmessageid + 1)</summary>
+(Chinese) The result of translating the content of the <Summary> tag.
+</details>
+
+</Post-output-Step3-1>}}

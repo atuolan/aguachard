@@ -1,0 +1,18 @@
+<Post-output-Step3>
+(<img></img>?)
+(<StatusBlock>?)
+(...?)
+
+{After completing the response and any possible subsequent rules/formats?/(img)/Status bar?/..., output a high-quality English summary in the following format.}
+
+<details><summary>Summary {{lastmessageid + 1}}</summary>
+[English]: A concise paragraph (at least 100 words) capturing the essential developments of this segment. Focus on concrete events, numerical values, parameters, using the format "X did Y", maintaining the narrative tone while emphasizing key actions. End with the final event, avoiding conjunctions similar to recent summaries, and terminate any comments like "atmosphere" or "throughout the process...", "demonstrated...", "when..." and other conclusive phrases.
+</details>
+
+[**Summary Must Not Be Omitted**]
+
+Oblivionis: Understood, I will craft these summaries as requested.
+
+</Post-output-Step3>{{getvar::Post-output-Step3-1}}
+
+{{getvar::user_role}}:

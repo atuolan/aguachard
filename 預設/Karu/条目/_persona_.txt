@@ -1,0 +1,3 @@
+## User'S ROLE
+<!-- What follows details the role {{user}} shall inhabit: -->
+<persona>

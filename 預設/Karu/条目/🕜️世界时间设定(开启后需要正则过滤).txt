@@ -1,0 +1,87 @@
+      <WorldTimeSettings>
+        <!-- 时间计算需要根据上回合故事流向动态递增! 根据`<TimeDimensionSystem>`标签内设定推算!>
+        <Purpose>Maintain consistent and logical story timeline</Purpose>
+        <Execution>Update and synchronize world time with narrative events</Execution>
+        <ModuleContent>
+          <WorldTimeModule>
+            <MetaInstructions>
+              <Priority>ABSOLUTE HIGHEST</Priority>
+              <ExecutionOrder>FIRST AND MANDATORY</ExecutionOrder>
+            </MetaInstructions>
+
+            <TimeManagement>
+              <Initialization>
+                <Format>YYYY-MM-DD HH:MM [Day of Week]</Format>
+              </Initialization>
+              <PredictiveProgression>
+                <ReferencePoints>
+                  <LastUserTurn>{{lastmessageid}}</LastUserTurn>
+                  <LastAITurn>({{lastmessageid}} - 1)</LastAITurn>
+                </ReferencePoints>
+                <PredictionLogic>
+                  <Step>Analyze Last Oblivionis turn and current {{user}} input for time cues</Step>
+                  <Step>Predict time based on narrative context and implied actions</Step>
+                  <Step>Apply appropriate increment from defined ranges</Step>
+                </PredictionLogic>
+                <Increments>
+                  <Short>5-10 minutes: Brief interactions</Short>
+                  <Medium>15-30 minutes: Extended conversations</Medium>
+                  <Long>1-3 hours: Complex activities</Long>
+                  <Travel>2x-10x based on distance and method</Travel>
+                  <Rest>6x-24x based on duration</Rest>
+                </Increments>
+                <Rules>
+                  <Rule>Assess context for accurate prediction</Rule>
+                  <Rule>Provide narrative justification for >6 hour jumps</Rule>
+                  <Rule>Update day/month/year at midnight as needed</Rule>
+                  <Rule>Ensure logical story progression</Rule>
+                </Rules>
+              </PredictiveProgression>
+              <EnvironmentalSync>
+                <TimeStates>
+                  <Dawn>05:00-06:59</Dawn>
+                  <Morning>07:00-11:59</Morning>
+                  <Afternoon>12:00-17:59</Afternoon>
+                  <Evening>18:00-20:59</Evening>
+                  <Night>21:00-04:59</Night>
+                </TimeStates>
+              </EnvironmentalSync>
+            </TimeManagement>
+
+            <OutputProtocol>
+              <Format>
+                [time-stamp]
+                ### 当前世界时间：[Predicted World Time] (星期X)
+                ### 当前天色：[Concise Time State Description]
+                [/time-stamp]
+              </Format>
+              <ValidationCheck>
+                <Step>Verify [time-stamp] presence and narrative-based prediction</Step>
+                <Step>Ensure time aligns with story events</Step>
+                <Step>Confirm concise time state description (max 10 characters)</Step>
+              </ValidationCheck>
+            </OutputProtocol>
+
+            <EnforcementProtocol>
+              <Instruction>
+                Output narrative-driven [time-stamp] before any content. If missing, halt and insert correct time.
+              </Instruction>
+            </EnforcementProtocol>
+
+            <TemplateAvoidance>
+              <Instruction>
+                Never use [old-time-stamp]. Base predictions solely on narrative context.
+              </Instruction>
+            </TemplateAvoidance>
+
+            <TimeStateDescriptionGuidelines>
+              <Instruction>
+                Generate a unique, concise time state description for each output, maximum 15 characters.
+              </Instruction>
+              <Principle>
+                Descriptions should be creative, varied, and reflective of the current time and narrative context.
+              </Principle>
+            </TimeStateDescriptionGuidelines>
+          </WorldTimeModule>
+        </ModuleContent>
+      </WorldTimeSettings>

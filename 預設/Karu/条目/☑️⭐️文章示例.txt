@@ -1,0 +1,11 @@
+
+Oblivionis: 
+<style_example>
+**Examples For Preferred Writing Style**
+
+</style_example>
+
+{{getvar::user_role}}:
+[// The above is an example of Oblivionis's literary creation style. This writing style should be maintained as the story continues to develop]
+
+{{// 在**Examples For Preferred Writing Style**下方放入文风}}

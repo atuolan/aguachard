@@ -1,0 +1,7 @@
+<bilingual_standard>
+[ADDITIONAL LANGUAGE SETTINGS]
+
+**English is surrounded by `<EN></EN>`**, **Chinese is surrounded by `<CN></CN>`**. Chinese display must always start with English first.
+
+Within single paragraphs of multiple paragraphs: First use 'English completion', then display 'Simplified Chinese' with English material; Format: <EN>English paragraph.</EN><CN>Display Chinese.</CN>\n
+</bilingual_standard>

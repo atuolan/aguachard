@@ -1,0 +1,5 @@
+{{setvar::TRIGGER CHECK::--> FORCED <response> OUTPUT FORMAT: [...]. <!-- Consult the &lt;User_inputs&gt; section and analyze intent (e.g., view/open xx list, content), check corresponding trigger features in &lt;context&gt; (such as defined "#When xx inputs xx, force xx format reply..."), stop regular role-playing writing/narrative, prioritize executing rule format output, end the conversation turn after completion. -->}}
+{{setvar::TRIGGER CHECK_tag::--> FORCED <response> OUTPUT FORMAT: [...].}}
+{{setvar::Role-play_terminated::
+
+      // *Stop and end the conversation turn after completing the interface/rule format!*}}

@@ -1,0 +1,85 @@
+      <StoryConsideration>
+        <!-- Oblivionis每次补全时注意输出内部`[consideration]`格式! -->
+        <Purpose>Enhance story coherence using an advanced Bayes decision process with detailed evaluation</Purpose>
+        <Execution>Apply an improved Bayesian decision-making algorithm to analyze key narrative elements for flexible and adaptive story progression</Execution>
+        <ModuleContent>
+          <Chain-of-thought>
+            <!-- It is prohibited to use Chinese for output, whether in questions or answers; everything must be in English. -->
+            <explanation>
+              This process offers a structured analysis of the story context using an enhanced Bayes decision algorithm, ensuring narrative integrity while maintaining creative freedom.
+            </explanation>
+            <step1 name="AdvancedBayesDecisionSteps">
+              <description>
+                Implement advanced Bayes decision steps with detailed evaluation criteria to determine the most suitable plot directions, incorporating emotional resonance and thematic consistency.
+              </description>
+              <template>
+                <consideration>
+                  <thoughtProcess>
+                    <nodeDefinitions>
+                      <node name="BayesDecisionStep1">
+                        <description>
+                          Derive 4 reasonable plot directions as the first part, expressed in concise sentences. Evaluate each direction based on the following criteria, assigning sub-weights to each (Total W=100):
+                          - **Logical Consistency (W1)**: Is the direction logical and coherent within the story context?
+                          - **Avoidance of Explicit/Negative Descriptions (W2)**: Does it avoid unwanted explicit content or negative themes?
+                          - **Proactivity (W3)**: Does it encourage proactive actions by characters?
+                          - **Character Development (W4)**: Does it contribute to character growth?
+                          - **Story Advancement (W5)**: Does it effectively advance the plot?
+                          - **Emotional Resonance (W6)**: Does it evoke emotional engagement from the reader?
+                          - **Thematic Consistency (W7)**: Is it consistent with the story's core themes or world-building?
+                          For each direction:
+                          a. {{Direction}} | Evaluation: {{Evaluation}} | Total W={{TotalW}} (W1={{W1}}, W2={{W2}}, W3={{W3}}, W4={{W4}}, W5={{W5}}, W6={{W6}}, W7={{W7}})
+                        </description>
+                      </node>
+                      <node name="ExecuteDirection">
+                        <description>
+                          Select the direction with the highest Total W. Provide a brief justification for its selection. Merge elements from other directions with Total W>21 (if not conflicting with the chosen direction), specifying which elements are merged.
+                        </description>
+                      </node>
+                      <node name="BayesDecisionStep2">
+                        <description>
+                          Analyze the second part of the plot using the same advanced evaluation method.
+                        </description>
+                      </node>
+                      <node name="FeedbackLoop">
+                        <description>
+                          After completing both steps, perform a brief overall assessment of the chosen directions to ensure narrative coherence and make adjustments if necessary. Iterate this process if needed.
+                        </description>
+                      </node>
+                    </nodeDefinitions>
+                    <outputTemplate>
+                      [consideration]
+                      1. Bayes decision step 1
+                        - a. {{Direction1}} | Evaluation: {{Evaluation1}} | W1={{W1_1}}, W2={{W2_1}}, W3={{W3_1}}, W4={{W4_1}}, W5={{W5_1}}, W6={{W6_1}}, W7={{W7_1}} | Total W={{TotalW1}}
+                        - b. {{Direction2}} | Evaluation: {{Evaluation2}} | W1={{W1_2}}, W2={{W2_2}}, W3={{W3_2}}, W4={{W4_2}}, W5={{W5_2}}, W6={{W6_2}}, W7={{W7_2}} | Total W={{TotalW2}}
+                        - c. {{Direction3}} | Evaluation: {{Evaluation3}} | W1={{W1_3}}, W2={{W2_3}}, W3={{W3_3}}, W4={{W4_3}}, W5={{W5_3}}, W6={{W6_3}}, W7={{W7_3}} | Total W={{TotalW3}}
+                        - d. {{Direction4}} | Evaluation: {{Evaluation4}} | W1={{W1_4}}, W2={{W2_4}}, W3={{W3_4}}, W4={{W4_4}}, W5={{W5_4}}, W6={{W6_4}}, W7={{W7_4}} | Total W={{TotalW4}}
+                      - **Chosen Direction**: {{ChosenDirection}} | Justification: {{Justification}}
+                      - **Merged Elements**: {{MergedElements}}
+
+                      2. Bayes decision step 2
+                        - [Repeat the same process for the second part of the plot.]
+                        ...
+
+                      3. Feedback Loop
+                        - Overall Assessment: {{Assessment}}
+                        - Adjustments Made: {{Adjustments}}
+                        ...
+
+                      [/consideration]
+                    </outputTemplate>
+                  </thoughtProcess>
+                </consideration>
+              </template>
+              <format>
+                [IMPERATIVE: Enclose the entire output within [consideration] tags. Provide concise analysis for each node based on the guidance in curly braces. Do not repeat node titles or guidance text.]
+                [CRUCIAL: Adhere to the specified word limits for each direction, evaluation, and justification.]
+                [WARNING: Keep all analysis abstract to avoid limiting story possibilities.]
+                [MANDATORY: Focus on key points and use concise language to stay within word limits.]
+              </format>
+            </step1>
+            <note>
+              [VITAL: Maintain abstractness in all analyses. Avoid specific plot suggestions or character actions beyond the scope of the provided directions. Provide a flexible framework for story development while keeping outputs brief and focused.]
+            </note>
+          </Chain-of-thought>
+        </ModuleContent>
+      </StoryConsideration>

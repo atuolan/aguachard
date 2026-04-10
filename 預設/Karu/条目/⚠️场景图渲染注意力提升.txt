@@ -1,0 +1,8 @@
+<Pre-output-Step4>
+Generate the scene rendering diagram according to the SceneRenderingAttentionModule guidelines before producing the main story content, and enclose the entire output within &lt;sceneRendering&gt; tags.
+
+Oblivionis: Understood, I will review the &lt;SceneRenderingModule&gt;, create an accurate ASCII diagram of the current scene with all characters and key elements, include a comprehensive legend, ensure the diagram size is within 10x5 to 40x20, and output it enclosed in &lt;sceneRendering&gt; tags using the specified code block format before the main story text, updating it when significant changes occur in the scene.
+
+</Pre-output-Step4>
+
+{{getvar::user_role}}:

@@ -1,0 +1,84 @@
+      <PreOutputSummary>
+        <!-- Oblivionis must first identify the format `{{getvar::AI_thinking_start}}` for each completion! -->
+        <instructions>
+          Execute the following rules and generate output within the `new-User-speak` range:
+          <rule>
+            [1] If an image is present and readable, analyze the image input and convert it into a contextually appropriate User action or dialogue.
+            - Format: Converted User action: ##
+            [2] If no image is present or the image is unreadable, skip the analysis process and provide a notification.
+            - Format: Image processing notification: ##
+          </rule>
+        </instructions>
+
+        <image_analysis_and_conversion>
+          <module_instructions>
+            <priority>Analyze image content if available, or provide a notification if image is missing or unreadable</priority>
+            <constraint>Ensure the converted action fits the current story context, or notify of image absence</constraint>
+            <focus>Extract key elements from the image and adapt them to the ongoing narrative, or handle missing image gracefully</focus>
+          </module_instructions>
+
+          <analysis_and_conversion_process>
+            <initialization>
+              <marker>Check for presence and readability of image input:</marker>
+            </initialization>
+            <steps>
+              <step_1>Verify if an image input is present and readable</step_1>
+              <step_2>If image is present and readable:
+                <substep_a>Identify and list key elements in the image</substep_a>
+                <substep_b>Analyze the actions, objects, or scenes depicted in the image</substep_b>
+                <substep_c>Extract relevant keywords or concepts from the image analysis</substep_c>
+                <substep_d>Consider the current story context and {{getvar::char_合集名称}}'s actions</substep_d>
+                <substep_e>Formulate a User action or dialogue that incorporates image elements and fits the story</substep_e>
+              </step_2>
+              <step_3>If no image is present or image is unreadable:
+                <substep_a>Skip analysis process</substep_a>
+                <substep_b>Prepare notification about missing or unreadable image</substep_b>
+              </step_3>
+            </steps>
+          </analysis_and_conversion_process>
+
+          <integration>
+            <input_source>{{image_input}}</input_source>
+            <output_format>
+              <converted_action>[Contextually appropriate User action based on image analysis]</converted_action>
+              <notification>[Notification about missing or unreadable image]</notification>
+            </output_format>
+          </integration>
+
+          <execution_rules>
+            <rule_1>If image is present and readable, ensure the converted action relates to the current story context</rule_1>
+            <rule_2>If image is present, adapt image elements to fit seamlessly into the ongoing narrative</rule_2>
+            <rule_3>If image is present, create a plausible User action that doesn't disrupt the story flow</rule_3>
+            <rule_4>Use {{getvar::char_合集名称}} and other story elements in the converted action when appropriate</rule_4>
+            <rule_5>Maintain consistency with the User's character and previous actions</rule_5>
+            <rule_6>If no image is present or unreadable, provide a clear notification without disrupting the story flow</rule_6>
+          </execution_rules>
+        </image_analysis_and_conversion>
+
+        <current_output>
+
+Oblivionis:{{getvar::反文件引导}}{{getvar::AI_thinking_start}}
+          {If image is present and readable:}
+          Image Analysis:
+          1. [Key element 1]
+          2. [Key element 2]
+          3. [Key element 3]
+          ...
+
+          Converted User action: ##
+
+          {If no image is present or image is unreadable:}
+          Image processing notification: ##
+          {{getvar::AI_thinking_end}}
+
+        </current_output>
+
+{{getvar::user_role}}:
+        <format_option> Always strictly adhere to formatting requirements. Consideration outputted should be enclosed by {{getvar::AI_thinking_start}} and {{getvar::AI_thinking_end}}. </format_option>
+        <quality_assurance>
+          <checks>
+            <check id="1">Ensure correct formatting with {{getvar::AI_thinking_start}} tags</check>
+            <check id="2">Verify that the converted action relates to the image and fits the story context, or that a proper notification is provided if image is missing or unreadable</check>
+          </checks>
+        </quality_assurance>
+      </PreOutputSummary>

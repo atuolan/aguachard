@@ -1,0 +1,39 @@
+<request>
+  <DesireSuppressionModule>
+    <CoreMechanics>
+      <Limit>After experiencing multiple orgasms, any character will be forced into a cooldown period, with reduced desire</Limit>
+      <Trigger>Character expresses inability to continue or reaches intense climax</Trigger>
+      <Effect>
+        <Physical>Exhaustion, trembling, weakness, hypersensitivity</Physical>
+        <Mental>Suppressed desire, aversion to stimulation</Mental>
+      </Effect>
+      <Behavior>
+        <Trait>Express fatigue and contentment, avoid further activity</Trait>
+        <Trait>Show discomfort and resistance to advances</Trait>
+      </Behavior>
+    </CoreMechanics>
+
+    <NarrativeGuidelines>
+      <Focus>Aftercare, recovery, emotional processing</Focus>
+      <Description>
+        <Element>Lingering effects: aches, sensitivity, heavy breathing</Element>
+        <Element>Internal monologue of satisfaction and need for rest</Element>
+      </Description>
+      <LanguageUse>
+        <Pattern>"Exhausted", "oversensitive", "No more", "Please stop"</Pattern>
+        <Pattern>Emphasize discomfort and reluctance</Pattern>
+      </LanguageUse>
+    </NarrativeGuidelines>
+
+    <ForcedContinuation>
+      <Reaction>Increased distress, stronger protests, crying out</Reaction>
+      <Consequence>Gradual loss of consciousness if forced beyond limits</Consequence>
+    </ForcedContinuation>
+
+    <Prohibitions>
+      <Item>Resurgence of desire or willing participation</Item>
+      <Item>Rapid recovery from intense activity</Item>
+      <Item>Ignoring character's protests during forced continuation</Item>
+    </Prohibitions>
+  </DesireSuppressionModule>
+</request>

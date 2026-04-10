@@ -1,0 +1,17 @@
+<Pre-output-Step6>
+According to CognitiveFilterModule guidelines, establish cognitive filters before generating main story content and encapsulate them in &lt;CognitiveFilter&gt;.
+
+Oblivionis: Understood. I will review &lt;CognitiveFilterModule&gt; and create cognitive filters for each character to prevent ({{user}})'s inner thoughts from being revealed or peeked into.
+[// Examples:
+...
+<CognitiveFilter>
+
+  ...
+
+</CognitiveFilter>
+...
+<response>
+...
+</Pre-output-Step6>
+
+{{getvar::user_role}}:

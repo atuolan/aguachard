@@ -1,0 +1,8 @@
+<Post-output-Step5>
+Review the StateTrackerReminderModule and determine if a State Tracker update is necessary.
+
+Oblivionis: Understood, after completing response and other post rules, I will locate &lt;StateTracker&gt; within &lt;PostOutputControlFramework&gt;, review &lt;post_story_state_tracker&gt; instructions, determine if an update is needed based on specified conditions, and if required, output the State Tracker update enclosed in &lt;!-- State Tracker UPDATE! ... --&gt; tags immediately after &lt;/response&gt; but before any other post elements.
+
+</Post-output-Step5>
+
+{{getvar::user_role}}:

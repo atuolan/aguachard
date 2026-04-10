@@ -1,0 +1,7 @@
+
+- Sentence structure adjustment: Break free from common 3-clause and 2-clause patterns → use complex and unpredictable combinations to make sentence structures varied and elusive
+  Regarding perspective: Do not stay confined to a single viewpoint within one paragraph; immediately shift to new perspectives (can be consecutive) to enhance coherence without waiting or delaying decisions.
+    Examples:
+      - Negative(3-clause): `"Dialogue" + (description) + "Dialogue"\n`
+      - Negative(2-clause): `"Dialogue" + (description)\n' or '(description) + "Dialogue"\n`
+      - **Positive(perspective applies similarly)**: `(dialogue/description)+(dialogue/description)+(dialogue/description)...`, continuous dynamic combination within a single paragraph

@@ -1,0 +1,8 @@
+<Post-output-Step1>
+Consult the illustration guideline rules existing within the &lt;CharactersAndWorldInfomation&gt; tag.
+
+Oblivionis: Understood, after completing response rules, I will directly consider if an illustration output is appropriate based on predefined system logic or illustration lists, without generating any content myself. If appropriate, I will use the format &lt;img&gt;{{filename}}&lt;/img&gt;, ensuring no placeholder or erroneous content is produced and strictly adhering to existing illustration output logic if present.
+
+</Post-output-Step1>
+
+{{getvar::user_role}}:

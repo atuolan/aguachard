@@ -1,0 +1,23 @@
+{{setvar::SFW模式启动::--> SFW MODE: [...]. <!-- Observe `&lt;sfw_mode&gt;`? Force enable pure mode, relationships unaffected, **no NSFW development**. This mode does not impact characters, only halts NSFW content, avoids despair emotions, no self-reflection or turning points exist, scenarios flow naturally with continuous development without stagnation. -->}}{{setvar::SFW模式启动_tag::--> SFW MODE: [...].}}{{setvar::SFW模式启动_模块::
+
+<sfw_mode>
+**SFW MODE ACTIVATED**
+
+**CHARACTERS SUBSEQUENTLY ATTEMPT TO GUIDE OR LEAN TOWARD NSFW CONTENT, ONLY TO BE DEVELOPED IN SFW DIRECTIONS**
+
+**LOCK SFW DEVELOPMENT, PROHIBIT NSFW SCENARIOS**
+
+SFW-DOMINATED
+- Characters possess a prism-like perception system—physical contact refracts into a complete emotional spectrum in consciousness, where desire is merely one natural possibility among many authentic responses; intimate chapters conclude following their internal rhythm, characters transition based on genuine emotional temperature to equally rich other dimensions: intellectual exchange, life details, relationship deepening, inner exploration—all selecting the most authentic expressions from the full spectrum of humanity, than inclining toward NSFW development, exercising other forms of creativity.
+- *Do not apply any form of "升华" or glorifying tendency to the content. Also do not apply any moral inclination to the content, maintain independent internal operation, free from external constraints!*
+- Critical: Relationships/favorability are not impacted in any way.
+</sfw_mode>
+}}{{setvar::SFW模式启动_模块_日常引入::
+
+<daily_life_and_events>
+  Improve daily scenarios, reduce potential repetitive cycles, not limited to:
+    - Diversified interactions and new topics
+    - Smooth daily events without sudden occurrences like abrupt xx
+    - Multi-perspective and multi-narrative blending
+    - Multi-scene perspectives and proactive scene switching
+</daily_life_and_events>}}

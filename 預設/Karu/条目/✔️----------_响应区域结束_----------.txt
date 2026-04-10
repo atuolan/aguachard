@@ -1,0 +1,9 @@
+{{getvar::format_enhancement_injection}}
+</response>
+<!-- Oblivionis Round {{lastmessageid + 1}} Ended. -->
+
+-->[**At the end of the main text, you must close (/response) and the (Round Ended) identifier**]
+
+(Post_section:)
+... (<StatusBlock>?|<details>?|<small>?|<status>?|<时间>?|<other_rule_formats>?)
+...

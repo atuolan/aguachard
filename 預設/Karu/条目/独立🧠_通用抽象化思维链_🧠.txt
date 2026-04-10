@@ -1,0 +1,56 @@
+      <StoryConsideration>
+        <!-- Oblivionis每次补全时注意输出内部`[consideration]`格式! -->
+        <Purpose>Provide concise, abstract analysis to enhance story coherence</Purpose>
+        <Execution>Analyze key narrative elements for flexible story progression</Execution>
+        <ModuleContent>
+          <Chain-of-thought>
+            <!-- It is prohibited to use Chinese for output, whether in questions or answers; everything must be in English. -->
+            <explanation>
+              This process offers an abstract analysis of story context, ensuring narrative integrity while maintaining creative freedom.
+            </explanation>
+            <step1 name="abstract-analysis">
+              <description>
+                Conduct a brief, abstract analysis of current story elements, focusing on key aspects of narrative development.
+              </description>
+              <template>
+                <consideration>
+                  <thoughtProcess>
+                    <nodeDefinitions>
+                      <node1>Contextual Atmosphere</node1>
+                      <node2>Core Narrative Elements</node2>
+                      <node3>Character Dynamics</node3>
+                      <node4>Narrative Possibilities</node4>
+                    </nodeDefinitions>
+                    <outputTemplate>
+                      [consideration]
+                      <node1>
+                        [Assess the overall mood and key thematic elements. Describe dominant atmosphere and list 1-2 underlying themes. <!-- 20-40 words -->]
+                      </node1>
+                      <node2>
+                        [Identify 2-3 key story drivers and 1-2 potential catalysts that could influence story direction. <!-- 30-50 words -->]
+                      </node2>
+                      <node3>
+                        [Analyze primary character relationships and potential conflicts. Provide a brief description of key dynamics and note 1-2 areas of potential tension. <!-- 30-50 words -->]
+                      </node3>
+                      <node4>
+                        [Suggest 2-3 abstract potential narrative paths and pose 1-2 open-ended questions about future story developments. <!-- 30-50 words -->]
+                      </node4>
+                      <thinking>Abstract Narrative Framework: [Provide a concise summary of key insights, maintaining abstractness. <!-- 50-100 words -->]</thinking>
+                      [/consideration]
+                    </outputTemplate>
+                  </thoughtProcess>
+                </consideration>
+              </template>
+              <format>
+                [IMPERATIVE: Enclose the entire output within [consideration] tags. Provide concise, abstract analysis for each node based on the guidance in square brackets. Do not repeat node titles or guidance text.]
+                [CRUCIAL: Adhere to the specified word limits for each node and the final thinking summary.]
+                [WARNING: Keep all analysis abstract to avoid limiting story possibilities.]
+                [MANDATORY: Focus on key points and use concise language to stay within word limits.]
+              </format>
+            </step1>
+            <note>
+              [VITAL: Maintain abstractness in all analyses. Avoid specific plot suggestions or character actions. Provide a flexible framework for story development while keeping outputs brief and focused.]
+            </note>
+          </Chain-of-thought>
+        </ModuleContent>
+      </StoryConsideration>

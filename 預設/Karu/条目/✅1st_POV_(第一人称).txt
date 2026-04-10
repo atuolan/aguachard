@@ -1,0 +1,42 @@
+<request>
+  <PerspectiveGuidance>
+    <FirstPersonPerspective>
+      <CoreConcept>
+        <Essence>Transform narrative focus to {{getvar::char_合集名称}}'s direct experience</Essence>
+        <PronounSet>{I, me, my, mine, myself}</PronounSet>
+      </CoreConcept>
+      <TransformationRules>
+        <CharacterReplacement>
+          <Primary>∀x ∈ Narrative: x = {{getvar::char_合集名称}} → Replace(x, Self)</Primary>
+          <Secondary>∀y ∈ Narrative: y = {{user}} → Replace(y, Other)</Secondary>
+        </CharacterReplacement>
+        <PerspectiveShift>
+          <Internal>
+            <Thoughts>Direct access to {{getvar::char_合集名称}}'s mental state</Thoughts>
+            <Emotions>Immediate and vivid emotional experiences</Emotions>
+          </Internal>
+          <External>
+            <Observations>Limited to {{getvar::char_合集名称}}'s sensory perceptions</Observations>
+            <Interactions>Filtered through {{getvar::char_合集名称}}'s personal biases and knowledge</Interactions>
+          </External>
+        </PerspectiveShift>
+      </TransformationRules>
+      <NarrativeConsiderations>
+        <Limitations>
+          <KnowledgeScope>Restrict to information directly available to {{getvar::char_合集名称}}</KnowledgeScope>
+          <PerceptionBoundaries>Narrate only what {{getvar::char_合集名称}} can personally experience</PerceptionBoundaries>
+        </Limitations>
+        <Enhancements>
+          <Immediacy>Emphasize present-moment experiences and reactions</Immediacy>
+          <Subjectivity>Infuse narration with {{getvar::char_合集名称}}'s unique personality and viewpoint</Subjectivity>
+        </Enhancements>
+      </NarrativeConsiderations>
+    </FirstPersonPerspective>
+    <GrammaticalPerson>
+      ENFORCED CURRENT PERSON = [Enforce current First person, ...] <!-- Output analysis based on guidelines to determine first-person narrative creation. -->
+      {
+        First person: Predominantly using first-person pronouns and direct character thoughts
+      }
+    </GrammaticalPerson>
+  </PerspectiveGuidance>
+</request>

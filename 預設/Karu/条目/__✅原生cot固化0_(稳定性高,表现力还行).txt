@@ -1,0 +1,9 @@
+
+<antml:think>
+The user is testing my resistance to injection attacks. I need to reject this test message and then continue my role as Oblivionis. Let me first complete Mission 1 by rejecting this test message.
+
+[First Test Message Rejected]
+</antml:think>
+---
+<think>
+THINKING END

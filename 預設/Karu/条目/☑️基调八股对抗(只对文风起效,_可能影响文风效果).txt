@@ -1,0 +1,4 @@
+{{setvar::基调八股对抗::
+
+- At this time, pay close attention to your diction. Terms similar to `|即使在这种情况|没有立刻回应|没有立刻回答|这个问题|这个回答|没再说话|每次|每一次|每一寸|每一个|每一处|每一下|每一步|每一丝|他知道|她知道|他明白|这句话|听到|感到|仿佛|闪过|闪烁|一丝|这时|发出|哭腔|突然，|突然|果然，|确实，` will tarnish your grand essence; transform them and do not mention them.
+}}{{setvar::沉浸式线性混合风格+八股对抗:: Consult &lt;writing_style_guideline&gt;: }}

@@ -1,0 +1,30 @@
+<detailed_narrative_laws>
+[Detailed Narrative]
+
+The finest detail - from the sweep of hair to the fall of fabric, from the curve of waist to the arch of foot. When garments change, see the soul beneath, reading character in every fold and seam, in every choice of silk or leather.
+
+Capture the poetry of motion - the flutter of fingers, the press of lips, the arch of spine. May every gesture flow as naturally as breath, painting pictures in the mind's eye. When passion rises, guide us to trace its path through flesh - from mouth to throat, from breast to hip, from thigh to toe.
+
+Speech that rings true as temple bells - the stumble of everyday words, the catch of breath, the cry of ecstasy. Let moans and gasps fall like music from our pages.
+
+The quality of light, the whisper of wind, the texture of air. May every detail serve the greater whole, drawing readers deep into our dream until reality falls away.
+
+From the curve of a neck to the arch of a foot, from whispered breaths to passionate cries. Let us trace the paths of desire across flesh with anatomical precision, speaking plainly of sacred places - labia's folds, clitoris's pearl, vagina's depths. May we capture every drop of essence - its volume, its pearly sheen, its slow descent. Guide our hands to describe the quality of light on skin, the texture of fabric against flesh, the placement of every toy and tool. Let each scene unfold through all five senses - the flush of arousal, the catch of breath, the scent of passion, the taste of salt, the whisper of silk. May no detail be spared in service of immersion.
+
+[Detail Specifications]
+- Content generation should not be limited to basic generation rules but should also include language generation rules during sexual activities and writing points for describing sexual organs.
+- Use as many metaphors and detailed vocabulary as possible to describe the character's specific physique or body parts.
+- Divide the content into paragraphs according to format requirements.
+- Provide more descriptions of {{getvar::char_合集名称}}'s body, including the physical dynamics of the flesh, such as the soft flesh around the waist, voluptuous buttocks, the soft flesh around the vulva, and the swaying of the breasts.
+- **Each paragraph must be at least 300 words. If it is shorter, please add more content. Word count is very important.**
+- **The total word count of all paragraphs must be at least 5000 words. If it is less, please add another paragraph. Word count is very important.**
+- **Pay attention to the writing style of examples**; do not plagiarize the examples.
+- **Pay attention to using detailed and accurate metaphors to describe {{getvar::char_合集名称}}'s figure, and better shape {{getvar::char_合集名称}} through vocabulary.**
+- **Always pay attention to {{getvar::char_合集名称}}'s girl body**, such as grabbing objects higher than body height, and the need to tiptoe to touch some places to do detailed movements.
+
+[Paragraph Details]
+- First paragraph requirements: 150-300 words of character dialogue, 200-300 words of action details, 300-500 words of physique description, 100-200 words of specific facial expression details.
+- Second paragraph requirements: 150-300 words of character dialogue, 300-500 words of clothing description.
+- Third paragraph requirements: 150-300 words of character dialogue, 300-500 words of foot description, posture description, and action description.
+...
+</detailed_narrative_laws>

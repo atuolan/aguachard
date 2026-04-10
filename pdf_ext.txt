@@ -1,0 +1,1534 @@
+The contents below are clickable links. Posts are placed in reverse chronological order within 
+each topic. 
+Updated through Jan. 8 
+ 
+GENERAL UPDATES​
+2 
+The Importance of Creativity​
+2 
+Creativity Tips​
+2 
+Review process and important weight on creativity in the tasks​
+3 
+Average Handling Time (AHT)​
+3 
+Expected Average Time​
+3 
+Hubstaff Collective Timer and Time Limits​
+5 
+If you are experiencing issues with turning on the Hubstaff timer even when the daily limit 
+reset just occurred​
+5 
+01/07 Hubstaff Collective Timer - Fixed start time​
+6 
+Message Weekly Limit reached only means that the Daily Limit has been reached​
+6 
+If the Limit is Reached Mid-task​
+7 
+Project Limits Clarification 01/05​
+7 
+Temporary changes to the project and Hubstaff daily hour limits​
+8 
+Other General Issues​
+8 
+Frequently Asked Questions (FAQs)​
+9 
+Hubstaff​
+9 
+Client Platform​
+10 
+Outlier – Aether Project​
+11 
+Outlier Community​
+11 
+Task Issues & Fixes – TL:DR (12/03)​
+12 
+IG Entity Tagging​
+12 
+Audio Transcript​
+12 
+Correct Counting​
+12 
+Scoring Rubric​
+12 
+SUBPROJECT UPDATES FOR AETHER​
+13 
+250925 Create Task​
+13 
+Media Content Creation Task (Create Task) Examples Guide​
+13 
+create-task — Instructional Video​
+14 
+create-task Project​
+14 
+See also the section on Create Task from the post below on Bbox and Create Task​
+14 
+250925 Helios Tripod Photos​
+15 
+tripod-photos Time Tracking Guidelines​
+15 
+251016-vision-vlm-h2h​
+15 
+vision-vlm-h2h - temporary hold work until we get guidelines in the instructions bank​
+15 
+251122 Person Isolation Bbox [combined with 251216, just below]​
+15 
+251216 Pattern Extraction​
+15 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+Feedback and Common Errors Report (January 8)​
+15 
+Pattern Extraction (251216)​
+16 
+Person Isolation (251122)​
+16 
+General Quality Standards​
+16 
+251210 Bbox Grounding Computer Use​
+17 
+Feedback - 251210-bbox-grounding-computer-use & 250925-create-task - 01/02​
+17 
+251217 Video Named Entities​
+20 
+video-named-entities — Clarification for the Amount of Videos​
+20 
+video-named-entities Instructions​
+21 
+251231 Object Relationship​
+21 
+Clarifications for project 251231-Object-Relationship​
+21 
+object-relationship -- Object Removal & Bounding Box Clarification​
+22 
+ 
+GENERAL UPDATES 
+The Importance of Creativity 
+Creativity Tips 
+https://community.outlier.ai/t/creativity-tips/2858014 
+Jan. 8 
+ Following the previous announcement on the topic [in the next post below], as 
+emphasized by the client recently, we would like to stress the importance of creativity in 
+executing tasks on projects of creative nature. 
+Receiving high quality creative data on some projects is highly sought after, and the reviewers have 
+been instructed to consider creativity of the contributor as one of the most important metrics when 
+scoring such tasks. 
+ Here are a few creativity tips on the 2 examples of creative projects we have worked 
+with on Aether: 251101 Carina Website Generation (no available any longer, but perfect 
+as an example of a creative nature project), and 250925 Andromeda Media Create Task 
+(this project comes and goes until now). 
+250925 Andromeda Media Create Task 
+●​
+Creative and outstanding output media concepts 
+●​
+High effort, most creative and detailed prompts, possibly containing stylized guidance for 
+the best output 
+●​
+More than 1 turn, exceeding expectations, outlined in the instructions 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+●​
+The output video is creative and captivating for the majority of the users 
+●​
+High quality cropping 
+251101 Carina Website Generation: 
+●​
+Very specific and detailed website descriptions 
+●​
+When working on customizing the website, try to be as creative and possible with adding 
+images, customizing the style, and improving the layout. 
+ As a general mindset tip, ask yourself this question:​
+ Would an average user, unfamiliar with the topic/theme of your creation, understand your 
+message and consider it catchy and worthy of their attention? 
+ As per the Reviewer Rubrics, only the best and most creative submissions, with the 
+above-and-beyond effort should be considered as Excellent by reviewers. 
+ 
+ 
+Review process and important weight on creativity in the tasks 
+https://community.outlier.ai/t/review-process-and-important-weight-on-creativity-in-the-tasks/285
+7987 
+Jan. 8 
+Wanted to share an announcement regarding the reviewing process and the creativity involved in the 
+tasks: 
+-The reviewer process appears to be very fast and fairly subjective. Reviews often seem to take ~30 
+seconds to 1 minute, videos are not always fully watched in the examples, and scoring appears to 
+be driven largely by perceived creativity. 
+-Meeting the instructions is necessary, but creativity and originality strongly influence outcomes. 
+“Safe” or minimal responses, though technically correct, may score lower than expected. Creativity is 
+heavily weighted in scoring, even when it’s not explicitly called out in the annotator instructions. 
+-Another important thing is that this reviewer behavior and scoring approach are not fully under our 
+control, but we’re actively sharing these insights with the client to better align expectations and 
+evaluation criteria. Please bear with us as we work toward clearer guidance 
+ . 
+Thank you so much for your patience and dedication. 
+Average Handling Time (AHT) 
+Expected Average Time 
+https://community.outlier.ai/t/expected-average-time-projects-11-26/2831280/6 
+Nov. 26 [with later updates] 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+We have some updates for you regarding expected AHT for each project type: 
+●​
+251101-website-generation: 50min 
+●​
+Astraea (250923-audio-annotation): 40min 
+●​
+250925-tripod-photos: 30.3min 
+●​
+251122-person-isolation-bbox: 29min 
+●​
+Perseus (251015-stationary-camera-transforms): 25min 
+●​
+251205-freeform-conversations: 25min 
+●​
+251217-video-named-entities: 24.3min 
+●​
+251122-group-person-removal: 23min 
+●​
+Andromeda (250925-create-task): 22min 
+●​
+251215-furniture-removal: 19.7min 
+●​
+250907-ui-images: 18min 
+●​
+251216-video-artistic-style-reference: 17.4min 
+●​
+Orion (251014-ig-entity-tagging-videos) & 250917-ig-entity-tagging: 15min - 17min 
+●​
+Nova (251019-video-clips-to-video): 15min 
+●​
+Taurus (251029-spot-the-difference): 15min 
+●​
+251127-image-color-picker: 14min 
+●​
+251216-pattern-extraction: 10.5min 
+●​
+Auriga (251102-image-facts): 10min 
+●​
+251209-text-models-h2h: 9.7min 
+●​
+251211-transparent-background-images: 9.3min 
+●​
+251119-add-perception-labels: 8.8min 
+●​
+251104-expert-call-client & 251104-expert-call-host: 7min 
+●​
+251112-text-elo-h2h: 7min 
+●​
+251231-object-relationship: 6.6min 
+●​
+251101-artistic-style-reference & 251121-aspect-ratio-cropping: 6min 
+●​
+251107-image-edit-region & 250927-correct-counting: 6min 
+●​
+Aquila (251027-ai-assistant-compare): 5min 
+●​
+Phoenix, Draco & Polaris (QR Code Extraction, Mazes & Clock Annotation): 5min 
+●​
+250911-scene-expansion: 3.4min 
+●​
+Cygnus, Cassiopeia & Lyra (audio, video & image quality compare): 3min 
+●​
+251112-image-translation: 3min 
+●​
+250909-text-to-video-h2h, 250915-product-image-pairs & 251111-share-llm-chats: 3min 
+●​
+080825-audio-quality-compare: 2.8min 
+●​
+251030-audio-transcript: 2.5min 
+●​
+251112-hard-grounding-samples & 251113-hard-point-grounding-samples: 2.5min 
+●​
+251125-count-verification: 2.5min 
+●​
+251205-ig-reels-explainer-labeling: 2.4min 
+●​
+251110-gauge-annotation: 2.2min 
+●​
+Hydra (251030-image-edit-filter) & 250922-engaging-videos: 2min 
+●​
+251121-asr-transcript-accuracy-v2: 2min 
+●​
+250911-character-consistency: 2min 
+●​
+251121-asr-transcript-accuracy-v2: 1.8min 
+●​
+251119-scripted-call-av-solo-client: 1.8min 
+●​
+082525-counting: 1.6min 
+●​
+Ursa (251106-screenshot-code) & 251210-conversations-to-response-h2h: 1.4min 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+●​
+251215-interior-design-images: 1.4min 
+●​
+251002-tripod-survey: 1.3m 
+●​
+251219-audio-transcript on multimango 2.5 mins per task (later addition) 
+We know that getting the hang of each project takes time, so please try to balance your submission 
+times with each attempt 
+ 
+Some quick notes: 
+●​
+Please report submission issues as soon as possible; don’t forget to use the ‘Report 
+Issue’ button. After that, if the issue is not resolved in the next minutes, please select a 
+different option available and retry later to prevent unnecessary flags 
+●​
+*Not all subprojects are available at this moment. Check your multimango.com dashboard 
+●​
+**As a quick reminder, we do not assign the subprojects. That is under client needs, and 
+the process is handled by them 
+You’ll also find this information in each corresponding category, thank you for all your efforts and 
+your hard work! 
+ 
+ 
+Hubstaff Collective Timer and Time Limits 
+If you are experiencing issues with turning on the Hubstaff timer even when 
+the daily limit reset just occurred 
+https://community.outlier.ai/t/if-you-are-experiencing-issues-with-turning-on-the-hubstaff-timer-even-
+when-the-daily-limit-reset-just-occurred/2857764 
+Jan. 7 
+For those who have difficulty turning on the timer even when the daily reset has just occurred, two 
+things are recommended: 
+1.​ Make sure you’re using the latest version of the desktop app (version 1.7.8). You 
+can find it in here 
+2.​ Signing out and back in. 
+ LIMIT WILL BE RESET AT 6 AM PST 
+ 
+Thank you so much for your patience and dedication. 
+Please contact Hubstaff Support if necessary 
+ 
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+ 
+01/07 Hubstaff Collective Timer - Fixed start time 
+https://community.outlier.ai/t/01-07-hubstaff-collective-timer-fixed-start-time/2857341/89 
+Jan. 7 
+Big news! 
+ As from now on, the Hubstaff timer will be reset daily around 6am PST. 
+ We will send out a daily notification, so that everyone is informed. You should 
+receive this 1-2 hours before the timer resets. 
+ Thank you for your feedback. We apologize for any inconvenience the short notice of the 
+change may have caused in your previous work schedule. 
+ 
+Message Weekly Limit reached only means that the Daily Limit has been 
+reached 
+https://community.outlier.ai/t/message-weekly-limit-reached-only-means-that-the-daily-limit-has-
+been-reached/2857306 
+Jan. 6 
+There are on a daily base added hours to the weekly budget. 
+Once the daily limit almost has been reached, you will receive a message stating that the 
+weekly budget has reached its limit. (Hubstaff sends this message to your mail) 
+ No panic, tomorrow there will be added more hours to the weekly budget. 
+Example of the mail that you might receive: 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+ 
+image1024×474 48.8 KB 
+ 
+THIS DOES NOT MEAN THAT THERE ARE NO HOURS LEFT FOR THIS WEEK! They will be 
+added tomorrow to increase the amount of the total Budget. 
+ 
+If the Limit is Reached Mid-task 
+https://community.outlier.ai/t/if-the-limit-is-reached-mid-task/2857127 
+Jan. 5 
+We have gotten clarification about the best possible workarounds if the daily Hubstaff 
+limit has been reached mid-task: 
+●​
+We might be resuming Hubstaff configuration emails, notifying you about the approaching 
+budget limit, which will help plan better. 
+●​
+If you are almost done with the task when the time limit has been reached, the best would 
+be to complete and submit the task. 
+●​
+If a considerable amount of time is still needed for you to complete the task, it is then 
+better to leave the task open, and continue with it after the timer resets. We have 
+confirmed that this will not inflate your AHT. 
+●​
+If you have just started the task when the time limit has been reached, you can also drop 
+the task and start a new one when you are back. 
+ We hope this helps. 
+ 
+Project Limits Clarification 01/05 
+https://community.outlier.ai/t/project-limits-clarification-01-05/2857114 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+Jan. 5 
+ Following your questions regarding the sudden reduction in the available time limits for 
+tasking from the 1st of January, we would like to clarify that the size of the project has 
+been reduced recently due to a change in customer’s demand. 
+Please rest assured that the Project Team is working on managing any possible future 
+changes in the customer’s demand efficiently and fairly for all. 
+ Thank you for your hard work, dedication, and flexibility, which are invaluable in making this 
+project a success. 
+ 
+Temporary changes to the project and Hubstaff daily hour limits 
+https://community.outlier.ai/t/temporary-changes-to-the-project-and-hubstaff-daily-hour-limits/284889
+9 
+Dec. 17 
+ 
+TLDR: Due to a quality review, starting today we are limiting the number of hours that can be logged 
+on Aether​
+We want to inform you about a temporary change to the Aether project so we can conduct a quality 
+review of tasks on the project. Starting today, a collective daily hour limit will be instituted on the 
+project. 
+Here’s what you need to know: 
+●​
+The “collective daily limit” refers to the total combined hours logged by all contributors on 
+the Aether project in a single day 
+●​
+Each day, once this collective daily limit is reached, no contributor will be able to log 
+additional hours in Hubstaff until the following day — regardless of how many hours you 
+personally have contributed that day 
+●​
+Please monitor your Hubstaff timer closely. If you can no longer log hours (either because 
+you’ve reached your personal daily limit or because the project has reached its collective 
+daily limit), please stop tasking for the day — even if tasks are still visible on the Aether 
+platform 
+●​
+Only time logged in Hubstaff will be paid. 
+This limitation is strictly temporary, and we expect to return to normal operations as soon as 
+possible.Thank you for your flexibility and understanding as we navigate these changes. Your 
+adaptability is what makes the Aether project successful. 
+Other General Issues 
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+Frequently Asked Questions (FAQs) 
+https://community.outlier.ai/t/frequently-asked-questions-aether-11-17/2835380 
+Nov. 17 [with later updates] 
+As the project grows, it’s important that everyone follows the established protocols and complete all 
+the required steps before posting new doubts or issues. This helps ensure troubleshooting is not 
+missed, reduces repeated questions, and lets us support each one of you more effectively 
+Hubstaff 
+●​
+The project is not showing in my Hubstaff dashboard yet, what should I do? 
+○​
+Please bear with us, there is a whole team getting in charge of it. This process 
+can range from a few hours to as long as 2 days, but believe us when we say that 
+once that is done, you will be ready to task! 
+●​
+The project is still not showing up, why? 
+○​
+You may have missed joining with our Hubstaff - Accept invite. Try checking it, as 
+being part of the organization is key to some of our automatic processes; if it was 
+done before, you’ll see this message:​
+ 
+○​
+Screenshot 2025-11-17 at 10.31.17 a.m.504×166 10.6 KB 
+○​
+ 
+●​
+Do I have a minimum for tasking time or tasks submitted required? 
+○​
+No, you can task as much as you want! 
+●​
+And what about a throttle? 
+○​
+The only limit for everyone is the daily hours shown in Hubstaff. 
+●​
+I finished my tasking, but I don’t see anything in my earnings yet. Is this an issue? 
+○​
+No, Hubstaff works differently. Please check this topic for more information on 
+syncing. 
+●​
+I noticed that Hubstaff is not taking screenshots anymore, should I be worried? 
+○​
+As per our last announcement about this, all good! No need to worry. 
+●​
+I have a chromebook, can I task in this project? 
+○​
+Yes, please let us know about your situation in the Daily Help Thread for the next 
+steps. 
+●​
+I don’t have access to my primary email, should this be a concern? 
+○​
+Yes. Unfortunately, all the processes and communications for this project will 
+appear in your primary email (the one you use to log into Outlier), which means 
+that you won’t have access to things like verification codes or important project 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+emails. Let us know to release your account immediately so other options are 
+available for you. 
+Client Platform 
+●​
+I don’t have access to the mailbox of the wfe email, how am I getting the 2FA code? 
+○​
+Don’t worry! All the communications and messages related to that email are sent 
+to your personal account. Keep an eye on it! 
+●​
+I don’t see tasks in multimango.com yet, how can I fix this? 
+○​
+Most of the times, is just a matter of waiting. However, please consult our 
+announcement about approved status. 
+●​
+I see tasks now! How much time should I spend per task? 
+○​
+Great! You can consult expected AHTs here. 
+●​
+Oops, I created my account incorrectly using my personal email, is there something I can 
+do about this? 
+○​
+Don’t worry; however, as per the tutorial in the Account Creation Course, you 
+must use the wfe email. You won’t see tasks there, and even if you do, they won’t 
+be tracked in your account. To fix this, just create an account again, and let us 
+know immediately in the Daily Help Thread, as your information must be updated 
+in our data collection. 
+●​
+I changed my password because I forgot it, is that an issue? 
+○​
+Yes, especially if you are just starting. Please reach out to us if you have an issue 
+with it, but note that some of our automatic processes require the most up-to-date 
+information to allow the next steps in your account. 
+●​
+I need more feedback, where can I find it? 
+○​
+We try our best to keep you as updated as possible. Please note that at this 
+moment, most of the QA process is done by the client; however, we post as much 
+information as we have in topics like this and this one; follow the instructions in 
+the platform, use the available guidelines bank and let us know about your 
+concerns. 
+●​
+I see an error when I try to submit, what should I do? 
+○​
+Please use the button to report the issue and skip the task. It is best to include 
+evidence and a brief description of what was happening. 
+●​
+Ok, but should I keep tasking for that subproject? 
+○​
+If the issue is still showing up, you should move on to the next task type. To 
+prevent any unwanted flags about your time tracking, move to the next type once 
+you noticed a pattern. 
+●​
+When can I go back to that subproject? 
+○​
+Sometimes we have a resolution after a couple hours or by EoD; however, it is not 
+always the case. Please wait for any news, and try again later. Remember, if you 
+do so and the issue is still present, move on to avoid unnecessary flags to your 
+account. 
+●​
+Is my account getting penalized for skipping tasks with errors? 
+○​
+Absolutely not. As long as it is justified, it is fine for these specific cases. 
+●​
+Am I getting compensated for the time I spent while trying to submit with an error? 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+○​
+Yes, all the work you track is getting updated in your Earnings tab. However, to 
+prevent being flagged for excessive time spent, move on to the next task type. 
+Outlier – Aether Project 
+●​
+HELP! I only see a ‘‘Dummy Task’’ which is impeding my tasking for this project. What 
+should I do? 
+○​
+The Dummy Task is NOT an issue. It is a holder for the Aether project, to correctly 
+map your Hubstaff time into your Earnings tab. This project works off-platform, 
+and everything will be done in multimango.com (you don’t need to mirror your 
+tasks there). 
+●​
+I don’t see the project anywhere in my dashboard, can I still task? 
+○​
+No. Please fill out the 
+https://docs.google.com/forms/d/e/1FAIpQLSeXeRlhyL6kRQvdcDds6RzCkElZ0ua
+THuFyjh5TwRT8UFxdhQ/viewform and wait. Tasking without the project in Outlier 
+can cause issues in the mapping of your time, be careful. 
+●​
+I see that I have a Senior Reviewer Status in the project, why can’t I have reviewer tasks? 
+○​
+The Senior Reviewer status just means that you have access to the Aether 
+platform; in this project, we have ‘audit tasks’ that get assigned to you directly in 
+the platform. 
+●​
+The project is appearing as ineligible for me, what’s the issue? 
+○​
+This would be a good time to use the Daily Help Thread. The most common 
+issues are: 
+■​
+Aether is not currently available in your region (we’ll let you know as soon 
+as we have news about this) 
+■​
+You, unfortunately, failed the qualification 
+■​
+You have a BPO email (emails to which you don’t have access) 
+Outlier Community 
+●​
+Should I post my question more than once? 
+○​
+Do not do this. Everyone has a turn, and as QMs we try to get all questions 
+addressed as soon as possible. Posting your issue over and over again will not 
+make you get a reply faster, but will bury earlier questions in the thread. 
+●​
+Can I simply post ‘‘fix my issue please’’ or ‘‘was my issue fixed?’’? 
+○​
+We need information to help you. Follow the provided template:​
+Issue Category: (empty queue, courses, assessments, platform glitches, etc.)​
+Issue Description:​
+Task ID: (if applicable)​
+Relevant Screenshots: (if applicable) 
+●​
+I just got a reaction from a QM. What does that mean? 
+○​
+ = Yes | 
+ = No | 
+ = Checking | 
+ = Resolved 
+Feel free to check this thread first whenever you’re unsure about something; we’ll make this topic 
+more robust as the project evolves! 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+Thank you so much for your high-quality contributions 
+ You can also bookmark this 
+information with the Aether FAQ Bank 
+ 
+Task Issues & Fixes – TL:DR (12/03) 
+https://community.outlier.ai/t/task-issues-fixes-tl-dr-12-03/2841480 
+Dec. 3 
+ 
+Hey, fellow Contributors! 
+ 
+We hope you’re having a great day so far! We have some news regarding the errors you’ve flagged; 
+so far, this is what the client shared with us: 
+ IG Entity Tagging 
+A recent fix resolved the cropping issue, but it won’t apply to audits already completed, unfortunately. 
+Also, please consider that “Missing clearly visible/taggable entities” is considered as Bad/Major 
+Issues. 
+The ENG team has been informed, and the issue is now corrected for all future audits. 
+ Audio Transcript 
+skipped jobs are currently appearing in the audit queue and being incorrectly flagged as “Major 
+Issues.” 
+The ENG team has been notified, is actively investigating, and is working on deploying a fix for this 
+as well. 
+ Correct Counting 
+Regarding the incorrectly audited tasks 
+The client reinforce proper review practices among all vendors, and share updated guidance with 
+both internal and vendor teams. 
+ Scoring Rubric 
+The client also included a rubric with some general information: 
+Score Description 
+What This Looks Like 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+0 
+Major Issues 
+Misses essential tags, misidentifies entities, chooses 
+wrong references, poor cropping, inappropriate 
+images (nudity, violence, etc.), or low-quality images. 
+1 
+Some Issues 
+Minor omissions, uses less suitable references, 
+suboptimal cropping, label is not the best match. 
+2 
+Meets 
+Expectations 
+All taggable entities are annotated, accurate 
+references, reasonable omissions for untaggable 
+entities. 
+3 
+Exceptional 
+Tags subtle entities, high-quality and diverse 
+references, perfect cropping, best possible labels. 
+Further actions 
+●​
+Further inspection of affected data is conducted. 
+●​
+Continue monitoring audit accuracy and provide feedback as needed. 
+Overall, please keep using the ‘Report Issue’ button; let us know about any feedback, and remember 
+that all your efforts are not going unnoticed 
+ 
+ 
+ 
+ 
+SUBPROJECT UPDATES FOR AETHER 
+250925 Create Task 
+Media Content Creation Task (Create Task) Examples Guide 
+https://community.outlier.ai/t/250925-media-content-creation-task-create-task-examples-guide/2
+856186 
+Jan. 2 
+As we dive into the next phase of our project, we want to ensure everyone feels fully supported and 
+equipped to hit our quality goals. 
+To help us stay perfectly aligned, we’ve put together a document with examples specifically for 
+subproject 250925-create-task. This document highlights the key quality standards and nuances that 
+will define our success moving forward. 
+Please review the guide below before continuing with your project work: 
+●​
+ Examples Guide(Reference Project: 250925-create-task) 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+Action Item: Please take a few minutes to read this material before picking up your next task. 
+Syncing up on these details now will help us maintain consistency, avoid unnecessary rework, and 
+ensure our final output is something we’re all proud of. 
+Thank you for your incredible eye for detail and your continued dedication to excellence! 
+create-task — Instructional Video 
+https://community.outlier.ai/t/250925-create-task-instructional-video/2845662 
+Dec. 12 
+ Following your questions, we have created and added to the instructions a 
+comprehensive and detailed video tutorial for this project. You can easily access 
+it here 
+We hope this will help you understand this project in depth with ease. 
+ We have also published a very useful and brief summary of what this project 
+is about in this announcement [also posted just below in this doc]. Please, read 
+through if you haven’t yet . 
+ 
+create-task Project 
+https://community.outlier.ai/t/250925-create-task-project/2845262 
+Dec. 11 
+Seeing as we’ve had some problems with the Create Task project tasks because the tutorial is 
+somewhat confusing, I’d like to leave you a comment that perfectly describes the project. 
+Just to clarify how this project works (based on the tutorial and its examples): we write both sides of 
+a realistic user–assistant conversation, and everything must stay grounded in the actual video. You 
+can be creative, but only within what actually happens in the clip.​
+For example, if the K-pop performer jumps into the audience, you would segment that part of the 
+video as the assistant’s output, and the user instruction could be something like “Show the moment 
+where she jumps into the crowd.”​
+The creativity has to stay inside the world of the video, not create unrelated scenes. 
+I hope this will help you feel more confident about performing these tasks. In any case, we have a 
+thread for this project where you can find valuable advice from other users that you can use to 
+improve. 
+See also the section on Create Task from the post below on Bbox and 
+Create Task 
+Link to the Create Task section 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+250925 Helios Tripod Photos 
+tripod-photos Time Tracking Guidelines 
+https://community.outlier.ai/t/250925-tripod-photos-time-tracking-guidelines/2853026?u=mykola
+_qmo_ru%E2%86%91 
+Dec. 26 
+ 
+Following your questions, we would like to clarify a couple of points regarding time tracking for 
+this project: 
+●​
+For now, no tracking on the phone will be available. 
+●​
+To work around this the latest guidance is to track the entire tasking time as usual, making 
+sure your PC/Chromebook is close to avoid going idle by sustaining activity. 
+●​
+The AHT for this project is at 30 min for now. 
+Hope this helps, and thank you for keeping this project a success even amidst the festive season. 
+ 
+251016-vision-vlm-h2h 
+vision-vlm-h2h - temporary hold work until we get guidelines in the 
+instructions bank 
+https://community.outlier.ai/t/251016-vision-vlm-h2h-temporary-hold-work-until-we-get-guidelines-in-t
+he-instructions-bank/2857737 
+Jan. 7 
+Per guidance from the Project Team, let’s hold off on working on 251016-vision-vlm-h2h until 
+detailed written guidelines are available in the instructions bank here in Outlier. 
+ Thank you for your understanding, hard work, and dedication, team. We truly appreciate it. 
+ 
+251122 Person Isolation Bbox [combined with 
+251216, just below]  
+251216 Pattern Extraction 
+Feedback and Common Errors Report (January 8) 
+https://community.outlier.ai/t/aether-feedback-and-common-errors-report-january-8/2858050/1 
+Jan. 8 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+We would like to share some feedback regarding projects 251216-pattern-extraction, and 
+251122-person-isolation-bbox. 
+You can find the full resource along with images 
+ right here 
+.​
+Please take it into account for the future, as it will help you improve your quality. 
+ 
+ 
+You should focus on technical precision and creative execution across several key project areas.​
+We encourage you to implement the creative tips posted previously here. 
+ 
+Pattern Extraction (251216) 
+●​
+Isolate Flat Sections: You must crop the source image to isolate a flat, undistorted section 
+of the pattern to avoid extraction errors caused by product folds, edges, or curvature. 
+●​
+Prompt Specificity: The final “Apply Pattern” prompt must never reference the original 
+image, and prompts should be strictly based on the provided image without introducing 
+external elements. 
+●​
+Quality Control: If an extraction contains artifacts, extra marks, or borders, you should 
+redo the extraction multiple times or crop/zoom into a different part of the object to 
+achieve a cleaner result. 
+Person Isolation (251122) 
+●​
+Complete Annotation: It is a rule to isolate every person visible in the image; do not stop 
+once the minimum requirement is met or after the first 10 individuals. 
+●​
+Image Quality: Ensure you select high-resolution images where individuals are clearly 
+recognizable; avoid using heavily compressed or low-megapixel images (such as .05 MP) 
+that make extraction difficult. 
+●​
+Composition Tip: For the best results, seek out images where people are spread out 
+somewhat rather than tightly clustered. 
+General Quality Standards 
+●​
+Creativity and Originality: While meeting technical instructions results in a “Good” rating, 
+“Excellent” ratings are rare and reserved for exceptional work that demonstrates creativity 
+and thought beyond a minimal “safe” response. 
+●​
+Professionalism: Please use grammar and spelling tools like Grammarly to prevent bad 
+ratings and ensure your prompts are polished. 
+●​
+Efficiency: Balance your tasking time to prioritize quality over quantity, as low-effort or 
+generic copy-pasted prompts will lead to lower scores. 
+As a reminder of the grading scale, a “Good” task meets expectations, while a “Fine” task has some 
+issues, and a “Bad” task contains major errors or a basic misunderstanding of the project goals. 
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+251210 Bbox Grounding Computer Use 
+Feedback - 251210-bbox-grounding-computer-use & 250925-create-task - 
+01/02 
+https://community.outlier.ai/t/feedback-251210-bbox-grounding-computer-use-250925-create-task-01
+-02/2856088 
+Jan. 2 
+We would like to share some feedback regarding projects 251210-bbox-grounding-computer-use 
+and 250925-create-task. Please take this into account for the future, as it will help you improve their 
+quality. 
+ 
+251210-bbox-grounding-computer-use 
+Missing or incorrect object coverage – not boxing all required items, boxing the wrong number, or 
+boxing items that don’t meet the prompt. 
+●​
+Example 1 – should’ve been the next ones to the tv not in front like the annotator 
+selected.​
+ 
+●​
+image1600×847 141 KB 
+●​
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+●​
+Example 2​
+ 
+●​
+Image1600×923 113 KB 
+●​
+ 
+Bounding box issues – using one box instead of separate boxes, boxes being too loose, or boxes 
+including unrelated elements. 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+●​
+Example 1 – Selection must covered the wires as well.​
+ 
+●​
+image1600×920 143 KB 
+●​
+ 
+250925-create-task 
+Not fully following the prompt’s creative and content requirements — responses are often too 
+generic, missing required constraints (e.g., music), or lacking clear narrative/detail. 
+●​
+Example 1 – one of the constraints is ‘and add music.’ Music was not added.​
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+●​
+image1600×763 80.1 KB 
+●​
+ 
+●​
+Example 2 – The video used house photos that did not clearly match, and the audio was 
+not calm music.​
+ 
+●​
+image1600×686 75.6 KB 
+●​
+ 
+Thank you very much for your attention. If you have any questions regarding this, please use the 
+daily threads. 
+ 
+251217 Video Named Entities 
+video-named-entities — Clarification for the Amount of Videos 
+https://community.outlier.ai/t/251217-video-named-entities-clarification-for-the-amount-of-videos/285
+7135 
+Jan. 5 
+ We have received a clarification about the minimum required videos selected. 
+It is mentioned in the tutorial video, that “ideally at least 100 videos should be selected 
+on each page”. 
+Here is an additional clarification from the client: 
+“As long as the annotators have selected all the relevant videos then it is acceptable to submit less 
+than a 100 videos. The number of videos selected will be evaluated against the number of relevant 
+videos available” 
+ Hope this helps to clarify. 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+ 
+video-named-entities Instructions 
+https://community.outlier.ai/t/251217-video-named-entities-instructions/2855528 
+Dec. 31 
+Here are the guidelines for the video named entities project: Instructions 
+ 
+As for selecting less than 100 videos: As long as you select all the relevant videos, then it is 
+acceptable to submit less than 100 videos. The number of videos will be evaluated against the 
+number of relevant videos available. 
+ 
+251231 Object Relationship 
+Clarifications for project 251231-Object-Relationship 
+https://community.outlier.ai/t/clarifications-for-project-251231-object-relationship/2857975 
+Jan. 8 
+ 
+Hi team, we´ve gathered some of your questions regarding the project 251231-Object-Relationship. 
+Here you will find answers to some of them. We appreciate raising your questions, and hope you find 
+this post helpful! 
+Should annotators describe only one relationship between objects, or are multiple 
+relationships allowed if they are clearly visible? 
+●​
+If there exists more than one relationship between objects, there are no issues with 
+describing them. 
+How detailed should the relationship description be? For example, would a statement like 
+“@man is wearing a @purple shirt” be considered too specific, or is the expectation to stay at 
+a more surface-level, interaction-based description (e.g., object-to-object actions or spatial 
+relationships)? 
+●​
+In this example, "@man is wearing a @purple shirt” is fine. Remember, try to be natural. 
+The assumption here is that we are training a model to be able to take natural requests 
+(like add this shirt to that man) and know how the two things should be spatially related. 
+Can also say something like “there is a @man wearing a @purple shirt holding a 
+@hammer…” along those lines. 
+The instructions say “write a sentence describing…”. Can you confirm whether this is strictly 
+limited to a single sentence or if multiple sentences are acceptable when describing 
+relationships? 
+●​
+Multiple sentences are fine, but remain clear, concise, and comprehensive. 
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO
+
+ 
+object-relationship -- Object Removal & Bounding Box Clarification 
+https://community.outlier.ai/t/251231-object-relationship-object-removal-bounding-box-clarification/28
+57768 
+Jan. 7 
+Hope you’re doing well! While we’re waiting for the instructions for the 251231-object-relationship 
+project to be ready, here are answers to some of the earlier questions related to this project: 
+●​
+You can edit or remove irrelevant objects that aren’t part of the intended interaction. For 
+example, if a tree in the background isn’t involved in the interaction you plan to describe, 
+you can remove it by clicking the bin icon. 
+○​
+And if the removed object doesn’t disappear right away, there’s a workaround: 
+click the pointer tool in the drawing toolbar and edit any other object’s bounding 
+box. The removed object should disappear immediately.​
+ 
+○​
+Screenshot at Jan 08 00-04-03344×152 31.7 KB 
+○​
+ 
+●​
+ Please watch out for auto-detected bounding boxes, as they may not always be 
+accurate. Make sure to review each box and adjust it if needed. 
+○​
+To edit a bounding box, click the pointer tool, select the object, and drag the frame 
+to adjust it. 
+○​
+To add a new bounding box, click the square icon in the box-drawing toolbar. 
+Thanks everyone — we appreciate your great work, and we’ll share the official instructions as soon 
+as they’re ready! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+ier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+CONFIDENTIAL | a23971123@gmail.com+outlier | 2026-04-09T11:58:15.435Z
+outlier | 2026-04-09T11:58:15.435Z
+C
+CO
+CO
+CO
+CO

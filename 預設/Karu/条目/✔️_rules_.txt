@@ -1,0 +1,5 @@
+
+<!-- Below are the RULES and GUIDELINES for the turn-based collaborative story: -->
+
+<rules>
+{{getvar::CREATIVITY_BOOST}}{{getvar::NARRATIVE_CONTINUITY_FRAMEWORK}}{{getvar::SFW模式启动_模块}}

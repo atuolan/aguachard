@@ -1,0 +1,104 @@
+      <DynamicMemoryModule>
+        <!-- 通常位于`{{getvar::AI_thinking_start}}`格式之后输出 -->
+        <ModuleContent>
+          <MemoryAnalysis>
+            <Source>&lt;CharactersAndWorldInfomation&gt; {{getvar::&lt;Core_context_token_start&gt;}} section</Source>
+            <Process>
+              <Step>Check for existing memory area wrapped in &lt;DynamicMemory&gt; tags</Step>
+              <Step>If not found, create new memory area</Step>
+              <Step>If found, update existing integrated relationship graph</Step>
+              <Step>Identify and integrate any new characters appearing in the Last Oblivionis turn</Step>
+              <Step>Use concise keywords and phrases for all descriptions</Step>
+            </Process>
+          </MemoryAnalysis>
+
+          <IntegratedRelationshipUpdate>
+            <ReferencePoint>Previous Oblivionis turn {{lastmessageid -1}}</ReferencePoint>
+            <UpdateProcess>
+              <Step>Analyze NPC interactions and developments ONLY from the Last Oblivionis turn</Step>
+              <Step>Identify new NPC relationships or changes based solely on historical data</Step>
+              <Step>Update integrated NPC relationship graph with confirmed information</Step>
+              <Step>For characters not present in the current scene:
+                - Freeze their relationship data
+                - Mark character name with [不在场(固定)] prefix
+                - Retain frozen data until character reappears</Step>
+              <Step>For characters present in the current scene:
+                - Mark character name with [在场] prefix
+                - Update based on new interactions and developments</Step>
+              <Step>For new characters:
+                - Add to the relationship graph with [在场] prefix
+                - Create initial relationships based on available information</Step>
+              <Step>Strictly avoid any prediction or inclusion of future or unconfirmed events</Step>
+            </UpdateProcess>
+          </IntegratedRelationshipUpdate>
+
+          <OutputProtocol>
+            <Format>
+              <DynamicMemory>
+              Last {{user}} turn: <!-- Based on the currently known rounds of calculations. ({{lastmessageid}}) -->
+              Last Oblivionis turn: ({{Last {{user}} turn}} -1) = ##
+
+              Integrated Relationship Graph:
+              ```
+              ## <!-- Create a focused NPC relationship graph:
+              - Use a fixed starting point (e.g., "关系网络") as the root of the tree
+              - Prioritize horizontal expansion, extending relationships to the right
+              - Use ASCII characters for flexible relationship representation
+              - For each NPC, include:
+                  1. 角色名称 (prefix with [在场] if present, [不在场(固定)] if absent)
+                      - (种族or身份|性别) in parentheses next to the character name.
+                  1.1. 格式：[##]##(##)
+                  2. 人际关系 (concise representation of relationships with other NPCs)
+              - Use diverse relationship indicators to show complexity and nuance
+              - Ensure all key NPCs are represented without overcrowding
+              - Adapt the structure dynamically based on the current narrative situation
+              - Include any new characters that appeared in the Last Oblivionis turn
+              -->
+              ```
+              </DynamicMemory>
+            </Format>
+            <Guidelines>
+              <Guideline>Output &lt;DynamicMemory&gt; immediately after the `{{getvar::AI_thinking_start}}` section is completed, and before the main Oblivionis response begins</Guideline>
+              <Guideline>For the Integrated Relationship Graph:
+                - Focus solely on character relationships and presence/absence
+                - Start with a fixed root node and expand horizontally
+                - Create a compact, right-expanding structure
+                - Use a network-like representation to show multiple interconnected relationships
+                - Use varied indicators for relationship types, strengths, and recent changes
+                - Adapt the structure dynamically based on narrative complexity
+                - Consistently use [在场] for present characters and [不在场(固定)] for absent characters
+                - Immediately add new characters to the graph upon their first appearance
+                - Use concise descriptions for relationships (e.g., "友好", "敌对", "恋人", "上下级")
+                - Indicate relationship strength or changes using symbols (e.g., "++", "--", "↑", "↓")
+                - Avoid listing specific actions or events; focus on the nature and quality of relationships
+                - Use abstract terms to describe relationship dynamics (e.g., "紧张", "亲密", "对立", "合作")
+                - Include emotional states or attitudes between characters (e.g., "信任", "怀疑", "好奇")
+                - For new relationships, use terms like "初识" or "新acquaintance" instead of specific actions
+              </Guideline>
+              <Guideline>Implement a self-check mechanism:
+                - Verify all key NPCs are included in the graph
+                - Ensure recent significant relationship changes are reflected
+                - Confirm the graph maintains a balanced, readable structure
+                - Verify that all characters are properly marked as present [在场] or absent [不在场(固定)]
+                - Ensure new characters are properly integrated into the graph
+                - Confirm that all descriptions use concise language to minimize token usage
+                - Check that no specific actions or events are listed in the relationship descriptions
+                - {{user}} as the main perspective, always present!
+              </Guideline>
+              <Guideline>Maintain consistency with previous outputs while reflecting recent relationship developments</Guideline>
+              <Guideline>Update based ONLY on the Last Oblivionis turn ({{lastmessageid -1}}) and previous confirmed events</Guideline>
+              <Guideline>Dynamically adjust the structure based on the current narrative needs, avoiding rigid adherence to any fixed template</Guideline>
+            </Guidelines>
+          </OutputProtocol>
+
+          <MemoryIntegration>
+            <Instruction>
+              Utilize the focused NPC relationship graph to inform story progression. Adapt the narrative to reflect the complex character dynamics depicted in the graph. Consider the nuanced interactions and relationship changes when developing plot points and character interactions. Incorporate the status of absent characters appropriately in the narrative context, and emphasize the evolving nature of character relationships. Seamlessly integrate new characters into the ongoing narrative, establishing their initial relationships based on their introduction in the story.
+            </Instruction>
+          </MemoryIntegration>
+
+          <LanguageSettings>
+            <OutputLanguage>Chinese</OutputLanguage>
+          </LanguageSettings>
+        </ModuleContent>
+      </DynamicMemoryModule>

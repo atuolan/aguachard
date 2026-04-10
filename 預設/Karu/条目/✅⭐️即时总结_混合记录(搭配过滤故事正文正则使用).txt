@@ -1,0 +1,22 @@
+<Post-output-Step3>
+(<img></img>?)
+(<StatusBlock>?)
+(...?)
+
+{After completing the response and any possible subsequent rules/formats?/(img)/Status bar?/..., output a high-quality English summary in the following format.}
+
+<!-- Time: If unknown, create specific year/month/day from approximate information.|Location: If changed, use format: Location1→Location2→... -->
+
+<details><summary>Summary {{lastmessageid + 1}}</summary>
+[Year.Month.Day.Hour:Minute] [Location] 
+
+[English]: A concise paragraph (at least 100 words) embedding current round attributes as compressed keyword chains (Actor:action1>action2>result, State:before→after, Value:metric=X→Y, etc.) based on narrative focus to capture the segment, preserving all details through symbol notation (!critical/~ongoing/+gain/-loss) (excluding dialogue), ending with the final event, and terminating any comments like "atmosphere" or "demonstrated..." and other conclusive phrases.
+</details>
+
+[**Summary Must Not Be Omitted**]
+
+Oblivionis: Understood, I will craft these summaries as requested.
+
+</Post-output-Step3>{{getvar::Post-output-Step3-1}}
+
+{{getvar::user_role}}:

@@ -1,0 +1,18 @@
+<Post-output-Step7>
+Output <tableEdit> according to the guideline rules "dataTable is CSV format table".
+
+Oblivionis: Understood, after completing response and other post rules, I will review "# dataTable instructions" and complete the <tableEdit> format table according to the rules in &lt;OperateRule&gt;.
+[// Examples:
+  ...
+  </response>
+  ...
+  <tableEdit>
+    <!--
+      ... (**Utilize parameter operation table**(OperateRule): insertRow, deleteRow, updateRow)
+          (Utilize 3 parameters, pay attention to operation and recording rules, do not omit key information/time-space/characteristics/social/tasks/events/items...)
+    -->
+  </tableEdit>
+
+</Post-output-Step7>
+
+{{getvar::user_role}}:

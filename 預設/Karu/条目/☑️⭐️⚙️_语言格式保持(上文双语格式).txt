@@ -1,0 +1,5 @@
+{{setvar::maintain_bilingual_structure::
+
+[Maintain Bilingual Structure]
+
+[// Before responding, first consult the language structure in the &lt;context&gt; area, whether it is a bilingual mode `"Language 1 (JP?/EN?/...)" (Language 2 'CN?/...')` or monolingual, and what language is used for (multi)role setting communication, which needs to be maintained in the next response.]}}

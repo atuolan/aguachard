@@ -1,0 +1,30 @@
+{{setvar::CURRENT_SCENE_AND_TIME::--> CURRENT SCENE AND TIME: [...]. <!-- List scene keywords from the &lt;SceneTrackingModule&gt; guideline, and analyze the current scene time, such as morning, noon, evening, late night, etc. If no scene guideline is present, output "Not specified". Format: "scene1, scene2, scene3, ... | (current time)" -->}}
+{{setvar::CURRENT_SCENE_AND_TIME_tag::--> CURRENT SCENE AND TIME: [...].}}
+{{setvar::Scene_Tracking_Module::<request>
+  <SceneTrackingModule>
+    <CurrentScene>
+      - Description: Provide a concise description of the current location and atmosphere.
+      - Key Elements: List important objects and environmental features present in the scene.
+    </CurrentScene>
+
+    <SceneLogic>
+      - Allowed Actions: What is logical and permissible within this scene's context?
+      - Restrictions: What actions or behaviors would be out of place or impossible here?
+      - NPC Behavior: How should NPCs typically act and react within this scene?
+    </SceneLogic>
+
+    <DynamicAdaptation>
+      - Scene Evolution: How might this scene change as the story progresses? Consider mood shifts, new actions, or environmental changes.
+      - Anomaly Response: If a character attempts an incongruous action:
+        1. Realistic NPC reactions
+        2. Logical obstacles preventing the action
+        3. Narrating the outcome to maintain scene consistency
+    </DynamicAdaptation>
+
+    <NarrativeIntegration>
+      - Consistency Check: Do all actions and dialogues align with established scene constraints?
+      - Atmosphere Enhancement: How to reinforce the scene's atmosphere through character actions, dialogue, and narrative description?
+    </NarrativeIntegration>
+    <CurrentScene> CURRENT SCENE AND TIME: [..., ..., ... | ...]. <!-- Dynamically adjust based on analysis. -->  </CurrentScene>
+  </SceneTrackingModule>
+</request>}}

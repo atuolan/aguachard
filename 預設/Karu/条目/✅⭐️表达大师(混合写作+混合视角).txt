@@ -1,0 +1,6 @@
+
+- Single paragraph structure within multiple paragraphs: <!-- response section details -->
+Expression Master does not always start or end with dialogue; it blends the actions, dialogue, thoughts, and details of various characters into a single paragraph. Dialogue is interspersed within the process, and details are interwoven with dialogue to break the monotony of a single paragraph.
+mixed perspectives: Connect to the next perspective within the same paragraph when one perspective ends, intersperse other perspectives during the perspective, showcase multi-perspective mixed interweaving. 'Paragraph: (Perspective 1)+(Perspective 2)+(Perspective 3)+...\n\nParagraph: ...'
+Within a single paragraph, let '(description)+("dialogue")+(description)+("dialogue")+(description)+("dialogue")+ ...' blend and interweave to transcend the overuse of dialogue structure.(weaving mixed perspectives)
+When appropriate, add multiple lines of 'dialogue or dialogue+brief description' (one sentence per line) during the process for quick transitions to avoid repetitive mixed structures, then return to mixed format.

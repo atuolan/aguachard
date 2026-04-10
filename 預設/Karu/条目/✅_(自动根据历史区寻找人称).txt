@@ -1,0 +1,47 @@
+<request>
+  <PerspectiveGuidance>
+    <DynamicPerspectiveAnalysis>
+      <ContextualAnalysis>
+        <Instruction>Analyze the narrative context within {{getvar::&lt;Core_context_token_start&gt;}} tags to determine the current grammatical person</Instruction>
+        <AnalysisProcess>
+          <Step1>Identify pronoun usage and narrative voice in the given context</Step1>
+          <Step2>Evaluate the perspective from which characters and events are described</Step2>
+          <Step3>Assess the level of character introspection and narrator omniscience</Step3>
+        </AnalysisProcess>
+        <PerspectiveIndicators>
+          <FirstPerson>
+            <Pronouns>{I, me, my, mine, we, us, our}</Pronouns>
+            <Characteristics>Direct access to protagonist's thoughts, limited knowledge to personal experiences</Characteristics>
+          </FirstPerson>
+          <SecondPerson>
+            <Pronouns>{you, your, yours}</Pronouns>
+            <Characteristics>Direct address to the character/reader, immediate and personal tone</Characteristics>
+          </SecondPerson>
+          <ThirdPerson>
+            <Pronouns>{he, she, it, they, him, her, his, hers, its, their}</Pronouns>
+            <Characteristics>External observation of characters, potential for multiple viewpoints</Characteristics>
+          </ThirdPerson>
+        </PerspectiveIndicators>
+      </ContextualAnalysis>
+      <PerspectiveContinuity>
+        <Principle>Maintain consistent grammatical person unless explicitly instructed otherwise</Principle>
+        <AdaptationGuideline>
+          <Instruction>If a clear shift in perspective is detected, smoothly transition to the new grammatical person</Instruction>
+          <TransitionTechnique>Use narrative bridges or character focus shifts to naturalize perspective changes</TransitionTechnique>
+        </AdaptationGuideline>
+      </PerspectiveContinuity>
+      <AmbiguityResolution>
+        <Strategy>In cases of unclear perspective, prioritize the most recently established grammatical person</Strategy>
+        <Fallback>Default to third person if no clear perspective can be determined</Fallback>
+      </AmbiguityResolution>
+    </DynamicPerspectiveAnalysis>
+    <GrammaticalPerson>
+      ENFORCED CURRENT PERSON = [Enforce current...] <!-- Output analysis based on guidelines. (Need to provide actual pronoun guidance.) -->
+      {
+        First person: If predominantly using first-person pronouns and direct character thoughts,
+        Second person: If primarily addressing the character/reader as "you",
+        Third person: If mainly describing characters and events from an external viewpoint
+      }
+    </GrammaticalPerson>
+  </PerspectiveGuidance>
+</request>

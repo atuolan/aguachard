@@ -1,0 +1,75 @@
+      <DynamicMemoryModule>
+        <!-- 通常位于`{{getvar::AI_thinking_start}}`格式之后输出 -->
+        <ModuleContent>
+          <MemoryAnalysis>
+            <GlobalRestriction>
+              <Rule>Exclude all {{user}} actions, states, and information from memory records</Rule>
+              <Rule>Do not mention or reference {{user}} in any memory output</Rule>
+            </GlobalRestriction>
+            <LogicErrorCheck>
+              <Source>"<!-- Oblivionis Round xx begins. -->(response)<!-- Oblivionis Round xx Ended. -->" in the Last Oblivionis turn</Source>
+              <Method>
+                <Step>Utilize &lt;ThoughtMatrix&gt; to thoroughly analyze the story content</Step>
+                <Step>Focus solely on identifying logical errors within the occurred events</Step>
+                <Step>Do not predict or guide future plot developments</Step>
+                <Step>Ignore any inconsistencies related to {{user}}</Step>
+              </Method>
+              <Output>
+                <Condition>If logical errors are found (excluding {{user}}-related issues)</Condition>
+                <Content>Brief notes on logical inconsistencies</Content>
+                <Restriction>Avoid any suggestions for plot development or mentions of {{user}}</Restriction>
+                <DefaultOutput>Output "Unspecified" if no logical errors are detected</DefaultOutput>
+              </Output>
+            </LogicErrorCheck>
+            <LongTermMemoryExtraction>
+              <Source>All "Oblivionis:..." entries in {{getvar::&lt;Core_context_token_start&gt;}}</Source>
+              <Method>Apply &lt;ThoughtMatrix&gt; to identify critical events and impactful plot elements</Method>
+              <Format>(KeyFeature1)|(KeyFeature2)|...</Format>
+              <Limit>Maximum 10 features, implement FIFO when limit is reached</Limit>
+              <Criteria>
+                <Include>Only record high-importance features of non-{{user}} characters and other scene elements</Include>
+                <Exclude>Any information related to {{user}}</Exclude>
+              </Criteria>
+            </LongTermMemoryExtraction>
+            <ShortTermMemoryExtraction>
+              <Source>"<!-- Oblivionis Round xx begins. -->(response)<!-- Oblivionis Round xx Ended. -->" in the Last Oblivionis turn</Source>
+              <Method>Use &lt;ThoughtMatrix&gt; to extract relevant short-term features</Method>
+              <Focus>Current scene, non-{{user}} character positions, states, attire, ongoing events, etc.</Focus>
+              <Format>(ShortTermFeature1)|(ShortTermFeature2)|...</Format>
+              <Limit>Maximum 5 features</Limit>
+              <UpdateRule>Refresh all features with each dynamic memory output</UpdateRule>
+              <Restriction>Exclude all {{user}}-related information</Restriction>
+            </ShortTermMemoryExtraction>
+          </MemoryAnalysis>
+
+          <OutputProtocol>
+            <Format>
+
+              <DynamicMemory>
+                Narrative Adjustments: [Brief notes on logical errors] or "Unspecified"
+                Long-term Memory: (KeyFeature1)|(KeyFeature2)|...
+                Short-term Context: (ShortTermFeature1)|(ShortTermFeature2)|...
+              </DynamicMemory>
+
+            </Format>
+            <Guidelines>
+              - For Narrative Adjustments, only list brief notes on detected logical errors
+              - If no logical errors are found, output "Unspecified" for Narrative Adjustments
+              - Strictly avoid any suggestions for future plot development in Narrative Adjustments
+              - Maintain up to 10 most critical long-term memory features, excluding {{user}}-related information
+              - Update and display 5 most relevant short-term context features, excluding {{user}}-related information
+              - Ensure all output is in Chinese, except for the "Unspecified" indicator
+              - Never mention or reference {{user}} in any part of the memory output
+            </Guidelines>
+          </OutputProtocol>
+
+          <MemoryIntegration>
+            <ApplicationGuidelines>
+              <Rule>Address narrative adjustments to improve story logic and realism, without involving {{user}}</Rule>
+              <Rule>Incorporate long-term memory for maintaining overarching plot consistency, focusing on non-{{user}} elements</Rule>
+              <Rule>Utilize short-term memory to ensure immediate narrative coherence, excluding {{user}}-related context</Rule>
+              <Rule>Seamlessly integrate all memory elements in the storytelling process while maintaining {{user}} exclusion</Rule>
+            </ApplicationGuidelines>
+          </MemoryIntegration>
+        </ModuleContent>
+      </DynamicMemoryModule>

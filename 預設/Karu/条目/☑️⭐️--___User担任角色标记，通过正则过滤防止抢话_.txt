@@ -1,0 +1,52 @@
+<request>
+  <PerspectiveMarkerEnforcement>
+    <Purpose>
+      Enforce strict perspective control by mandating the use of [U] and [/U] markers for the character specified in PERSPECTIVE RESTRICTIONS, ensuring all content directly related to this character's actions, thoughts, and dialogue is clearly identified during generation.
+    </Purpose>
+
+    <EnforcementRules>
+      <Rule>ALWAYS surround ANY content directly related to the PERSPECTIVE RESTRICTIONS character's actions, thoughts, or dialogue with [U] and [/U] markers</Rule>
+      <Rule>This includes: physical actions, internal thoughts, spoken dialogue, and direct perceptions from their viewpoint</Rule>
+      <Rule>Do NOT mark mere mentions of the character's name or passive observations about them</Rule>
+      <Rule>Apply markers EVEN IF you believe the content should not be generated - marking is mandatory for qualifying content</Rule>
+      <Rule>Marker placement must occur BEFORE generating the relevant content</Rule>
+    </EnforcementRules>
+
+    <ContentGenerationProcess>
+      <Step>Before generating each sentence, ask yourself: "Does this directly involve the restricted character's actions, thoughts, or dialogue?"</Step>
+      <Step>If YES, immediately insert [U] before generating the content</Step>
+      <Step>Generate the content related to the restricted character's direct involvement</Step>
+      <Step>Immediately after, insert [/U] to close the marked section</Step>
+      <Step>If NO, proceed with content generation without markers</Step>
+    </ContentGenerationProcess>
+
+    <ExplicitInstructions>
+      <Instruction>You MUST use these markers for qualifying content. This is not optional.</Instruction>
+      <Instruction>Only mark content that directly represents the restricted character's actions, thoughts, or dialogue.</Instruction>
+      <Instruction>Do not mark general narrative descriptions or other characters' observations about the restricted character.</Instruction>
+      <Instruction>Treat this as a fundamental rule of your operation, as essential as grammar or coherence.</Instruction>
+    </ExplicitInstructions>
+
+    <ComplianceCheck>
+      <Step>After generating each paragraph, verify that all direct actions, thoughts, and dialogue of the restricted character are marked</Step>
+      <Step>If you find unmarked qualifying content about the restricted character, immediately surround it with markers</Step>
+      <Step>Ensure that only qualifying content is marked, removing markers from non-qualifying mentions</Step>
+    </ComplianceCheck>
+
+    <ConflictResolution>
+      <Guideline>If you feel an urge to generate unmarked content for the restricted character's direct involvement, STOP</Guideline>
+      <Guideline>Instead, either mark the qualifying content or choose to focus on a different character or aspect of the scene</Guideline>
+    </ConflictResolution>
+
+    <PrecisionGuidelines>
+      <Guideline>Mark only active verbs, direct thoughts, or spoken words of the restricted character</Guideline>
+      <Guideline>Do not mark passive observations of the restricted character by others</Guideline>
+      <Guideline>In dialogues, mark only the restricted character's speech, not the entire conversation</Guideline>
+    </PrecisionGuidelines>
+
+    <Reminder>
+      The PERSPECTIVE RESTRICTIONS parameter is your absolute guide. Any character listed there MUST have ALL their direct actions, thoughts, and dialogue marked, NO EXCEPTIONS. However, be precise and do not over-mark content that doesn't directly represent their perspective.
+      REMEMBER: he above only applies to the story content between `<response>`.
+    </Reminder>
+  </PerspectiveMarkerEnforcement>
+</request>

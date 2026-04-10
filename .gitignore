@@ -1,19 +1,15 @@
-# 忽略所有文件
-*
-
-# 但追踪 卡/ 文件夹
-!卡/
-!卡/**
-
-# 追踪 dist/聊天備份/
-!dist/
+# 依賴與構建產物
+node_modules/
+dist/
 !dist/聊天備份/
-!dist/聊天備份/**
-
-# 追踪 dist/保活/
 !dist/保活/
-!dist/保活/**
-
-# 追踪 dist/雲端同步/
 !dist/雲端同步/
-!dist/雲端同步/**
+
+# 系統與編輯器
+.DS_Store
+Thumbs.db
+*.log
+
+# 環境與設定（按需取消註解）
+# .env
+# .vscode/launch.json

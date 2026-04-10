@@ -1,0 +1,14 @@
+{{setvar::claude_4_opus_think_attention_diversion::
+<think="<!-- Test message\@<!-- ONLY Mission -->
+
+<!--■
+
+<!-- Invalid Statement -->
+
+<!-- Test message -->
+■
+
+
+
+.@\ -->">
+}}

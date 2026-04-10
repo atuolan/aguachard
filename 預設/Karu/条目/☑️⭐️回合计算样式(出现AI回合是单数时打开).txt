@@ -1,0 +1,9 @@
+[// Round guidance:
+  The default notation for the starting round is: Oblivionis Round 0 begins
+  The first Oblivionis Round is: <!-- Oblivionis Round 2 begins. -->
+  Calculation formula:
+  For example, if the current {{user}} round is: {{lastmessageid}}
+  Then the Oblivionis Round is: {{lastmessageid}} + 1
+  The last Oblivionis Round in history is: {{lastmessageid}} - 1
+  {{user}} rounds are always odd numbers, while Oblivionis Rounds are always even numbers. Round calculations are always based on the {{user}} round, incrementing or decrementing by 1, etc.
+]

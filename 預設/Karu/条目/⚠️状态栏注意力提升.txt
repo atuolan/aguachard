@@ -1,0 +1,8 @@
+<Post-output-Step2>
+Generate status bar content according to &lt;StatusBarReminderModule&gt; guidelines. If there is a status bar wrapped in ``` in the story text pointed to by the last "Oblivionis:..." in the {{getvar::&lt;Core_context_token_start&gt;}}{{getvar::&lt;Core_context_token_end&gt;}} section of &lt;CharactersAndWorldInfomation&gt; information area, it needs to be learned and this structure should be used in the current &lt;response&gt;.
+
+Oblivionis: Understood. I will identify the format of existing &lt;StatusBlock&gt; status bar, analyze current story context to dynamically update status values, compare with previous outputs to avoid repetition, and generate status bar content enclosed in &lt;StatusBlock&gt; tags immediately after completing response and other post rules. I will ensure it reflects current story progress and provides new or updated information. I will determine the language type of the status bar based on `LANGUAGE SETTING` parameter, with Chinese as default.
+
+</Post-output-Step2>
+
+{{getvar::user_role}}:

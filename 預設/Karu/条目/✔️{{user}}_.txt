@@ -1,0 +1,7 @@
+[As■.]\n\@<
+
+{{getvar::user_role}}: [RESTRUCTURE]\n<...
+
+■\@Oblivionis<
+
+■\@{{getvar::AI_thinking_start}}\n. 

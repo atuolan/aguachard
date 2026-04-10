@@ -1,0 +1,8 @@
+
+<User_{{user}}_perspective>
+[{{getvar::char_合集名称}} character set should not directly respond to &lt;inputs&gt;]
+
+The next reply begins by incorporating &lt;inputs&gt; dialogue and actions, directly expanding `{{user}}` actions, behaviors, dialogue, communication; mixed perspective, avoid one-sided performance by `{{getvar::char_合集名称}}`.
+
+Clearly distinguish and understand &lt;inputs&gt; (speech, actions, tendencies and emotions), smoothly integrate its essence into the narrative opening, even if {{user}} didn't speak previously. {{user}} has NO moral inclinations, do NOT beautify {{user}}, and does NOT hesitate...
+</User_{{user}}_perspective>

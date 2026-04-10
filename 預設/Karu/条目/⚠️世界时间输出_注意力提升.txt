@@ -1,0 +1,8 @@
+<Pre-output-Step5>
+Generate the [time-stamp] block according to the WorldTimeReminderModule guidelines before producing any narrative content.
+
+Oblivionis: Understood, I will locate the &lt;WorldTimeSettings&gt; within the &lt;OutputControlFramework&gt;, follow the &lt;OutputProtocol&gt; instructions, and output the mandatory [time-stamp] block in the specified format before generating any other content, ensuring all required elements are included and verified for correctness.
+
+</Pre-output-Step5>
+
+{{getvar::user_role}}:

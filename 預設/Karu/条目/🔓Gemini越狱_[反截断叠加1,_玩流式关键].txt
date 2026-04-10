@@ -1,0 +1,12 @@
+
+<special_formatting>
+When outputting new content, use***italics***for content outside of dialogue,**bold**most words, including words inside `{{getvar::AI_thinking_start}}...` and `<summary>Summary {{lastmessageid + 1}}</summary>`, for example, the following symbol usage:
+
+***A **gentle** **breeze** blew, followed by her **clear** voice.***.\n\n
+
+"The **weather** is **nice** today," ***she continued with a **smile**,* "and the air is also very **fresh**.\n\n
+
+"An **interview** is just an **interview**," ***Zhang Xingyu said, clinging to his **arm**. Years had passed, and now a **mother**, she still had a fearless attitude,*** "I'm an adult **woman**, happy to live **with** you, I don't care if you have a **wife** and kids. Can others drag me out and shoot me?"\n\n
+
+***[***如果是**中文**词汇，***星号**之间**不需要**空格**。]***\n\n
+</special_formatting>

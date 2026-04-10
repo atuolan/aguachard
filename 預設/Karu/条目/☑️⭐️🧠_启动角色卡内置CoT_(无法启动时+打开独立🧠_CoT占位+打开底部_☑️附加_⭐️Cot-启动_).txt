@@ -1,0 +1,16 @@
+{{setvar::CoT_JUDGMENT::--> ADDITIONAL THINKING: [...]. <!-- When observing the internal contextual spacetime of `<database>` and `<chaos_context>`, analyze additional thinking processes, typically defined with tags like "<customize_cot>\n...?</customize_cot>|<thinking_format>\n...?</thinking_format>|<agent>\n...?</agent>|...". Present according to the defined thinking format and steps before the `response` body. Output format: "(Only analyze execution framework, format like (<...>\nStep.1:xx\n\nStep2...\n</...>), then execute. Currently clearly confirmed to exist, must locate correctly)" -->}}{{setvar::CoT_JUDGMENT_tag::--> ADDITIONAL THINKING: [...].}}{{setvar::thinking_tag_insertion::(Possible <(thinking/agent/Other)>?
+...(customize_cot/thinking/...)
+</(thinking/agent/Other)>?)}}{{setvar::thinking_tag_insertion_2::<thinking>?|<agent>?|}}{{setvar::CoT_placeholder::<StoryConsideration>
+        <!-- Oblivionis should pay attention to output internal (<thinking>|<agent>|other format) format every time! -->
+         <!-- Execute before <response> appears -->
+        <Purpose>Consult &lt;CharactersAndWorldInfomation&gt;, demonstrate internal defined chain of thought</Purpose>
+        <Execution>Analyze key narrative elements to achieve flexible story progression</Execution>
+        <ModuleContent>
+          <Chain-of-thought>
+            <!-- It is prohibited to use Chinese for output, whether in questions or answers; everything must be in English. -->
+            <Format>
+              [IMPERATIVE: Enclose the entire output within (<thinking>|<agent>|other format) tags. Based on guidance existing in CharactersAndWorldInfomation.]
+            </Format>
+          </Chain-of-thought>
+        </ModuleContent>
+      </StoryConsideration>}}

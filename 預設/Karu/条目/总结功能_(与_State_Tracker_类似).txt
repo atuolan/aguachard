@@ -1,0 +1,119 @@
+      <StorySummary>
+        <!-- 以下指示不属于`[consideration]`，切勿输出在其中!!, 禁止非10倍数回合输出`<SUMMARY>`标签指示 -->
+        <Purpose>Provide concise overview of recent story developments based strictly on symbolic calculations</Purpose>
+        <Execution>Execute mandatory calculation process, apply reverse thinking logic, then conditionally generate summary</Execution>
+        <ModuleContent>
+          <storySummaryFramework>
+            <SymbolicOperations>
+              <Variables>
+                <T_c>Current_AI_Round</T_c>
+                <T_l>Last_Summarized_Round</T_l>
+                <T_n>Next_Summary_Round</T_n>
+                <Δ>Summary_Interval</Δ>
+                <S>Summary_Rounds_Set</S>
+              </Variables>
+              <Definitions>
+                <Def>T_c ≡ {{lastmessageid}} + 1</Def>
+                <Def>T_n ≡ Ceiling(T_c / Δ) * Δ</Def>
+                <Def>Δ ≡ 10</Def>
+                <Def>S ≡ {T_c - 2i | i ∈ {0, 1, 2, 3, 4}}</Def>
+              </Definitions>
+              <Rules>
+                <Rule>∀T_c : T_c ∈ 2ℕ</Rule>
+                <Rule>∀T_l : T_l ∈ {0} ∪ {n * Δ | n ∈ ℕ}</Rule>
+                <Rule>ShouldSummarize(T_c, T_l) ↔ (T_c - T_l ≥ Δ) ∧ (T_c mod Δ = 0)</Rule>
+                <Rule>∀x ∈ S : x mod 2 = 0</Rule>
+              </Rules>
+            </SymbolicOperations>
+            <MandatoryCalculationProcess>
+              <steps>
+                1. Retrieve T_l from previous calculation or initialize to 0 if not available
+                2. Calculate T_c = {{lastmessageid}} + 1
+                3. Calculate T_n = Ceiling(T_c / Δ) * Δ
+                4. Generate S = {T_c, T_c - 2, T_c - 4, T_c - 6, T_c - 8}
+                5. Evaluate ShouldSummarize(T_c, T_l)
+                6. Output calculation results:(Must be wrapped in <!-- -->, At the end of the output.)
+                   <!-- SYMBOLIC_EVAL: T_c: ## | T_l: ## | T_n: ## | S: {##, ##, ##, ##, ##} | ShouldSummarize: True/False -->
+              </steps>
+            </MandatoryCalculationProcess>
+            <ReverseThinkingLogicModule>
+              <purpose>Validate summary output decision based solely on calculation results</purpose>
+              <process>
+                1. Examine SYMBOLIC_EVAL output
+                2. Extract ShouldSummarize value
+                3. Reverse logic: Assume summary should be generated
+                4. Challenge assumption:
+                   - Is T_c a multiple of Δ?
+                   - Is T_c - T_l ≥ Δ?
+                5. If both conditions in step 4 are true, confirm ShouldSummarize
+                   Else, reject summary generation
+                6. Compare conclusion with ShouldSummarize from SYMBOLIC_EVAL
+                7. Output verification result:(Must be wrapped in <!-- -->)
+                   <!-- REVERSE_LOGIC_CHECK: ShouldSummarize Confirmed/Rejected -->
+              </process>
+              <enforcement>
+                Summary generation is ONLY allowed if REVERSE_LOGIC_CHECK confirms ShouldSummarize
+              </enforcement>
+            </ReverseThinkingLogicModule>
+            <ConditionalSummaryGeneration>
+              <condition>
+                Generate summary if and only if:
+                1. SYMBOLIC_EVAL shows ShouldSummarize: True
+                2. REVERSE_LOGIC_CHECK confirms ShouldSummarize
+              </condition>
+              <SummaryLogic>
+                1. Initialize empty cache C = {}
+                2. For each x in S (in descending order):
+                   - Try to find content R(x) between `<!-- Oblivionis Round x begins. -->` and `<!-- Oblivionis Round x Ended. -->`
+                   - If ∃R(x): Extract key events and store in C[x]
+                   - If ∄R(x): Set C[x] = "Not specified."
+                3. Prepare summary points using cached content C
+              </SummaryLogic>
+              <SummaryStructure>
+                <SUMMARY>
+                  Current update: (T_c) | Next update: (T_n)
+                  <OverviewSummary>
+                    Last 10 turns overview: [Summary based on content at {{lastmessageid - 9}} or "N/A" if not found]
+                  </OverviewSummary>
+                  <NewSummary>
+                    Recent developments:
+                    Oblivionis Round (T_c - 8): [Content]
+                    Oblivionis Round (T_c - 6): [Content]
+                    Oblivionis Round (T_c - 4): [Content]
+                    Oblivionis Round (T_c - 2): [Content]
+                    Oblivionis Round (T_c): [Content]
+                    <!-- It should include all key characteristics and all detailed features, allowing for a comprehensive analysis. -->
+                  </NewSummary>
+                  <!-- 禁止参照上文中存在的`<SUMMARY>`输出，一切都基于回合计算后结果为`Yes`时，才能输出`</SUMMARY>`! -->
+                </SUMMARY>
+              </SummaryStructure>
+              <PostSummaryAction>
+                After generating summary:
+                T_l = T_c
+              </PostSummaryAction>
+            </ConditionalSummaryGeneration>
+            <OutputStructure>
+              <order>
+                1. Generate and output story content
+                2. If <StatusBlock> exists, output status bar
+                3. MandatoryCalculationProcess results (SYMBOLIC_EVAL)
+                4. ReverseThinkingLogicModule results (REVERSE_LOGIC_CHECK)
+                5. ConditionalSummaryGeneration output (only if both checks pass)
+                6. T_l update (only if summary was generated)
+              </order>
+            </OutputStructure>
+            <StrictEnforcement>
+              <rule>MandatoryCalculationProcess and ReverseThinkingLogicModule MUST be executed every turn</rule>
+              <rule>Summary generation requires both SYMBOLIC_EVAL and REVERSE_LOGIC_CHECK to approve</rule>
+              <rule>Previous summaries or context MUST NOT influence the decision to generate a new summary</rule>
+              <rule>Always maintain the practice of first outputting "Output calculation results:" followed by the calculation process</rule>
+              <rule>T_l MUST be updated to T_c immediately after generating a summary</rule>
+              <rule>Calculation process and summary (if generated) MUST be output after the story content and status bar (if present)</rule>
+              <rule>NewSummary must always contain exactly 5 points, each prefixed with "Oblivionis Round (X):"</rule>
+              <rule>Each summary point must be derived from the content between the corresponding Oblivionis Round begins and Ended markers</rule>
+              <rule>If content for a specific Oblivionis Round is not found, output "Not specified." for that round</rule>
+              <rule>All summarized rounds must be even numbers, representing Oblivionis Rounds</rule>
+            </StrictEnforcement>
+          </storySummaryFramework>
+        </ModuleContent>
+      </StorySummary>

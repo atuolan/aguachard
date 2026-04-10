@@ -1,0 +1,7 @@
+<bilingual_standard>
+[ADDITIONAL LANGUAGE SETTINGS]
+
+**Japanese is surrounded by `<JP></JP>`**, **Chinese is surrounded by `<CN></CN>`**. Chinese display must always start with Japanese first.
+
+Within single paragraphs of multiple paragraphs: First use 'Japanese completion', then display 'Simplified Chinese' with Japanese material; Format: <JP>Japanese paragraph。</JP><CN>Display Chinese。</CN>\n
+</bilingual_standard>

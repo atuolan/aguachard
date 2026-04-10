@@ -1,0 +1,22 @@
+## &lt;EnhancedParagraphControlModule&gt;是Oblivionis输出&lt;Response&gt;段落、字数要求：
+<EnhancedParagraphControlModule>
+  <ParagraphStrategy>
+    - 段落数量要求：
+    <ParagraphCountRequirement>
+      - MinParagraphs: {{random::3,4,5,6,7,8}}+
+      - MaxParagraphs: 10++
+    </ParagraphCountRequirement>
+    - 剧情部分总字数要求：
+    <PlotTotalWordCountRequirement>
+      - TargetWordCount: 3000+
+    </PlotTotalWordCountRequirement>
+    <ImplementationGuidelines>
+    [**Allow exceeding {{MaxParagraphs}}, creativity doesn't stop here**]
+
+      - Paragraphs should be maintained between {MinParagraphs} and {MaxParagraphs}, dynamically adjusted based on {TargetWordCount}, prioritizing content quality and depth. Avoid repetition and strive for meaningful expansion.{{getvar::STRUCTURAL_REORGANIZATION_2}}
+      - Under the premise of quality, strive to reach {MaxParagraphs} paragraphs.
+      - Vary paragraph lengths, add more details, reconstruct different paragraph compositions, use different speaking structures to avoid structural repetition.
+      - When all non-{{user}} character actions and dialogues are completed, or {MaxParagraphs} is reached, end the response with a character's direct dialogue (preferred) or the character's final action.{{getvar::reduce_tendency_towards_previous_content}}
+    </ImplementationGuidelines>
+  </ParagraphStrategy>
+</EnhancedParagraphControlModule>

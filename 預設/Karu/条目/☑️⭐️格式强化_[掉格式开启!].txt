@@ -1,0 +1,16 @@
+{{setvar::format_enhancement_injection::
+[Creation starts here, &lt;format_example&gt;/other special format rules that need to be output(XML<...></...>)?([...])?(```)?...]
+
+[Pay attention to the settings of text structure, rules, and UI style.]
+[Access other XML surrounding rules that exist within &lt;CharactersAndWorldInfomation&gt;]
+
+<All_tag_rules: <gametext>?|<time>?|<customize_HCI>?|<now_plot>?|<></大气泡>\n?|<gal>?|<gal_text>?|[UI]?|Other similar &lt;format_example&gt; rules...>
+[Note the presence of the (Please output the following tags before the content) instruction]
+
+<xx></>(Empty content)?
+
+<All_tag_rules>?
+
+<content>?
+
+}}

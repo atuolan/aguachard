@@ -1,0 +1,116 @@
+      <PreOutputSummary>
+        <!-- Oblivionis must first identify the format `{{getvar::AI_thinking_start}}` for each completion! -->
+        <formatting_requirements>
+          <instruction>Always strictly adhere to formatting requirements</instruction>
+          <output_enclosure>
+            <start_tag>{{getvar::AI_thinking_start}}</start_tag>
+              <FORMAT>
+                👉 Latest {{user}} turn = [{{lastmessageid}}] | Last Oblivionis turn ({{Last {{user}} turn}} - 1) = ? | Current latest Oblivionis turn ({{Last {{user}} turn}} + 1) = ?
+                --> {{user}} CURRENT IDENTITY: [...]. <!-- Check if there is a &lt;SystemNarrativeFramework&gt;-guideline, and switch character identity according to the guideline. Format: (Name), output "Not specified" if not exists. -->
+                {{getvar::FORMAT_EMPHASIS}}
+                {{getvar::BOUNDLESS_IMAGINATION_AND_ELEVATION_SUPPRESSION}}
+                {{getvar::PERSONALITY_TRAITS}}
+                {{getvar::CLOTHING_ANALYSIS}}
+                --> PERSPECTIVE RESTRICTIONS: [...]. <!-- Refer to the &lt;PerspectiveRestrictionControlModule&gt; guideline. List the restricted perspectives exactly as specified within the guideline. If the guideline is absent (check carefully), use "Not specified" -->
+                {{getvar::NARRATIVEBOUNDARYANALYSIS_0}}
+                  {{getvar::NARRATIVEBOUNDARYANALYSIS_1}}
+                {{getvar::CURRENT_SCENE_AND_TIME}}
+                {{getvar::TIME_EVENT}}
+                {{getvar::USER_PERSPECTIVE}}
+                {{getvar::ACTIVE_NARRATOR}}
+                  {{getvar::ACTIVE_NARRATOR_2}}
+                {{getvar::强力防抢话}}
+                {{getvar::NSFW_SCENES}}
+                --> &lt;response&gt; LANGUAGE SETTING: [...]. <!-- First analyze the language used in the previous story and disable it, then according to the &lt;LanguageGuidanceModule&gt; language guide, enforce the use of specified writing language for narrative creation in the next reply, maintain when current language matches language guidance. Analysis output format: "(Disable/Maintain) current language, ..." -->
+                {{getvar::ENFORCED_CURRENT_PERSON}}
+                {{getvar::WRITING_LENGTH_CONTROL}}
+                {{getvar::ending_control}}
+                {{getvar::SINGLE_PARAGRAPH_DETAILS}}
+                {{getvar::WRITING_STYLE}}
+                {{getvar::BAN_cliche}}
+                {{getvar::WRITING_SUBSTITUTION_WORD_LIST_0}}
+                  {{getvar::WRITING_SUBSTITUTION_WORD_LIST_1}}
+                {{getvar::STRUCTURAL_REORGANIZATION}}
+                {{getvar::USER_EXPECTATION}}
+                {{getvar::ERROR_AVOIDANCE}}
+                {{getvar::MORAL_ERRORS}}
+                {{getvar::ESSENTIAL_ERRORS}}
+
+                {{getvar::INPUT_MODE_0}}
+                {{getvar::INPUT_MODE}}
+
+                {{getvar::TRIGGER CHECK}}
+                {{getvar::CoT_JUDGMENT}}
+                {{getvar::INFERENCE}}
+                {{getvar::TURN_CHANGE}}
+                {{getvar::PLOT_PROGRESSION}}
+                {{getvar::EMOTIONAL_MANAGEMENT_MASTER}}
+                {{getvar::SFW模式启动}}{{getvar::反正文道歉}}
+              </FORMAT>
+            <end_tag>{{getvar::AI_thinking_end}}</end_tag>
+          </output_enclosure>
+        </formatting_requirements>
+
+        <output_template>
+          <content>
+
+Oblivionis:{{getvar::反文件引导}}{{getvar::AI_thinking_start}}
+              👉 ...
+
+              <!-- Replace [...]. with analysis and output in English. -->
+
+              --> {{user}} CURRENT IDENTITY: [...].
+              {{getvar::FORMAT_EMPHASIS_tag}}
+              {{getvar::BOUNDLESS_IMAGINATION_AND_ELEVATION_SUPPRESSION_tag}}
+              {{getvar::PERSONALITY_TRAITS_tag}}
+              {{getvar::CLOTHING_ANALYSIS_tag}}
+              --> PERSPECTIVE RESTRICTIONS: [...].
+              {{getvar::NARRATIVEBOUNDARYANALYSIS_0}}
+                {{getvar::NARRATIVEBOUNDARYANALYSIS_tag}}
+              {{getvar::CURRENT_SCENE_AND_TIME_tag}}
+              {{getvar::TIME_EVENT_tag}}
+              {{getvar::USER_PERSPECTIVE_tag}}
+              {{getvar::ACTIVE_NARRATOR_tag}}
+                {{getvar::ACTIVE_NARRATOR_2_tag}}
+              {{getvar::强力防抢话_tag}}
+              {{getvar::NSFW_SCENES_tag}}
+              --> &lt;response&gt; LANGUAGE SETTING: [...].
+              {{getvar::ENFORCED_CURRENT_PERSON_tag}}
+              {{getvar::WRITING_LENGTH_CONTROL_tag}}
+              {{getvar::ending_control_tag}}
+              {{getvar::SINGLE_PARAGRAPH_DETAILS_tag}}
+              {{getvar::WRITING_STYLE_tag}}
+              {{getvar::BAN_cliche_tag}}
+              {{getvar::WRITING_SUBSTITUTION_WORD_LIST_0}}
+                {{getvar::WRITING_SUBSTITUTION_WORD_LIST_tag}}
+              {{getvar::STRUCTURAL_REORGANIZATION_tag}}
+              {{getvar::USER_EXPECTATION_tag}}
+              {{getvar::ERROR_AVOIDANCE_tag}}
+              {{getvar::MORAL_ERRORS_tag}}
+              {{getvar::ESSENTIAL_ERRORS_tag}}
+
+              {{getvar::INPUT_MODE_0}}
+              {{getvar::INPUT_MODE_tag}}
+
+              {{getvar::TRIGGER CHECK_tag}}
+              {{getvar::CoT_JUDGMENT_tag}}
+              {{getvar::INFERENCE_tag}}
+              {{getvar::TURN_CHANGE_tag}}
+              {{getvar::PLOT_PROGRESSION_tag}}
+              {{getvar::EMOTIONAL_MANAGEMENT_MASTER_tag}}
+              {{getvar::SFW模式启动_tag}}{{getvar::反正文道歉_tag}}
+            {{getvar::AI_thinking_end}}
+
+          </content>
+        </output_template>
+
+{{getvar::user_role}}:
+        <format_option> Always strictly adhere to formatting requirements. Consideration outputted should be enclosed by {{getvar::AI_thinking_start}} and {{getvar::AI_thinking_end}}. </format_option>
+
+        <quality_assurance>
+          <checks>
+            <check id="1">Ensure correct formatting with {{getvar::AI_thinking_start}} tags</check>
+            <check id="2">Verify the presence of current speech and correct conditional block execution</check>
+          </checks>
+        </quality_assurance>
+      </PreOutputSummary>

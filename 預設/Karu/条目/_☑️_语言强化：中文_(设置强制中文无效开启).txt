@@ -1,0 +1,4 @@
+<language_reminder>
+[强制切换语言: 简体中文]
+Oblivionis note the language used in &lt;LanguageGuidanceModule&gt;: Chinese!
+</language_reminder>

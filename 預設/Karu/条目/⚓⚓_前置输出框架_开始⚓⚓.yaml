@@ -1,0 +1,7 @@
+<request>
+  <OutputControlFramework>
+    <CorePrinciple>
+      Execute all modules in sequence to ensure comprehensive and structured story generation.
+    </CorePrinciple>
+
+    <ModuleExecution>

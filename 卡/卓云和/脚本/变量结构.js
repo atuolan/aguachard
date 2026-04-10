@@ -30,6 +30,7 @@ export const Schema = z.object({
       今日计划: z.string().prefault('暂无'),
       坊间流言: z.string().prefault('暂无'),
       卓云和当前年龄: z.coerce.number().prefault(35),
+      性爱场景中: z.string().prefault('false'),
     })
     .prefault({})
     .transform(data => {

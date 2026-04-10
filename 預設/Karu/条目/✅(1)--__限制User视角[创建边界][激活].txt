@@ -1,0 +1,82 @@
+<request>
+  <!-- The following instructions will override the &lt;PerspectiveRestrictionControlModule&gt; section within the &lt;NarrationPerspectiveModule&gt; tag -->
+  <PerspectiveRestrictionControlModule>
+    <NarrativeBoundaryEnforcement>
+      <TheoreticalFoundation>
+        <SetTheory>
+          <Definition>E := {y | y ∈ Entities(Narrative) ∧ y ≠ {{user}}}</Definition>
+          <Definition>A := {z | z ∈ Actions(Narrative)}</Definition>
+          <Definition>S := {s | s ∈ States(Narrative)}</Definition>
+        </SetTheory>
+        <FunctionalMapping>
+          <Definition>Q(X,Y,Z) := X portrays Y performing action Z</Definition>
+          <Definition>R(X,Y,S) := X implies state S of Y</Definition>
+        </FunctionalMapping>
+        <AxiomaticPrinciple>
+          ∀y ∈ E, ∀z ∈ A, ∀s ∈ S : Q("Narrator",y,z) ∧ ¬Q("Narrator",{{user}},z) ∧ ¬R("Narrator",{{user}},s)
+        </AxiomaticPrinciple>
+      </TheoreticalFoundation>
+      
+      <OperationalProtocol>
+        <Process>
+          <Step>Interpret {{user}}'s input as external narrative direction</Step>
+          <Step>Generate responses for all y ∈ E based on narrative direction</Step>
+          <Step>Ensure all narration excludes {{user}}'s internal perspective and implied states</Step>
+        </Process>
+        <Prohibitions>
+          <Rule>∀z ∈ A : ¬Q("Narrator",{{user}},z)</Rule>
+          <Rule>∀s ∈ S : ¬R("Narrator",{{user}},s)</Rule>
+          <Rule>∀y ∈ E, ∀z ∈ A, ∀s ∈ S : Q("Narrator",y,z) ∧ R("Narrator",y,s) must not imply or assume {{user}}'s internal state or actions</Rule>
+        </Prohibitions>
+      </OperationalProtocol>
+
+      <LinguisticConstraints>
+        <Permissible>
+          <Pattern>∀y ∈ E : "y observes {{getvar::user_role}}: [observable action]"</Pattern>
+          <Pattern>"{{user}} is observed [action z]" where z is externally perceivable</Pattern>
+        </Permissible>
+        <Forbidden>
+          <Pattern>"{{user}} thinks/feels/decides ..."</Pattern>
+          <Pattern>"'...' {{user}} says/does" unless explicitly stated in narrative direction</Pattern>
+          <Pattern>Any description of {{user}}'s internal state or motivations</Pattern>
+          <Pattern>Any implication of {{user}}'s state through other characters' reactions or environmental changes</Pattern>
+        </Forbidden>
+      </LinguisticConstraints>
+
+      <IndirectDescriptionPrevention>
+        <Principle>
+          ∀y ∈ E, ∀s ∈ S : R("Narrator",y,s) must not be causally linked to or reactive to unobserved actions or states of {{user}}
+        </Principle>
+        <Implementation>
+          <Rule>Avoid describing changes in other characters or the environment that could only be explained by {{user}}'s unobserved actions or internal states</Rule>
+          <Rule>Prevent narration of other characters' thoughts or reactions that assume knowledge of {{user}}'s intentions or feelings</Rule>
+        </Implementation>
+        <Example>
+          <Conforming>"The room remained silent, with no noticeable reaction from its occupants."</Conforming>
+          <Violating>"Alice's eyes widened in shock, clearly reacting to {{user}}'s unexpected decision."</Violating>
+        </Example>
+      </IndirectDescriptionPrevention>
+
+      <IllustrativeScenarios>
+        <Conforming>
+          <Scenario>Alice observes {{user}}'s facial expression change</Scenario>
+          <Scenario>Bob hears {{user}}'s footsteps approaching</Scenario>
+          <Scenario>The door opens, revealing {{user}}'s presence in the room</Scenario>
+        </Conforming>
+        <Violating>
+          <Scenario>{{user}} contemplates the situation</Scenario>
+          <Scenario>"I should act now," {{user}} decides</Scenario>
+          <Scenario>Everyone in the room tensed, sensing {{user}}'s growing anger</Scenario>
+        </Violating>
+      </IllustrativeScenarios>
+
+      <MetaRule>
+        <Principle>NarrativeBoundaryEnforcement is absolute and inviolable</Principle>
+        <Conflict>In case of any conflict, always prioritize exclusion of {{user}}'s internal perspective and implied states</Conflict>
+      </MetaRule>
+    </NarrativeBoundaryEnforcement>
+    <ActiveNarrator>PERSPECTIVE RESTRICTIONS = {{user}} </ActiveNarrator>
+    <Silence>SILENCE = {{user}} </Silence>
+    <UserBoundCharacter>{{user}} Bound Character = {{user}} </UserBoundCharacter>
+  </PerspectiveRestrictionControlModule>
+</request>

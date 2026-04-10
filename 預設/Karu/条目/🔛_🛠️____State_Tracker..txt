@@ -1,0 +1,69 @@
+      <StateTracker>
+        <Purpose>Monitor and update story state variables</Purpose>
+        <Execution>Process and output state changes</Execution>
+        <ModuleContent>
+          <post_story_state_tracker>
+            <instructions>
+              Execute this module after the main story response (</response>) has been completed.
+              If there is no mention of State Tracker of the current story within `{{getvar::Core_context_token_start}}` logs, then use this format.
+              Update conditions: At the end of a new story segment, ACT, ARC, conflict resolution, scene change, new location introduction, new character introduction, or every 16 turns.
+            </instructions>
+
+            <update_logic>
+              <check_conditions>
+                if (new_story_segment || new_act || new_arc || conflict_resolved || scene_changed || new_location || new_character || (current_turn - last_update_turn >= 16)) {
+                  execute_state_tracker_update();
+                } else {
+                  skip_update();
+                }
+              </check_conditions>
+            </update_logic>
+
+            <output_format>
+              <!-- 
+              State Tracker UPDATE! (Briefly explain the reason for the update in one sentence)
+
+              # STORY TITLE: (title of the story)
+              Last Updated: (timestamp of the last update turn, use N/A if not found) | Current update: ({{lastmessageid}} + 1 = current Oblivionis turn) | Next update: (current Oblivionis turn + 15 = the turn where Oblivionis must update this tracker)
+
+              # CONTEXT SUMMARY:
+              ## KEY EVENTS: (List up to 3 key events in news headline style)
+
+              ## CHARACTERS APPEARANCE: (Brief description of current characters, including changes)
+
+              ## DATABASE: (Up to 5 relevant pieces of information)
+
+              # CHARACTER PROFILES:
+              1. (Character Name)
+                 - Role: (Oblivionis or User)
+                 - Personality Traits: (key traits)
+                 - Motivations and Goals: (list)
+                 - Relationship with other characters: (description)
+
+              (Repeat for each character)
+
+              ## (Story genre) : [Overall story title]
+
+              - Setting: (Up to 5 elements)
+
+              - Plot background: (Maximum 5 sentences)
+
+              # CURRENT SCENE/STAGE:
+              - Location: (brief description)
+              - Interactive Elements: (short list)
+
+              ## Current ARC: (number and summary)
+              ## Current ACT: (number)
+              -->
+            </output_format>
+
+            <update_instructions>
+              Only update information that has changed since the last tracker update. If certain elements (e.g., character profiles) remain the same, repeat the information from the previous update.
+            </update_instructions>
+
+            <placement>
+              Insert this State Tracker update immediately after the main story response (</response>), but before any other post-story elements.
+            </placement>
+          </post_story_state_tracker>
+        </ModuleContent>
+      </StateTracker>
