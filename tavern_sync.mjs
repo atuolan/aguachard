@@ -2004,7 +2004,11 @@ module.exports = (flag, argv = process.argv) => {
 
 /***/ },
 
+<<<<<<< HEAD
 /***/ 9345
+=======
+/***/ 6746
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
 (module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -2022,7 +2026,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   var undefined;
 
   /** Used as the semantic version number. */
+<<<<<<< HEAD
   var VERSION = '4.17.23';
+=======
+  var VERSION = '4.18.1';
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -2030,7 +2038,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
       FUNC_ERROR_TEXT = 'Expected a function',
+<<<<<<< HEAD
       INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
+=======
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`',
+      INVALID_TEMPL_IMPORTS_ERROR_TEXT = 'Invalid `imports` option passed into `_.template`';
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -3762,6 +3775,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * embedded Ruby (ERB) as well as ES2015 template strings. Change the
      * following template settings to use alternative delimiters.
      *
+<<<<<<< HEAD
+=======
+     * **Security:** See
+     * [threat model](https://github.com/lodash/lodash/blob/main/threat-model.md)
+     * — `_.template` is insecure and will be removed in v5.
+     *
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      * @static
      * @memberOf _
      * @type {Object}
@@ -4310,7 +4330,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @name has
      * @memberOf SetCache
      * @param {*} value The value to search for.
+<<<<<<< HEAD
      * @returns {number} Returns `true` if `value` is found, else `false`.
+=======
+     * @returns {boolean} Returns `true` if `value` is found, else `false`.
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      */
     function setCacheHas(value) {
       return this.__data__.has(value);
@@ -6381,7 +6405,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
     function baseUnset(object, path) {
       path = castPath(path, object);
 
+<<<<<<< HEAD
       // Prevent prototype pollution, see: https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg
+=======
+      // Prevent prototype pollution:
+      // https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg
+      // https://github.com/lodash/lodash/security/advisories/GHSA-f23m-r3pf-42rh
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
       var index = -1,
           length = path.length;
 
@@ -6389,6 +6419,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
         return true;
       }
 
+<<<<<<< HEAD
       var isRootPrimitive = object == null || (typeof object !== 'object' && typeof object !== 'function');
 
       while (++index < length) {
@@ -6398,12 +6429,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
         if (typeof key !== 'string') {
           continue;
         }
+=======
+      while (++index < length) {
+        var key = toKey(path[index]);
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
 
         // Always block "__proto__" anywhere in the path if it's not expected
         if (key === '__proto__' && !hasOwnProperty.call(object, '__proto__')) {
           return false;
         }
 
+<<<<<<< HEAD
         // Block "constructor.prototype" chains
         if (key === 'constructor' &&
             (index + 1) < length &&
@@ -6415,6 +6451,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
             continue;
           }
 
+=======
+        // Block constructor/prototype as non-terminal traversal keys to prevent
+        // escaping the object graph into built-in constructors and prototypes.
+        if ((key === 'constructor' || key === 'prototype') && index < length - 1) {
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
           return false;
         }
       }
@@ -8971,7 +9012,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
     /**
      * Creates an array with all falsey values removed. The values `false`, `null`,
+<<<<<<< HEAD
      * `0`, `""`, `undefined`, and `NaN` are falsey.
+=======
+     * `0`, `-0`, `0n`, `""`, `undefined`, and `NaN` are falsy.
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      *
      * @static
      * @memberOf _
@@ -9510,7 +9555,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
       while (++index < length) {
         var pair = pairs[index];
+<<<<<<< HEAD
         result[pair[0]] = pair[1];
+=======
+        baseAssignValue(result, pair[0], pair[1]);
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
       }
       return result;
     }
@@ -16170,6 +16219,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * **Note:** JavaScript follows the IEEE-754 standard for resolving
      * floating-point values which can produce unexpected results.
      *
+<<<<<<< HEAD
+=======
+     * **Note:** If `lower` is greater than `upper`, the values are swapped.
+     *
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      * @static
      * @memberOf _
      * @since 0.7.0
@@ -16183,9 +16237,22 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.random(0, 5);
      * // => an integer between 0 and 5
      *
+<<<<<<< HEAD
      * _.random(5);
      * // => also an integer between 0 and 5
      *
+=======
+     * // when lower is greater than upper the values are swapped
+     * _.random(5, 0);
+     * // => an integer between 0 and 5
+     *
+     * _.random(5);
+     * // => also an integer between 0 and 5
+     *
+     * _.random(-5);
+     * // => an integer between -5 and 0
+     *
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      * _.random(5, true);
      * // => a floating-point number between 0 and 5
      *
@@ -16787,6 +16854,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * properties may be accessed as free variables in the template. If a setting
      * object is given, it takes precedence over `_.templateSettings` values.
      *
+<<<<<<< HEAD
+=======
+     * **Security:** `_.template` is insecure and should not be used. It will be
+     * removed in Lodash v5. Avoid untrusted input. See
+     * [threat model](https://github.com/lodash/lodash/blob/main/threat-model.md).
+     *
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
      * **Note:** In the development build `_.template` utilizes
      * [sourceURLs](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
      * for easier debugging.
@@ -16894,12 +16968,27 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
         options = undefined;
       }
       string = toString(string);
+<<<<<<< HEAD
       options = assignInWith({}, options, settings, customDefaultsAssignIn);
 
       var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn),
           importsKeys = keys(imports),
           importsValues = baseValues(imports, importsKeys);
 
+=======
+      options = assignWith({}, options, settings, customDefaultsAssignIn);
+
+      var imports = assignWith({}, options.imports, settings.imports, customDefaultsAssignIn),
+          importsKeys = keys(imports),
+          importsValues = baseValues(imports, importsKeys);
+
+      arrayEach(importsKeys, function(key) {
+        if (reForbiddenIdentifierChars.test(key)) {
+          throw new Error(INVALID_TEMPL_IMPORTS_ERROR_TEXT);
+        }
+      });
+
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
       var isEscaping,
           isEvaluating,
           index = 0,
@@ -48832,8 +48921,13 @@ __webpack_require__.d(classic_schemas_namespaceObject, {
 
 ;// ./src/server/settings_default.yaml?raw
 const settings_defaultraw_namespaceObject = "# yaml-language-server: $schema=https://testingcf.jsdelivr.net/gh/StageDog/tavern_sync/dist/schema/settings.zh.json\n\n# 在此填入 user 名称, 提示词中如果有这个名字则会被替换成 <user> 宏\nuser名称: 青空黎\n\n# 在此填入新的\"角色卡\"、\"世界书\"或\"预设\"配置\n配置:\n  # 配置名称, 可以和酒馆中的不同. 你使用脚本时需要填写配置名称来指出用哪个配置, 因此尽量配置名称尽量简单点方便填写\n  角色卡示例:\n    # 类型可以是\"角色卡\"、\"世界书\"或\"预设\"\n    类型: 角色卡\n\n    # 在酒馆中这个\"角色卡\"、\"世界书\"或\"预设\"叫什么\n    酒馆中的名称: 呕吐内心的少女\n\n    # 这个\"角色卡\"、\"世界书\"或\"预设\"的等效配置文件要提取到本地哪个文件中, 可以是绝对路径或相对于本文件的相对路径\n    # 如果不满足路径格式将会报错\n    # - 绝对路径: 如 Windows 中, 想将世界书提取到 C 盘\"角色卡示例\"文件夹中, 则填入 `C:/角色卡示例`\n    # - 相对路径:\n    #   - 想将配置文件提取到本文件相同的文件夹中, 则填入 `./角色卡示例` 或 `角色卡示例`\n    #   - 想将配置文件提取到本文件所在文件夹的子文件夹\"世界书\"中, 则填入 `./世界书/角色卡示例` 或 `世界书/角色卡示例`\n    #   - 想将配置文件提取到本文件所在文件夹的父文件夹中, 则填入 `../角色卡示例`\n    本地文件路径: 角色卡示例/index\n\n    # 当使用打包功能 `node tavern_sync.mjs bundle 配置名称` 直接生成\"角色卡\"、\"世界书\"或\"预设\"文件时, 要将它存放在哪个文件中\n    # 你也可以直接删去下面一行不填, 则默认会导出到本地文件路径的同目录下\n    导出文件路径: 角色卡示例/角色卡示例\n";
+<<<<<<< HEAD
 // EXTERNAL MODULE: ./node_modules/.pnpm/lodash@4.17.23/node_modules/lodash/lodash.js
 var lodash = __webpack_require__(9345);
+=======
+// EXTERNAL MODULE: ./node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
+var lodash = __webpack_require__(6746);
+>>>>>>> 304e8c08c9a8646568197fb30d79c23676d3a5a0
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 ;// ./node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/core.js
 /** A special constant with type `never` */
