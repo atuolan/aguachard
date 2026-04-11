@@ -3,7 +3,7 @@ node_modules/
 dist/
 !dist/聊天備份/
 !dist/保活/
-!dist/手机界面 (1)/
+!dist/手机界面/
 !dist/雲端同步/
 
 # 系統與編輯器

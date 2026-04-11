@@ -2,9 +2,9 @@
   <transition name="popup">
     <div
       v-show="sharedState.phone.show"
-      :class="`card${!sharedState.ST.isMobile ? ' card-pc' : ''}`"
       id="baibai_phone"
       ref="cardRef"
+      :class="['card', { 'card-pc': !sharedState.ST.isMobile }]"
       @mousedown="startDrag"
       @touchstart="startDrag"
       @touchend="handleTouchEnd($event, false)"
@@ -38,16 +38,16 @@
         </div>
       </div>
       <div class="card-int" style="background-color: white">
-        <div id="Home_page" v-show="sharedState.phone.activeApp == 'home'">
+        <div v-show="sharedState.phone.activeApp == 'home'" id="Home_page">
           <Home></Home>
         </div>
 
         <div
-          id="App_Page"
           v-show="sharedState.phone.activeApp && sharedState.phone.activeApp != 'home'"
+          id="App_Page"
           style="height: 100%"
         >
-          <div class="twitter" id="App_twitter" style="display: none">
+          <div id="App_twitter" class="twitter" style="display: none">
             <div class="mimictwitter">
               <div style="margin-right: 8px; margin-top: 10px">
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center">
@@ -170,14 +170,14 @@
           </transition>
 
           <div
-            id="RedNote_div"
             v-show="sharedState.phone.activeApp == 'RedNote'"
+            id="RedNote_div"
             style="background-color: #eff3ff; width: 100%; height: 100%"
           >
             <RedNote></RedNote>
           </div>
 
-          <div class="discord" id="App_discord" style="display: none; width: 100%; height: 100%">
+          <div id="App_discord" class="discord" style="display: none; width: 100%; height: 100%">
             <div class="discord-homepage" style="width: 100%; height: 100%">
               <div class="discord-top">
                 <svg
@@ -309,7 +309,7 @@
           </div>
         </div>
 
-        <div class="page_button" v-show="sharedState.phone.navButton" style="background-color: none" id="page_button">
+        <div v-show="sharedState.phone.navButton" id="page_button" class="page_button" style="background-color: none">
           <div style="width: 45px; display: flex; justify-content: center; height: 20px">
             <svg viewBox="0 0 1024 1024" width="20" height="20">
               <path
@@ -320,7 +320,7 @@
             </svg>
           </div>
 
-          <div @click="changeApp" style="width: 45px; display: flex; justify-content: center">
+          <div style="width: 45px; display: flex; justify-content: center" @click="changeApp">
             <svg
               t="1736242335450"
               class="icon"
@@ -339,7 +339,7 @@
             </svg>
           </div>
 
-          <div @click="returnPage" style="width: 45px; display: flex; justify-content: center">
+          <div style="width: 45px; display: flex; justify-content: center" @click="returnPage">
             <svg
               t="1736242697753"
               class="icon"
@@ -360,14 +360,14 @@
         </div>
       </div>
       <div
+        ref="topRef"
+        class="top"
+        style="display: flex; align-items: center; justify-content: center"
         @dblclick="sharedState.phone.show = !sharedState.phone.show"
         @mousedown="startDrag"
         @touchstart="startDrag"
         @touchend="handleTouchEnd($event, true)"
         @click="console.log(JSON.stringify(sharedState.QQ.chars))"
-        class="top"
-        ref="topRef"
-        style="display: flex; align-items: center; justify-content: center"
       >
         <svg
           t="1735485675807"
@@ -427,6 +427,9 @@ let initialLeft = 0;
 let initialTop = 0;
 let isTouchEvent = false; // 用于区分 touch 或 mouse
 let hasMoved = false; // 是否真正移动（超过阈值）
+let rafId = 0; // requestAnimationFrame ID
+let pendingX = 0;
+let pendingY = 0;
 
 // 新增: 双击检测变量（仅触屏）
 let lastTapTime = 0;
@@ -443,6 +446,8 @@ const startDrag = e => {
   console.log(`开始拖动`);
   isDragging = true;
   hasMoved = false; // 重置移动标志
+  cardRef.value.classList.add('is-dragging');
+  cardRef.value.style.willChange = 'left, top';
   isTouchEvent = e.type === 'touchstart'; // 判断事件类型
 
   // 根据事件类型获取起始坐标
@@ -489,8 +494,15 @@ const onDrag = e => {
   // 如果偏移超过阈值，才视为真正拖动
   if (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold) {
     hasMoved = true;
-    cardRef.value.style.left = `${initialLeft + dx}px`;
-    cardRef.value.style.top = `${initialTop + dy}px`;
+    pendingX = initialLeft + dx;
+    pendingY = initialTop + dy;
+    if (!rafId) {
+      rafId = requestAnimationFrame(() => {
+        cardRef.value.style.left = `${pendingX}px`;
+        cardRef.value.style.top = `${pendingY}px`;
+        rafId = 0;
+      });
+    }
   }
 
   e.preventDefault(); // 防止默认行为
@@ -501,6 +513,14 @@ const stopDrag = () => {
   console.log(`停止拖动 (鼠标)`);
   isDragging = false;
   hasMoved = false;
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+  if (cardRef.value) {
+    cardRef.value.classList.remove('is-dragging');
+    cardRef.value.style.willChange = '';
+  }
 
   $('body').off('mousemove', onDrag);
   $('body').off('mouseup', stopDrag);
@@ -510,6 +530,14 @@ const stopDrag = () => {
 const handleTouchEnd = (e, showChange = false) => {
   console.log(`触屏结束,${showChange}`);
   isDragging = false;
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+  if (cardRef.value) {
+    cardRef.value.classList.remove('is-dragging');
+    cardRef.value.style.willChange = '';
+  }
 
   // 移除 touchmove 监听
   $('body').off('touchmove', onDrag);
@@ -535,11 +563,11 @@ const bgColor = computed(() => {
   return sharedState.phone.colorSettings.background || '#1b1717';
 });
 const borderColor = computed(() => {
-  let color = sharedState.phone.colorSettings.border || '#810000';
+  const color = sharedState.phone.colorSettings.border || '#810000';
   return `2px solid ${color}`;
 });
 const buttonColor = computed(() => {
-  let color = sharedState.phone.colorSettings.button || '#ce1212';
+  const color = sharedState.phone.colorSettings.button || '#ce1212';
   return color;
 });
 
