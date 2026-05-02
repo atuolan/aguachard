@@ -12,7 +12,7 @@ const CONFIG = {
 };
 
 let dailyLimitState;
-const isInitialized = false;
+let isInitialized = false;
 
 function initializeDailyLimitState() {
   const savedState = localStorage.getItem(CONFIG.STORAGE_KEY);
@@ -37,7 +37,7 @@ function createNewDailyLimitState() {
     dailyLimitState.attributes[attr] = {
       changeCount: 0,
       isLocked: false,
-      lockedValue: <user>,
+      lockedValue: '{{user}}',
     };
   });
   saveDailyLimitState();
@@ -66,7 +66,7 @@ function checkAndResetIfNewDay() {
       dailyLimitState.attributes[attr] = {
         changeCount: 0,
         isLocked: false,
-        lockedValue: <user>,
+        lockedValue: '{{user}}',
       };
     });
     dailyLimitState.lastDate = currentDate;

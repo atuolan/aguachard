@@ -82,7 +82,8 @@ const Settings = z
     notifyEnabled: z.boolean().default(false),
   })
   .prefault({ streamMode: 'audio' });
-const settings = ref(Settings.parse(getVariables({ type: 'script' })));
+const savedSettings = getVariables({ type: 'script' }) ?? {};
+const settings = ref(Settings.parse({ ...savedSettings, streamMode: savedSettings.streamMode ?? 'audio' }));
 watch(settings, val => replaceVariables(klona(val), { type: 'script' }), { deep: true });
 
 const isPlaying = ref(false);

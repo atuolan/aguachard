@@ -23,7 +23,6 @@ export const Schema = z.object({
       心情: z.string().prefault('烦躁、漠然'),
       想法: z.string().prefault('暂无'),
       约定与代办事项: z.string().prefault('暂无'),
-      性行为进行中: z.boolean().prefault(false),
       小雅嫉妒事件已触发: z.boolean().prefault(false),
       小雅危险等级: z.string().prefault('无'),
       当前威胁: z.string().prefault('无'),

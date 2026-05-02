@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div class="QQ_bottom_nav">
+    <div class="QQ_bottom_nav" v-show="!sharedState.QQ.activeChatId">
       <div
         @click="sharedState.QQ.activePage = 1"
         id="QQ_message_nav"

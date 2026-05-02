@@ -13,6 +13,22 @@
       </div>
       <p class="backup-hint">設為 1 則每次 AI 回復都備份</p>
 
+      <!-- 最多備份數量設定 -->
+      <div class="backup-row">
+        <label class="backup-label">最多保存</label>
+        <input v-model.number="settings.maxBackups" type="number" min="1" max="20" class="backup-input text_pole" />
+        <label class="backup-label">份備份</label>
+      </div>
+      <p class="backup-hint">超出數量時自動覆蓋最舊的備份</p>
+
+      <!-- 備份延遲設定 -->
+      <div class="backup-row">
+        <label class="backup-label">自動備份延遲</label>
+        <input v-model.number="settings.backupDelay" type="number" min="0" max="30" class="backup-input text_pole" />
+        <label class="backup-label">秒</label>
+      </div>
+      <p class="backup-hint">避免與其他腳本（如數據庫）衝突，建議 ≥ 3 秒</p>
+
       <!-- 立即備份 -->
       <div class="backup-btn-row">
         <button class="menu_button backup-btn" :disabled="saving" @click="saveBackup">
@@ -22,7 +38,7 @@
 
       <!-- 備份列表 -->
       <div class="backup-section">
-        <div class="backup-section-title">最近備份（最多 3 份）</div>
+        <div class="backup-section-title">最近備份（最多 {{ settings.maxBackups }} 份）</div>
         <div v-if="backups.length === 0" class="backup-hint">尚無備份紀錄</div>
 
         <div v-for="(b, i) in backups" :key="i" class="backup-item">
@@ -54,6 +70,8 @@ import { onUnmounted, ref, watch } from 'vue';
 const Settings = z
   .object({
     saveInterval: z.number().int().min(1).default(1),
+    maxBackups: z.number().int().min(1).max(20).default(3),
+    backupDelay: z.number().min(0).max(30).default(5),
   })
   .prefault({});
 
@@ -69,7 +87,6 @@ type BackupRecord = {
   lastMessage: string;
 };
 
-const MAX_BACKUPS = 3;
 const METADATA_KEY = 'chat_backup_index';
 const GLOBAL_BACKUP_KEY = 'chat_backup_records';
 
@@ -149,8 +166,9 @@ async function saveBackup(): Promise<void> {
 
   // 輪轉索引存在 global 變量
   const globalVars = getVariables({ type: 'global' });
-  const currentIndex: number = (_.get(globalVars, [METADATA_KEY, chatId], 0) as number) % MAX_BACKUPS;
-  const nextIndex = (currentIndex + 1) % MAX_BACKUPS;
+  const maxBackups = settings.value.maxBackups;
+  const currentIndex: number = (_.get(globalVars, [METADATA_KEY, chatId], 0) as number) % maxBackups;
+  const nextIndex = (currentIndex + 1) % maxBackups;
 
   const charName = ctx.name2 || 'backup';
   // 用 chatId 的短 hash 區分不同聊天，避免多個聊天的備份檔名衝突
@@ -248,7 +266,7 @@ async function saveBackup(): Promise<void> {
     };
     // 替換同槽位的舊紀錄
     const filtered = backups.value.filter(b => b.fileName !== fixedName);
-    backups.value = [record, ...filtered].slice(0, MAX_BACKUPS);
+    backups.value = [record, ...filtered].slice(0, settings.value.maxBackups);
     saveBackupRecords(chatId, backups.value);
 
     toastr.success(`已備份至 ${actualFileName}`);
@@ -323,13 +341,23 @@ async function restoreBackup(b: BackupRecord): Promise<void> {
 
 // ===== 事件監聽 =====
 let messageCount = 0;
+let pendingBackupTimer: ReturnType<typeof setTimeout> | null = null;
 
 const listener = eventOn(
   tavern_events.GENERATION_ENDED,
   errorCatched(async () => {
     messageCount++;
     if (messageCount % settings.value.saveInterval === 0) {
-      await saveBackup();
+      const delayMs = (settings.value.backupDelay ?? 5) * 1000;
+      if (pendingBackupTimer) clearTimeout(pendingBackupTimer);
+      if (delayMs <= 0) {
+        await saveBackup();
+      } else {
+        pendingBackupTimer = setTimeout(() => {
+          pendingBackupTimer = null;
+          saveBackup();
+        }, delayMs);
+      }
     }
   }),
 );
@@ -340,6 +368,7 @@ const chatChangeListener = eventOn(tavern_events.CHAT_CHANGED, () => {
 });
 
 onUnmounted(() => {
+  if (pendingBackupTimer) clearTimeout(pendingBackupTimer);
   listener.stop();
   chatChangeListener.stop();
 });

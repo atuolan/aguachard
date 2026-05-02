@@ -171,9 +171,9 @@
   </style>
   <script type="module">
     function errorCatched(fn) {
-      return function (...args) {
+      return async function (...args) {
         try {
-          return fn(...args);
+          return await fn(...args);
         } catch (e) {
           console.error(e);
           toastr.error(e.message || 'An unexpected error occurred.');
@@ -209,71 +209,31 @@
     }
 
     function populateCharacterData() {
-      try {
-        // 使用 MVU 框架获取最新消息楼层的数据
-        const mvu_data = Mvu.getMvuData({ type: 'message', message_id: -1 });
-        const character = '谭尧';
-        const stat_data = _.get(mvu_data, `stat_data.${character}`, {});
+      const mvu_data = Mvu.getMvuData({ type: 'message', message_id: -1 });
+      const character = '谭尧';
+      const stat_data = _.get(mvu_data, `stat_data.${character}`, {});
 
-        const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
-        let intimacyValue = 0;
+      const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
+      let intimacyValue = 0;
 
-        fields.forEach(field => {
-          const value = _.get(stat_data, field, '--');
-          const elementId = `#${character}-${field}`;
-          $(elementId).text(value);
+      fields.forEach(field => {
+        const value = _.get(stat_data, field, '--');
+        const elementId = `#${character}-${field}`;
+        $(elementId).text(value);
 
-          // 记录亲密度值用于背景透明度调整
-          if (field === '亲密度') {
-            intimacyValue = parseInt(value) || 0;
-          }
-
-          if (['亲密度', '好感度', '恶感度', '警惕值'].includes(field)) {
-            const percentage = Math.max(0, Math.min(100, parseInt(value) || 0));
-            const progressBarId = `#progress-${character}-${field}`;
-            $(progressBarId).css('width', `${percentage}%`);
-          }
-        });
-
-        // 根据亲密度更新背景透明度和底部消息
-        updateBackgroundOpacity(intimacyValue);
-        updateBottomMessage(intimacyValue);
-      } catch (error) {
-        console.error('获取 MVU 数据失败:', error);
-        // 如果 MVU 不可用，回退到传统方法
-        try {
-          const mvu_fallback = Mvu.getMvuData({ type: 'message', message_id: -1 });
-          const character = '谭尧';
-          const stat_data = _.get(mvu_fallback, `stat_data.${character}`, {});
-
-          const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
-          let intimacyValue = 0;
-
-          fields.forEach(field => {
-            const value = _.get(stat_data, field, '--');
-            const elementId = `#${character}-${field}`;
-            $(elementId).text(value);
-
-            // 记录亲密度值用于背景透明度调整
-            if (field === '亲密度') {
-              intimacyValue = parseInt(value) || 0;
-            }
-
-            if (['亲密度', '好感度', '恶感度', '警惕值'].includes(field)) {
-              const percentage = Math.max(0, Math.min(100, parseInt(value) || 0));
-              const progressBarId = `#progress-${character}-${field}`;
-              $(progressBarId).css('width', `${percentage}%`);
-            }
-          });
-
-          // 根据亲密度更新背景透明度和底部消息
-          updateBackgroundOpacity(intimacyValue);
-          updateBottomMessage(intimacyValue);
-        } catch (fallbackError) {
-          console.error('回退方法也失败:', fallbackError);
-          toastr.error('无法获取变量数据');
+        if (field === '亲密度') {
+          intimacyValue = parseInt(value) || 0;
         }
-      }
+
+        if (['亲密度', '好感度', '恶感度', '警惕值'].includes(field)) {
+          const percentage = Math.max(0, Math.min(100, parseInt(value) || 0));
+          const progressBarId = `#progress-${character}-${field}`;
+          $(progressBarId).css('width', `${percentage}%`);
+        }
+      });
+
+      updateBackgroundOpacity(intimacyValue);
+      updateBottomMessage(intimacyValue);
     }
 
     function toggleSection($header) {
@@ -289,7 +249,9 @@
       });
     }
 
-    function init() {
+    async function init() {
+      await waitGlobalInitialized('Mvu');
+
       populateCharacterData();
 
       $('.section-header').on('click', function () {
@@ -300,12 +262,10 @@
       $('.section-header').first().click();
 
       // 监听 MVU 变量更新事件
-      if (typeof Mvu !== 'undefined') {
-        eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, variables => {
-          // 当变量更新结束时，重新填充数据
-          populateCharacterData();
-        });
-      }
+      eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, variables => {
+        // 当变量更新结束时，重新填充数据
+        populateCharacterData();
+      });
     }
 
     $(() => errorCatched(init)());
