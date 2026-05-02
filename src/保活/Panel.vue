@@ -307,14 +307,14 @@ function resumeIfNeeded() {
   const mode = settings.value.streamMode;
   if (mode === 'pip') {
     if (S.pipVideoEl?.paused) S.pipVideoEl.play().catch(() => {});
-    else if (!S.pipVideoEl && S.userInteracted) startPipVideo();
+    else if (!S.pipVideoEl) startPipVideo();
     return;
   }
   if (S.audioCtx?.state === 'suspended') S.audioCtx.resume().catch(() => {});
-  else if (!S.audioCtx && S.userInteracted) startSilentOscillator();
+  else if (!S.audioCtx) startSilentOscillator();
   if (mode === 'audio') {
     if (S.silentAudioEl?.paused) S.silentAudioEl.play().catch(() => {});
-    else if (!S.silentAudioEl && S.userInteracted) startSilentAudio();
+    else if (!S.silentAudioEl) startSilentAudio();
   }
 }
 function onModeChange() {
@@ -384,13 +384,7 @@ function onFirstInteraction() {
   S.userInteracted = true;
   window.parent.document.removeEventListener('click', onFirstInteraction, { capture: true });
   window.parent.document.removeEventListener('touchstart', onFirstInteraction, { capture: true });
-  if (!isPlaying.value) return;
-  const mode = settings.value.streamMode;
-  if (mode === 'pip') startPipVideo();
-  else {
-    startSilentOscillator();
-    if (mode === 'audio') startSilentAudio();
-  }
+  resumeIfNeeded();
 }
 
 // ---------- 頁面生命週期 ----------
@@ -437,13 +431,8 @@ function start() {
   startHeartbeatWorker();
   startBroadcastHeartbeat();
   const mode = settings.value.streamMode;
-  if (S.userInteracted) {
-    if (mode === 'pip') startPipVideo();
-    else {
-      startSilentOscillator();
-      if (mode === 'audio') startSilentAudio();
-    }
-  } else {
+  resumeIfNeeded();
+  if (!S.userInteracted) {
     window.parent.document.addEventListener('click', onFirstInteraction, { once: true, capture: true });
     window.parent.document.addEventListener('touchstart', onFirstInteraction, { once: true, capture: true });
   }
