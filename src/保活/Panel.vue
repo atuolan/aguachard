@@ -77,13 +77,13 @@ const QR_BUTTON_NAME_STOP = '⏹ 停止保活';
 const Settings = z
   .object({
     showQrButton: z.boolean().default(false),
-    streamMode: z.enum(['audio', 'pip']).catch('audio'),
+    streamMode: z.enum(['audio', 'pip']).default('audio').catch('audio'),
     keepAliveEnabled: z.boolean().default(false),
     notifyEnabled: z.boolean().default(false),
   })
-  .prefault({ streamMode: 'audio' });
+  .prefault({});
 const savedSettings = getVariables({ type: 'script' }) ?? {};
-const settings = ref(Settings.parse({ ...savedSettings, streamMode: savedSettings.streamMode ?? 'audio' }));
+const settings = ref(Settings.parse(savedSettings));
 watch(settings, val => replaceVariables(klona(val), { type: 'script' }), { deep: true });
 
 const isPlaying = ref(false);
