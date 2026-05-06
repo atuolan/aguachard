@@ -69,13 +69,14 @@ import { onUnmounted, ref, watch } from 'vue';
 // ===== 設定 =====
 const Settings = z
   .object({
-    saveInterval: z.number().int().min(1).default(1),
-    maxBackups: z.number().int().min(1).max(20).default(3),
-    backupDelay: z.number().min(0).max(30).default(5),
+    saveInterval: z.coerce.number().int().min(1).default(1).catch(1),
+    maxBackups: z.coerce.number().int().min(1).max(20).default(3).catch(3),
+    backupDelay: z.coerce.number().min(0).max(30).default(5).catch(5),
   })
   .prefault({});
 
-const settings = ref(Settings.parse(getVariables({ type: 'script' })));
+const savedSettings = getVariables({ type: 'script' }) ?? {};
+const settings = ref(Settings.parse(savedSettings));
 watch(settings, val => replaceVariables(klona(val), { type: 'script' }), { deep: true });
 
 // ===== 備份紀錄 =====
