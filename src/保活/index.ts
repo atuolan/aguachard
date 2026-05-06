@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import Panel from './Panel.vue';
 
 $(() => {
-  const app = createApp(Panel).use(createPinia());
+  const app = createApp(Panel);
   const $container = createScriptIdDiv().appendTo('#extensions_settings2');
   app.mount($container[0]);
   const { destroy } = teleportStyle();

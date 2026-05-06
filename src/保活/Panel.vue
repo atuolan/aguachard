@@ -69,6 +69,9 @@
 import { klona } from 'klona';
 import { computed, onUnmounted, ref, watch } from 'vue';
 
+const KEEPALIVE_VERSION = 'v2';
+console.info(`[保活] 腳本已加載 ${KEEPALIVE_VERSION}`);
+
 const SILENT_AUDIO_URL = 'https://bqb.aguacloud.uk/%E7%84%A1%E8%81%B2%E9%9F%B3%E9%A0%BB10%E5%88%86%E9%90%98.m4a';
 const SILENT_VIDEO_URL = 'https://bqb.aguacloud.uk/Video%20Project%207.mp4';
 const QR_BUTTON_NAME = '▶ 啟動保活';
@@ -82,8 +85,14 @@ const Settings = z
     notifyEnabled: z.boolean().default(false),
   })
   .prefault({});
-const savedSettings = getVariables({ type: 'script' }) ?? {};
-const settings = ref(Settings.parse(savedSettings));
+let initialSettings: z.infer<typeof Settings>;
+try {
+  initialSettings = Settings.parse(getVariables({ type: 'script' }) ?? {});
+} catch (e) {
+  console.warn('[保活] settings 解析失敗，使用默認值:', e);
+  initialSettings = Settings.parse({});
+}
+const settings = ref(initialSettings);
 watch(settings, val => replaceVariables(klona(val), { type: 'script' }), { deep: true });
 
 const isPlaying = ref(false);
