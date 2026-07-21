@@ -1,16 +1,13 @@
-# 依賴與構建產物
-node_modules/
-dist/
-!dist/聊天備份/
-!dist/保活/
-!dist/手机界面/
-!dist/雲端同步/
+node_modules
 
-# 系統與編輯器
 .DS_Store
 Thumbs.db
-*.log
 
-# 環境與設定（按需取消註解）
-# .env
-# .vscode/launch.json
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+auto-imports.d.ts
+components.d.ts

@@ -484,6 +484,41 @@ const notifyLabel = computed(() => {
   if (notifyPermission.value === 'denied') return '已拒絕';
   return '未授權';
 });
+// 取得可用的 ServiceWorkerRegistration（移動端 Android Chrome / iOS PWA 只能透過它發通知）
+async function getSwRegistration(): Promise<ServiceWorkerRegistration | null> {
+  try {
+    const sw = (window.parent as any)?.navigator?.serviceWorker ?? (navigator as any)?.serviceWorker;
+    if (!sw) return null;
+    // ready 會等到有 active worker；用 getRegistration 兜底避免無限等待
+    return (await sw.getRegistration()) ?? (await sw.ready) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// 統一發通知：優先 SW.showNotification（移動端唯一可靠），失敗再回退 new Notification（桌面）
+async function showNotification(title: string, options: NotificationOptions) {
+  const reg = await getSwRegistration();
+  if (reg && typeof reg.showNotification === 'function') {
+    try {
+      await reg.showNotification(title, options);
+      return;
+    } catch (e) {
+      console.warn('[保活] SW 通知失敗，回退 Notification:', e);
+    }
+  }
+  try {
+    const n = new NotificationAPI(title, options);
+    n.onclick = (e: Event) => {
+      e.preventDefault();
+      window.parent.focus();
+      n.close();
+    };
+  } catch (e) {
+    console.warn('[保活] Notification 構造失敗（移動端需 SW）:', e);
+  }
+}
+
 async function requestNotify() {
   if (!NotificationAPI) {
     toastr.warning('此瀏覽器不支援通知');
@@ -492,17 +527,14 @@ async function requestNotify() {
   const result = await NotificationAPI.requestPermission();
   notifyPermission.value = result;
   if (result === 'granted')
-    new NotificationAPI('保活通知已開啟', { body: 'AI 生成完畢時會通知你', icon: '/favicon.ico' });
+    await showNotification('保活通知已開啟', { body: 'AI 生成完畢時會通知你', icon: '/favicon.ico' });
 }
 function sendNotification() {
   if (!settings.value.notifyEnabled || notifyPermission.value !== 'granted') return;
+  // 頁面在前台可見時不打擾，只在切到後台/鎖屏時通知
+  if (document.visibilityState === 'visible' && window.parent.document.visibilityState === 'visible') return;
   const charName = getCurrentCharacterName() ?? 'TA';
-  const n = new NotificationAPI(`${charName} 回應你了`, { body: '我們的故事還在延續...', icon: '/favicon.ico' });
-  n.onclick = (e: Event) => {
-    e.preventDefault();
-    window.parent.focus();
-    n.close();
-  };
+  void showNotification(`${charName} 回應你了`, { body: '我們的故事還在延續...', icon: '/favicon.ico' });
 }
 const genListener = eventOn(tavern_events.GENERATION_ENDED, () => sendNotification());
 
