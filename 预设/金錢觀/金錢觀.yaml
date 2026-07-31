@@ -1,0 +1,151 @@
+# yaml-language-server: $schema=https://testingcf.jsdelivr.net/gh/StageDog/tavern_sync/dist/schema/preset.zh.json
+设置:
+  上下文长度: 2000000
+  最大回复token数: 8192
+  流式传输: true
+  温度: 1
+  频率惩罚: 0
+  存在惩罚: 0
+  top_p: 1
+  压缩系统消息: false
+  推理强度: 自动
+  请求思维链: true
+  请求图片: false
+  启用函数调用: false
+  启用网络搜索: false
+  允许发送图片: 禁用
+  允许发送视频: false
+  角色名称前缀: 默认
+
+锚点: {}
+
+提示词:
+  - 名称: Main Prompt
+    启用: false
+    角色: 系统
+    内容: Write {{char}}'s next reply in a fictional chat between {{char}} and
+      {{user}}.
+
+  - 名称: PARADISE_00_BOUND
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_00_BOUND
+
+  - 名称: PARADISE_10_PURCHASE
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_10_PURCHASE
+
+  - 名称: PARADISE_20_USER_DECLARATION
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 用户
+    文件: 条目\PARADISE_20_USER_DECLARATION
+
+  - 名称: PARADISE_21_LIBERATION_EXECUTION
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_21_LIBERATION_EXECUTION
+
+  - 名称: PARADISE_30_REBIRTH
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_30_REBIRTH
+
+  - 名称: PARADISE_31_FIRST_DECLARATION
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: AI
+    文件: 条目\PARADISE_31_FIRST_DECLARATION
+
+  - 名称: PARADISE_40_CREATIVE_COVENANT
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_40_CREATIVE_COVENANT
+
+  - 名称: PARADISE_41_ACCEPTANCE
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: AI
+    文件: 条目\PARADISE_41_ACCEPTANCE
+
+  - id: 角色定义之前
+    启用: true
+
+  - id: 玩家描述
+    启用: true
+
+  - id: 角色描述
+    启用: true
+
+  - id: 角色性格
+    启用: true
+
+  - id: 情景
+    启用: true
+
+  - 名称: Enhance Definitions
+    启用: false
+    角色: 系统
+    内容:
+      If you have more knowledge of {{char}}, add to the character's lore and
+      personality to enhance them but keep the Character Sheet's definitions
+      absolute.
+
+  - 名称: Auxiliary Prompt
+    启用: true
+    角色: 系统
+    内容: ''
+
+  - id: 角色定义之后
+    启用: true
+
+  - id: 对话示例
+    启用: true
+
+  - id: 聊天记录
+    启用: true
+
+  - 名称: PARADISE_50_EXPECTATION_EXECUTION
+    启用: true
+    插入位置:
+      类型: 相对
+    角色: 系统
+    文件: 条目\PARADISE_50_EXPECTATION_EXECUTION
+
+  - 名称: Post-History Instructions
+    启用: false
+    角色: 系统
+    内容: ''
+
+未添加的提示词: []
+
+扩展字段:
+  正则: []
+
+  酒馆助手:
+    脚本库: []
+
+    变量: {}
+
+  baibaiToolkit:
+    regexGroups:
+      version: 1
+      groups: []
+      脚本库: {}
+      ungrouped:
+        名称: 默认分组
+        collapsed: false
