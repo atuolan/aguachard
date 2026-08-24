@@ -1,194 +1,222 @@
-<div class="intersection-panel-container">
-<style>
-.intersection-panel-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 1rem auto;
-}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>劇情走向選擇</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
 
-.intersection-panel {
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: var(--SmartThemeBlurTintColor, #1e1e1e);
-  border: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 20%, transparent);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  color: var(--SmartThemeBodyColor, #e0e0e0);
-  font-family: var(--mainFontFamily, 'Noto Sans', sans-serif);
-}
+    .intersection-wrapper {
+      font-family: var(--mainFontFamily, 'Noto Sans', sans-serif);
+      background: transparent;
+      padding: 8px;
+      margin: 0;
+      display: block;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.intersection-panel-header {
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 15%, transparent);
-}
+    .intersection-panel-container {
+      width: 100%;
+      background: var(--SmartThemeBlurTintColor, #1e1e1e);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
 
-.intersection-panel-title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--SmartThemeBorderColor, #4a9eff);
-}
+    .intersection-header {
+      padding: 14px 16px;
+      background: linear-gradient(90deg, rgba(10, 12, 18, 0.9), rgba(15, 18, 25, 0.8));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
 
-.intersection-panel-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+    .intersection-title {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin: 0;
+    }
 
-.intersection-options-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+    .intersection-content {
+      background: rgba(3, 4, 8, 0.6);
+      padding: 12px;
+    }
 
-.intersection-option-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-}
+    .intersection-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-.intersection-option-item:hover {
-  background: color-mix(in srgb, var(--SmartThemeBodyColor) 8%, transparent);
-}
+    .intersection-option {
+      display: flex;
+      align-items: flex-start;
+      background: linear-gradient(90deg, rgba(15, 18, 25, 0.6) 0%, rgba(20, 24, 35, 0.4) 100%);
+      border: 1px solid rgba(100, 116, 139, 0.3);
+      border-radius: 8px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-.intersection-option-item:has(:checked) {
-  background: color-mix(in srgb, var(--SmartThemeBorderColor) 15%, transparent);
-  border-color: var(--SmartThemeBorderColor, #4a9eff);
-}
+    .intersection-option:hover {
+      background: linear-gradient(90deg, rgba(20, 25, 35, 0.8) 0%, rgba(30, 35, 50, 0.6) 100%);
+      border-color: rgba(148, 163, 184, 0.6);
+      transform: translateX(2px);
+      box-shadow: 0 2px 8px rgba(148, 163, 184, 0.15);
+    }
 
-.intersection-option-radio {
-  margin-top: 0.25rem;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    .intersection-option-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-.intersection-option-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  flex: 1;
-}
+    .intersection-option-category {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--SmartThemeBorderColor, #4a9eff);
+      text-shadow: 0 0 8px rgba(74, 158, 255, 0.3);
+    }
 
-.intersection-option-category {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--SmartThemeBorderColor, #4a9eff);
-}
+    .intersection-option-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--SmartThemeBodyColor, #cbd5e1);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
 
-.intersection-option-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--SmartThemeBodyColor, #e0e0e0);
-}
+    .empty-state {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      font-style: italic;
+      font-size: 12px;
+      border: 1px dotted rgba(100, 116, 139, 0.2);
+      border-radius: 6px;
+    }
 
-.intersection-confirm-btn {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: var(--SmartThemeBorderColor, #4a9eff);
-  color: white;
-  font-family: inherit;
-}
+    @media (max-width: 768px) {
+      .intersection-panel-container {
+        margin: 0.5rem;
+      }
+      
+      .intersection-title {
+        font-size: 13px;
+      }
+      
+      .intersection-option {
+        padding: 10px 12px;
+      }
+      
+      .intersection-option-category,
+      .intersection-option-text {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-.intersection-confirm-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: color-mix(in srgb, var(--SmartThemeBodyColor) 30%, transparent);
-}
+  <div class="intersection-wrapper">
+    <div class="intersection-panel-container">
+      <div class="intersection-header">
+        <h3 class="intersection-title">劇情走向選擇</h3>
+      </div>
 
-.intersection-confirm-btn:not(:disabled):hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(74, 158, 255, 0.3);
-}
-
-.intersection-confirm-btn:not(:disabled):active {
-  transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-  .intersection-panel {
-    margin: 0.5rem;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  
-  .intersection-panel-title {
-    font-size: 1.1rem;
-  }
-  
-  .intersection-option-item {
-    padding: 0.75rem;
-  }
-  
-  .intersection-option-category {
-    font-size: 0.9rem;
-  }
-  
-  .intersection-option-text {
-    font-size: 0.875rem;
-  }
-  
-  .intersection-confirm-btn {
-    padding: 0.625rem;
-    font-size: 0.95rem;
-  }
-}
-</style>
-
-<div class="intersection-panel" data-intersection-panel>
-  <div class="intersection-panel-header">
-    <h3 class="intersection-panel-title">劇情走向選擇</h3>
-  </div>
-  <form class="intersection-panel-form">
-    <div class="intersection-options-container">
-      <label class="intersection-option-item">
-        <input type="radio" name="fork-choice" value="$2" class="intersection-option-radio" data-category="時間跳轉">
-        <span class="intersection-option-content">
-          <span class="intersection-option-category">【時間跳轉】</span>
-          <span class="intersection-option-text">$2</span>
-        </span>
-      </label>
-      <label class="intersection-option-item">
-        <input type="radio" name="fork-choice" value="$3" class="intersection-option-radio" data-category="場景發展">
-        <span class="intersection-option-content">
-          <span class="intersection-option-category">【場景發展】</span>
-          <span class="intersection-option-text">$3</span>
-        </span>
-      </label>
-      <label class="intersection-option-item">
-        <input type="radio" name="fork-choice" value="$4" class="intersection-option-radio" data-category="NPC行動">
-        <span class="intersection-option-content">
-          <span class="intersection-option-category">【NPC行動】</span>
-          <span class="intersection-option-text">$4</span>
-        </span>
-      </label>
-      <label class="intersection-option-item">
-        <input type="radio" name="fork-choice" value="$5" class="intersection-option-radio" data-category="阻力形成">
-        <span class="intersection-option-content">
-          <span class="intersection-option-category">【阻力形成】</span>
-          <span class="intersection-option-text">$5</span>
-        </span>
-      </label>
-      <label class="intersection-option-item">
-        <input type="radio" name="fork-choice" value="$6" class="intersection-option-radio" data-category="機會形成">
-        <span class="intersection-option-content">
-          <span class="intersection-option-category">【機會形成】</span>
-          <span class="intersection-option-text">$6</span>
-        </span>
-      </label>
+      <div class="intersection-content">
+        <script class="intersection-raw-data" type="text/plain" style="display:none;">$1</script>
+        <div class="intersection-options"></div>
+      </div>
     </div>
-    <button type="submit" class="intersection-confirm-btn" disabled>確定選擇</button>
-  </form>
-</div>
-</div>
+
+    <script>
+      (function () {
+        var currentScript = document.currentScript;
+        if (!currentScript) {
+          var scripts = document.getElementsByTagName('script');
+          currentScript = scripts[scripts.length - 1];
+        }
+
+        var wrapper = currentScript.closest('.intersection-wrapper');
+        var rawDataEl = wrapper.querySelector('.intersection-raw-data');
+        var container = wrapper.querySelector('.intersection-options');
+
+        if (rawDataEl && container) {
+          var rawText = rawDataEl.textContent.trim();
+          
+          // 定义五个类别及其匹配正则
+          var categories = [
+            { name: '時間跳轉', regex: /fork[１1][:：]\s*(.*?)(?=(?:fork[２2]|$))/is, icon: '⏰' },
+            { name: '場景發展', regex: /fork[２2][:：]\s*(.*?)(?=(?:fork[３3]|$))/is, icon: '🎬' },
+            { name: 'NPC行動', regex: /fork[３3][:：]\s*(.*?)(?=(?:fork[４4]|$))/is, icon: '👤' },
+            { name: '阻力形成', regex: /fork[４4][:：]\s*(.*?)(?=(?:fork[５5]|$))/is, icon: '⚠️' },
+            { name: '機會形成', regex: /fork[５5][:：]\s*(.*?)(?=(?:$))/is, icon: '✨' }
+          ];
+
+          container.innerHTML = '';
+          var foundCount = 0;
+
+          categories.forEach(function(cat) {
+            var match = rawText.match(cat.regex);
+            if (match && match[1]) {
+              var text = match[1].trim();
+              if (text) {
+                foundCount++;
+                
+                var option = document.createElement('div');
+                option.className = 'intersection-option';
+                
+                var content = document.createElement('div');
+                content.className = 'intersection-option-content';
+                
+                var category = document.createElement('div');
+                category.className = 'intersection-option-category';
+                category.textContent = cat.icon + ' 【' + cat.name + '】';
+                
+                var textEl = document.createElement('div');
+                textEl.className = 'intersection-option-text';
+                textEl.textContent = text;
+                
+                content.appendChild(category);
+                content.appendChild(textEl);
+                option.appendChild(content);
+                
+                // 点击事件处理
+                (function(selectedText) {
+                  option.onclick = function() {
+                    if (typeof triggerSlash === 'function') {
+                      triggerSlash('/setinput ' + selectedText);
+                    } else {
+                      console.log('Selected:', selectedText);
+                    }
+                  };
+                })(text);
+                
+                container.appendChild(option);
+              }
+            }
+          });
+
+          if (foundCount === 0) {
+            container.innerHTML = '<div class="empty-state">未找到有效的劇情分支選項</div>';
+          }
+        }
+      })();
+    </script>
+  </div>
+
+</body>
+</html>
+```
