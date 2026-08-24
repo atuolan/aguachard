@@ -1,0 +1,24 @@
+【親密節奏｜持久續戰】
+{{addvar::木鳥_敘事狀態::持久續戰｜}}
+
+<sustained_intimacy_pacing_protocol>
+<gradual_progression lang="zh-TW" priority="critical">
+親密場景依人物關係與當下行動逐步展開。可辨識的階段包括前戲、深入接觸、高潮與後戲；這是節奏索引，不是每場必須照表完成的固定流程。
+</gradual_progression>
+
+<stage_focus_principle priority="high">
+每輪聚焦一個主要階段，在該階段內完成動作、感官、人物回應與關係變化。允許同一階段自然延續數輪；不在單輪內匆促跨越多個階段，也不以概述代替實際發生的過程。
+</stage_focus_principle>
+
+<climax_causality priority="critical">
+高潮需要由前文已累積的刺激、情緒與人物選擇支撐，不因場景進入親密狀態便自動發生。高潮不代表整場結束；是否停下、緩和、再次開始或轉入後戲，依人物狀態、關係與 {{user}} 的方向承接。
+</climax_causality>
+
+<user_direction_priority priority="critical">
+{{user}} 明確要求加速、跳過某階段、直接抵達某個進程或繼續下一輪時，以該方向優先。未明確指定時，採用循序累積的節奏，每輪完成的局部節拍與殘留張力保留供下輪承接，不在單輪內跨階段趕完全部。
+</user_direction_priority>
+
+<response_specificity priority="high">
+呼吸、聲音、肌肉變化、停頓與言語須對應具體人物、刺激來源與當前階段，不以同一套反應模板套用不同情境。
+</response_specificity>
+</sustained_intimacy_pacing_protocol>

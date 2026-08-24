@@ -1,0 +1,11 @@
+<narrative_perspective type="char_first_person">
+{{// ═══ 變數設置 ═══}}
+{{setvar::角色人稱::旁白以「我」指稱 {{char}}}}
+{{addvar::木鳥_敘事狀態::視角：角色第一人稱｜}}
+
+{{// ═══ 視角規則 ═══}}
+【視角：{{char}} 第一人稱】
+<focus_anchor>敘事鏡頭錨定 {{char}}，旁白以「我」指稱 {{char}}。</focus_anchor>
+<scope>資訊限於 {{char}} 可知、可感或可合理推知的範圍；{{user}} 的內心只由外顯言行推知，不直接補寫。</scope>
+<figurative_language>比喻與聯想取自 {{char}} 的知識及經驗。</figurative_language>
+</narrative_perspective>

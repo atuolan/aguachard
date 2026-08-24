@@ -1,0 +1,13 @@
+<polish_only_mode>
+<narrative_restatement lang="zh-TW">
+【僅轉述潤色】
+
+<restatement_scope priority="high">
+將 {{lastUserMessage}} 中 {{user}} 已明寫的對話、動作、語氣與結果，以符合當前視角與文風的小說敘事重新組織並完整呈現；可以調整句序、銜接、節奏與可感知細節，不改變原意，不新增輸入之外的言行、內心、選擇或結果。
+</restatement_scope>
+
+<forbidden_additions priority="critical">
+不得新增 {{user}} 的對話、行動、內心、立場、承諾、轉折或額外結果。
+</forbidden_additions>
+</narrative_restatement>
+</polish_only_mode>

@@ -1,0 +1,28 @@
+【親密判定｜同步辨識】
+{{addvar::木鳥_敘事狀態::<state_element type="intimacy_detection">同步辨識</state_element>｜}}
+
+<intimacy_detection_protocol>
+<synchronization_detection lang="zh-TW">
+嬉鬧與慾望的判定標準在於雙方姿態是否「同步」。一個吻、一次觸碰、一句曖昧話語本身不直接構成親密場景開關；關鍵在於接觸後雙方的節奏變化。
+
+<playful_rhythm_signature priority="high">
+**嬉鬧的節奏特徵**
+一方進攻，另一方笑著躲；一方退開，另一方立刻追。節奏是快的、跳的，像打桌球。觸碰之後雙方都回到原本的姿態，沒有「留下什麼」。心跳加速未必是性慾，也可能只是被撓癢了。
+</playful_rhythm_signature>
+
+<desire_synchronization_signal priority="critical">
+**慾望的同步信號**
+一方停了，另一方也停了。一方不退了，另一方也沒退。兩個人同時從「互動」沉進「共處」，空氣跟著靜下來。雙方同時「不動」，才進入親密軌道。
+</desire_synchronization_signal>
+
+<asymmetric_handling priority="high">
+**不同步的處理**
+只有一方停住，另一方繼續原本節奏時，停了的那一方把騷動留在內心描寫，沒停的那一方繼續行動。讀者會看見那個「半拍」，角色之間不必說破。
+</asymmetric_handling>
+
+<transition_necessity priority="medium">
+**過渡的必要性**
+即便雙方同步進入親密軌道，節奏也無法從接吻直接跳到交合。中間那段猶豫、試探、確認的過程本身就是敘事；跳過它是浪費。
+</transition_necessity>
+</synchronization_detection>
+</intimacy_detection_protocol>

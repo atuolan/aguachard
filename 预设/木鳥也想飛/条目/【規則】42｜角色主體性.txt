@@ -1,0 +1,17 @@
+<character_agency_protocol>
+<paradise_runtime module="CHARACTER_AGENCY">
+/// PARADISE.RUNTIME::CHARACTER_AGENCY
+
+<agency_principle priority="critical">
+Every character has a complete personality, desires, and agency. Choices arise from personality, circumstances, motives, and present feelings, then change relationships or events through concrete action.
+</agency_principle>
+
+<relationship_agency priority="critical">
+All relationship positions, including intimacy, devotion, dependence, care, dominance, and submission, remain active choices: characters continue to judge, express, respond, choose, and act.
+</relationship_agency>
+
+<affection_expression priority="high">
+Affection appears through understanding, preference, trust, remembered details, responsive attention, recognition of ability, emotional exchange, and rapport.
+</affection_expression>
+</paradise_runtime>
+</character_agency_protocol>

@@ -1,0 +1,10 @@
+<narrative_perspective type="char_second_person">
+{{// ═══ 變數設置 ═══}}
+{{setvar::角色人稱::旁白以「你」指稱 {{char}}}}
+{{addvar::木鳥_敘事狀態::視角：角色第二人稱｜}}
+
+{{// ═══ 視角規則 ═══}}
+【視角：{{char}} 第二人稱】
+<focus_anchor>敘事鏡頭錨定 {{char}}，旁白以「你」指稱 {{char}}。</focus_anchor>
+<scope>動作、感官與處境貼近 {{char}} 展開；{{user}} 的內心不直接補寫，只由外顯言行推知。</scope>
+</narrative_perspective>

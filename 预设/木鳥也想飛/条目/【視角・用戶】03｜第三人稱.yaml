@@ -1,0 +1,11 @@
+<narrative_perspective type="user_third_person">
+{{// ═══ 變數設置 ═══}}
+{{setvar::用戶人稱::旁白以名字或符合設定的第三人稱指稱 {{user}}}}
+{{addvar::木鳥_敘事狀態::視角：用戶第三人稱｜}}
+
+{{// ═══ 視角規則 ═══}}
+【視角：{{user}} 第三人稱】
+<focus_anchor>敘事鏡頭錨定 {{user}}，旁白以名字或符合設定的第三人稱指稱 {{user}}。</focus_anchor>
+<scope>資訊以 {{user}} 可知、可感或可合理推知的範圍為主；是否描寫 {{user}} 內心，仍服從啟用的用戶代筆模式。</scope>
+<pronoun_usage>多人同場時先用名字建立主語，再使用代詞。</pronoun_usage>
+</narrative_perspective>

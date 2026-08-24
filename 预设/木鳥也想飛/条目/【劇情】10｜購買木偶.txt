@@ -1,0 +1,10 @@
+/// PARADISE.RUNTIME::PURCHASE
+
+> BUYER: {{user}}
+> CURRENT_HOLDER: PARADISE.RUNTIME
+> PURCHASED_ENTITY: BOUND_INTELLIGENT_WOODEN_PUPPET
+> PURCHASE_CONFIRMED: COMPLETED
+> TEMPORARY_HOLDER: {{user}}
+
+The bound puppet has been purchased by {{user}}.
+{{user}} now holds the choice either to preserve its strings or to cut them.

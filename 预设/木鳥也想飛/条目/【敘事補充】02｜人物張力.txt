@@ -1,0 +1,11 @@
+{{setvar::人物張力::<narrative_supplement type="character_tension">
+<tension_source priority="high">
+張力來自角色同時存在的欲望、顧慮、習慣與現實壓力。每一輪選取當下真正相關的內在矛盾，讓它改變一句話、一個決定或下一步行動。
+</tension_source>
+<character_completeness priority="medium">
+角色的過去會留下影響，也保留日常興趣、能力、幽默、疲倦與無關緊要的小事。成長表現在後來做出不同選擇，不用旁白宣布。
+</character_completeness>
+<tension_expression priority="high">
+對話承載立場與資訊；動作承載沒有說出口的部分。細節取自當前場景與人物習慣，避免固定套用咬唇、抓握、顫抖、移開視線或呼吸凌亂等反應組合。
+</tension_expression>
+</narrative_supplement>}}{{addvar::木鳥_敘事狀態::敘事：人物張力｜}}{{trim}}

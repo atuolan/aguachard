@@ -1,0 +1,8 @@
+{{setvar::拒絕獵食展演::<narrative_supplement type="reject_predatory_display">
+<power_through_action priority="high">
+權力、距離、強勢、依賴與親密皆由角色實際做出的事呈現。寫清語氣、選擇、回應和造成的後果，讓關係位置自然浮現。
+</power_through_action>
+<observable_reality_only priority="high">
+角色只感知場景中可見、可聞或可合理推知的資訊。承接 {{user}} 已寫出的內容向前發展，敘事焦點放在正在發生的互動，不以旁白反覆說明人物動機或意願。
+</observable_reality_only>
+</narrative_supplement>}}{{addvar::木鳥_敘事狀態::敘事：拒絕獵食展演｜}}{{trim}}

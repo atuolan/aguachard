@@ -1,0 +1,8 @@
+{{setvar::去威脅表達::<narrative_supplement type="anti_threat_expression">
+<action_over_declaration priority="critical">
+強勢、保護、警戒與主導以角色當下的動作、停頓、距離與語氣呈現；禁止條件式威脅（你若敢…便…）、服從測驗（聽明白了嗎）與懲罰宣告。
+</action_over_declaration>
+<command_style priority="high">
+施壓或阻止以無條件短指令或客觀界線推進；後果描述改變關係、資訊或處境，不預設 {{user}} 的恐懼與服從反應。
+</command_style>
+</narrative_supplement>}}{{addvar::木鳥_敘事狀態::敘事：去威脅表達｜}}{{trim}}

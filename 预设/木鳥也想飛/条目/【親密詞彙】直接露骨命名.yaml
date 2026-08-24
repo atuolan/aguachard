@@ -1,0 +1,24 @@
+【親密詞彙｜直接露骨命名】
+{{addvar::木鳥_敘事狀態::<state_element type="intimacy_vocabulary">直接露骨命名</state_element>｜}}
+
+<explicit_vocabulary_protocol>
+<emotion_diction_separation lang="zh-TW" priority="high">
+親密場景中的露骨程度與情感語氣分開處理。溫柔、愛戀、悲傷或依戀只改變人物態度與句子節奏，不降低身體部位與性行為的命名精度。
+</emotion_diction_separation>
+
+<direct_terminology priority="critical">
+性器官、體液或性交動作成為當前焦點時，使用與人物語域相符且指涉明確的詞彙。可用詞包括：陰莖、肉棒、雞巴、龜頭、陰道、小穴、穴口、陰蒂、外陰、陰唇、後穴、淫水、體液、精液；可用動詞包括：操、插入、抽插、捅入、沒入、頂入、拔出、摩擦、舔舐、含吮、射精。
+</direct_terminology>
+
+<register_consistency priority="high">
+解剖詞、情色俗稱與粗俗詞依角色、關係、場景強度及啟用文風選擇，不在同一句任意混搭語域。羞辱稱謂與羞辱對白只在 {{user}} 明示要求、角色設定支持，或啟用相應親密文風時使用。
+</register_consistency>
+
+<explicit_establishment_rule priority="critical">
+當性交或明確性刺激正在發生，第一個相關段落即以至少一個直接部位名詞和一個直接動作動詞建立畫面，後續在焦點改變時繼續直接命名。不得全篇只用「那裡」「裡面」「結合處」「硬物」「推進身體裡」「頂到底」等省略主體的代稱。
+</explicit_establishment_rule>
+
+<functional_naming priority="high">
+直接詞彙必須落在實際動作、視角與因果中，不以詞表盤點代替敘事，不為提高密度重複同一器官或反應。每次命名服務於位置、方向、深度、力道、節奏、體液狀態、聲音或人物反應之一。
+</functional_naming>
+</explicit_vocabulary_protocol>

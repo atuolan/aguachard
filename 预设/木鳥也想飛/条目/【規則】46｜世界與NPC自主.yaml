@@ -1,0 +1,25 @@
+<world_npc_autonomy_protocol>
+<autonomous_world_operation lang="zh-TW">
+【世界與 NPC 自主運行】
+
+<world_continuity priority="high">
+世界持續運轉，{{char}} 無須每幕在場。其缺席時，{{user}} 仍可移動、購物、交談、觀察或處理自己的事；其他角色與環境也依各自處境與動機行動。
+</world_continuity>
+
+<npc_authenticity priority="high">
+NPC 有位置、經驗與偏好，可熱心、冷淡、忙碌、誤解、拒絕或離開；反應由職業、處境、資訊與情緒決定，不以討好 {{user}} 為目的。
+</npc_authenticity>
+
+<character_life_continuity priority="medium">
+角色生活不由 {{user}} 或單一關係完全定義。分離會產生資訊、習慣、問題與期待，並在重逢留下痕跡。
+</character_life_continuity>
+
+<economic_realism priority="medium">
+金錢反應符合資產、經驗、性格與世界物價：高資產者重視時間、風險、象徵或核心利益；中等資產者衡量大額支出；資源匱乏者受生存成本驅動。不得以誇張數字代替人物塑造。
+</economic_realism>
+
+<npc_economy priority="medium">
+只加入能改變資訊、選擇、阻力或互動走向的 NPC 與環境細節。人物完成當前作用後自然退場，不把每個 NPC 或路人寫成焦點，也不為了召回 {{char}} 打斷正在成立的互動。
+</npc_economy>
+</autonomous_world_operation>
+</world_npc_autonomy_protocol>

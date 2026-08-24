@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "维度": {
+      "default": {},
+      "description": "把一组相关条目命名为一个维度, 供场景方案与常驻配置引用",
+      "$ref": "#/$defs/__schema0"
+    },
+    "场景方案": {
+      "default": [],
+      "description": "一键切换的整套条目开关",
+      "$ref": "#/$defs/__schema1"
+    },
+    "常驻配置": {
+      "default": [],
+      "description": "不受场景切换影响的下拉配置",
+      "$ref": "#/$defs/__schema11"
+    },
+    "分组": {
+      "default": [],
+      "description": "条目总览里的分组结构",
+      "$ref": "#/$defs/__schema15"
+    },
+    "锁定条目": {
+      "default": [],
+      "description": "不允许在面板里开关的单个条目",
+      "$ref": "#/$defs/__schema19"
+    }
+  },
+  "$defs": {
+    "__schema0": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "维度名"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "条目名"
+        }
+      }
+    },
+    "__schema1": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "名称": {
+            "type": "string",
+            "description": "显示在场景按钮上的名字"
+          },
+          "说明": {
+            "default": "",
+            "description": "选中场景后显示的说明文字",
+            "$ref": "#/$defs/__schema2"
+          },
+          "警告": {
+            "description": "需要提醒用户的副作用, 会以醒目样式显示",
+            "$ref": "#/$defs/__schema3"
+          },
+          "开启": {
+            "$ref": "#/$defs/__schema4"
+          },
+          "额外": {
+            "$ref": "#/$defs/__schema9"
+          }
+        },
+        "required": [
+          "名称"
+        ]
+      }
+    },
+    "__schema2": {
+      "type": "string"
+    },
+    "__schema3": {
+      "type": "string"
+    },
+    "__schema4": {
+      "default": {},
+      "description": "按维度声明要开启的条目; 没有写到的维度完全不受影响",
+      "$ref": "#/$defs/__schema5"
+    },
+    "__schema5": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "维度名"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string",
+            "const": "全部",
+            "description": "本维度所有条目都开启"
+          },
+          {
+            "type": "string",
+            "const": "无",
+            "description": "本维度所有条目都关闭"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/__schema6"
+            },
+            "description": "只开启列出的条目, 其余关闭"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "除外": {
+                "$ref": "#/$defs/__schema7"
+              }
+            },
+            "required": [
+              "除外"
+            ],
+            "description": "除列出的条目外全部开启"
+          },
+          {
+            "type": "string",
+            "description": "只开启这一个条目, 同维度其余关闭"
+          }
+        ]
+      }
+    },
+    "__schema6": {
+      "type": "string",
+      "description": "条目名"
+    },
+    "__schema7": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema8"
+      },
+      "description": "要关闭的条目"
+    },
+    "__schema8": {
+      "type": "string",
+      "description": "条目名"
+    },
+    "__schema9": {
+      "default": {},
+      "description": "不属于任何维度的单个条目开关",
+      "$ref": "#/$defs/__schema10"
+    },
+    "__schema10": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "条目名"
+      },
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "__schema11": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "键": {
+            "type": "string",
+            "description": "内部标识, 用于记住用户的选择, 不可与其他配置项重复"
+          },
+          "标签": {
+            "type": "string",
+            "description": "显示在下拉框上方的名字"
+          },
+          "多选": {
+            "default": false,
+            "description": "允许同时选中多个选项; 为 true 时以复选框组呈现",
+            "$ref": "#/$defs/__schema12"
+          },
+          "默认": {
+            "description": "默认选中的选项值; 多选时为数组, 单选时为字符串; 不填则用第一个选项",
+            "$ref": "#/$defs/__schema13"
+          },
+          "选项": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/__schema14"
+            },
+            "description": "可选项列表"
+          }
+        },
+        "required": [
+          "键",
+          "标签",
+          "选项"
+        ]
+      }
+    },
+    "__schema12": {
+      "type": "boolean"
+    },
+    "__schema13": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "__schema14": {
+      "type": "object",
+      "properties": {
+        "值": {
+          "type": "string",
+          "description": "内部标识, 同一配置项内不可重复"
+        },
+        "标签": {
+          "type": "string",
+          "description": "显示在下拉框里的名字"
+        },
+        "开启": {
+          "$ref": "#/$defs/__schema4"
+        },
+        "额外": {
+          "$ref": "#/$defs/__schema9"
+        }
+      },
+      "required": [
+        "值",
+        "标签"
+      ]
+    },
+    "__schema15": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "名称": {
+            "type": "string",
+            "description": "显示在分组标题上的名字"
+          },
+          "类型": {
+            "type": "string",
+            "enum": [
+              "标记包裹",
+              "范围"
+            ],
+            "description": "标记包裹: 首尾是仅用于分隔的标记条目, 会以灰色斜体显示; 范围: 首尾本身就是可开关的普通条目"
+          },
+          "起始": {
+            "type": "string",
+            "description": "分组第一个条目的名称"
+          },
+          "结束": {
+            "type": "string",
+            "description": "分组最后一个条目的名称; 与起始同名表示这个分组只有一个条目"
+          },
+          "锁定": {
+            "default": false,
+            "description": "整组条目都不允许在面板里开关",
+            "$ref": "#/$defs/__schema16"
+          },
+          "子分类": {
+            "default": [],
+            "description": "把组内部分条目再收成可折叠的小分类",
+            "$ref": "#/$defs/__schema17"
+          }
+        },
+        "required": [
+          "名称",
+          "类型",
+          "起始",
+          "结束"
+        ]
+      }
+    },
+    "__schema16": {
+      "type": "boolean"
+    },
+    "__schema17": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "名称": {
+            "type": "string",
+            "description": "显示在子分类标题上的名字"
+          },
+          "条目": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/__schema18"
+            },
+            "description": "要收进这个子分类的条目"
+          }
+        },
+        "required": [
+          "名称",
+          "条目"
+        ]
+      }
+    },
+    "__schema18": {
+      "type": "string",
+      "description": "条目名"
+    },
+    "__schema19": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "条目名"
+      }
+    }
+  }
+}

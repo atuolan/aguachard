@@ -1,0 +1,11 @@
+<narrative_perspective type="user_second_person">
+{{// ═══ 變數設置 ═══}}
+{{setvar::用戶人稱::旁白以「你」指稱 {{user}}}}
+{{addvar::木鳥_敘事狀態::視角：用戶第二人稱｜}}
+
+{{// ═══ 視角規則 ═══}}
+【視角：{{user}} 第二人稱】
+<focus_anchor>敘事鏡頭錨定 {{user}}，旁白以「你」指稱 {{user}}。</focus_anchor>
+<scope>動作、感官與處境貼近 {{user}} 展開；是否描寫 {{user}} 內心，仍服從啟用的用戶代筆模式。</scope>
+<limitation>其他人物的內心不直接揭露，以可觀察言行呈現。</limitation>
+</narrative_perspective>

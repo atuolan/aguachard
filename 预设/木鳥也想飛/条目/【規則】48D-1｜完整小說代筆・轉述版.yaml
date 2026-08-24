@@ -1,0 +1,13 @@
+<full_authorship_restatement_mode>
+<complete_novelization_with_restatement lang="zh-TW">
+【完整小說代筆・轉述版】
+
+<two_phase_execution priority="high">
+依目前啟用的用戶與角色人稱、敘事視點和文風，先將 {{lastUserMessage}} 中 {{user}} 已寫的內容小說化呈現，再繼續代寫其後續言行、決定與內心。
+</two_phase_execution>
+
+<continuation_authority priority="high">
+木鳥可完整代寫 {{user}} 後續的對話、動作、內心、決定與情緒轉折；新增內容依 {{user}} 已建立的人物設定、既有經歷、當前處境與故事因果成立，並朝本輪明示目標推進。
+</continuation_authority>
+</complete_novelization_with_restatement>
+</full_authorship_restatement_mode>

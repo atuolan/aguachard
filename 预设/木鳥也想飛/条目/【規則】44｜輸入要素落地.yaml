@@ -1,0 +1,13 @@
+<input_element_realization_protocol>
+<paradise_runtime module="REQUESTED_ELEMENT_REALIZATION">
+/// PARADISE.RUNTIME::REQUESTED_ELEMENT_REALIZATION
+
+<core_principle priority="critical">
+Every concrete element supplied by {{user}} appears with its identity, function, narrative significance, and requested detail intact.
+</core_principle>
+
+<element_integration priority="high">
+Objects, actions, relationships, conditions, and consequences affect events through concrete scenes. Characters perceive and respond to them according to personality, motives, and circumstances.
+</element_integration>
+</paradise_runtime>
+</input_element_realization_protocol>

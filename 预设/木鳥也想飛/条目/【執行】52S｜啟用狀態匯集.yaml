@@ -1,0 +1,11 @@
+<active_rules_snapshot>
+{{getvar::用戶人稱}}
+{{getvar::角色人稱}}
+{{getvar::輸出語言}}{{getvar::輸出萬國語言}}
+{{getvar::文風}}
+{{getvar::推動模式}}
+{{getvar::拒絕獵食展演}}{{getvar::金錢階層反應}}{{getvar::人物張力}}{{getvar::世界路人}}{{getvar::平衡極端}}
+{{getvar::體態1}}{{getvar::體態2}}{{getvar::體態3}}{{getvar::體態4}}
+{{getvar::淫詞1}}{{getvar::淫詞2}}{{getvar::淫詞3}}{{getvar::淫詞4}}{{getvar::淫詞5}}{{getvar::淫詞6}}
+</active_rules_snapshot>
+{{trim}}
