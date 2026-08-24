@@ -686,24 +686,24 @@
         .intersection-panel {
           padding: 1.5rem;
           border-radius: 12px;
-          background: var(--SmartThemeBlurTintColor, #1e1e1e);
-          border: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 20%, transparent);
+          background: #1e1e1e;
+          border: 1px solid rgba(224, 224, 224, 0.2);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-          color: var(--SmartThemeBodyColor, #e0e0e0);
-          font-family: var(--mainFontFamily, 'Noto Sans', sans-serif);
+          color: #e0e0e0;
+          font-family: 'Noto Sans', sans-serif;
         }
 
         .intersection-panel-header {
           margin-bottom: 1rem;
           padding-bottom: 0.75rem;
-          border-bottom: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 15%, transparent);
+          border-bottom: 1px solid rgba(224, 224, 224, 0.15);
         }
 
         .intersection-panel-title {
           margin: 0;
           font-size: 1.25rem;
           font-weight: 600;
-          color: var(--SmartThemeBorderColor, #4a9eff);
+          color: #4a9eff;
         }
 
         .intersection-panel-form {
@@ -731,12 +731,12 @@
         }
 
         .intersection-option-item:hover {
-          background: color-mix(in srgb, var(--SmartThemeBodyColor) 8%, transparent);
+          background: rgba(224, 224, 224, 0.08);
         }
 
         .intersection-option-item:has(:checked) {
-          background: color-mix(in srgb, var(--SmartThemeBorderColor) 15%, transparent);
-          border-color: var(--SmartThemeBorderColor, #4a9eff);
+          background: rgba(74, 158, 255, 0.15);
+          border-color: #4a9eff;
         }
 
         .intersection-option-radio {
@@ -755,13 +755,13 @@
         .intersection-option-category {
           font-weight: 600;
           font-size: 0.95rem;
-          color: var(--SmartThemeBorderColor, #4a9eff);
+          color: #4a9eff;
         }
 
         .intersection-option-text {
           font-size: 0.95rem;
           line-height: 1.5;
-          color: var(--SmartThemeBodyColor, #e0e0e0);
+          color: #e0e0e0;
         }
 
         .intersection-confirm-btn {
@@ -773,7 +773,7 @@
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          background: var(--SmartThemeBorderColor, #4a9eff);
+          background: #4a9eff;
           color: white;
           font-family: inherit;
         }
@@ -781,7 +781,7 @@
         .intersection-confirm-btn:disabled {
           opacity: 0.5;
           cursor: not-allowed;
-          background: color-mix(in srgb, var(--SmartThemeBodyColor) 30%, transparent);
+          background: rgba(224, 224, 224, 0.3);
         }
 
         .intersection-confirm-btn:not(:disabled):hover {
