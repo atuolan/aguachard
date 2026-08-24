@@ -381,7 +381,8 @@ function replacePlaceholder(placeholder: HTMLElement): void {
 function observePlaceholders(): void {
   const container = document.querySelector(CHAT_CONTAINER_SELECTOR);
   if (!container) {
-    console.warn('[路线规划面板] 聊天容器不存在');
+    console.warn('[路线规划面板] 聊天容器不存在，将在 1 秒后重试');
+    setTimeout(observePlaceholders, 1000);
     return;
   }
 
