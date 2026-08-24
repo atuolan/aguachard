@@ -97,16 +97,6 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     }
 
-    .empty-state {
-      text-align: center;
-      padding: 20px;
-      color: #64748b;
-      font-style: italic;
-      font-size: 12px;
-      border: 1px dotted rgba(100, 116, 139, 0.2);
-      border-radius: 6px;
-    }
-
     @media (max-width: 768px) {
       .intersection-panel-container {
         margin: 0.5rem;
@@ -136,8 +126,42 @@
       </div>
 
       <div class="intersection-content">
-        <script class="intersection-raw-data" type="text/plain" style="display:none;">$1</script>
-        <div class="intersection-options"></div>
+        <div class="intersection-options">
+          <div class="intersection-option" data-text="$1">
+            <div class="intersection-option-content">
+              <div class="intersection-option-category">⏰ 【時間跳轉】</div>
+              <div class="intersection-option-text">$1</div>
+            </div>
+          </div>
+
+          <div class="intersection-option" data-text="$2">
+            <div class="intersection-option-content">
+              <div class="intersection-option-category">🎬 【場景發展】</div>
+              <div class="intersection-option-text">$2</div>
+            </div>
+          </div>
+
+          <div class="intersection-option" data-text="$3">
+            <div class="intersection-option-content">
+              <div class="intersection-option-category">👤 【NPC行動】</div>
+              <div class="intersection-option-text">$3</div>
+            </div>
+          </div>
+
+          <div class="intersection-option" data-text="$4">
+            <div class="intersection-option-content">
+              <div class="intersection-option-category">⚠️ 【阻力形成】</div>
+              <div class="intersection-option-text">$4</div>
+            </div>
+          </div>
+
+          <div class="intersection-option" data-text="$5">
+            <div class="intersection-option-content">
+              <div class="intersection-option-category">✨ 【機會形成】</div>
+              <div class="intersection-option-text">$5</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -150,69 +174,20 @@
         }
 
         var wrapper = currentScript.closest('.intersection-wrapper');
-        var rawDataEl = wrapper.querySelector('.intersection-raw-data');
-        var container = wrapper.querySelector('.intersection-options');
+        var options = wrapper.querySelectorAll('.intersection-option');
 
-        if (rawDataEl && container) {
-          var rawText = rawDataEl.textContent.trim();
-          
-          // 定义五个类别及其匹配正则
-          var categories = [
-            { name: '時間跳轉', regex: /fork[１1][:：]\s*(.*?)(?=(?:fork[２2]|$))/is, icon: '⏰' },
-            { name: '場景發展', regex: /fork[２2][:：]\s*(.*?)(?=(?:fork[３3]|$))/is, icon: '🎬' },
-            { name: 'NPC行動', regex: /fork[３3][:：]\s*(.*?)(?=(?:fork[４4]|$))/is, icon: '👤' },
-            { name: '阻力形成', regex: /fork[４4][:：]\s*(.*?)(?=(?:fork[５5]|$))/is, icon: '⚠️' },
-            { name: '機會形成', regex: /fork[５5][:：]\s*(.*?)(?=(?:$))/is, icon: '✨' }
-          ];
-
-          container.innerHTML = '';
-          var foundCount = 0;
-
-          categories.forEach(function(cat) {
-            var match = rawText.match(cat.regex);
-            if (match && match[1]) {
-              var text = match[1].trim();
-              if (text) {
-                foundCount++;
-                
-                var option = document.createElement('div');
-                option.className = 'intersection-option';
-                
-                var content = document.createElement('div');
-                content.className = 'intersection-option-content';
-                
-                var category = document.createElement('div');
-                category.className = 'intersection-option-category';
-                category.textContent = cat.icon + ' 【' + cat.name + '】';
-                
-                var textEl = document.createElement('div');
-                textEl.className = 'intersection-option-text';
-                textEl.textContent = text;
-                
-                content.appendChild(category);
-                content.appendChild(textEl);
-                option.appendChild(content);
-                
-                // 点击事件处理
-                (function(selectedText) {
-                  option.onclick = function() {
-                    if (typeof triggerSlash === 'function') {
-                      triggerSlash('/setinput ' + selectedText);
-                    } else {
-                      console.log('Selected:', selectedText);
-                    }
-                  };
-                })(text);
-                
-                container.appendChild(option);
+        options.forEach(function(option) {
+          var text = option.getAttribute('data-text');
+          if (text) {
+            option.onclick = function() {
+              if (typeof triggerSlash === 'function') {
+                triggerSlash('/setinput ' + text);
+              } else {
+                console.log('Selected:', text);
               }
-            }
-          });
-
-          if (foundCount === 0) {
-            container.innerHTML = '<div class="empty-state">未找到有效的劇情分支選項</div>';
+            };
           }
-        }
+        });
       })();
     </script>
   </div>
