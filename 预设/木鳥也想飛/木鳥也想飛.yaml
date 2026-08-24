@@ -673,8 +673,202 @@
     - 正则名称: 不發送路線规划
       id: 00be914d-1525-4af0-83db-a0dc2f5121c8
       启用: true
-      查找表达式: /<intersection>([\s\S]*?)<\/intersection>/gi
-      内容: '<div class="intersection-placeholder" data-intersection-content="$1" style="display:none;"></div>'
+      查找表达式: /<intersection>[\s\S]*?fork１：([^\n]+)[\s\S]*?fork２：([^\n]+)[\s\S]*?fork３：([^\n]+)[\s\S]*?fork４：([^\n]+)[\s\S]*?fork５：([^\n]+)[\s\S]*?<\/intersection>/gi
+      内容: |
+        <div class="intersection-panel-container">
+        <style>
+        .intersection-panel-container {
+          width: 100%;
+          max-width: 600px;
+          margin: 1rem auto;
+        }
+
+        .intersection-panel {
+          padding: 1.5rem;
+          border-radius: 12px;
+          background: var(--SmartThemeBlurTintColor, #1e1e1e);
+          border: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 20%, transparent);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          color: var(--SmartThemeBodyColor, #e0e0e0);
+          font-family: var(--mainFontFamily, 'Noto Sans', sans-serif);
+        }
+
+        .intersection-panel-header {
+          margin-bottom: 1rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid color-mix(in srgb, var(--SmartThemeBodyColor) 15%, transparent);
+        }
+
+        .intersection-panel-title {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--SmartThemeBorderColor, #4a9eff);
+        }
+
+        .intersection-panel-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .intersection-options-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .intersection-option-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          padding: 0.875rem 1rem;
+          border-radius: 8px;
+          border: 1px solid transparent;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          user-select: none;
+        }
+
+        .intersection-option-item:hover {
+          background: color-mix(in srgb, var(--SmartThemeBodyColor) 8%, transparent);
+        }
+
+        .intersection-option-item:has(:checked) {
+          background: color-mix(in srgb, var(--SmartThemeBorderColor) 15%, transparent);
+          border-color: var(--SmartThemeBorderColor, #4a9eff);
+        }
+
+        .intersection-option-radio {
+          margin-top: 0.25rem;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+
+        .intersection-option-content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          flex: 1;
+        }
+
+        .intersection-option-category {
+          font-weight: 600;
+          font-size: 0.95rem;
+          color: var(--SmartThemeBorderColor, #4a9eff);
+        }
+
+        .intersection-option-text {
+          font-size: 0.95rem;
+          line-height: 1.5;
+          color: var(--SmartThemeBodyColor, #e0e0e0);
+        }
+
+        .intersection-confirm-btn {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          background: var(--SmartThemeBorderColor, #4a9eff);
+          color: white;
+          font-family: inherit;
+        }
+
+        .intersection-confirm-btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: color-mix(in srgb, var(--SmartThemeBodyColor) 30%, transparent);
+        }
+
+        .intersection-confirm-btn:not(:disabled):hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(74, 158, 255, 0.3);
+        }
+
+        .intersection-confirm-btn:not(:disabled):active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          .intersection-panel {
+            margin: 0.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+          }
+          
+          .intersection-panel-title {
+            font-size: 1.1rem;
+          }
+          
+          .intersection-option-item {
+            padding: 0.75rem;
+          }
+          
+          .intersection-option-category {
+            font-size: 0.9rem;
+          }
+          
+          .intersection-option-text {
+            font-size: 0.875rem;
+          }
+          
+          .intersection-confirm-btn {
+            padding: 0.625rem;
+            font-size: 0.95rem;
+          }
+        }
+        </style>
+
+        <div class="intersection-panel" data-intersection-panel>
+          <div class="intersection-panel-header">
+            <h3 class="intersection-panel-title">劇情走向選擇</h3>
+          </div>
+          <form class="intersection-panel-form">
+            <div class="intersection-options-container">
+              <label class="intersection-option-item">
+                <input type="radio" name="fork-choice" value="$1" class="intersection-option-radio">
+                <span class="intersection-option-content">
+                  <span class="intersection-option-category">【時間跳轉】</span>
+                  <span class="intersection-option-text">$1</span>
+                </span>
+              </label>
+              <label class="intersection-option-item">
+                <input type="radio" name="fork-choice" value="$2" class="intersection-option-radio">
+                <span class="intersection-option-content">
+                  <span class="intersection-option-category">【場景發展】</span>
+                  <span class="intersection-option-text">$2</span>
+                </span>
+              </label>
+              <label class="intersection-option-item">
+                <input type="radio" name="fork-choice" value="$3" class="intersection-option-radio">
+                <span class="intersection-option-content">
+                  <span class="intersection-option-category">【NPC行動】</span>
+                  <span class="intersection-option-text">$3</span>
+                </span>
+              </label>
+              <label class="intersection-option-item">
+                <input type="radio" name="fork-choice" value="$4" class="intersection-option-radio">
+                <span class="intersection-option-content">
+                  <span class="intersection-option-category">【阻力形成】</span>
+                  <span class="intersection-option-text">$4</span>
+                </span>
+              </label>
+              <label class="intersection-option-item">
+                <input type="radio" name="fork-choice" value="$5" class="intersection-option-radio">
+                <span class="intersection-option-content">
+                  <span class="intersection-option-category">【機會形成】</span>
+                  <span class="intersection-option-text">$5</span>
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="intersection-confirm-btn" disabled>確定選擇</button>
+          </form>
+        </div>
+        </div>
       来源:
         用户输入: false
         AI输出: true
