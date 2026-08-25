@@ -222,9 +222,33 @@
           var borderColorVar = rootStyle.getPropertyValue('--SmartThemeBorderColor').trim();
           
           // 如果没有，从消息容器获取实际计算的颜色
-          var bgColor = bgColorVar || mesStyle.backgroundColor || 'rgb(30, 30, 30)';
-          var textColor = textColorVar || mesStyle.color || 'rgb(255, 255, 255)';
-          var borderColor = borderColorVar || 'rgb(69, 69, 69)';
+          // 如果CSS变量为空，尝试从父窗口获取
+          var bgColor = bgColorVar;
+          var textColor = textColorVar;
+          var borderColor = borderColorVar;
+          
+          if (!bgColor || !textColor) {
+            try {
+              // 尝试访问父窗口
+              if (window.parent && window.parent !== window) {
+                var parentRoot = window.parent.document.documentElement;
+                var parentStyle = window.parent.getComputedStyle(parentRoot);
+                
+                bgColor = bgColor || parentStyle.getPropertyValue('--SmartThemeBlurTintColor').trim();
+                textColor = textColor || parentStyle.getPropertyValue('--SmartThemeBodyColor').trim();
+                borderColor = borderColor || parentStyle.getPropertyValue('--SmartThemeBorderColor').trim();
+                
+                console.log('[劇情走向] 从父窗口获取:', { bgColor: bgColor, textColor: textColor, borderColor: borderColor });
+              }
+            } catch (e) {
+              console.warn('[劇情走向] 无法访问父窗口:', e.message);
+            }
+          }
+          
+          // 最终回退到默认深色主题颜色
+          bgColor = bgColor || mesStyle.backgroundColor || 'rgb(30, 30, 30)';
+          textColor = textColor || mesStyle.color || 'rgb(255, 255, 255)';
+          borderColor = borderColor || 'rgb(69, 69, 69)';
           
           console.log('[劇情走向] CSS变量值:', { bgColorVar: bgColorVar, textColorVar: textColorVar, borderColorVar: borderColorVar });
           console.log('[劇情走向] 最终应用颜色:', { bgColor: bgColor, textColor: textColor, borderColor: borderColor });
