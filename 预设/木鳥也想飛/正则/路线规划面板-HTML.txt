@@ -88,21 +88,11 @@
 
     .intersection-option-content {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .intersection-option-category {
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--accent);
-      opacity: 0.9;
     }
 
     .intersection-option-text {
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.6;
       color: var(--SmartThemeBodyColor);
     }
 
@@ -119,9 +109,8 @@
         padding: 10px 12px;
       }
       
-      .intersection-option-category,
       .intersection-option-text {
-        font-size: 12px;
+        font-size: 13px;
       }
     }
   </style>
@@ -138,35 +127,30 @@
         <div class="intersection-options">
           <div class="intersection-option">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">【時間跳轉】</div>
               <div class="intersection-option-text">$1</div>
             </div>
           </div>
 
           <div class="intersection-option">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">【場景發展】</div>
               <div class="intersection-option-text">$2</div>
             </div>
           </div>
 
           <div class="intersection-option">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">【NPC行動】</div>
               <div class="intersection-option-text">$3</div>
             </div>
           </div>
 
           <div class="intersection-option">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">【阻力形成】</div>
               <div class="intersection-option-text">$4</div>
             </div>
           </div>
 
           <div class="intersection-option">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">【機會形成】</div>
               <div class="intersection-option-text">$5</div>
             </div>
           </div>
@@ -264,7 +248,7 @@
           }
           
           if (textColor) {
-            wrapper.querySelectorAll('.intersection-title, .intersection-option-category, .intersection-option-text').forEach(function(el) {
+            wrapper.querySelectorAll('.intersection-title, .intersection-option-text').forEach(function(el) {
               el.style.color = textColor;
             });
           }
