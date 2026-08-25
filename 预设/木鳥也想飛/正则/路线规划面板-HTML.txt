@@ -17,15 +17,16 @@
       margin: 0;
       display: block;
       -webkit-tap-highlight-color: transparent;
-      /* 颜色系统：完全跟随酒馆CSS */
+      /* 颜色系统：完全跟随酒馆CSS（与木鳥控制面板一致） */
       --theme-fg: var(--SmartThemeBodyColor, #888888);
       --accent: var(--theme-fg);
       --accent-strong: color-mix(in srgb, var(--theme-fg) 80%, transparent);
-      --accent-border: color-mix(in srgb, var(--theme-fg) 35%, transparent);
       --accent-soft: color-mix(in srgb, var(--theme-fg) 10%, transparent);
+      --accent-border: color-mix(in srgb, var(--theme-fg) 35%, transparent);
       --accent-shadow: color-mix(in srgb, var(--theme-fg) 20%, transparent);
       --accent-fill: color-mix(in srgb, var(--theme-fg) 16%, transparent);
       --accent-fill-strong: color-mix(in srgb, var(--theme-fg) 26%, transparent);
+      --accent-on: var(--SmartThemeBlurTintColor, #1e1e1e);
       --bg-card: color-mix(in srgb, var(--theme-fg) 4%, transparent);
       --hover: color-mix(in srgb, var(--theme-fg) 8%, transparent);
       --line: color-mix(in srgb, var(--theme-fg) 16%, transparent);
@@ -37,20 +38,20 @@
       border: 1px solid var(--SmartThemeBorderColor, #454545);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 10px var(--accent-shadow);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     }
 
     .intersection-header {
       padding: 14px 16px;
       background: linear-gradient(90deg, var(--accent-soft), transparent 60%);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--SmartThemeBorderColor, #454545);
     }
 
     .intersection-title {
       text-align: center;
       font-size: 15px;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--SmartThemeBodyColor, #fff);
       letter-spacing: 2px;
       margin: 0;
     }
