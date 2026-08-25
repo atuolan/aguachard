@@ -176,6 +176,16 @@
 
     <script>
       (function () {
+        // 调试：检查CSS变量是否可用
+        var testEl = document.createElement('div');
+        document.body.appendChild(testEl);
+        var computed = getComputedStyle(testEl);
+        console.log('[劇情走向] CSS变量测试:');
+        console.log('  --SmartThemeBlurTintColor:', computed.getPropertyValue('--SmartThemeBlurTintColor'));
+        console.log('  --SmartThemeBodyColor:', computed.getPropertyValue('--SmartThemeBodyColor'));
+        console.log('  --SmartThemeBorderColor:', computed.getPropertyValue('--SmartThemeBorderColor'));
+        document.body.removeChild(testEl);
+
         var currentScript = document.currentScript;
         if (!currentScript) {
           var scripts = document.getElementsByTagName('script');
