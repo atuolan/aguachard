@@ -56,7 +56,6 @@
     }
 
     .intersection-content {
-      background: var(--bg-card);
       padding: 12px;
     }
 
@@ -69,7 +68,7 @@
     .intersection-option {
       display: flex;
       align-items: flex-start;
-      background: var(--bg-card);
+      background: var(--SmartThemeBlurTintColor, #1e1e1e);
       border: 1px solid var(--accent-border);
       border-radius: 8px;
       padding: 12px 14px;
