@@ -724,15 +724,6 @@
             pov_user: user_second
             pov_char: 无
           quickTab: config
-      - 名称: 路线规划面板
-        id: 34f9e7f5-0f9f-4c11-aa2a-41e7232264c6
-        启用: true
-        类型: 脚本
-        文件: ../../dist/路线规划面板/index.js
-        导出时携带:
-          数据: false
-          按钮: false
-
     变量: {}
 
   baibaiToolkit:
