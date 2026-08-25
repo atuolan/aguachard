@@ -15,7 +15,8 @@
       font-family: var(--mainFontFamily, 'Noto Sans', sans-serif);
       background: transparent;
       padding: 8px;
-      margin: 0;
+      margin: 0 auto;
+      max-width: 100%;
       display: block;
       -webkit-tap-highlight-color: transparent;
       /* 颜色系统：完全跟随酒馆CSS（与木鳥控制面板一致） */
@@ -98,7 +99,7 @@
 
     @media (max-width: 768px) {
       .intersection-panel-container {
-        margin: 0.5rem;
+        margin: 0.5rem auto;
       }
       
       .intersection-title {
