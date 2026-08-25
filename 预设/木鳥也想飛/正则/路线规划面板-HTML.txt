@@ -1,4 +1,3 @@
-```
 <html>
 <head>
   <meta charset="UTF-8">
@@ -18,7 +17,7 @@
       margin: 0;
       display: block;
       -webkit-tap-highlight-color: transparent;
-      /* 颜色系统：基于聊天主题正文色，完全跟随酒馆CSS */
+      /* 颜色系统：完全跟随酒馆CSS */
       --theme-fg: var(--SmartThemeBodyColor, #888888);
       --accent: var(--theme-fg);
       --accent-strong: color-mix(in srgb, var(--theme-fg) 80%, transparent);
@@ -136,35 +135,35 @@
 
       <div class="intersection-content">
         <div class="intersection-options">
-          <div class="intersection-option" data-text="$1">
+          <div class="intersection-option">
             <div class="intersection-option-content">
               <div class="intersection-option-category">【時間跳轉】</div>
               <div class="intersection-option-text">$1</div>
             </div>
           </div>
 
-          <div class="intersection-option" data-text="$2">
+          <div class="intersection-option">
             <div class="intersection-option-content">
               <div class="intersection-option-category">【場景發展】</div>
               <div class="intersection-option-text">$2</div>
             </div>
           </div>
 
-          <div class="intersection-option" data-text="$3">
+          <div class="intersection-option">
             <div class="intersection-option-content">
               <div class="intersection-option-category">【NPC行動】</div>
               <div class="intersection-option-text">$3</div>
             </div>
           </div>
 
-          <div class="intersection-option" data-text="$4">
+          <div class="intersection-option">
             <div class="intersection-option-content">
               <div class="intersection-option-category">【阻力形成】</div>
               <div class="intersection-option-text">$4</div>
             </div>
           </div>
 
-          <div class="intersection-option" data-text="$5">
+          <div class="intersection-option">
             <div class="intersection-option-content">
               <div class="intersection-option-category">【機會形成】</div>
               <div class="intersection-option-text">$5</div>
@@ -183,20 +182,44 @@
         }
 
         var wrapper = currentScript.closest('.intersection-wrapper');
-        var options = wrapper.querySelectorAll('.intersection-option');
+        if (!wrapper) {
+          console.error('[劇情走向] 無法找到 wrapper');
+          return;
+        }
 
-        options.forEach(function(option) {
-          var text = option.getAttribute('data-text');
-          if (text) {
-            option.onclick = function() {
-              if (typeof triggerSlash === 'function') {
-                triggerSlash('/setinput ' + text);
-              } else {
-                console.log('Selected:', text);
-              }
-            };
+        var options = wrapper.querySelectorAll('.intersection-option');
+        console.log('[劇情走向] 找到選項數量:', options.length);
+
+        options.forEach(function(option, index) {
+          var textEl = option.querySelector('.intersection-option-text');
+          if (!textEl) {
+            console.error('[劇情走向] 選項', index, '缺少文本元素');
+            return;
+          }
+          
+          var text = textEl.textContent.trim();
+          console.log('[劇情走向] 選項', index, '文本:', text.substring(0, 50));
+          
+          if (text && text !== '$' + (index + 1)) {
+            // 使用閉包保存文本值
+            (function(savedText) {
+              option.onclick = function() {
+                console.log('[劇情走向] 點擊選項:', savedText.substring(0, 50));
+                if (typeof triggerSlash === 'function') {
+                  triggerSlash('/setinput ' + savedText);
+                  console.log('[劇情走向] 已調用 triggerSlash');
+                } else {
+                  console.warn('[劇情走向] triggerSlash 函數不可用');
+                  console.log('Selected:', savedText);
+                }
+              };
+            })(text);
+          } else {
+            console.warn('[劇情走向] 選項', index, '文本無效，可能未被正則替換');
           }
         });
+
+        console.log('[劇情走向] 初始化完成');
       })();
     </script>
   </div>
