@@ -135,35 +135,35 @@
         <div class="intersection-options">
           <div class="intersection-option" data-text="$1">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">⏰ 【時間跳轉】</div>
+              <div class="intersection-option-category">【時間跳轉】</div>
               <div class="intersection-option-text">$1</div>
             </div>
           </div>
 
           <div class="intersection-option" data-text="$2">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">🎬 【場景發展】</div>
+              <div class="intersection-option-category">【場景發展】</div>
               <div class="intersection-option-text">$2</div>
             </div>
           </div>
 
           <div class="intersection-option" data-text="$3">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">👤 【NPC行動】</div>
+              <div class="intersection-option-category">【NPC行動】</div>
               <div class="intersection-option-text">$3</div>
             </div>
           </div>
 
           <div class="intersection-option" data-text="$4">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">⚠️ 【阻力形成】</div>
+              <div class="intersection-option-category">【阻力形成】</div>
               <div class="intersection-option-text">$4</div>
             </div>
           </div>
 
           <div class="intersection-option" data-text="$5">
             <div class="intersection-option-content">
-              <div class="intersection-option-category">✨ 【機會形成】</div>
+              <div class="intersection-option-category">【機會形成】</div>
               <div class="intersection-option-text">$5</div>
             </div>
           </div>
