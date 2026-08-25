@@ -190,27 +190,44 @@
 
         // 动态获取并应用主题颜色
         function applyThemeColors() {
-          // 尝试从多个可能的位置获取CSS变量
           var root = document.documentElement || document.body;
-          var chatContainer = document.querySelector('#chat') || document.querySelector('.mes') || document.body;
           
-          // 尝试获取CSS变量值
+          // 找到面板的父元素层级
+          var parents = [];
+          var el = wrapper;
+          while (el && el !== document.body && parents.length < 10) {
+            parents.push({
+              tag: el.tagName,
+              class: el.className,
+              bg: getComputedStyle(el).backgroundColor,
+              color: getComputedStyle(el).color
+            });
+            el = el.parentElement;
+          }
+          console.log('[劇情走向] 父元素层级:', parents);
+          
+          // 尝试找到实际的聊天消息元素
+          var mesBlock = wrapper.closest('.mes') ||
+                        wrapper.closest('.mes_block') ||
+                        wrapper.closest('.swipe') ||
+                        document.querySelector('.mes:last-child') ||
+                        document.querySelector('#chat');
+          
           var rootStyle = getComputedStyle(root);
-          var chatStyle = getComputedStyle(chatContainer);
+          var mesStyle = mesBlock ? getComputedStyle(mesBlock) : rootStyle;
           
-          var bgColor = rootStyle.getPropertyValue('--SmartThemeBlurTintColor').trim() ||
-                        chatStyle.getPropertyValue('--SmartThemeBlurTintColor').trim() ||
-                        rootStyle.getPropertyValue('--bg-color').trim() ||
-                        getComputedStyle(chatContainer).backgroundColor;
+          // 获取CSS变量
+          var bgColorVar = rootStyle.getPropertyValue('--SmartThemeBlurTintColor').trim();
+          var textColorVar = rootStyle.getPropertyValue('--SmartThemeBodyColor').trim();
+          var borderColorVar = rootStyle.getPropertyValue('--SmartThemeBorderColor').trim();
           
-          var textColor = rootStyle.getPropertyValue('--SmartThemeBodyColor').trim() ||
-                         chatStyle.getPropertyValue('--SmartThemeBodyColor').trim() ||
-                         getComputedStyle(chatContainer).color;
+          // 如果没有，从消息容器获取实际计算的颜色
+          var bgColor = bgColorVar || mesStyle.backgroundColor || 'rgb(30, 30, 30)';
+          var textColor = textColorVar || mesStyle.color || 'rgb(255, 255, 255)';
+          var borderColor = borderColorVar || 'rgb(69, 69, 69)';
           
-          var borderColor = rootStyle.getPropertyValue('--SmartThemeBorderColor').trim() ||
-                           chatStyle.getPropertyValue('--SmartThemeBorderColor').trim();
-          
-          console.log('[劇情走向] 检测到的颜色:', { bgColor: bgColor, textColor: textColor, borderColor: borderColor });
+          console.log('[劇情走向] CSS变量值:', { bgColorVar: bgColorVar, textColorVar: textColorVar, borderColorVar: borderColorVar });
+          console.log('[劇情走向] 最终应用颜色:', { bgColor: bgColor, textColor: textColor, borderColor: borderColor });
           
           // 应用颜色
           if (bgColor) {
