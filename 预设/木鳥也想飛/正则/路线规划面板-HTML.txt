@@ -18,12 +18,15 @@
       margin: 0;
       display: block;
       -webkit-tap-highlight-color: transparent;
-      /* 颜色系统：基于聊天主题正文色 */
+      /* 颜色系统：基于聊天主题正文色，完全跟随酒馆CSS */
       --theme-fg: var(--SmartThemeBodyColor, #888888);
       --accent: var(--theme-fg);
+      --accent-strong: color-mix(in srgb, var(--theme-fg) 80%, transparent);
       --accent-border: color-mix(in srgb, var(--theme-fg) 35%, transparent);
       --accent-soft: color-mix(in srgb, var(--theme-fg) 10%, transparent);
+      --accent-shadow: color-mix(in srgb, var(--theme-fg) 20%, transparent);
       --accent-fill: color-mix(in srgb, var(--theme-fg) 16%, transparent);
+      --accent-fill-strong: color-mix(in srgb, var(--theme-fg) 26%, transparent);
       --bg-card: color-mix(in srgb, var(--theme-fg) 4%, transparent);
       --hover: color-mix(in srgb, var(--theme-fg) 8%, transparent);
       --line: color-mix(in srgb, var(--theme-fg) 16%, transparent);
@@ -35,7 +38,7 @@
       border: 1px solid var(--SmartThemeBorderColor, #454545);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 10px var(--accent-shadow);
     }
 
     .intersection-header {
