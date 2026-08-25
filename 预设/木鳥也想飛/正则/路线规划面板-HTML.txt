@@ -176,16 +176,6 @@
 
     <script>
       (function () {
-        // 调试：检查CSS变量是否可用
-        var testEl = document.createElement('div');
-        document.body.appendChild(testEl);
-        var computed = getComputedStyle(testEl);
-        console.log('[劇情走向] CSS变量测试:');
-        console.log('  --SmartThemeBlurTintColor:', computed.getPropertyValue('--SmartThemeBlurTintColor'));
-        console.log('  --SmartThemeBodyColor:', computed.getPropertyValue('--SmartThemeBodyColor'));
-        console.log('  --SmartThemeBorderColor:', computed.getPropertyValue('--SmartThemeBorderColor'));
-        document.body.removeChild(testEl);
-
         var currentScript = document.currentScript;
         if (!currentScript) {
           var scripts = document.getElementsByTagName('script');
@@ -197,6 +187,59 @@
           console.error('[劇情走向] 無法找到 wrapper');
           return;
         }
+
+        // 动态获取并应用主题颜色
+        function applyThemeColors() {
+          // 尝试从多个可能的位置获取CSS变量
+          var root = document.documentElement || document.body;
+          var chatContainer = document.querySelector('#chat') || document.querySelector('.mes') || document.body;
+          
+          // 尝试获取CSS变量值
+          var rootStyle = getComputedStyle(root);
+          var chatStyle = getComputedStyle(chatContainer);
+          
+          var bgColor = rootStyle.getPropertyValue('--SmartThemeBlurTintColor').trim() ||
+                        chatStyle.getPropertyValue('--SmartThemeBlurTintColor').trim() ||
+                        rootStyle.getPropertyValue('--bg-color').trim() ||
+                        getComputedStyle(chatContainer).backgroundColor;
+          
+          var textColor = rootStyle.getPropertyValue('--SmartThemeBodyColor').trim() ||
+                         chatStyle.getPropertyValue('--SmartThemeBodyColor').trim() ||
+                         getComputedStyle(chatContainer).color;
+          
+          var borderColor = rootStyle.getPropertyValue('--SmartThemeBorderColor').trim() ||
+                           chatStyle.getPropertyValue('--SmartThemeBorderColor').trim();
+          
+          console.log('[劇情走向] 检测到的颜色:', { bgColor: bgColor, textColor: textColor, borderColor: borderColor });
+          
+          // 应用颜色
+          if (bgColor) {
+            var container = wrapper.querySelector('.intersection-panel-container');
+            if (container) container.style.backgroundColor = bgColor;
+            
+            wrapper.querySelectorAll('.intersection-option').forEach(function(opt) {
+              opt.style.backgroundColor = bgColor;
+            });
+          }
+          
+          if (textColor) {
+            wrapper.querySelectorAll('.intersection-title, .intersection-option-category, .intersection-option-text').forEach(function(el) {
+              el.style.color = textColor;
+            });
+          }
+          
+          if (borderColor) {
+            var container = wrapper.querySelector('.intersection-panel-container');
+            if (container) container.style.borderColor = borderColor;
+            
+            wrapper.querySelectorAll('.intersection-option').forEach(function(opt) {
+              opt.style.borderColor = borderColor;
+            });
+          }
+        }
+        
+        // 应用主题颜色
+        applyThemeColors();
 
         var options = wrapper.querySelectorAll('.intersection-option');
         console.log('[劇情走向] 找到選項數量:', options.length);
