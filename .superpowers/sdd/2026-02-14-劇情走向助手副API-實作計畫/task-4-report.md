@@ -75,3 +75,61 @@ git diff --unified=0 -- src/劇情走向助手/FloatingPanel.vue
 - 无阻塞问题。
 - 工作树中存在大量与本任务无关的既有修改和未跟踪文件；本任务提交只包含 `src/劇情走向助手/FloatingPanel.vue`
   与本报告，未触碰或回退其他改动。
+
+---
+
+## Fix round 1/5
+
+### 状态
+
+已修复原审查的 2 项 Important findings。
+
+### 修复说明
+
+- `loadModels()`
+  发起请求时创建完整的规范化表单快照，并分配单调递增的请求令牌。成功与失败结果会同时核对令牌，并逐字段核对当前表单和请求快照；令牌或任一字段不一致时丢弃过期结果，不更新模型列表或面板结果状态。收尾阶段只允许当前令牌解除 loading，避免旧请求结束时覆盖较新请求状态。
+- 模型拉取期间禁用方案选择、方案名称、来源、API Base URL、API Key、模型选择、模型手动输入、Proxy
+  preset，以及“从当前酒馆读取”“新增方案”“保存方案”“删除方案”；对应操作函数同时加入 loading 守卫，避免绕过模板事件替换或持久化同一表单。
+- 即使表单被外部代码直接修改，返回时的完整快照比较仍会阻止旧端点模型写入当前表单。
+- 模型拉取失败只向面板写入固定安全文案，控制台只记录固定操作上下文，不再读取或输出第三方 `Error.message`、异常对象或 API
+  Key。
+- 同步收紧组件中其余可能接收第三方异常的 API 配置读取与正式生成错误路径：面板和控制台均改用固定安全文案；`generateOptions()`
+  的正式请求参数未修改。
+- 保持 Task 4 原行为：仍调用
+  `getModelList({ apiurl, key })`；保留地址与模型预请求校验、模型去重稳定排序、当前手动模型额外选项，以及失败时不清空模型和模型列表。
+- 未实现 Task 5/6，未向正式生成请求加入 `custom_api`，未修改 `generateOptions()` 的请求配置。
+
+### 测试命令与实际输出
+
+#### ESLint
+
+命令：
+
+```text
+pnpm exec eslint src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：无输出。
+
+退出码：`0`。
+
+#### Git whitespace 检查
+
+命令：
+
+```text
+git diff --check -- src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：
+
+```text
+warning: in the working copy of 'src/劇情走向助手/FloatingPanel.vue', CRLF will be replaced by LF the next time Git touches it
+```
+
+退出码：`0`。该内容是 Git 换行符转换提示，不是 whitespace error。
+
+### 遗留验证限制
+
+- 项目没有该组件的自动化并发测试装置，本轮未在真实酒馆环境中人为修改响应式表单或切换端点来模拟请求竞态；竞态保护通过令牌、完整快照校验、模板禁用和函数入口守卫四层静态实现，并通过 ESLint 验证。
+- 工作树仍包含大量与本任务无关的既有修改和未跟踪文件；本轮提交仅暂存 `src/劇情走向助手/FloatingPanel.vue` 与本报告。

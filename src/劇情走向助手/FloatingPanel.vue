@@ -240,6 +240,7 @@ const promptStatus = ref('');
 
 const dragging = ref(false);
 const awake = ref(false);
+let modelRequestSequence = 0;
 let activePointer: number | null = null;
 let startX = 0,
   startY = 0,
@@ -412,9 +413,9 @@ async function generateOptions() {
     const parsed = parseIntersection(text);
     if (!parsed) throw new Error('無法解析 AI 返回的內容，請確認提示詞要求輸出 <intersection> 格式');
     options.value = parsed;
-  } catch (e: any) {
-    errorMsg.value = e?.message || '生成失敗，請重試';
-    console.error('[劇情走向助手] 生成錯誤:', e);
+  } catch {
+    errorMsg.value = '生成失败，请重试';
+    console.error('[劇情走向助手] 生成失败');
   } finally {
     isLoading.value = false;
   }
@@ -457,6 +458,26 @@ const onResize = () => {
 function loadApiForm(scheme?: ApiScheme) {
   Object.assign(apiForm, scheme ? { ...scheme } : emptyApiForm());
   modelOptions.value = [];
+}
+
+function apiFormSnapshot(): ApiForm {
+  return {
+    id: cleanString(apiForm.id),
+    name: cleanString(apiForm.name),
+    source: cleanString(apiForm.source),
+    apiurl: cleanString(apiForm.apiurl),
+    key: cleanString(apiForm.key),
+    model: cleanString(apiForm.model),
+    proxy_preset: cleanString(apiForm.proxy_preset),
+  };
+}
+
+function isCurrentModelRequest(requestId: number, requestForm: ApiForm): boolean {
+  const currentForm = apiFormSnapshot();
+  return (
+    requestId === modelRequestSequence &&
+    (Object.keys(requestForm) as Array<keyof ApiForm>).every(field => requestForm[field] === currentForm[field])
+  );
 }
 
 function objectRecord(value: unknown): Record<string, unknown> | null {
@@ -535,7 +556,7 @@ function readCurrentMainApiForm(): { form: ApiForm; hasReadableKey: boolean } {
 }
 
 async function loadCurrentMainApi() {
-  if (isLoadingCurrentApi.value) return;
+  if (isLoadingCurrentApi.value || isLoadingModels.value) return;
   isLoadingCurrentApi.value = true;
   apiValidation.value = [];
   apiStatus.value = '';
@@ -547,9 +568,9 @@ async function loadCurrentMainApi() {
     apiStatus.value = hasReadableKey
       ? '已读取当前主 API，已准备新方案，请点击“保存方案”完成持久化'
       : '已读取当前主 API（Key 不可读），请手动补填 API Key 后点击“保存方案”';
-  } catch (e: unknown) {
+  } catch {
     apiStatus.value = '当前主 API 读取失败，已保留原表单内容';
-    console.error('[劇情走向助手] 当前主 API 读取错误:', e instanceof Error ? e.message : '未知错误');
+    console.error('[劇情走向助手] 当前主 API 读取失败');
   } finally {
     isLoadingCurrentApi.value = false;
   }
@@ -569,38 +590,41 @@ function normalizeModelList(models: unknown): string[] {
 
 async function loadModels() {
   if (isLoadingModels.value) return;
-  const apiurl = cleanString(apiForm.apiurl);
-  const model = cleanString(apiForm.model);
+  const requestForm = apiFormSnapshot();
   apiValidation.value = [];
   apiStatus.value = '';
-  if (!apiurl) {
+  if (!requestForm.apiurl) {
     apiValidation.value = [
-      cleanString(apiForm.proxy_preset)
+      requestForm.proxy_preset
         ? '使用 Proxy preset 拉取模型前请补充 API Base URL，或直接使用代理预设进行测试'
         : '请填写 API Base URL 后再拉取模型',
     ];
     return;
   }
-  if (!model) {
+  if (!requestForm.model) {
     apiValidation.value = ['请先填写模型；拉取成功后仍可继续手动修改'];
     return;
   }
 
+  const requestId = ++modelRequestSequence;
   isLoadingModels.value = true;
   await nextTick();
   try {
-    const models = await getModelList({ apiurl, key: cleanString(apiForm.key) });
+    const models = await getModelList({ apiurl: requestForm.apiurl, key: requestForm.key });
+    if (!isCurrentModelRequest(requestId, requestForm)) return;
     modelOptions.value = normalizeModelList(models);
     apiStatus.value = `已拉取 ${modelOptions.value.length} 个模型`;
-  } catch (e: unknown) {
+  } catch (error: unknown) {
+    if (!isCurrentModelRequest(requestId, requestForm)) return;
     apiStatus.value = '模型列表拉取失败，已保留当前模型，可继续手动输入';
-    console.error('[劇情走向助手] 模型列表拉取错误:', e instanceof Error ? e.message : '未知错误');
+    console.error('[劇情走向助手] 模型列表拉取失败');
   } finally {
-    isLoadingModels.value = false;
+    if (requestId === modelRequestSequence) isLoadingModels.value = false;
   }
 }
 
 function selectScheme(id: string) {
+  if (isLoadingModels.value) return;
   apiValidation.value = [];
   if (id === apiStore.value.activeId) {
     apiStatus.value = id ? '当前已在该副 API 方案，未重复切换' : '当前已使用主 API，未重复切换';
@@ -617,6 +641,7 @@ function selectScheme(id: string) {
 }
 
 function startNewScheme() {
+  if (isLoadingModels.value) return;
   apiValidation.value = [];
   apiStatus.value = '已准备新方案，请填写配置后保存';
   loadApiForm({ ...emptyApiForm(), id: createApiSchemeId() });
@@ -633,6 +658,7 @@ function validateApiForm(): string[] {
 }
 
 function saveScheme() {
+  if (isLoadingModels.value) return;
   apiValidation.value = validateApiForm();
   apiStatus.value = '';
   if (apiValidation.value.length) return;
@@ -679,6 +705,7 @@ function saveScheme() {
 }
 
 function deleteScheme() {
+  if (isLoadingModels.value) return;
   const id = cleanString(apiForm.id);
   const index = apiStore.value.schemes.findIndex(scheme => scheme.id === id);
   if (!id || index < 0) {
@@ -700,9 +727,9 @@ function initializeApiStore() {
   try {
     apiStore.value = readApiStore();
     loadApiForm(activeScheme.value);
-  } catch (e: unknown) {
+  } catch {
     errorMsg.value = '副 API 配置读取失败，请稍后重试';
-    console.error('[劇情走向助手] 副 API 配置读取错误:', e instanceof Error ? e.message : '未知错误');
+    console.error('[劇情走向助手] 副 API 配置读取失败');
   }
 }
 
@@ -803,6 +830,7 @@ onUnmounted(() => {
                 <select
                   :value="apiStore.activeId"
                   class="ip-input"
+                  :disabled="isLoadingModels"
                   @change="selectScheme(($event.target as HTMLSelectElement).value)"
                 >
                   <option value="">使用主 API</option>
@@ -813,15 +841,33 @@ onUnmounted(() => {
               </label>
               <label class="ip-field">
                 <span>方案名称</span>
-                <input v-model="apiForm.name" class="ip-input" type="text" autocomplete="off" />
+                <input
+                  v-model="apiForm.name"
+                  class="ip-input"
+                  type="text"
+                  autocomplete="off"
+                  :disabled="isLoadingModels"
+                />
               </label>
               <label class="ip-field">
                 <span>来源</span>
-                <input v-model="apiForm.source" class="ip-input" type="text" autocomplete="off" />
+                <input
+                  v-model="apiForm.source"
+                  class="ip-input"
+                  type="text"
+                  autocomplete="off"
+                  :disabled="isLoadingModels"
+                />
               </label>
               <label class="ip-field">
                 <span>API Base URL</span>
-                <input v-model="apiForm.apiurl" class="ip-input" type="url" autocomplete="url" />
+                <input
+                  v-model="apiForm.apiurl"
+                  class="ip-input"
+                  type="url"
+                  autocomplete="url"
+                  :disabled="isLoadingModels"
+                />
               </label>
               <label class="ip-field">
                 <span>API Key</span>
@@ -831,6 +877,7 @@ onUnmounted(() => {
                     class="ip-input"
                     :type="isApiKeyVisible ? 'text' : 'password'"
                     autocomplete="off"
+                    :disabled="isLoadingModels"
                   />
                   <button
                     class="ip-secret-toggle"
@@ -844,7 +891,11 @@ onUnmounted(() => {
               </label>
               <label class="ip-field">
                 <span>模型选择</span>
-                <select v-model="apiForm.model" class="ip-input" :disabled="!availableModelOptions.length">
+                <select
+                  v-model="apiForm.model"
+                  class="ip-input"
+                  :disabled="isLoadingModels || !availableModelOptions.length"
+                >
                   <option value="">{{ availableModelOptions.length ? '请选择模型' : '尚未拉取模型' }}</option>
                   <option v-for="model in availableModelOptions" :key="model" :value="model">{{ model }}</option>
                 </select>
@@ -852,7 +903,13 @@ onUnmounted(() => {
               <label class="ip-field">
                 <span>模型（可手动输入）</span>
                 <span class="ip-model-field">
-                  <input v-model="apiForm.model" class="ip-input" type="text" autocomplete="off" />
+                  <input
+                    v-model="apiForm.model"
+                    class="ip-input"
+                    type="text"
+                    autocomplete="off"
+                    :disabled="isLoadingModels"
+                  />
                   <button
                     class="ip-btn ip-btn-reset ip-model-load"
                     type="button"
@@ -865,7 +922,13 @@ onUnmounted(() => {
               </label>
               <label class="ip-field">
                 <span>Proxy preset</span>
-                <input v-model="apiForm.proxy_preset" class="ip-input" type="text" autocomplete="off" />
+                <input
+                  v-model="apiForm.proxy_preset"
+                  class="ip-input"
+                  type="text"
+                  autocomplete="off"
+                  :disabled="isLoadingModels"
+                />
               </label>
               <div v-if="apiValidation.length" class="ip-api-validation" role="alert">
                 <span v-for="message in apiValidation" :key="message">{{ message }}</span>
@@ -875,14 +938,20 @@ onUnmounted(() => {
                 <button
                   class="ip-btn ip-btn-reset"
                   type="button"
-                  :disabled="isLoadingCurrentApi"
+                  :disabled="isLoadingCurrentApi || isLoadingModels"
                   @click="loadCurrentMainApi"
                 >
                   {{ isLoadingCurrentApi ? '读取中⋯' : '从当前酒馆读取' }}
                 </button>
-                <button class="ip-btn ip-btn-reset" type="button" @click="startNewScheme">新增方案</button>
-                <button class="ip-btn ip-btn-save" type="button" @click="saveScheme">保存方案</button>
-                <button class="ip-btn ip-btn-delete" type="button" @click="deleteScheme">删除方案</button>
+                <button class="ip-btn ip-btn-reset" type="button" :disabled="isLoadingModels" @click="startNewScheme">
+                  新增方案
+                </button>
+                <button class="ip-btn ip-btn-save" type="button" :disabled="isLoadingModels" @click="saveScheme">
+                  保存方案
+                </button>
+                <button class="ip-btn ip-btn-delete" type="button" :disabled="isLoadingModels" @click="deleteScheme">
+                  删除方案
+                </button>
               </div>
               <p class="ip-api-warning">安全提示：Key 保存在脚本 data 中，导出或分享含数据的脚本可能暴露 Key。</p>
             </div>
