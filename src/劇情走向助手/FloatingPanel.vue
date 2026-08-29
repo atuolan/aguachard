@@ -227,6 +227,7 @@ const apiValidation = ref<string[]>([]);
 const options = ref<string[]>([]);
 const promptEditorContent = ref(loadPrompt());
 const customPrompt = ref(loadPrompt());
+const promptStatus = ref('');
 
 const dragging = ref(false);
 const awake = ref(false);
@@ -419,14 +420,24 @@ function selectOption(text: string) {
 }
 
 function savePrompt() {
+  if (promptEditorContent.value === customPrompt.value) {
+    promptStatus.value = '提示詞沒有變化，未重複保存';
+    return;
+  }
   customPrompt.value = promptEditorContent.value;
   savePromptToStorage(customPrompt.value);
+  promptStatus.value = '提示詞已保存';
 }
 
 function resetPrompt() {
+  if (promptEditorContent.value === DEFAULT_PROMPT && customPrompt.value === DEFAULT_PROMPT) {
+    promptStatus.value = '提示詞已是預設內容，未重複保存';
+    return;
+  }
   promptEditorContent.value = DEFAULT_PROMPT;
   customPrompt.value = DEFAULT_PROMPT;
   savePromptToStorage(DEFAULT_PROMPT);
+  promptStatus.value = '已恢復預設提示詞';
 }
 
 const onResize = () => {
@@ -440,10 +451,18 @@ function loadApiForm(scheme?: ApiScheme) {
 
 function selectScheme(id: string) {
   apiValidation.value = [];
-  apiStatus.value = '';
+  if (id === apiStore.value.activeId) {
+    apiStatus.value = id ? '当前已在该副 API 方案，未重复切换' : '当前已使用主 API，未重复切换';
+    return;
+  }
+  if (id && !apiStore.value.schemes.some(scheme => scheme.id === id)) {
+    apiStatus.value = '找不到所选副 API 方案，未切换';
+    return;
+  }
   apiStore.value = { ...apiStore.value, activeId: id };
   writeApiStore(apiStore.value);
   loadApiForm(apiStore.value.schemes.find(scheme => scheme.id === id));
+  apiStatus.value = id ? '已切换并加载副 API 方案' : '已切换到主 API';
 }
 
 function startNewScheme() {
@@ -480,6 +499,19 @@ function saveScheme() {
   };
   const existingIndex = apiStore.value.schemes.findIndex(scheme => scheme.id === form.id);
   const existing = existingIndex >= 0 ? apiStore.value.schemes[existingIndex] : undefined;
+  const isUnchanged =
+    existing &&
+    existing.name === form.name &&
+    existing.source === form.source &&
+    existing.apiurl === form.apiurl &&
+    existing.key === form.key &&
+    existing.model === form.model &&
+    cleanString(existing.proxy_preset) === form.proxy_preset;
+  if (isUnchanged) {
+    loadApiForm(existing);
+    apiStatus.value = `方案「${existing.name}」没有变化，未重复保存`;
+    return;
+  }
   const savedScheme: ApiScheme = {
     ...form,
     ...(existing ? { createdAt: existing.createdAt } : { createdAt: now }),
@@ -571,134 +603,140 @@ onUnmounted(() => {
         <button class="ip-icon-btn" aria-label="關閉" @click="toggleExpanded">✕</button>
       </div>
 
-      <!-- 主体 -->
-      <div class="ip-panel-body">
-        <!-- 生成按钮 -->
-        <button class="ip-generate-btn" :disabled="isLoading" @click="generateOptions">
-          <span v-if="isLoading" class="ip-spinner" aria-hidden="true"></span>
-          <span>{{ isLoading ? '思考中⋯' : '✦ 思考回應' }}</span>
-        </button>
-
-        <!-- 错误提示 -->
-        <div v-if="errorMsg" class="ip-error" role="alert">
-          <span>⚠ {{ errorMsg }}</span>
-        </div>
-
-        <!-- 选项列表 -->
-        <div v-if="options.length" class="ip-options">
-          <button v-for="(opt, i) in options" :key="i" class="ip-option" @click="selectOption(opt)">
-            <!-- fork 编号 + 标签 -->
-            <div class="ip-option-head">
-              <span class="ip-fork-num">{{ FORK_LABELS[i] }}</span>
-              <span v-if="parseForkMeta(opt).tag" class="ip-fork-tag" :class="forkTagClass(parseForkMeta(opt).tag)">{{
-                parseForkMeta(opt).tag
-              }}</span>
-            </div>
-            <!-- 正文（去掉已显示的 tag 前缀） -->
-            <div class="ip-option-text">{{ parseForkMeta(opt).body || opt }}</div>
+      <!-- 可滚动内容：标题栏固定，主体和折叠区共享一个滚动上下文 -->
+      <div class="ip-panel-content">
+        <!-- 主体 -->
+        <div class="ip-panel-body">
+          <!-- 生成按钮 -->
+          <button class="ip-generate-btn" :disabled="isLoading" @click="generateOptions">
+            <span v-if="isLoading" class="ip-spinner" aria-hidden="true"></span>
+            <span>{{ isLoading ? '思考中⋯' : '✦ 思考回應' }}</span>
           </button>
+
+          <!-- 错误提示 -->
+          <div v-if="errorMsg" class="ip-error" role="alert">
+            <span>⚠ {{ errorMsg }}</span>
+          </div>
+
+          <!-- 选项列表 -->
+          <div v-if="options.length" class="ip-options">
+            <button v-for="(opt, i) in options" :key="i" class="ip-option" @click="selectOption(opt)">
+              <!-- fork 编号 + 标签 -->
+              <div class="ip-option-head">
+                <span class="ip-fork-num">{{ FORK_LABELS[i] }}</span>
+                <span v-if="parseForkMeta(opt).tag" class="ip-fork-tag" :class="forkTagClass(parseForkMeta(opt).tag)">{{
+                  parseForkMeta(opt).tag
+                }}</span>
+              </div>
+              <!-- 正文（去掉已显示的 tag 前缀） -->
+              <div class="ip-option-text">{{ parseForkMeta(opt).body || opt }}</div>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- API 设置折叠 -->
-      <div class="ip-api-section">
-        <button
-          class="ip-prompt-toggle"
-          :aria-expanded="isApiSettingsOpen"
-          @click="isApiSettingsOpen = !isApiSettingsOpen"
-        >
-          <span class="ip-toggle-arrow" :class="{ open: isApiSettingsOpen }">▶</span>
-          <span>API 設置</span>
-        </button>
+        <!-- API 设置折叠 -->
+        <div class="ip-api-section">
+          <button
+            class="ip-prompt-toggle"
+            :aria-expanded="isApiSettingsOpen"
+            @click="isApiSettingsOpen = !isApiSettingsOpen"
+          >
+            <span class="ip-toggle-arrow" :class="{ open: isApiSettingsOpen }">▶</span>
+            <span>API 設置</span>
+          </button>
 
-        <Transition name="ip-collapse">
-          <div v-if="isApiSettingsOpen" class="ip-api-settings">
-            <label class="ip-field">
-              <span>方案</span>
-              <select
-                :value="apiStore.activeId"
-                class="ip-input"
-                @change="selectScheme(($event.target as HTMLSelectElement).value)"
-              >
-                <option value="">使用主 API</option>
-                <option v-for="scheme in apiStore.schemes" :key="scheme.id" :value="scheme.id">
-                  {{ scheme.name }}
-                </option>
-              </select>
-            </label>
-            <label class="ip-field">
-              <span>方案名称</span>
-              <input v-model="apiForm.name" class="ip-input" type="text" autocomplete="off" />
-            </label>
-            <label class="ip-field">
-              <span>来源</span>
-              <input v-model="apiForm.source" class="ip-input" type="text" autocomplete="off" />
-            </label>
-            <label class="ip-field">
-              <span>API Base URL</span>
-              <input v-model="apiForm.apiurl" class="ip-input" type="url" autocomplete="url" />
-            </label>
-            <label class="ip-field">
-              <span>API Key</span>
-              <span class="ip-secret-field">
-                <input
-                  v-model="apiForm.key"
+          <Transition name="ip-collapse">
+            <div v-if="isApiSettingsOpen" class="ip-api-settings">
+              <label class="ip-field">
+                <span>方案</span>
+                <select
+                  :value="apiStore.activeId"
                   class="ip-input"
-                  :type="isApiKeyVisible ? 'text' : 'password'"
-                  autocomplete="off"
-                />
-                <button
-                  class="ip-secret-toggle"
-                  type="button"
-                  :aria-label="isApiKeyVisible ? '隐藏 API Key' : '显示 API Key'"
-                  @click="isApiKeyVisible = !isApiKeyVisible"
+                  @change="selectScheme(($event.target as HTMLSelectElement).value)"
                 >
-                  {{ isApiKeyVisible ? '隐藏' : '显示' }}
-                </button>
-              </span>
-            </label>
-            <label class="ip-field">
-              <span>模型</span>
-              <input v-model="apiForm.model" class="ip-input" type="text" autocomplete="off" />
-            </label>
-            <label class="ip-field">
-              <span>Proxy preset</span>
-              <input v-model="apiForm.proxy_preset" class="ip-input" type="text" autocomplete="off" />
-            </label>
-            <div v-if="apiValidation.length" class="ip-api-validation" role="alert">
-              <span v-for="message in apiValidation" :key="message">{{ message }}</span>
+                  <option value="">使用主 API</option>
+                  <option v-for="scheme in apiStore.schemes" :key="scheme.id" :value="scheme.id">
+                    {{ scheme.name }}
+                  </option>
+                </select>
+              </label>
+              <label class="ip-field">
+                <span>方案名称</span>
+                <input v-model="apiForm.name" class="ip-input" type="text" autocomplete="off" />
+              </label>
+              <label class="ip-field">
+                <span>来源</span>
+                <input v-model="apiForm.source" class="ip-input" type="text" autocomplete="off" />
+              </label>
+              <label class="ip-field">
+                <span>API Base URL</span>
+                <input v-model="apiForm.apiurl" class="ip-input" type="url" autocomplete="url" />
+              </label>
+              <label class="ip-field">
+                <span>API Key</span>
+                <span class="ip-secret-field">
+                  <input
+                    v-model="apiForm.key"
+                    class="ip-input"
+                    :type="isApiKeyVisible ? 'text' : 'password'"
+                    autocomplete="off"
+                  />
+                  <button
+                    class="ip-secret-toggle"
+                    type="button"
+                    :aria-label="isApiKeyVisible ? '隐藏 API Key' : '显示 API Key'"
+                    @click="isApiKeyVisible = !isApiKeyVisible"
+                  >
+                    {{ isApiKeyVisible ? '隐藏' : '显示' }}
+                  </button>
+                </span>
+              </label>
+              <label class="ip-field">
+                <span>模型</span>
+                <input v-model="apiForm.model" class="ip-input" type="text" autocomplete="off" />
+              </label>
+              <label class="ip-field">
+                <span>Proxy preset</span>
+                <input v-model="apiForm.proxy_preset" class="ip-input" type="text" autocomplete="off" />
+              </label>
+              <div v-if="apiValidation.length" class="ip-api-validation" role="alert">
+                <span v-for="message in apiValidation" :key="message">{{ message }}</span>
+              </div>
+              <div v-if="apiStatus" class="ip-api-status" role="status" aria-live="polite">{{ apiStatus }}</div>
+              <div class="ip-api-actions">
+                <button class="ip-btn ip-btn-reset" type="button" @click="startNewScheme">新增方案</button>
+                <button class="ip-btn ip-btn-save" type="button" @click="saveScheme">保存方案</button>
+                <button class="ip-btn ip-btn-delete" type="button" @click="deleteScheme">删除方案</button>
+              </div>
+              <p class="ip-api-warning">安全提示：Key 保存在脚本 data 中，导出或分享含数据的脚本可能暴露 Key。</p>
             </div>
-            <div v-if="apiStatus" class="ip-api-status" role="status">{{ apiStatus }}</div>
-            <div class="ip-api-actions">
-              <button class="ip-btn ip-btn-reset" type="button" @click="startNewScheme">新增方案</button>
-              <button class="ip-btn ip-btn-save" type="button" @click="saveScheme">保存方案</button>
-              <button class="ip-btn ip-btn-delete" type="button" @click="deleteScheme">删除方案</button>
-            </div>
-            <p class="ip-api-warning">安全提示：Key 保存在脚本 data 中，导出或分享含数据的脚本可能暴露 Key。</p>
-          </div>
-        </Transition>
-      </div>
+          </Transition>
+        </div>
 
-      <!-- 提示词编辑器折叠 -->
-      <div class="ip-prompt-section">
-        <button
-          class="ip-prompt-toggle"
-          :aria-expanded="isPromptEditorOpen"
-          @click="isPromptEditorOpen = !isPromptEditorOpen"
-        >
-          <span class="ip-toggle-arrow" :class="{ open: isPromptEditorOpen }">▶</span>
-          <span>提示詞設置</span>
-        </button>
+        <!-- 提示词编辑器折叠 -->
+        <div class="ip-prompt-section">
+          <button
+            class="ip-prompt-toggle"
+            :aria-expanded="isPromptEditorOpen"
+            @click="isPromptEditorOpen = !isPromptEditorOpen"
+          >
+            <span class="ip-toggle-arrow" :class="{ open: isPromptEditorOpen }">▶</span>
+            <span>提示詞設置</span>
+          </button>
 
-        <Transition name="ip-collapse">
-          <div v-if="isPromptEditorOpen" class="ip-prompt-editor">
-            <textarea v-model="promptEditorContent" class="ip-textarea" rows="12" spellcheck="false"></textarea>
-            <div class="ip-prompt-actions">
-              <button class="ip-btn ip-btn-save" @click="savePrompt">💾 保存</button>
-              <button class="ip-btn ip-btn-reset" @click="resetPrompt">↺ 恢復預設</button>
+          <Transition name="ip-collapse">
+            <div v-if="isPromptEditorOpen" class="ip-prompt-editor">
+              <textarea v-model="promptEditorContent" class="ip-textarea" rows="12" spellcheck="false"></textarea>
+              <div class="ip-prompt-actions">
+                <button class="ip-btn ip-btn-save" @click="savePrompt">💾 保存</button>
+                <button class="ip-btn ip-btn-reset" @click="resetPrompt">↺ 恢復預設</button>
+              </div>
+              <div v-if="promptStatus" class="ip-prompt-status" role="status" aria-live="polite">
+                {{ promptStatus }}
+              </div>
             </div>
-          </div>
-        </Transition>
+          </Transition>
+        </div>
       </div>
     </div>
   </Transition>
@@ -784,7 +822,9 @@ onUnmounted(() => {
   position: fixed;
   z-index: 9999;
   width: min(360px, calc(100vw - 16px));
+  height: min(80vh, calc(100dvh - 16px));
   max-height: min(80vh, calc(100dvh - 16px));
+  min-height: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -840,24 +880,30 @@ onUnmounted(() => {
   outline-offset: 1px;
 }
 
+/* ── 可滚动内容 ─── */
+.ip-panel-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.ip-panel-content::-webkit-scrollbar {
+  width: 3px;
+}
+.ip-panel-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ip-panel-content::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--theme-fg) 20%, transparent);
+  border-radius: 2px;
+}
+
 /* ── 主体 ─── */
 .ip-panel-body {
-  flex: 1;
-  overflow-y: auto;
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-.ip-panel-body::-webkit-scrollbar {
-  width: 3px;
-}
-.ip-panel-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-.ip-panel-body::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--theme-fg) 20%, transparent);
-  border-radius: 2px;
 }
 
 /* ── 生成按钮 ─── */
@@ -1004,24 +1050,14 @@ onUnmounted(() => {
 /* ── API 设置与提示词编辑器 ─── */
 .ip-api-section,
 .ip-prompt-section {
-  flex-shrink: 0;
   border-top: 1px solid var(--line);
 }
 
 .ip-api-settings {
-  max-height: min(52vh, 420px);
-  overflow-y: auto;
   padding: 0 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-.ip-api-settings::-webkit-scrollbar {
-  width: 3px;
-}
-.ip-api-settings::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--theme-fg) 20%, transparent);
-  border-radius: 2px;
 }
 .ip-field {
   display: flex;
@@ -1080,7 +1116,8 @@ onUnmounted(() => {
 }
 .ip-api-validation,
 .ip-api-status,
-.ip-api-warning {
+.ip-api-warning,
+.ip-prompt-status {
   margin: 0;
   font-size: 12px;
   line-height: 1.5;
@@ -1096,6 +1133,9 @@ onUnmounted(() => {
 }
 .ip-api-warning {
   color: color-mix(in srgb, #e8b66a 78%, var(--theme-fg));
+}
+.ip-prompt-status {
+  color: #7ed98c;
 }
 
 .ip-prompt-toggle {

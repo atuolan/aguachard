@@ -32,7 +32,39 @@ pnpm exec eslint src/劇情走向助手/FloatingPanel.vue
 
 实际输出：无输出，退出码 `0`。
 
+## Fix Round 1/5
+
+本轮根据独立审查处理以下问题：
+
+- 将面板改为固定总高度，标题栏固定；主体、API 设置和提示词编辑器放入同一个明确的 `ip-panel-content`
+  滚动区域。移除 API 区自身的高度上限和局部滚动，确保窄屏展开时生成按钮、五个选项、API 表单操作和提示词编辑器均可通过同一滚动区域访问。
+- 定义重复操作语义：重复选择当前方案、选择不存在的方案、保存内容未变化、恢复已是默认的提示词都视为 no-op；这些操作不写入脚本变量或本地存储，并在面板内显示状态。
+- 删除无可删除方案时保留明确 no-op 状态；正常覆盖保存仍会更新方案并持久化，正常删除仍只删除当前方案。
+
+## 验证
+
+命令：
+
+```text
+pnpm exec eslint src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：无输出，退出码 `0`。
+
+```text
+git diff --check -- src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：
+
+```text
+warning: in the working copy of 'src/劇情走向助手/FloatingPanel.vue', CRLF will be replaced by LF the next time Git touches it
+```
+
+退出码 `0`；该提示是行尾转换提示，不是 whitespace 错误。
+
 ## Concerns
 
-- 本任务只按 brief 要求运行定向 ESLint，未进行浏览器中的手动交互验收。
+- 未进行真实酒馆环境中的浏览器手动交互验收，因此尚未验证窄屏滚动、折叠区操作和实际脚本变量读写。
 - 工作区原本存在大量与本任务无关的修改；本任务不回退、不纳入这些修改。
+- 本轮仍未实现主 API 读取、模型列表、测试连接和正式生成接入，符合 brief 的排除范围。
