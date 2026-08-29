@@ -222,9 +222,17 @@ const isPromptEditorOpen = ref(false);
 const isApiKeyVisible = ref(false);
 const isLoading = ref(false);
 const isLoadingCurrentApi = ref(false);
+const isLoadingModels = ref(false);
 const errorMsg = ref('');
 const apiStatus = ref('');
 const apiValidation = ref<string[]>([]);
+const modelOptions = ref<string[]>([]);
+const availableModelOptions = computed(() => {
+  const currentModel = cleanString(apiForm.model);
+  return currentModel && !modelOptions.value.includes(currentModel)
+    ? [currentModel, ...modelOptions.value]
+    : modelOptions.value;
+});
 const options = ref<string[]>([]);
 const promptEditorContent = ref(loadPrompt());
 const customPrompt = ref(loadPrompt());
@@ -448,6 +456,7 @@ const onResize = () => {
 
 function loadApiForm(scheme?: ApiScheme) {
   Object.assign(apiForm, scheme ? { ...scheme } : emptyApiForm());
+  modelOptions.value = [];
 }
 
 function objectRecord(value: unknown): Record<string, unknown> | null {
@@ -534,6 +543,7 @@ async function loadCurrentMainApi() {
   try {
     const { form, hasReadableKey } = readCurrentMainApiForm();
     Object.assign(apiForm, form);
+    modelOptions.value = [];
     apiStatus.value = hasReadableKey
       ? '已读取当前主 API，已准备新方案，请点击“保存方案”完成持久化'
       : '已读取当前主 API（Key 不可读），请手动补填 API Key 后点击“保存方案”';
@@ -542,6 +552,51 @@ async function loadCurrentMainApi() {
     console.error('[劇情走向助手] 当前主 API 读取错误:', e instanceof Error ? e.message : '未知错误');
   } finally {
     isLoadingCurrentApi.value = false;
+  }
+}
+
+function normalizeModelList(models: unknown): string[] {
+  if (!Array.isArray(models)) return [];
+  const uniqueModels = new Map<string, number>();
+  models.forEach((model, index) => {
+    const cleaned = cleanString(model);
+    if (cleaned && !uniqueModels.has(cleaned)) uniqueModels.set(cleaned, index);
+  });
+  return [...uniqueModels]
+    .sort(([left, leftIndex], [right, rightIndex]) => left.localeCompare(right) || leftIndex - rightIndex)
+    .map(([model]) => model);
+}
+
+async function loadModels() {
+  if (isLoadingModels.value) return;
+  const apiurl = cleanString(apiForm.apiurl);
+  const model = cleanString(apiForm.model);
+  apiValidation.value = [];
+  apiStatus.value = '';
+  if (!apiurl) {
+    apiValidation.value = [
+      cleanString(apiForm.proxy_preset)
+        ? '使用 Proxy preset 拉取模型前请补充 API Base URL，或直接使用代理预设进行测试'
+        : '请填写 API Base URL 后再拉取模型',
+    ];
+    return;
+  }
+  if (!model) {
+    apiValidation.value = ['请先填写模型；拉取成功后仍可继续手动修改'];
+    return;
+  }
+
+  isLoadingModels.value = true;
+  await nextTick();
+  try {
+    const models = await getModelList({ apiurl, key: cleanString(apiForm.key) });
+    modelOptions.value = normalizeModelList(models);
+    apiStatus.value = `已拉取 ${modelOptions.value.length} 个模型`;
+  } catch (e: unknown) {
+    apiStatus.value = '模型列表拉取失败，已保留当前模型，可继续手动输入';
+    console.error('[劇情走向助手] 模型列表拉取错误:', e instanceof Error ? e.message : '未知错误');
+  } finally {
+    isLoadingModels.value = false;
   }
 }
 
@@ -788,8 +843,25 @@ onUnmounted(() => {
                 </span>
               </label>
               <label class="ip-field">
-                <span>模型</span>
-                <input v-model="apiForm.model" class="ip-input" type="text" autocomplete="off" />
+                <span>模型选择</span>
+                <select v-model="apiForm.model" class="ip-input" :disabled="!availableModelOptions.length">
+                  <option value="">{{ availableModelOptions.length ? '请选择模型' : '尚未拉取模型' }}</option>
+                  <option v-for="model in availableModelOptions" :key="model" :value="model">{{ model }}</option>
+                </select>
+              </label>
+              <label class="ip-field">
+                <span>模型（可手动输入）</span>
+                <span class="ip-model-field">
+                  <input v-model="apiForm.model" class="ip-input" type="text" autocomplete="off" />
+                  <button
+                    class="ip-btn ip-btn-reset ip-model-load"
+                    type="button"
+                    :disabled="isLoadingModels"
+                    @click="loadModels"
+                  >
+                    {{ isLoadingModels ? '拉取中⋯' : '拉取模型' }}
+                  </button>
+                </span>
               </label>
               <label class="ip-field">
                 <span>Proxy preset</span>
@@ -1185,12 +1257,19 @@ onUnmounted(() => {
   outline: none;
   border-color: color-mix(in srgb, var(--theme-fg) 55%, transparent);
 }
-.ip-secret-field {
+.ip-secret-field,
+.ip-model-field {
   display: flex;
   gap: 5px;
 }
-.ip-secret-field .ip-input {
+.ip-secret-field .ip-input,
+.ip-model-field .ip-input {
   flex: 1;
+}
+.ip-model-load {
+  flex: 0 0 auto;
+  padding-inline: 9px;
+  white-space: nowrap;
 }
 .ip-secret-toggle {
   flex-shrink: 0;
