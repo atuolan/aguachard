@@ -221,6 +221,7 @@ const isApiSettingsOpen = ref(false);
 const isPromptEditorOpen = ref(false);
 const isApiKeyVisible = ref(false);
 const isLoading = ref(false);
+const isLoadingCurrentApi = ref(false);
 const errorMsg = ref('');
 const apiStatus = ref('');
 const apiValidation = ref<string[]>([]);
@@ -447,6 +448,83 @@ const onResize = () => {
 
 function loadApiForm(scheme?: ApiScheme) {
   Object.assign(apiForm, scheme ? { ...scheme } : emptyApiForm());
+}
+
+function objectRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === 'object' ? (value as Record<string, unknown>) : null;
+}
+
+function firstReadableString(record: Record<string, unknown>, fields: string[]): string {
+  for (const field of fields) {
+    const value = cleanString(record[field]);
+    if (value) return value;
+  }
+  return '';
+}
+
+function isMaskedApiKey(value: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  return (
+    !normalized ||
+    normalized.includes('被隐藏') ||
+    normalized.includes('已隐藏') ||
+    normalized.includes('masked') ||
+    normalized.includes('redacted') ||
+    normalized === '***' ||
+    normalized === '••••••••'
+  );
+}
+
+function readCurrentMainApiForm(): { form: ApiForm; hasReadableKey: boolean } {
+  const settings = objectRecord(SillyTavern.chatCompletionSettings);
+  if (!settings) throw new Error('当前 Chat Completion 配置不可读');
+
+  const key = firstReadableString(settings, ['api_key', 'key', 'apiKey', 'openai_key', 'openai_api_key']);
+  const form: ApiForm = {
+    ...emptyApiForm(),
+    id: createApiSchemeId(),
+    name: firstReadableString(settings, ['name', 'preset', 'preset_name', 'connection_name']) || '当前主 API 方案',
+    source:
+      firstReadableString(settings, [
+        'custom_model_source',
+        'chat_completion_source',
+        'source',
+        'api_type',
+        'provider',
+      ]) || 'openai',
+    apiurl: firstReadableString(settings, [
+      'reverse_proxy',
+      'proxy_url',
+      'openai_server_url',
+      'api_url',
+      'apiurl',
+      'endpoint',
+      'base_url',
+    ]),
+    key: isMaskedApiKey(key) ? '' : key,
+    model: firstReadableString(settings, ['model', 'openai_model', 'model_name', 'custom_model']),
+    proxy_preset: firstReadableString(settings, ['proxy_preset', 'proxyPreset']),
+  };
+  return { form, hasReadableKey: !isMaskedApiKey(key) };
+}
+
+async function loadCurrentMainApi() {
+  if (isLoadingCurrentApi.value) return;
+  isLoadingCurrentApi.value = true;
+  apiValidation.value = [];
+  apiStatus.value = '';
+  try {
+    const { form, hasReadableKey } = readCurrentMainApiForm();
+    Object.assign(apiForm, form);
+    apiStatus.value = hasReadableKey
+      ? '已读取当前主 API，已准备新方案，请点击“保存方案”完成持久化'
+      : '已读取当前主 API（Key 不可读），请手动补填 API Key 后点击“保存方案”';
+  } catch (e: unknown) {
+    apiStatus.value = '当前主 API 读取失败，已保留原表单内容';
+    console.error('[劇情走向助手] 当前主 API 读取错误:', e instanceof Error ? e.message : '未知错误');
+  } finally {
+    isLoadingCurrentApi.value = false;
+  }
 }
 
 function selectScheme(id: string) {
@@ -704,6 +782,14 @@ onUnmounted(() => {
               </div>
               <div v-if="apiStatus" class="ip-api-status" role="status" aria-live="polite">{{ apiStatus }}</div>
               <div class="ip-api-actions">
+                <button
+                  class="ip-btn ip-btn-reset"
+                  type="button"
+                  :disabled="isLoadingCurrentApi"
+                  @click="loadCurrentMainApi"
+                >
+                  {{ isLoadingCurrentApi ? '读取中⋯' : '从当前酒馆读取' }}
+                </button>
                 <button class="ip-btn ip-btn-reset" type="button" @click="startNewScheme">新增方案</button>
                 <button class="ip-btn ip-btn-save" type="button" @click="saveScheme">保存方案</button>
                 <button class="ip-btn ip-btn-delete" type="button" @click="deleteScheme">删除方案</button>
@@ -1105,6 +1191,10 @@ onUnmounted(() => {
 .ip-api-actions .ip-btn {
   min-width: 0;
   padding-inline: 7px;
+}
+.ip-api-actions .ip-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .ip-btn-delete {
   background: rgba(220, 80, 80, 0.1);
