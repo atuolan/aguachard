@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, reactive, ref } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, reactive, ref } from 'vue';
 
 // ─── 常量 ────────────────────────────────────────────────────────────────────
 
@@ -470,42 +470,59 @@ function isMaskedApiKey(value: string): boolean {
     normalized.includes('已隐藏') ||
     normalized.includes('masked') ||
     normalized.includes('redacted') ||
-    normalized === '***' ||
-    normalized === '••••••••'
+    normalized.includes('hidden') ||
+    normalized.includes('censored') ||
+    normalized.includes('obfuscated') ||
+    /^(?:[*•·…⋯.#x_-])+$/.test(normalized)
   );
+}
+
+function firstReadableApiKey(record: Record<string, unknown>, fields: string[]): string {
+  for (const field of fields) {
+    const value = cleanString(record[field]);
+    if (value && !isMaskedApiKey(value)) return value;
+  }
+  return '';
 }
 
 function readCurrentMainApiForm(): { form: ApiForm; hasReadableKey: boolean } {
   const settings = objectRecord(SillyTavern.chatCompletionSettings);
   if (!settings) throw new Error('当前 Chat Completion 配置不可读');
 
-  const key = firstReadableString(settings, ['api_key', 'key', 'apiKey', 'openai_key', 'openai_api_key']);
+  const key = firstReadableApiKey(settings, ['api_key', 'key', 'apiKey', 'openai_key', 'openai_api_key']);
+  const source = firstReadableString(settings, [
+    'custom_model_source',
+    'chat_completion_source',
+    'source',
+    'api_type',
+    'provider',
+  ]);
+  const apiurl = firstReadableString(settings, [
+    'reverse_proxy',
+    'proxy_url',
+    'openai_server_url',
+    'api_url',
+    'apiurl',
+    'endpoint',
+    'base_url',
+  ]);
+  const model = firstReadableString(settings, ['model', 'openai_model', 'model_name', 'custom_model']);
+  const proxyPreset = firstReadableString(settings, ['proxy_preset', 'proxyPreset']);
+  if (!source && !apiurl && !key && !model && !proxyPreset) {
+    throw new Error('当前 Chat Completion 配置为空或没有可读 API 字段');
+  }
+
   const form: ApiForm = {
     ...emptyApiForm(),
     id: createApiSchemeId(),
     name: firstReadableString(settings, ['name', 'preset', 'preset_name', 'connection_name']) || '当前主 API 方案',
-    source:
-      firstReadableString(settings, [
-        'custom_model_source',
-        'chat_completion_source',
-        'source',
-        'api_type',
-        'provider',
-      ]) || 'openai',
-    apiurl: firstReadableString(settings, [
-      'reverse_proxy',
-      'proxy_url',
-      'openai_server_url',
-      'api_url',
-      'apiurl',
-      'endpoint',
-      'base_url',
-    ]),
-    key: isMaskedApiKey(key) ? '' : key,
-    model: firstReadableString(settings, ['model', 'openai_model', 'model_name', 'custom_model']),
-    proxy_preset: firstReadableString(settings, ['proxy_preset', 'proxyPreset']),
+    source: source || 'openai',
+    apiurl,
+    key,
+    model,
+    proxy_preset: proxyPreset,
   };
-  return { form, hasReadableKey: !isMaskedApiKey(key) };
+  return { form, hasReadableKey: Boolean(key) };
 }
 
 async function loadCurrentMainApi() {
@@ -513,6 +530,7 @@ async function loadCurrentMainApi() {
   isLoadingCurrentApi.value = true;
   apiValidation.value = [];
   apiStatus.value = '';
+  await nextTick();
   try {
     const { form, hasReadableKey } = readCurrentMainApiForm();
     Object.assign(apiForm, form);

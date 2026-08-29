@@ -42,3 +42,44 @@ pnpm exec eslint src/劇情走向助手/FloatingPanel.vue
 - `chatCompletionSettings` 在当前声明中仍为
   `any`，因此跨版本字段兼容依赖运行时字段别名和字符串检查；本任务未修改公共类型声明。
 - 未在真实酒馆运行环境中执行按钮手动验证；已完成 brief 指定的 ESLint 验证。
+
+## Fix Round 1/5
+
+### 修复说明
+
+- 扩展 `isMaskedApiKey()`：识别任意长度的 `*`、圆点、居中点、省略号、井号、`x`、下划线和短横线遮罩，以及
+  `hidden`、`censored`、`obfuscated` 等常见遮罩标记；这些值不会写入表单或脚本变量。
+- 新增按字段顺序逐项检查的 Key 读取逻辑。遇到第一个非空但被遮罩的别名时继续查找，只有找到非遮罩字符串才作为真实 Key。
+- `loadCurrentMainApi()` 在置为 loading 后先 `await nextTick()`，为 Vue 实际渲染“读取中”和按钮禁用态提供异步机会。
+- 读取结果只有在存在至少一个可读 API 字段时才视为成功。空对象或完全不可读配置会显示“当前主 API 读取失败，已保留原表单内容”，且不会覆盖原表单。
+- 未修改 `generateOptions()` 的正式请求行为，未实现 Task 4 模型列表、Task 5 测试连接或 Task 6 正式生成接入。
+
+### 验证命令与实际输出
+
+命令：
+
+```text
+pnpm exec eslint src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：无输出；退出码：`0`
+
+命令：
+
+```text
+git diff --check -- src/劇情走向助手/FloatingPanel.vue
+```
+
+实际输出：
+
+```text
+warning: in the working copy of 'src/劇情走向助手/FloatingPanel.vue', CRLF will be replaced by LF the next time Git touches it
+```
+
+退出码：`0`；该提示是换行符转换提示，不是 whitespace error。
+
+### 核心风险测试限制
+
+项目 `package.json` 未配置 Vitest、Jest 或 Vue Test Utils，也没有现成的 `FloatingPanel.vue`
+组件测试文件，因此本轮无法在不引入新测试基础设施的情况下自动挂载组件并重复验证 Vue 渲染时序及酒馆运行时配置。已通过 TypeScript/Vue
+ESLint 解析检查和 `git diff --check` 完成静态验证；真实酒馆中的按钮交互、遮罩别名组合及空配置场景仍需手动验证。
