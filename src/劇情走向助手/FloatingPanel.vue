@@ -4,9 +4,10 @@ import { computed, nextTick, onMounted, onUnmounted, reactive, ref } from 'vue';
 // ─── 常量 ────────────────────────────────────────────────────────────────────
 
 const SNAP_ZONE = 60;
-const CLICK_SLOP = 6;
+const LONG_PRESS_MS = 420;
+const PRESS_SLOP = 12;
 const VIEWPORT_INSET = 8;
-const POS_KEY = 'intersection-panel.pos.v1';
+const POS_KEY = 'intersection-panel.pos.v2';
 const PROMPT_KEY = 'intersection-panel.prompt.v1';
 const API_STORE_KEY = 'storyDirectionApi';
 const TOGGLE_EVENT = '劇情走向助手:toggle';
@@ -223,10 +224,14 @@ const isApiKeyVisible = ref(false);
 const isLoading = ref(false);
 const isLoadingCurrentApi = ref(false);
 const isLoadingModels = ref(false);
+const isTestingConnection = ref(false);
 const errorMsg = ref('');
 const apiStatus = ref('');
 const apiValidation = ref<string[]>([]);
+const connectionReply = ref('');
+const connectionDuration = ref<number | null>(null);
 const modelOptions = ref<string[]>([]);
+const isApiBusy = computed(() => isLoadingCurrentApi.value || isLoadingModels.value || isTestingConnection.value);
 const availableModelOptions = computed(() => {
   const currentModel = cleanString(apiForm.model);
   return currentModel && !modelOptions.value.includes(currentModel)
@@ -242,21 +247,44 @@ const dragging = ref(false);
 const awake = ref(false);
 let modelRequestSequence = 0;
 let activePointer: number | null = null;
+let pressTimer: number | null = null;
+let clickSuppressionTimer: number | null = null;
+let suppressNextClick = false;
+let pressCancelled = false;
+let pressOrigin: OrbPos | null = null;
+let touchActive = false;
+let touchDragging = false;
 let startX = 0,
   startY = 0,
-  moved = 0,
   grabDX = 0,
   grabDY = 0;
 
 const TAB_W = 96;
 const TAB_H = 36;
 
-function viewportSize() {
+function viewportBounds() {
   const viewport = window.visualViewport;
   return {
+    left: viewport?.offsetLeft ?? 0,
+    top: viewport?.offsetTop ?? 0,
     width: viewport?.width || window.innerWidth,
     height: viewport?.height || window.innerHeight,
   };
+}
+
+/**
+ * 取得 SillyTavern chat 區域的實際邊界。
+ * 找不到容器或容器尺寸無效時回退為 visualViewport，確保定位邏輯永遠有可用邊界。
+ */
+function chatBounds() {
+  const chat = document.querySelector('#chat');
+  if (chat) {
+    const rect = chat.getBoundingClientRect();
+    if (rect.width > 0 && rect.height > 0) {
+      return { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
+    }
+  }
+  return viewportBounds();
 }
 
 // ─── 辅助：解析 fork 标签 ────────────────────────────────────────────────────
@@ -286,13 +314,15 @@ const FORK_LABELS = ['場景一', '場景二', '推進', '跳轉', '留白'];
 // ─── 位置计算 ────────────────────────────────────────────────────────────────
 
 function clampToViewport() {
-  const { width, height } = viewportSize();
-  const maxX = Math.max(VIEWPORT_INSET, width - TAB_W - VIEWPORT_INSET);
-  const maxY = Math.max(VIEWPORT_INSET, height - TAB_H - VIEWPORT_INSET);
-  if (pos.dock === 'right') pos.x = width - TAB_W - VIEWPORT_INSET;
-  else if (pos.dock === 'left') pos.x = VIEWPORT_INSET;
-  pos.x = Math.min(Math.max(VIEWPORT_INSET, pos.x), maxX);
-  pos.y = Math.min(Math.max(VIEWPORT_INSET, pos.y), maxY);
+  const { left, top, width, height } = chatBounds();
+  const minX = left + VIEWPORT_INSET;
+  const minY = top + VIEWPORT_INSET;
+  const maxX = Math.max(minX, left + width - TAB_W - VIEWPORT_INSET);
+  const maxY = Math.max(minY, top + height - TAB_H - VIEWPORT_INSET);
+  if (pos.dock === 'right') pos.x = maxX;
+  else if (pos.dock === 'left') pos.x = minX;
+  pos.x = Math.min(Math.max(minX, pos.x), maxX);
+  pos.y = Math.min(Math.max(minY, pos.y), maxY);
 }
 
 function currentLeft(): number {
@@ -306,59 +336,254 @@ const tabStyle = computed(() => ({
 }));
 
 const panelStyle = computed(() => {
-  const { width, height } = viewportSize();
+  const { left, top, width, height } = chatBounds();
   const narrow = width < 440;
-  if (narrow) return { left: `${VIEWPORT_INSET}px`, right: `${VIEWPORT_INSET}px`, top: `${VIEWPORT_INSET}px` };
+  if (narrow) {
+    return {
+      left: `${left + VIEWPORT_INSET}px`,
+      top: `${top + VIEWPORT_INSET}px`,
+      width: `${Math.max(0, width - VIEWPORT_INSET * 2)}px`,
+    };
+  }
 
   const panelWidth = Math.min(360, width - VIEWPORT_INSET * 2);
-  const tabLeft = currentLeft();
-  const showRight = tabLeft + TAB_W / 2 < width / 2;
   const panelMaxHeight = Math.min(height * 0.8, height - VIEWPORT_INSET * 2);
-  const maxTop = Math.max(VIEWPORT_INSET, height - panelMaxHeight - VIEWPORT_INSET);
-  const top = Math.min(Math.max(VIEWPORT_INSET, pos.y), maxTop);
-  return showRight
-    ? { left: `${Math.min(width - panelWidth - VIEWPORT_INSET, tabLeft + TAB_W + 8)}px`, top: `${top}px` }
-    : { left: `${Math.max(VIEWPORT_INSET, tabLeft - panelWidth - 8)}px`, top: `${top}px` };
+  const minTop = top + VIEWPORT_INSET;
+  const maxTop = Math.max(minTop, top + height - panelMaxHeight - VIEWPORT_INSET);
+  const finalTop = Math.min(Math.max(minTop, pos.y), maxTop);
+
+  // 面板固定在 chat 區域右側（右邊界減去面板寬度與邊距）
+  const finalLeft = left + width - panelWidth - VIEWPORT_INSET;
+  return {
+    left: `${Math.max(left + VIEWPORT_INSET, finalLeft)}px`,
+    top: `${finalTop}px`,
+  };
 });
 
-// ─── 拖动 ────────────────────────────────────────────────────────────────────
+// ─── 短按与长按拖动 ──────────────────────────────────────────────────────────
+
+function clearPressTimer() {
+  if (pressTimer === null) return;
+  window.clearTimeout(pressTimer);
+  pressTimer = null;
+}
+
+function suppressClickForCurrentGesture() {
+  suppressNextClick = true;
+  if (clickSuppressionTimer !== null) window.clearTimeout(clickSuppressionTimer);
+  clickSuppressionTimer = window.setTimeout(() => {
+    suppressNextClick = false;
+    clickSuppressionTimer = null;
+  }, 500);
+}
+
+function releaseClickSuppressionAfterEvent() {
+  // Keep the guard alive long enough to consume a mobile browser's synthetic click.
+}
 
 function onDown(e: PointerEvent) {
+  if (e.pointerType === 'touch' || activePointer !== null || (e.pointerType === 'mouse' && e.button !== 0)) return;
+
   activePointer = e.pointerId;
-  dragging.value = true;
-  moved = 0;
+  pressCancelled = false;
+  pressOrigin = { dock: pos.dock, x: pos.x, y: pos.y };
   startX = e.clientX;
   startY = e.clientY;
   grabDX = e.clientX - currentLeft();
   grabDY = e.clientY - pos.y;
-  (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+
+  // 鼠标：立即拖拽 + pointer capture
+  if (e.pointerType === 'mouse') {
+    dragging.value = true;
+    try {
+      (e.currentTarget as Element).setPointerCapture(e.pointerId);
+    } catch {
+      // setPointerCapture 可能失败，静默处理
+    }
+    return;
+  }
+
+  // 非鼠标（笔或其他）：使用长按逻辑
+  pressTimer = window.setTimeout(() => {
+    if (activePointer !== e.pointerId) return;
+    pressTimer = null;
+    dragging.value = true;
+    suppressClickForCurrentGesture();
+  }, LONG_PRESS_MS);
 }
 
 function onMove(e: PointerEvent) {
-  if (!dragging.value || e.pointerId !== activePointer) return;
-  moved = Math.max(moved, Math.abs(e.clientX - startX) + Math.abs(e.clientY - startY));
+  if (e.pointerType === 'touch' || e.pointerId !== activePointer) return;
+
+  // 鼠标：立即拖拽，不检查 PRESS_SLOP
+  if (e.pointerType === 'mouse') {
+    if (!dragging.value) return;
+    e.preventDefault();
+    pos.dock = 'none';
+    pos.x = e.clientX - grabDX;
+    pos.y = e.clientY - grabDY;
+    clampToViewport();
+    return;
+  }
+
+  // 非鼠标：保留原逻辑
+  if (!dragging.value) {
+    const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
+    if (dist > PRESS_SLOP) {
+      pressCancelled = true;
+      clearPressTimer();
+      suppressClickForCurrentGesture();
+    }
+    return;
+  }
+
+  e.preventDefault();
   pos.dock = 'none';
   pos.x = e.clientX - grabDX;
   pos.y = e.clientY - grabDY;
   clampToViewport();
 }
 
-function onUp(e: PointerEvent) {
-  if (!dragging.value || e.pointerId !== activePointer) return;
-  dragging.value = false;
+function finishPointer(e: PointerEvent, cancelled: boolean) {
+  if (e.pointerType === 'touch' || e.pointerId !== activePointer) return;
+  const wasDragging = dragging.value;
+  clearPressTimer();
   activePointer = null;
-  if (moved < CLICK_SLOP) {
-    toggleExpanded();
+  dragging.value = false;
+
+  // pointerup 觸發時瀏覽器會自動釋放 pointer capture，無需手動呼叫。
+
+  if (cancelled || pressCancelled) {
+    if (pressOrigin) Object.assign(pos, pressOrigin);
+    pressOrigin = null;
+    pressCancelled = false;
+    clampToViewport();
+    suppressClickForCurrentGesture();
+    releaseClickSuppressionAfterEvent();
     return;
   }
-  const { width } = viewportSize();
-  const left = pos.x;
-  const right = width - (pos.x + TAB_W);
-  if (left <= SNAP_ZONE) pos.dock = 'left';
-  else if (right <= SNAP_ZONE) pos.dock = 'right';
-  else pos.dock = 'none';
+
+  pressOrigin = null;
+  if (wasDragging) {
+    const { left: chatLeft, width } = chatBounds();
+    const leftGap = pos.x - chatLeft;
+    const rightGap = chatLeft + width - (pos.x + TAB_W);
+    if (leftGap <= SNAP_ZONE) pos.dock = 'left';
+    else if (rightGap <= SNAP_ZONE) pos.dock = 'right';
+    else pos.dock = 'none';
+    clampToViewport();
+    savePos();
+    suppressClickForCurrentGesture();
+  } else {
+    toggleExpanded();
+    suppressClickForCurrentGesture();
+  }
+  pressCancelled = false;
+  releaseClickSuppressionAfterEvent();
+}
+
+function onTabClick(e: MouseEvent) {
+  if (suppressNextClick) {
+    e.preventDefault();
+    e.stopPropagation();
+    suppressNextClick = false;
+    if (clickSuppressionTimer !== null) window.clearTimeout(clickSuppressionTimer);
+    clickSuppressionTimer = null;
+    return;
+  }
+  toggleExpanded();
+}
+
+function touchPoint(e: TouchEvent): Touch | null {
+  return e.touches[0] ?? e.changedTouches[0] ?? null;
+}
+
+function onTouchStart(e: TouchEvent) {
+  if (touchActive || activePointer !== null) return;
+  const point = touchPoint(e);
+  if (!point) return;
+  touchActive = true;
+  touchDragging = false;
+  pressCancelled = false;
+  pressOrigin = { dock: pos.dock, x: pos.x, y: pos.y };
+  startX = point.clientX;
+  startY = point.clientY;
+  grabDX = point.clientX - currentLeft();
+  grabDY = point.clientY - pos.y;
+  pressTimer = window.setTimeout(() => {
+    if (!touchActive || pressCancelled) return;
+    pressTimer = null;
+    touchDragging = true;
+    dragging.value = true;
+    suppressClickForCurrentGesture();
+  }, LONG_PRESS_MS);
+}
+
+function onTouchMove(e: TouchEvent) {
+  if (!touchActive) return;
+  const point = touchPoint(e);
+  if (!point) return;
+  if (!touchDragging) {
+    if (Math.hypot(point.clientX - startX, point.clientY - startY) > PRESS_SLOP) {
+      pressCancelled = true;
+      clearPressTimer();
+      suppressClickForCurrentGesture();
+    }
+    return;
+  }
+  e.preventDefault();
+  pos.dock = 'none';
+  pos.x = point.clientX - grabDX;
+  pos.y = point.clientY - grabDY;
   clampToViewport();
-  savePos();
+}
+
+function onTouchEnd() {
+  if (!touchActive) return;
+  const wasDragging = touchDragging;
+  const wasCancelled = pressCancelled;
+  clearPressTimer();
+  touchActive = false;
+  touchDragging = false;
+  dragging.value = false;
+  pressCancelled = false;
+  pressOrigin = null;
+  if (wasCancelled) {
+    suppressClickForCurrentGesture();
+    return;
+  }
+  if (wasDragging) {
+    const { left: chatLeft, width } = chatBounds();
+    const leftGap = pos.x - chatLeft;
+    const rightGap = chatLeft + width - (pos.x + TAB_W);
+    if (leftGap <= SNAP_ZONE) pos.dock = 'left';
+    else if (rightGap <= SNAP_ZONE) pos.dock = 'right';
+    else pos.dock = 'none';
+    clampToViewport();
+    savePos();
+    suppressClickForCurrentGesture();
+  }
+}
+
+function onTouchCancel() {
+  if (!touchActive) return;
+  clearPressTimer();
+  touchActive = false;
+  touchDragging = false;
+  dragging.value = false;
+  if (pressOrigin) Object.assign(pos, pressOrigin);
+  pressOrigin = null;
+  pressCancelled = false;
+  clampToViewport();
+  suppressClickForCurrentGesture();
+}
+
+function onUp(e: PointerEvent) {
+  finishPointer(e, false);
+}
+
+function onCancel(e: PointerEvent) {
+  finishPointer(e, true);
 }
 
 function onKey(e: KeyboardEvent) {
@@ -394,10 +619,12 @@ function parseIntersection(text: string): string[] | null {
 }
 
 async function generateOptions() {
+  if (isLoading.value || isApiBusy.value) return;
   isLoading.value = true;
   errorMsg.value = '';
   options.value = [];
   try {
+    const customApi = selectedCustomApi.value;
     const result = await generateRaw({
       should_silence: true,
       should_stream: false,
@@ -408,6 +635,7 @@ async function generateOptions() {
         'chat_history',
         { role: 'system', content: customPrompt.value },
       ],
+      ...(customApi ? { custom_api: customApi } : {}),
     });
     const text = typeof result === 'string' ? result : ((result as any).content ?? '');
     const parsed = parseIntersection(text);
@@ -556,7 +784,7 @@ function readCurrentMainApiForm(): { form: ApiForm; hasReadableKey: boolean } {
 }
 
 async function loadCurrentMainApi() {
-  if (isLoadingCurrentApi.value || isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   isLoadingCurrentApi.value = true;
   apiValidation.value = [];
   apiStatus.value = '';
@@ -589,7 +817,7 @@ function normalizeModelList(models: unknown): string[] {
 }
 
 async function loadModels() {
-  if (isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   const requestForm = apiFormSnapshot();
   apiValidation.value = [];
   apiStatus.value = '';
@@ -623,8 +851,61 @@ async function loadModels() {
   }
 }
 
+function connectionResultText(result: unknown): string {
+  if (typeof result === 'string') return result.trim();
+  const record = objectRecord(result);
+  return cleanString(record?.content) || cleanString(record?.text) || '连接成功，但模型未返回文本内容';
+}
+
+async function testConnection() {
+  if (isApiBusy.value || isLoading.value) return;
+  const requestForm = apiFormSnapshot();
+  apiValidation.value = [];
+  apiStatus.value = '';
+  connectionReply.value = '';
+  connectionDuration.value = null;
+  const required: Array<[keyof ApiForm, string]> = [
+    ['source', '来源'],
+    ['model', '模型'],
+    ...(requestForm.proxy_preset
+      ? []
+      : ([
+          ['apiurl', 'API Base URL'],
+          ['key', 'API Key'],
+        ] as Array<[keyof ApiForm, string]>)),
+  ];
+  apiValidation.value = required
+    .filter(([field]) => !requestForm[field])
+    .map(([, label]) => `请填写${label}后再测试连接`);
+  if (apiValidation.value.length) return;
+
+  isTestingConnection.value = true;
+  const startedAt = performance.now();
+  await nextTick();
+  try {
+    const result = await generateRaw({
+      user_input: '请只回覆：連線測試成功',
+      should_silence: true,
+      should_stream: false,
+      max_chat_history: 0,
+      custom_api: schemeToCustomApi(requestForm),
+    });
+    connectionDuration.value = Math.round(performance.now() - startedAt);
+    connectionReply.value = connectionResultText(result).slice(0, 2000);
+    apiStatus.value = '连接测试完成';
+  } catch {
+    connectionDuration.value = Math.round(performance.now() - startedAt);
+    apiStatus.value = requestForm.proxy_preset
+      ? '连接测试失败，请检查 Proxy preset、来源和模型'
+      : '连接测试失败，请检查地址、Key、来源和模型';
+    console.error('[劇情走向助手] 连接测试失败');
+  } finally {
+    isTestingConnection.value = false;
+  }
+}
+
 function selectScheme(id: string) {
-  if (isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   apiValidation.value = [];
   if (id === apiStore.value.activeId) {
     apiStatus.value = id ? '当前已在该副 API 方案，未重复切换' : '当前已使用主 API，未重复切换';
@@ -641,7 +922,7 @@ function selectScheme(id: string) {
 }
 
 function startNewScheme() {
-  if (isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   apiValidation.value = [];
   apiStatus.value = '已准备新方案，请填写配置后保存';
   loadApiForm({ ...emptyApiForm(), id: createApiSchemeId() });
@@ -658,7 +939,7 @@ function validateApiForm(): string[] {
 }
 
 function saveScheme() {
-  if (isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   apiValidation.value = validateApiForm();
   apiStatus.value = '';
   if (apiValidation.value.length) return;
@@ -705,7 +986,7 @@ function saveScheme() {
 }
 
 function deleteScheme() {
-  if (isLoadingModels.value) return;
+  if (isApiBusy.value) return;
   const id = cleanString(apiForm.id);
   const index = apiStore.value.schemes.findIndex(scheme => scheme.id === id);
   if (!id || index < 0) {
@@ -738,12 +1019,29 @@ onMounted(() => {
   clampToViewport();
   window.addEventListener('resize', onResize);
   window.visualViewport?.addEventListener('resize', onResize);
+  window.visualViewport?.addEventListener('scroll', onResize);
+  window.addEventListener('pointermove', onMove, { passive: false });
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onCancel);
+  window.addEventListener('touchmove', onTouchMove, { passive: false });
+  window.addEventListener('touchend', onTouchEnd);
+  window.addEventListener('touchcancel', onTouchCancel);
   window.addEventListener(TOGGLE_EVENT, onQrToggle);
 });
 
 onUnmounted(() => {
+  clearPressTimer();
+  if (clickSuppressionTimer !== null) window.clearTimeout(clickSuppressionTimer);
+  clickSuppressionTimer = null;
   window.removeEventListener('resize', onResize);
   window.visualViewport?.removeEventListener('resize', onResize);
+  window.visualViewport?.removeEventListener('scroll', onResize);
+  window.removeEventListener('pointermove', onMove);
+  window.removeEventListener('pointerup', onUp);
+  window.removeEventListener('pointercancel', onCancel);
+  window.removeEventListener('touchmove', onTouchMove);
+  window.removeEventListener('touchend', onTouchEnd);
+  window.removeEventListener('touchcancel', onTouchCancel);
   window.removeEventListener(TOGGLE_EVENT, onQrToggle);
 });
 </script>
@@ -751,17 +1049,17 @@ onUnmounted(() => {
 <template>
   <!-- 浮动页籤 -->
   <div
-    v-if="isVisible"
+    v-if="isVisible && !isExpanded"
     class="ip-tab"
     :class="{ 'is-dragging': dragging }"
     :style="tabStyle"
     role="button"
     tabindex="0"
     aria-label="劇情走向助手"
+    @click="onTabClick"
     @pointerdown="onDown"
-    @pointermove="onMove"
-    @pointerup="onUp"
-    @pointercancel="onUp"
+    @touchstart="onTouchStart"
+    @contextmenu.prevent
     @pointerenter="awake = true"
     @pointerleave="awake = false"
     @focus="awake = true"
@@ -786,7 +1084,7 @@ onUnmounted(() => {
         <!-- 主体 -->
         <div class="ip-panel-body">
           <!-- 生成按钮 -->
-          <button class="ip-generate-btn" :disabled="isLoading" @click="generateOptions">
+          <button class="ip-generate-btn" :disabled="isLoading || isApiBusy" @click="generateOptions">
             <span v-if="isLoading" class="ip-spinner" aria-hidden="true"></span>
             <span>{{ isLoading ? '思考中⋯' : '✦ 思考回應' }}</span>
           </button>
@@ -830,7 +1128,7 @@ onUnmounted(() => {
                 <select
                   :value="apiStore.activeId"
                   class="ip-input"
-                  :disabled="isLoadingModels"
+                  :disabled="isApiBusy"
                   @change="selectScheme(($event.target as HTMLSelectElement).value)"
                 >
                   <option value="">使用主 API</option>
@@ -841,33 +1139,15 @@ onUnmounted(() => {
               </label>
               <label class="ip-field">
                 <span>方案名称</span>
-                <input
-                  v-model="apiForm.name"
-                  class="ip-input"
-                  type="text"
-                  autocomplete="off"
-                  :disabled="isLoadingModels"
-                />
+                <input v-model="apiForm.name" class="ip-input" type="text" autocomplete="off" :disabled="isApiBusy" />
               </label>
               <label class="ip-field">
                 <span>来源</span>
-                <input
-                  v-model="apiForm.source"
-                  class="ip-input"
-                  type="text"
-                  autocomplete="off"
-                  :disabled="isLoadingModels"
-                />
+                <input v-model="apiForm.source" class="ip-input" type="text" autocomplete="off" :disabled="isApiBusy" />
               </label>
               <label class="ip-field">
                 <span>API Base URL</span>
-                <input
-                  v-model="apiForm.apiurl"
-                  class="ip-input"
-                  type="url"
-                  autocomplete="url"
-                  :disabled="isLoadingModels"
-                />
+                <input v-model="apiForm.apiurl" class="ip-input" type="url" autocomplete="url" :disabled="isApiBusy" />
               </label>
               <label class="ip-field">
                 <span>API Key</span>
@@ -877,12 +1157,13 @@ onUnmounted(() => {
                     class="ip-input"
                     :type="isApiKeyVisible ? 'text' : 'password'"
                     autocomplete="off"
-                    :disabled="isLoadingModels"
+                    :disabled="isApiBusy"
                   />
                   <button
                     class="ip-secret-toggle"
                     type="button"
                     :aria-label="isApiKeyVisible ? '隐藏 API Key' : '显示 API Key'"
+                    :disabled="isApiBusy"
                     @click="isApiKeyVisible = !isApiKeyVisible"
                   >
                     {{ isApiKeyVisible ? '隐藏' : '显示' }}
@@ -891,11 +1172,7 @@ onUnmounted(() => {
               </label>
               <label class="ip-field">
                 <span>模型选择</span>
-                <select
-                  v-model="apiForm.model"
-                  class="ip-input"
-                  :disabled="isLoadingModels || !availableModelOptions.length"
-                >
+                <select v-model="apiForm.model" class="ip-input" :disabled="isApiBusy || !availableModelOptions.length">
                   <option value="">{{ availableModelOptions.length ? '请选择模型' : '尚未拉取模型' }}</option>
                   <option v-for="model in availableModelOptions" :key="model" :value="model">{{ model }}</option>
                 </select>
@@ -908,12 +1185,12 @@ onUnmounted(() => {
                     class="ip-input"
                     type="text"
                     autocomplete="off"
-                    :disabled="isLoadingModels"
+                    :disabled="isApiBusy"
                   />
                   <button
                     class="ip-btn ip-btn-reset ip-model-load"
                     type="button"
-                    :disabled="isLoadingModels"
+                    :disabled="isApiBusy"
                     @click="loadModels"
                   >
                     {{ isLoadingModels ? '拉取中⋯' : '拉取模型' }}
@@ -927,29 +1204,38 @@ onUnmounted(() => {
                   class="ip-input"
                   type="text"
                   autocomplete="off"
-                  :disabled="isLoadingModels"
+                  :disabled="isApiBusy"
                 />
               </label>
               <div v-if="apiValidation.length" class="ip-api-validation" role="alert">
                 <span v-for="message in apiValidation" :key="message">{{ message }}</span>
               </div>
               <div v-if="apiStatus" class="ip-api-status" role="status" aria-live="polite">{{ apiStatus }}</div>
+              <div v-if="connectionReply" class="ip-connection-result" role="status" aria-live="polite">
+                <strong>模型回复</strong>
+                <span>{{ connectionReply }}</span>
+                <small v-if="connectionDuration !== null">耗时 {{ connectionDuration }} ms</small>
+              </div>
+              <button
+                class="ip-btn ip-btn-test"
+                type="button"
+                :disabled="isApiBusy || isLoading"
+                @click="testConnection"
+              >
+                {{ isTestingConnection ? '测试中⋯' : '测试连接' }}
+              </button>
+              <p class="ip-api-warning">测试连接会消耗一次模型额度。</p>
               <div class="ip-api-actions">
-                <button
-                  class="ip-btn ip-btn-reset"
-                  type="button"
-                  :disabled="isLoadingCurrentApi || isLoadingModels"
-                  @click="loadCurrentMainApi"
-                >
+                <button class="ip-btn ip-btn-reset" type="button" :disabled="isApiBusy" @click="loadCurrentMainApi">
                   {{ isLoadingCurrentApi ? '读取中⋯' : '从当前酒馆读取' }}
                 </button>
-                <button class="ip-btn ip-btn-reset" type="button" :disabled="isLoadingModels" @click="startNewScheme">
+                <button class="ip-btn ip-btn-reset" type="button" :disabled="isApiBusy" @click="startNewScheme">
                   新增方案
                 </button>
-                <button class="ip-btn ip-btn-save" type="button" :disabled="isLoadingModels" @click="saveScheme">
+                <button class="ip-btn ip-btn-save" type="button" :disabled="isApiBusy" @click="saveScheme">
                   保存方案
                 </button>
-                <button class="ip-btn ip-btn-delete" type="button" :disabled="isLoadingModels" @click="deleteScheme">
+                <button class="ip-btn ip-btn-delete" type="button" :disabled="isApiBusy" @click="deleteScheme">
                   删除方案
                 </button>
               </div>
@@ -1016,9 +1302,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
-  width: clamp(72px, 18vw, 96px);
-  height: clamp(32px, 7vw, 36px);
-  min-width: 72px;
+  width: 96px;
+  height: 36px;
   box-sizing: border-box;
   padding: 0 10px;
   background: var(--bg);
@@ -1031,6 +1316,7 @@ onUnmounted(() => {
   cursor: grab;
   touch-action: none;
   user-select: none;
+  -webkit-touch-callout: none;
   filter: drop-shadow(0 3px 8px var(--accent-shadow));
   opacity: 0.72;
   transition:
@@ -1373,6 +1659,7 @@ onUnmounted(() => {
 .ip-api-validation,
 .ip-api-status,
 .ip-api-warning,
+.ip-connection-result,
 .ip-prompt-status {
   margin: 0;
   font-size: 12px;
@@ -1389,6 +1676,29 @@ onUnmounted(() => {
 }
 .ip-api-warning {
   color: color-mix(in srgb, #e8b66a 78%, var(--theme-fg));
+}
+.ip-connection-result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 120px;
+  overflow: auto;
+  padding: 8px 9px;
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  color: var(--theme-fg);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.ip-connection-result small {
+  color: color-mix(in srgb, var(--theme-fg) 58%, transparent);
+}
+.ip-btn-test {
+  flex: none;
+  width: 100%;
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--theme-fg);
 }
 .ip-prompt-status {
   color: #7ed98c;
