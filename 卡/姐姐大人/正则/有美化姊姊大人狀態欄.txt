@@ -290,7 +290,6 @@
         const 关系 = stat.关系 || {};
         const 状态 = stat._状态 || {};
         const 试 = 状态.身分试探 || {};
-        const 每日 = 状态.每日 || {};
         const 穷 = 人.目前身份 === '穷云海';
         panel.classList.toggle('mode-maid', 穷);
         panel.classList.toggle('mode-boss', !穷);
@@ -324,8 +323,8 @@
         设('亲密值', '親密值：' + 亲);
         设('兴奋值', '興奮值：' + 兴);
         const 锁 = 人.性爱场景中 ? '親密中，暫不變動' : 试.进行中 ? '試探中，暫不變動' : '';
-        设('冷淡备注', 锁 || (每日.冷淡值 && 每日.冷淡值.锁定 ? '今日變動已滿' : 穷 ? '窮雲海身分時不變動' : ''));
-        设('亲密备注', 锁 || (每日.亲密值 && 每日.亲密值.锁定 ? '今日變動已滿' : ''));
+        设('冷淡备注', 锁 || (穷 ? '窮雲海身分時不變動' : ''));
+        设('亲密备注', 锁);
         document.querySelector('.cold-progress').style.width = 冷 + '%';
         document.querySelector('.intimacy-progress').style.width = 亲 + '%';
         document.querySelector('.excitement-progress').style.width = 兴 + '%';
