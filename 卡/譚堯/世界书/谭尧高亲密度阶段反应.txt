@@ -1,5 +1,5 @@
 <%
-const intimacy = getvar('谭尧.亲密度') || 0;
+const intimacy = getvar('stat_data.谭尧.亲密度') ?? 0;
 %>
 
 <% if (intimacy >= 30) { %>

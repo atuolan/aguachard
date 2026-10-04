@@ -208,10 +208,14 @@
       console.log(`更新底部消息: 亲密度=${intimacyValue}, 消息="${message}"`);
     }
 
-    function populateCharacterData() {
-      const mvu_data = Mvu.getMvuData({ type: 'message', message_id: -1 });
+    // 读状态栏所在楼层的变量，往回翻旧楼层时才会显示当时的数值
+    function readStatData() {
+      return _.get(getVariables({ type: 'message', message_id: getCurrentMessageId() }), 'stat_data');
+    }
+
+    function populateCharacterData(all_stat_data) {
       const character = '谭尧';
-      const stat_data = _.get(mvu_data, `stat_data.${character}`, {});
+      const stat_data = _.get(all_stat_data, character, {});
 
       const fields = ['亲密度', '好感度', '恶感度', '警惕值', '时间', '心情', '想法', '约定与代办事项'];
       let intimacyValue = 0;
@@ -250,9 +254,8 @@
     }
 
     async function init() {
-      await waitGlobalInitialized('Mvu');
-
-      populateCharacterData();
+      let last_stat_data = readStatData();
+      populateCharacterData(last_stat_data);
 
       $('.section-header').on('click', function () {
         toggleSection($(this));
@@ -261,11 +264,13 @@
       /* Make the first section expanded by default */
       $('.section-header').first().click();
 
-      // 监听 MVU 变量更新事件
-      eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, variables => {
-        // 当变量更新结束时，重新填充数据
-        populateCharacterData();
-      });
+      // 本楼变量可能在界面载入后才写入，或被重新处理变量改写，定时检查有变化就刷新
+      setInterval(() => {
+        const stat_data = readStatData();
+        if (_.isEqual(stat_data, last_stat_data)) return;
+        last_stat_data = _.cloneDeep(stat_data);
+        populateCharacterData(stat_data);
+      }, 2000);
     }
 
     $(() => errorCatched(init)());

@@ -3,12 +3,14 @@
   rule:
     - you must output the update analysis and the actual update commands at once in the end of the next reply
     - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, but supports the following operations instead:
-        - replace: replace the value of existing paths
-        - delta: update the value of existing number paths by a delta value
-        - insert: insert new items into an object or array (using `-` as array index intends appending to the end)
-        - remove
-        - move
+      - replace: replace the value of existing paths
+      - delta: update the value of existing number paths by a delta value
+      - insert: insert new items into an object or array (using `-` as array index intends appending to the end)
+      - remove
+      - move
     - don't update field names starts with `_` or `$` as they are readonly, such as `$亲密度已解锁`
+    - only use paths that already exist in `<status_current_variable>`
+    - write `/事件完成` ONLY in a reply where the current event (「眼下有一件事正在发生：「…」」) truly comes to an end — resolved, failed, or definitely dropped; the value is the event name inside 「」 verbatim. Events may span several days; progress, pausing or a scene change is NOT an ending. In that same reply also write `/表态`, judged by the criteria the event gives. Otherwise omit both
   format: |-
     <UpdateVariable>
     <Analysis>$(IN ENGLISH, no more than 80 words)
@@ -16,12 +18,15 @@
     - ${decide whether dramatic updates are allowed as it's in a special case or the time passed is more than usual: yes/no}
     - ${CRITICAL: Only analyze variables based on 谭尧与{{user}}的直接互动, IGNORE interactions with other characters}
     - ${for 亲密度, check $亲密度已解锁 flag: ...}
-    - ${analyze every variable based on its corresponding `check`: ...}
+    - ${analyze every variable based on its corresponding `check`, according only to current reply instead of previous plots: ...}
+    - ${is there a current event (「眼下有一件事正在发生」)? did it truly come to an end in this reply, following its given 走向? if yes, the event name and {{user}}'s stance: ...}
     </Analysis>
     <JSONPatch>
     [
       { "op": "replace", "path": "${/path/to/variable}", "value": "${new_value}" },
       { "op": "delta", "path": "${/path/to/number/variable}", "value": "${positive_or_negative_delta}" },
+      { "op": "replace", "path": "/事件完成", "value": "${event_name_only_if_it_ended}" },
+      { "op": "replace", "path": "/表态", "value": "${stance_only_if_the_event_ended}" },
       ...
     ]
     </JSONPatch>

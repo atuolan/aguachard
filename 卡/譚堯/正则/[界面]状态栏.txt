@@ -19,7 +19,7 @@
                         } else {
                             console.error('请求失败，错误信息：', error);
                         }
-                        resolve(<user>);
+                        resolve(null);
                     }
                 });
             });

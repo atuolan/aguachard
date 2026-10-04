@@ -1,4 +1,7 @@
 ---
 <status_current_variable>
-{{format_message_variable::stat_data}}
+<%_ { // 以 _ 开头的是脚本维护的后台状态（每日计次、小雅事件的进度与骰果），不给 AI 看
+const 可见变量 = Object.fromEntries(Object.entries(getvar('stat_data') ?? {}).filter(([键]) => !键.startsWith('_'))); _%>
+<%- JSON.stringify(可见变量, null, 2) %>
+<%_ } _%>
 </status_current_variable>

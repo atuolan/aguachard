@@ -7,10 +7,11 @@ unlock_condition: 亲密度仅在好感度≥30且恶感度<50时才能增长
 
 <%_
 // 统一的变量声明 - 使用var避免作用域冲突
-var 好感度 = getvar('stat_data.谭尧.好感度') || 0;
-var 恶感度 = getvar('stat_data.谭尧.恶感度') || 60;
-var 警惕值 = getvar('stat_data.谭尧.警惕值') || 100;
-var 亲密度 = getvar('stat_data.谭尧.亲密度') || 0;
+// 用 ?? 而不是 ||：数值降到 0 时要照实读成 0，只在变量不存在时才用默认值
+var 好感度 = getvar('stat_data.谭尧.好感度') ?? 0;
+var 恶感度 = getvar('stat_data.谭尧.恶感度') ?? 60;
+var 警惕值 = getvar('stat_data.谭尧.警惕值') ?? 100;
+var 亲密度 = getvar('stat_data.谭尧.亲密度') ?? 0;
 _%>
 
 # 谭尧情感状态表现

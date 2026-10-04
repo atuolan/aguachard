@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "谭尧": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "恶感度": {
+          "default": 60,
+          "type": "number"
+        },
+        "警惕值": {
+          "default": 100,
+          "type": "number"
+        },
+        "亲密度": {
+          "default": 0,
+          "type": "number"
+        },
+        "时间": {
+          "default": "4/22 - 周三 - 上午 - 10:22 - 阴雨",
+          "type": "string"
+        },
+        "心情": {
+          "default": "烦躁、漠然",
+          "type": "string"
+        },
+        "想法": {
+          "default": "暂无",
+          "type": "string"
+        },
+        "约定与代办事项": {
+          "default": "暂无",
+          "type": "string"
+        }
+      }
+    },
+    "事件完成": {
+      "default": "",
+      "type": "string"
+    },
+    "表态": {
+      "default": "",
+      "type": "string"
+    },
+    "_每日变动": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "日期": {
+          "default": "",
+          "type": "string"
+        },
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "恶感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "警惕值": {
+          "default": 0,
+          "type": "number"
+        },
+        "亲密度": {
+          "default": 0,
+          "type": "number"
+        }
+      }
+    },
+    "_小雅事件": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "阶段": {
+          "default": "未触发",
+          "type": "string",
+          "enum": [
+            "未触发",
+            "门口的人",
+            "示好与示威",
+            "骚扰期",
+            "越界",
+            "收场",
+            "已了结"
+          ]
+        },
+        "天数": {
+          "default": 0,
+          "type": "number"
+        },
+        "开门天": {
+          "default": 0,
+          "type": "number"
+        },
+        "已开门": {
+          "default": false,
+          "type": "boolean"
+        },
+        "骰果": {
+          "default": "",
+          "type": "string"
+        },
+        "骰点": {
+          "default": 0,
+          "type": "number"
+        },
+        "下则短信天": {
+          "default": 0,
+          "type": "number"
+        },
+        "短信日": {
+          "default": -1,
+          "type": "number"
+        },
+        "骰果记录": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "表态记录": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
