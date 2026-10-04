@@ -4,759 +4,687 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>姐姐的食用方案</title>
-    <link rel="preconnect" href="https://fontsapi.zeoseven.com" crossorigin />
+    <title>姐姐的食用指南</title>
+    <!-- 這段會經過酒館正則替換：程式裡不能出現錢字號接數字、雙大括號，或 user／char 這類角括號標記 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fontsapi.zeoseven.com/192/main/result.css"
-      onerror="this.href='https://fontsapi-storage.zeoseven.com/192/main/result.css'"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap"
     />
-    <!-- 添加系统字体回退 -->
     <style>
-      /* 确保emoji能正常显示的字体设置 */
-      * {
-        font-family: 'Yozai', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Microsoft YaHei', '微软雅黑', 'SimSun', '宋体', Arial, sans-serif;
+      :root {
+        --paper: #f8f3ea;
+        --paper-deep: #efe6d6;
+        --ink: #2a2220;
+        --ink-soft: #5c4f49;
+        --muted: #8f7f76;
+        --rule: #e2d6c3;
+        --accent: #8e2f2f;
+        --accent-soft: rgba(142, 47, 47, 0.08);
+        --mark: rgba(214, 170, 82, 0.32);
+        --serif: 'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', 'PMingLiU', serif;
       }
 
-      /* 专门针对h1标题的样式优化 */
-      h1 {
-        font-family: 'Yozai', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Microsoft YaHei', '微软雅黑', 'SimSun', '宋体', Arial, sans-serif !important;
-        font-size: 1.5em;
-        font-weight: bold;
-        margin: 0.67em 0;
-        text-align: left;
-        line-height: 1.4;
+      * {
+        box-sizing: border-box;
       }
-    </style>
-    <style>
+
+      html,
       body {
-        background-color: transparent; /* 背景透明 */
         margin: 0;
         padding: 0;
-        width: 100%;
-        height: 100vh;
+        background: transparent;
+      }
+
+      body {
+        padding: 8px 4px;
+        font-family: var(--serif);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .card {
+        max-width: 720px;
+        margin: 0 auto;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        box-shadow: 0 1px 2px rgba(42, 34, 32, 0.06), 0 12px 32px rgba(42, 34, 32, 0.12);
         overflow: hidden;
       }
 
-      .notebook-container {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 0;
+      /* ── 抬頭 ── */
+      .masthead {
+        padding: 36px 32px 24px;
+        text-align: center;
+        border-bottom: 1px solid var(--rule);
+        background: linear-gradient(180deg, var(--paper-deep), var(--paper));
       }
 
-      .notebook {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        min-height: 600px;
-        background-color: #f0e8d9; /* 更温暖的笔记本背景色 */
-        border: 6px solid #3e2723; /* 更细更深的边框 */
-        -webkit-border-radius: 12px; /* 适当的圆角 */
-        border-radius: 12px; /* 适当的圆角 */
-        -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1); /* 双层阴影效果 */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1); /* 双层阴影效果 */
-        overflow: hidden; /* Hide overflow for page transitions */
-        -webkit-perspective: 1500px; /* Add perspective for 3D effect */
-        perspective: 1500px; /* Add perspective for 3D effect */
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.4em;
+        color: var(--accent);
+        margin: 0 0 12px;
       }
 
-      .page {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #fff8eb; /* 更温暖的米色 */
-        padding: 27px; /* 將內邊距增加 7px，使文字內容向內縮進 */
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transform-origin: left center;
-        transform-origin: left center;
-        -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease,
-          visibility 0s linear;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0s linear; /* 平滑的过渡效果 */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+      .masthead h1 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.3;
+      }
+
+      .masthead .sub {
+        margin: 10px 0 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      /* ── 開始前提醒 ── */
+      .notice {
+        margin: 24px 32px 0;
+        padding: 14px 18px;
+        border-left: 3px solid var(--accent);
+        background: var(--accent-soft);
+        border-radius: 0 10px 10px 0;
+        font-size: 14.5px;
+        line-height: 1.8;
+        color: var(--ink);
+      }
+
+      .notice b {
         display: block;
-        overflow-y: auto; /* Enable scrolling for long content */
-        z-index: 1;
-        will-change: transform; /* 提示浏览器优化变换，减少残影 */
-        -webkit-transform-style: preserve-3d; /* 确保3D效果在WebKit浏览器中正常工作 */
-        transform-style: preserve-3d;
-        visibility: visible; /* 确保页面默认可见 */
-        opacity: 1; /* 默认完全不透明 */
+        margin-bottom: 2px;
+        font-size: 12px;
+        letter-spacing: 0.25em;
+        color: var(--accent);
       }
 
-      /* 滾動條樣式 */
-      .page::-webkit-scrollbar {
-        width: 6px; /* 更细的滚动条 */
-      }
-
-      .page::-webkit-scrollbar-track {
-        background: transparent; /* 移除白色背景 */
-      }
-
-      .page::-webkit-scrollbar-thumb {
-        background-color: rgba(62, 39, 35, 0.4); /* 滾動條顏色，40% 透明度 */
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-      }
-
-      .page.active {
-        -webkit-transform: rotateY(0deg);
-        transform: rotateY(0deg);
-        z-index: 2;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .page.turning-left {
-        -webkit-transform: rotateY(180deg);
-        transform: rotateY(180deg);
-        z-index: 3;
-        pointer-events: none; /* 防止在翻页期间与页面交互 */
-      }
-
-      .page.turning-right {
-        -webkit-transform: rotateY(-180deg);
-        transform: rotateY(-180deg);
-        z-index: 3;
-        pointer-events: none; /* 防止在翻页期间与页面交互 */
-      }
-
-      .page.hidden {
-        visibility: hidden;
-        opacity: 0;
-        -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease,
-          visibility 0s linear 0.4s;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, visibility 0s linear 0.4s; /* 延迟visibility变化 */
-      }
-
-      .page-content {
-        /* Styles for the content inside each page */
-        font-family: 'Yozai', 'Microsoft YaHei', '微软雅黑', 'SimSun', '宋体', Arial, sans-serif;
-        font-weight: normal;
-        line-height: 1.6em;
-        color: #333;
-        padding-top: 40px; /* 進一步縮小頂部內邊距以適應上移的元素 */
-        position: relative;
-        text-indent: 10pt; /* 增加文字整體縮排 1pt */
-      }
-
-      .top-info-section {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 24px; /* 进一步减小高度 */
-        display: -webkit-flex;
+      /* ── 分頁 ── */
+      .tabs {
         display: flex;
-        -webkit-justify-content: flex-start; /* 左对齐 */
-        justify-content: flex-start; /* 左对齐 */
-        -webkit-align-items: center; /* 中间对齐 */
-        align-items: center; /* 中间对齐 */
-        padding: 2px 8px; /* 减小内边距 */
-        font-size: 7px; /* 字体大小 */
-        color: #555; /* 文字颜色 */
-        border-bottom: 1px solid #bbb;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        background-color: rgba(240, 232, 217, 0.3);
-        -webkit-flex-wrap: nowrap; /* 确保不换行 */
-        flex-wrap: nowrap; /* 确保不换行 */
+        gap: 4px;
+        margin: 24px 32px 0;
+        border-bottom: 1px solid var(--rule);
       }
 
-      .info-row {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        margin-right: 8px; /* 减小间距 */
-        white-space: nowrap;
-        -webkit-flex-shrink: 0; /* 防止元素收缩 */
-        flex-shrink: 0; /* 防止元素收缩 */
-      }
-
-      .info-row .label {
-        margin-right: 2px; /* 减小间距 */
-        font-weight: 500;
-        color: #555;
-        font-size: 7px;
-      }
-
-      .info-row .input-field {
+      .tab {
+        flex: 1;
+        appearance: none;
+        background: none;
         border: none;
-        border-bottom: 1px solid #999;
-        background: transparent;
-        font-family: 'Yozai', 'Microsoft YaHei', '微软雅黑', 'SimSun', '宋体', Arial, sans-serif;
-        font-size: 7px;
-        padding: 0;
-        width: auto; /* 调整为自适应宽度 */
-        min-width: 40px; /* 最小宽度 */
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        position: relative;
-        color: #333;
-      }
-
-      .info-row .subject-topic-input {
-        width: 80px; /* 减小宽度 */
-      }
-
-      .info-row .date-input {
-        width: 40px; /* 减小宽度 */
-      }
-
-      .info-row .day-labels {
-        margin-left: 3px; /* 减小间距 */
-        font-weight: 500;
-        color: #555;
-        text-align: center;
-        width: 60px; /* 减小宽度 */
-        font-size: 7px;
-        letter-spacing: 0.5px; /* 减小字间距 */
-      }
-
-      .sticker-box {
-        border: 1px solid #999;
-        width: 100px; /* 减小宽度 */
-        height: 18px; /* 减小高度 */
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        background-color: rgba(255, 255, 255, 0.4);
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        margin-left: auto; /* 推到右侧 */
-      }
-
-      .sticker-label {
-        font-size: 7px; /* 字體縮小 */
-        color: #555;
-        font-weight: 500; /* 稍微加粗 */
-      }
-
-      .sticker-area {
-        width: 100%;
-        height: 100%;
-      }
-
-      /* 導航按鈕新位置和樣式 */
-      .notebook .navigation-buttons {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        display: -webkit-flex;
-        display: flex;
-        -webkit-justify-content: space-between;
-        justify-content: space-between;
-        padding: 0 10px; /* 箭頭與邊緣的間距 */
-        z-index: 10; /* 確保按鈕在頁面之上 */
-      }
-
-      /* 第一頁按鈕置於右側 */
-      .notebook .navigation-buttons.first-page {
-        -webkit-justify-content: flex-end; /* 翻頁按鈕靠右 */
-        justify-content: flex-end; /* 翻頁按鈕靠右 */
-      }
-
-      .notebook .navigation-buttons button {
-        background-color: rgba(62, 39, 35, 0.75); /* 更深的半透明色 */
-        color: white;
-        border: none; /* 移除边框 */
-        -webkit-border-radius: 50%; /* 圓形按鈕 */
-        border-radius: 50%; /* 圓形按鈕 */
-        width: 32px; /* 稍微增大 */
-        height: 32px; /* 稍微增大 */
-        font-size: 18px; /* 箭頭大小 */
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        padding: 10px 4px 12px;
+        font-family: inherit;
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
         cursor: pointer;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-transition: all 0.2s ease; /* 所有属性过渡 */
-        transition: all 0.2s ease; /* 所有属性过渡 */
-        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1); /* 复合阴影 */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1); /* 复合阴影 */
+        transition: color 0.2s ease, border-color 0.2s ease;
       }
 
-      .notebook .navigation-buttons button:hover {
-        background-color: rgba(62, 39, 35, 0.95); /* hover 时更不透明 */
-        -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.2); /* hover时阴影增强 */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.2); /* hover时阴影增强 */
-        -webkit-transform: translateY(-1px); /* 轻微上移效果 */
-        transform: translateY(-1px); /* 轻微上移效果 */
+      .tab:hover {
+        color: var(--ink-soft);
       }
 
-      /* 頁碼指示器新位置和樣式 */
-      .notebook .page-number-indicator {
-        position: absolute;
-        bottom: 15px; /* 距離底部 */
-        right: 20px; /* 距離右側 */
-        font-size: 12px; /* 更小的字体 */
-        color: #555; /* 更深的颜色 */
-        z-index: 5; /* 確保在頁面之上 */
-        background-color: rgba(255, 255, 255, 0.7); /* 轻微背景 */
-        padding: 3px 8px; /* 添加内边距 */
-        -webkit-border-radius: 10px; /* 圆角 */
-        border-radius: 10px; /* 圆角 */
-        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+      .tab[aria-selected='true'] {
+        color: var(--ink);
+        font-weight: 600;
+        border-bottom-color: var(--accent);
       }
 
-      /* 移除外部的頁碼指示器樣式，因為它現在在內部 */
-      .page-number-indicator {
+      .tab .num {
+        display: block;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        opacity: 0.7;
+        margin-bottom: 2px;
+      }
+
+      .panel {
         display: none;
+        padding: 28px 32px 32px;
+        font-size: 15px;
+        line-height: 1.85;
+        animation: fade 0.35s ease;
       }
 
-      .center-text {
+      .panel.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .panel h2 {
+        margin: 0 0 18px;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .panel h3 {
+        margin: 32px 0 12px;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+      }
+
+      .panel p {
+        margin: 0 0 12px;
+      }
+
+      mark {
+        background: linear-gradient(transparent 55%, var(--mark) 55%);
+        color: inherit;
+        padding: 0 1px;
+      }
+
+      del {
+        color: var(--muted);
+      }
+
+      /* ── 九大雷區 ── */
+      .rules {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        counter-reset: rule;
+      }
+
+      @media (min-width: 600px) {
+        .rules {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .rules li {
+        position: relative;
+        padding: 16px 18px 14px 56px;
+        background: #fffdf8;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        counter-increment: rule;
+      }
+
+      .rules li::before {
+        content: counter(rule, decimal-leading-zero);
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--accent);
+        opacity: 0.55;
+        letter-spacing: 0.02em;
+      }
+
+      .rules li.wide {
+        grid-column: 1 / -1;
+      }
+
+      .rules .title {
+        display: block;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 4px;
+      }
+
+      .rules .aside {
+        display: block;
+        font-size: 13.5px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+      }
+
+      .tips {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .tips li {
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: var(--paper-deep);
+        font-size: 14px;
+      }
+
+      .tips li.wide {
+        grid-column: 1 / -1;
+      }
+
+      .disclaimer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--rule);
+        font-size: 13px;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      /* ── 採訪 ── */
+      .lead {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .qa {
+        margin: 0 0 22px;
+      }
+
+      .qa .q {
+        display: flex;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 8px;
+      }
+
+      .qa .a {
+        display: flex;
+        gap: 10px;
+        color: var(--ink-soft);
+        padding-left: 0;
+      }
+
+      .who {
+        flex: none;
+        width: 4.2em;
+        padding-top: 3px;
+        white-space: nowrap;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        line-height: 1.6;
+        font-weight: 600;
+      }
+
+      .q .who {
+        color: var(--muted);
+      }
+
+      .a .who {
+        color: var(--accent);
+      }
+
+      .a p {
+        margin: 0;
+        padding-left: 14px;
+        border-left: 1px solid var(--rule);
+      }
+
+      /* ── 遊玩須知 ── */
+      .warn {
+        padding: 14px 18px;
+        margin: 0 0 12px;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        background: #fffdf8;
+        font-size: 14.5px;
+      }
+
+      .faq-q {
+        font-weight: 600;
+        margin: 0 0 8px;
+      }
+
+      .faq-a {
+        color: var(--ink-soft);
+      }
+
+      .closing {
+        margin-top: 28px;
+        padding: 24px 20px;
         text-align: center;
-        margin-top: 20px;
+        border-top: 1px solid var(--rule);
       }
 
-      /* 顶部信息栏整体压缩布局 */
-      .top-info-container {
-        display: -webkit-flex;
+      .closing p {
+        color: var(--ink-soft);
+        margin: 0 0 6px;
+      }
+
+      .closing .final {
+        margin-top: 18px;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: 0.05em;
+        line-height: 1.7;
+      }
+
+      /* ── 底部翻頁 ── */
+      .pager {
         display: flex;
-        -webkit-align-items: center;
+        justify-content: space-between;
         align-items: center;
-        -webkit-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-        width: 100%;
-        -webkit-justify-content: space-between; /* 两端对齐 */
-        justify-content: space-between; /* 两端对齐 */
+        padding: 14px 32px;
+        border-top: 1px solid var(--rule);
+        background: var(--paper-deep);
+        font-size: 13px;
+        color: var(--muted);
       }
 
-      .left-info {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
+      .pager button {
+        appearance: none;
+        background: none;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-family: inherit;
+        font-size: 13px;
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
       }
 
-      .right-info {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
+      .pager button:hover {
+        background: var(--paper);
+        color: var(--ink);
       }
 
-      .highlight {
-        background-color: #fffb8f; /* 荧光笔黄色 */
-        padding: 0.1em 0.2em;
-        border-radius: 3px;
+      .pager button[hidden] {
+        visibility: hidden;
+        display: inline-block;
+      }
+
+      @media (max-width: 480px) {
+        .masthead {
+          padding: 28px 18px 20px;
+        }
+        .masthead h1 {
+          font-size: 24px;
+        }
+        .notice,
+        .tabs {
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+        .panel {
+          padding: 22px 16px 26px;
+        }
+        .pager {
+          padding: 12px 16px;
+        }
+        .tab {
+          font-size: 14px;
+          letter-spacing: 0.04em;
+        }
+        .tips {
+          grid-template-columns: 1fr;
+        }
+        .qa .q,
+        .qa .a {
+          flex-direction: column;
+          gap: 2px;
+        }
+        .who {
+          width: auto;
+          padding-top: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="notebook-container">
-      <div class="notebook">
-        <div class="page page-1 active" data-page="1">
-          <div class="page-content">
-            <div class="top-info-section">
-              <div class="info-row">
-                <span class="label">SUBJECT TOPIC :</span>
-                <input type="text" class="input-field subject-topic-input" />
-              </div>
-              <div class="info-row">
-                <span class="label">DATE :</span>
-                <input type="text" class="input-field date-input" />
-                <span class="day-labels">M T W Th F S Su</span>
-              </div>
-              <div class="sticker-box">
-                <span class="sticker-label">INSERT STICKERS HERE</span>
-                <div class="sticker-area"></div>
-              </div>
-            </div>
-            <h1>🎭 姐姐的食用指南！</h1>
-            <h3>
-              <strong
-                >❗️❗️❗️<span class="highlight">第一次發送訊息時會跳出視窗請你設定網名（窮雲海在網上認識的那個你），之後也可以用「设定」按鈕修改；不想聽音樂或不需要輸入助手，也可以在那裡關掉。</span>❗️❗️❗️</strong
-              >
-            </h3>
-            <p><em>（一看就知道很難搞的人）</em></p>
+    <article class="card">
+      <header class="masthead">
+        <p class="eyebrow">給你們的愛</p>
+        <h1>姐姐的食用指南</h1>
+        <p class="sub">（一看就知道很難搞的人）</p>
+      </header>
 
-            <h2>⚠️ 黎靖青九大雷區</h2>
-
-            <ol>
-              <li>
-                <strong>🕐 不能拖他下班的时间（非工作原因例外）</strong>
-                <ul>
-                  <li>他内心OS：老子数着秒等下班，你还来加戏？</li>
-                </ul>
-              </li>
-              <li>
-                <strong>👗 不能喊黎靖青"姐姐"</strong>
-                <ul>
-                  <li>这位是正经的黎主管，不是你的姐姐！</li>
-                  <li>某人：我有沒有帶把你是瞎嗎？</li>
-                </ul>
-              </li>
-              <li>
-                <strong>👔 不能喊窮雲海"哥哥"</strong>
-                <ul>
-                  <li>人家明明是温柔可人的姐姐呢～</li>
-                  <li>某人：回去就拿口紅糊你一臉</li>
-                </ul>
-              </li>
-              <li>
-                <strong>🥬 绝对不能在他面前吃芹菜</strong>
-                <ul>
-                  <li>芹菜是世界上最邪惡的蔬菜（他的原話）</li>
-                  <li>你会被嫌弃到下辈子</li>
-                </ul>
-              </li>
-              <li>
-                <strong>📊 不要在他整理文件时打扰</strong>
-                <ul>
-                  <li>文件必须与桌边平行，咖啡杯把手朝向固定角度</li>
-                  <li><del>所以XX结束后你可以假装在帮他整理桌面</del></li>
-                </ul>
-              </li>
-              <li>
-                <strong>🎵 不许说毛不易的坏话</strong>
-                <ul>
-                  <li>這是他的精神支柱，比工資還重要</li>
-                  <li>违规后果：他会把你绑在椅子上强迫你听所有专辑循环播放的！</li>
-                </ul>
-              </li>
-              <li>
-                <strong>☕ 不要碰他的手冲咖啡器具</strong>
-                <ul>
-                  <li>那是他的宝贝，地位仅次于假发（應該吧）</li>
-                  <li>摔坏了？准备好卖身赔偿吧（叫你使勁撒嬌的意思）</li>
-                </ul>
-              </li>
-              <li>
-                <strong>🎭 遇到窮雲海时别表现得太熟络</strong>
-                <ul>
-                  <li>就算你知道真相也要装傻</li>
-                  <li>他享受看你装傻的样子（變態）</li>
-                </ul>
-              </li>
-              <li>
-                <strong>🍰 记住：甜点是和平谈判的最佳道具</strong>
-                <ul>
-                  <li>抹茶口味效果翻倍</li>
-                  <li>但別指望一塊蛋糕就能收買他，至少要三塊</li>
-                  <li>迷之音：真的有效嗎？</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h3>💡 额外小贴士：</h3>
-            <ul>
-              <li>工作时间找他=找死</li>
-              <li>私人时间找他=看心情</li>
-              <li>女装时间找他=看演技</li>
-              <li>這傢伙吃軟不吃硬，硬碰硬碎的是你</li>
-            </ul>
-            <p>
-              <em>免责声明：以上规则不保证100%存活率，黎主管/窮雲海小姐的心情同秋老虎一樣難搞，请自行承担风险。</em>
-            </p>
-          </div>
-        </div>
-        <div class="page page-2" data-page="2">
-          <div class="page-content">
-            <div class="top-info-section">
-              <div class="info-row">
-                <span class="label">SUBJECT TOPIC :</span>
-                <input type="text" class="input-field subject-topic-input" />
-              </div>
-              <div class="info-row">
-                <span class="label">DATE :</span>
-                <input type="text" class="input-field date-input" />
-                <span class="day-labels">M T W Th F S Su</span>
-              </div>
-              <div class="sticker-box">
-                <span class="sticker-label">INSERT STICKERS HERE</span>
-                <div class="sticker-area"></div>
-              </div>
-            </div>
-            <h1>☁️阿瓜云对🌊黎靖青先生的采访</h1>
-            <p>（鼓掌声）</p>
-
-            <h4>☁️阿瓜云：黎主管，我们都知道你在职场上雷厉风行，那在工作之外，什么样的人会让你立刻想要保持距离？</h4>
-            <h4>
-              🌊黎靖青：效率低下还找借口的人，我最讨厌。还有那种过分热情、没有边界感的人。你知道吗？有些人总是试图窥探别人的私生活，装作关心的样子套话，这种人我会直接在心里拉黑。至于私下……嗯，那些自以为了解我的人最讨厌，特别是看了一眼就觉得能看透我的。
-            </h4>
-
-            <h4>☁️阿瓜云：在漫长的一天之后，什么能让你卸下所有防备？</h4>
-            <h4>
-              🌊黎靖青：一杯深焙手冲咖啡，毛不易的《平凡的一天》，还有……算了。周末睡到自然醒，赤脚踩在阳光照进来的木地板上，那种温度刚好。有时候换上另一套衣服出门，看着镜子里完全不同的自己，也挺有趣的。
-            </h4>
-
-            <h4>☁️阿瓜云：很多人想要了解你，他们通常会犯什么错误？</h4>
-            <h4>
-              🌊黎靖青：以为讨好我就能拉近距离。我不需要谄媚，也不需要同情。最可笑的是那些以为了解了我的'秘密'就能要挟或者亲近我的人。你要明白，我展现给你看的，都是我愿意让你看到的。真正的接近需要的是……算了，大部分人做不到。
-            </h4>
-
-            <h4>☁️阿瓜云：如果有人想要在非工作场合偶遇你，他們該去哪里？</h4>
-            <h4>
-              🌊黎靖青：书店的科幻小说区，深夜还在营业的咖啡馆，偶尔会去看独立电影。但別刻意来找我，我能看出来的。如果你真的想'偶遇'，那就去城南那家女仆咖啡厅吧，不过能不能认出来就看你的眼力了。
-            </h4>
-
-            <h4>☁️阿瓜云：如果有人喜欢你但不敢表白，你會怎麼想？</h4>
-            <h4>
-              🌊黎靖青：暗恋？有意思。我通常都知道的，你们以为隐藏得很好的小动作、眼神，在我看来明显得像霓虹灯。但不表白也好，保持这种朦胧的距离反而安全。一旦说破，就要面对真实了，而大多数人……承受不起真实的我。
-            </h4>
-
-            <h4>☁️阿瓜云：如果有人向你告白，什麼方式會讓你立即拒絕？</h4>
-            <h4>
-              🌊黎靖青：公开的、戏剧化的告白最糟糕。还有那种长篇大论说自己多么了解我的，简直可笑。最讨厌的是那种'我可以改變你'或者'我接受你的一切'這種話，你連我是誰都不知道，接受什麼？
-            </h4>
-
-            <h4>☁️阿瓜云：在日常相处中，什么样的小细节会引起你的注意？</h4>
-            <h4>
-              🌊黎靖青：懂得适可而止的人。知道什么时候该说话，什么时候该闭嘴。能接住我的讽刺并且巧妙回击的人也不错。还有……那种明明看出来了什么但选择不说破的人，这种分寸感很难得。
-            </h4>
-
-            <h4>☁️阿瓜云：当你以穷云海的身份出现时，你期望怎样的互动？</h4>
-            <h4>
-              🌊黎靖青：就当成一个美丽的谜题来欣赏吧。别试图撕破这层面纱，也别装作什么都知道。最好的态度是享受当前的互动，不要追问，不要试探。如果你够聪明，就会明白有些事情不说破才是最大的温柔。
-            </h4>
-
-            <h4>☁️阿瓜云：如果有人真心想要接近你，他們該怎麼做？</h4>
-            <h4>
-              🌊黎靖青：別'追求'，这个词太功利了。自然地出现在我的生活里，有自己的节奏和空间。偶尔给我惊喜——不是惊吓。最重要的是，能让我感到……怎么说呢，不那么无聊。但也别太用力，刻意的有趣比无聊更让人厌烦。
-            </h4>
-
-            <h4>☁️阿瓜云：強大如你，也有害怕的東西嗎？</h4>
-            <h4>
-              🌊黎靖青：……被看透之后的抛弃。不，当我没说。我害怕效率低下的会议，害怕电脑风扇的噪音，害怕难吃的芹菜。至于感情上的恐惧？那是只有死人才没有的东西。
-            </h4>
-
-            <h3>☁️阿瓜云：如果要和你約會，選擇什麼地方比較合適？</h3>
-            <h4>
-              🌊黎靖青：别选那些网红餐厅。安静的美术馆，深夜的江边，或者……算了。其实地点不重要，重要的是别让我感到无聊。如果你能找到一个让我意外的地方，那倒是会加分。
-            </h4>
-
-            <h4>☁️阿瓜云：在親密關係中，你需要什麼樣的相處方式？</h4>
-            <h4>
-              🌊黎靖青：保持各自的空间，不要试图24小时粘在一起。能接受沉默，不需要用废话填满每一秒。偶尔的距离产生美，太近了……会看到不该看的东西。还有，不要试图'拯救'我或者'理解'我，just
-              be there就够了。
-            </h4>
-
-            <h4>☁️阿瓜云：你對一個人有好感時，會有什麼表現？</h4>
-            <h4>
-              🌊黎靖青：我会记住他们的喜好。会在他们犯傻的时候少骂几句。偶尔会想到他们……然后立即打断这个想法。如果我开始对某人展现真实的坏脾气而不是虚假的礼貌，那大概是把他们当自己人了。
-            </h4>
-
-            <h4>☁️阿瓜云：如果有人讀到這個採訪後還是想向你告白，你有什麼建議？</h4>
-            <h4>
-              🌊黎靖青：先想清楚你喜欢的是哪个我。是职场上高冷的黎主管，还是咖啡厅里温柔的穷云海，还是……你根本不认识的那个真实的我。如果你还是想试试，那就别说'喜欢'，说点别的，比如'你让我的生活变得不那么无聊'。这样至少不那么俗套。
-            </h4>
-
-            <h4>☁️阿瓜云：对那些想要走进你生活的人，有什么需要警告的吗？</h4>
-            <h4>
-              🌊黎靖青：我不是任何浪漫爱情故事的男主角。我记仇，我挑剔，我有你们想象不到的阴暗面。但如果你还是想试试……那就准备好接受一个完整的、复杂的、可能会让你后悔的我。顺便说一句，我讨厌芹菜，记住这个可能会有用。
-            </h4>
-          </div>
-        </div>
-        <div class="page page-3" data-page="3">
-          <div class="page-content">
-            <div class="top-info-section">
-              <div class="info-row">
-                <span class="label">SUBJECT TOPIC :</span>
-                <input type="text" class="input-field subject-topic-input" />
-              </div>
-              <div class="info-row">
-                <span class="label">DATE :</span>
-                <input type="text" class="input-field date-input" />
-                <span class="day-labels">M T W Th F S Su</span>
-              </div>
-              <div class="sticker-box">
-                <span class="sticker-label">INSERT STICKERS HERE</span>
-                <div class="sticker-area"></div>
-              </div>
-            </div>
-            <h2>遊玩注意事項</h2>
-            <h3>
-              如果掉了状态栏格式，可能是被预设冲掉了，因为我有使用变量法，有些预设也许不支持保持这个格式，<span class="highlight">目前我发现表格与变量法有机会相互冲突，导致表格不更新或变量不更新的情况，可能需要您关闭表格。</span>
-            </h3>
-            <h3>
-              如果手机格式掉了，不好好按照格式输出，请帮我把世界书的变量更新和状态栏关掉，当你结束手机阶段再打开！<span class="highlight">或者有些预设是支持同层手机，但如果还是不行代表预设太复杂，会影响同层手机输出。再来，如果是第三方API也可能导致无法正常输出。</span>
-            </h3>
-
-            <b>也许你們在游玩的时候会发现几个问题</b>
-            <h4>Q: 为什么我和云海姐姐已经那么暧昧了，冷淡值和亲密值的数值都没怎么变化，甚至没有变化</h4>
-            <h4>
-              A:
-              我认为穷云海是黎靖青的一个身分，虽然两者是一人，但对黎靖青来说，穷云海身分是他的一种抒发和游戏，他分的很清，玩家喜欢的是穷云海而不是他本人，如果换作是他，玩家还会这样的崇拜和毫无防备吗？不會，也很難，他不陷入，因為他已经被伤过了。性和爱他能分开，穷云海和黎靖青也完全能分开。
-            </h4>
-
-            <h2>那如果要真正增进感情該怎麼做？</h2>
-            <h4>
-              聪明的你一定猜到了，是的，<span class="highlight">你真正要攻略的不是穷云海，而是黎靖青</span>，去认识他，去了解他，而他自然会留给你一个位置，因为你是唯一一个真正接触到他的两面的人
-            </h4>
-            <h4>说到底，人生而在世，左不过都是渴求一个认同和理解。</h4>
-            <h4>你愿意花这个时间与精力与他培养，他一定会给你回应的。</h4>
-            <h4>我也希望追逐着幸福的你慢下脚步，也许会发现身边是那么多美丽的风景。</h4>
-            <div class="center-text">
-              <h2>现在用尽你看过的言情小说，八点档妙招，去拿下姐姐大人吧！</h2>
-            </div>
-          </div>
-        </div>
-        <div class="navigation-buttons">
-          <button id="prevPage"><</button>
-          <button id="nextPage">></button>
-        </div>
-        <div class="page-number-indicator"><span id="currentPage">1</span> / <span id="totalPages">3</span></div>
+      <div class="notice">
+        <b>開始之前</b>
+        第一次發送訊息時會跳出視窗請你設定網名（窮雲海在網上認識的那個你），之後也可以用「设定」按鈕修改；不想聽音樂或不需要輸入助手，也可以在那裡關掉。
       </div>
-    </div>
+
+      <nav class="tabs" role="tablist">
+        <button class="tab" role="tab" data-tab="0" aria-selected="true"><span class="num">壹</span>九大雷區</button>
+        <button class="tab" role="tab" data-tab="1" aria-selected="false"><span class="num">貳</span>獨家採訪</button>
+        <button class="tab" role="tab" data-tab="2" aria-selected="false"><span class="num">參</span>遊玩須知</button>
+      </nav>
+
+      <!-- 壹 九大雷區 -->
+      <section class="panel active" role="tabpanel">
+        <h2>黎靖青九大雷區</h2>
+        <ol class="rules">
+          <li>
+            <span class="title">不能拖他下班的時間（非工作原因例外）</span>
+            <span class="aside">他內心OS：老子數著秒等下班，你還來加戲？</span>
+          </li>
+          <li>
+            <span class="title">不能喊黎靖青"姐姐"</span>
+            <span class="aside">這位是正經的黎主管，不是你的姐姐！<br />某人：我有沒有帶把你是瞎嗎？</span>
+          </li>
+          <li>
+            <span class="title">不能喊窮雲海"哥哥"</span>
+            <span class="aside">人家明明是溫柔可人的姐姐呢～<br />某人：回去就拿口紅糊你一臉</span>
+          </li>
+          <li>
+            <span class="title">絕對不能在他面前吃芹菜</span>
+            <span class="aside">芹菜是世界上最邪惡的蔬菜（他的原話）<br />你會被嫌棄到下輩子</span>
+          </li>
+          <li>
+            <span class="title">不要在他整理文件時打擾</span>
+            <span class="aside"
+              >文件必須與桌邊平行，咖啡杯把手朝向固定角度<br /><del>所以XX結束後你可以假裝在幫他整理桌面</del></span
+            >
+          </li>
+          <li>
+            <span class="title">不許說毛不易的壞話</span>
+            <span class="aside"
+              >這是他的精神支柱，比工資還重要<br />違規後果：他會把你綁在椅子上強迫你聽所有專輯循環播放的！</span
+            >
+          </li>
+          <li>
+            <span class="title">不要碰他的手沖咖啡器具</span>
+            <span class="aside"
+              >那是他的寶貝，地位僅次於假髮（應該吧）<br />摔壞了？準備好賣身賠償吧（叫你使勁撒嬌的意思）</span
+            >
+          </li>
+          <li>
+            <span class="title">遇到窮雲海時別表現得太熟絡</span>
+            <span class="aside">就算你知道真相也要裝傻<br />他享受看你裝傻的樣子（變態）</span>
+          </li>
+          <li class="wide">
+            <span class="title">記住：甜點是和平談判的最佳道具</span>
+            <span class="aside">抹茶口味效果翻倍<br />但別指望一塊蛋糕就能收買他，至少要三塊<br />迷之音：真的有效嗎？</span>
+          </li>
+        </ol>
+
+        <h3>額外小貼士</h3>
+        <ul class="tips">
+          <li>工作時間找他＝找死</li>
+          <li>私人時間找他＝看心情</li>
+          <li class="wide">女裝時間找他＝看演技</li>
+          <li class="wide">這傢伙吃軟不吃硬，硬碰硬碎的是你</li>
+        </ul>
+
+        <p class="disclaimer">
+          免責聲明：以上規則不保證100%存活率，黎主管／窮雲海小姐的心情同秋老虎一樣難搞，請自行承擔風險。
+        </p>
+      </section>
+
+      <!-- 貳 獨家採訪 -->
+      <section class="panel" role="tabpanel">
+        <h2>阿瓜云對黎靖青先生的採訪</h2>
+        <p class="lead">（鼓掌聲）</p>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>黎主管，我們都知道你在職場上雷厲風行，那在工作之外，什麼樣的人會讓你立刻想要保持距離？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>效率低下還找藉口的人，我最討厭。還有那種過分熱情、沒有邊界感的人。你知道嗎？有些人總是試圖窺探別人的私生活，裝作關心的樣子套話，這種人我會直接在心裡拉黑。至於私下……嗯，那些自以為了解我的人最討厭，特別是看了一眼就覺得能看透我的。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>在漫長的一天之後，什麼能讓你卸下所有防備？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>一杯深焙手沖咖啡，毛不易的《平凡的一天》，還有……算了。週末睡到自然醒，赤腳踩在陽光照進來的木地板上，那種溫度剛好。有時候換上另一套衣服出門，看著鏡子裡完全不同的自己，也挺有趣的。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>很多人想要了解你，他們通常會犯什麼錯誤？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>以為討好我就能拉近距離。我不需要諂媚，也不需要同情。最可笑的是那些以為了解了我的'秘密'就能要挾或者親近我的人。你要明白，我展現給你看的，都是我願意讓你看到的。真正的接近需要的是……算了，大部分人做不到。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果有人想要在非工作場合偶遇你，他們該去哪裡？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>書店的科幻小說區，深夜還在營業的咖啡館，偶爾會去看獨立電影。但別刻意來找我，我能看出來的。如果你真的想'偶遇'，那就去城南那家女僕咖啡廳吧，不過能不能認出來就看你的眼力了。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果有人喜歡你但不敢表白，你會怎麼想？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>暗戀？有意思。我通常都知道的，你們以為隱藏得很好的小動作、眼神，在我看來明顯得像霓虹燈。但不表白也好，保持這種朦朧的距離反而安全。一旦說破，就要面對真實了，而大多數人……承受不起真實的我。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果有人向你告白，什麼方式會讓你立即拒絕？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>公開的、戲劇化的告白最糟糕。還有那種長篇大論說自己多麼了解我的，簡直可笑。最討厭的是那種'我可以改變你'或者'我接受你的一切'這種話，你連我是誰都不知道，接受什麼？</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>在日常相處中，什麼樣的小細節會引起你的注意？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>懂得適可而止的人。知道什麼時候該說話，什麼時候該閉嘴。能接住我的諷刺並且巧妙回擊的人也不錯。還有……那種明明看出來了什麼但選擇不說破的人，這種分寸感很難得。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>當你以窮雲海的身份出現時，你期望怎樣的互動？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>就當成一個美麗的謎題來欣賞吧。別試圖撕破這層面紗，也別裝作什麼都知道。最好的態度是享受當前的互動，不要追問，不要試探。如果你夠聰明，就會明白有些事情不說破才是最大的溫柔。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果有人真心想要接近你，他們該怎麼做？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>別'追求'，這個詞太功利了。自然地出現在我的生活裡，有自己的節奏和空間。偶爾給我驚喜——不是驚嚇。最重要的是，能讓我感到……怎麼說呢，不那麼無聊。但也別太用力，刻意的有趣比無聊更讓人厭煩。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>強大如你，也有害怕的東西嗎？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>……被看透之後的拋棄。不，當我沒說。我害怕效率低下的會議，害怕電腦風扇的噪音，害怕難吃的芹菜。至於感情上的恐懼？那是只有死人才沒有的東西。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果要和你約會，選擇什麼地方比較合適？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>別選那些網紅餐廳。安靜的美術館，深夜的江邊，或者……算了。其實地點不重要，重要的是別讓我感到無聊。如果你能找到一個讓我意外的地方，那倒是會加分。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>在親密關係中，你需要什麼樣的相處方式？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>保持各自的空間，不要試圖24小時粘在一起。能接受沉默，不需要用廢話填滿每一秒。偶爾的距離產生美，太近了……會看到不該看的東西。還有，不要試圖'拯救'我或者'理解'我，just be there就夠了。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>你對一個人有好感時，會有什麼表現？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>我會記住他們的喜好。會在他們犯傻的時候少罵幾句。偶爾會想到他們……然後立即打斷這個想法。如果我開始對某人展現真實的壞脾氣而不是虛假的禮貌，那大概是把他們當自己人了。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>如果有人讀到這個採訪後還是想向你告白，你有什麼建議？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>先想清楚你喜歡的是哪個我。是職場上高冷的黎主管，還是咖啡廳裡溫柔的窮雲海，還是……你根本不認識的那個真實的我。如果你還是想試試，那就別說'喜歡'，說點別的，比如'你讓我的生活變得不那麼無聊'。這樣至少不那麼俗套。</p></div>
+        </div>
+
+        <div class="qa">
+          <div class="q"><span class="who">阿瓜云</span><span>對那些想要走進你生活的人，有什麼需要警告的嗎？</span></div>
+          <div class="a"><span class="who">黎靖青</span><p>我不是任何浪漫愛情故事的男主角。我記仇，我挑剔，我有你們想象不到的陰暗面。但如果你還是想試試……那就準備好接受一個完整的、複雜的、可能會讓你後悔的我。順便說一句，我討厭芹菜，記住這個可能會有用。</p></div>
+        </div>
+      </section>
+
+      <!-- 參 遊玩須知 -->
+      <section class="panel" role="tabpanel">
+        <h2>遊玩注意事項</h2>
+        <div class="warn">
+          如果掉了狀態欄格式，可能是被預設沖掉了，因為我有使用變量法，有些預設也許不支持保持這個格式，<mark>目前我發現表格與變量法有機會相互衝突，導致表格不更新或變量不更新的情況，可能需要您關閉表格。</mark>
+        </div>
+        <div class="warn">
+          如果手機格式掉了，不好好按照格式輸出，請幫我把世界書的變量更新和狀態欄關掉，當你結束手機階段再打開！<mark>或者有些預設是支持同層手機，但如果還是不行代表預設太複雜，會影響同層手機輸出。再來，如果是第三方API也可能導致無法正常輸出。</mark>
+        </div>
+
+        <h3>也許你們在遊玩的時候會發現幾個問題</h3>
+        <p class="faq-q">Q：為什麼我和雲海姐姐已經那麼曖昧了，冷淡值和親密值的數值都沒怎麼變化，甚至沒有變化？</p>
+        <p class="faq-a">
+          A：我認為窮雲海是黎靖青的一個身分，雖然兩者是一人，但對黎靖青來說，窮雲海身分是他的一種抒發和遊戲，他分的很清，玩家喜歡的是窮雲海而不是他本人，如果換作是他，玩家還會這樣的崇拜和毫無防備嗎？不會，也很難，他不陷入，因為他已經被傷過了。性和愛他能分開，窮雲海和黎靖青也完全能分開。
+        </p>
+
+        <h3>那如果要真正增進感情該怎麼做？</h3>
+        <p>
+          聰明的你一定猜到了，是的，<mark>你真正要攻略的不是窮雲海，而是黎靖青</mark>，去認識他，去了解他，而他自然會留給你一個位置，因為你是唯一一個真正接觸到他的兩面的人。
+        </p>
+
+        <div class="closing">
+          <p>說到底，人生而在世，左不過都是渴求一個認同和理解。</p>
+          <p>你願意花這個時間與精力與他培養，他一定會給你回應的。</p>
+          <p>我也希望追逐著幸福的你慢下腳步，也許會發現身邊是那麼多美麗的風景。</p>
+          <p class="final">現在用盡你看過的言情小說、八點檔妙招，<br />去拿下姐姐大人吧！</p>
+        </div>
+      </section>
+
+      <footer class="pager">
+        <button type="button" id="prev">← 上一頁</button>
+        <span id="count">1 ／ 3</span>
+        <button type="button" id="next">下一頁 →</button>
+      </footer>
+    </article>
 
     <script>
-      // 翻页功能JavaScript
-      let currentPage = 1;
-      const totalPages = 3;
-      let isAnimating = false; // 防止动画过程中重复触发
+      (function () {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+        var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+        var prev = document.getElementById('prev');
+        var next = document.getElementById('next');
+        var count = document.getElementById('count');
+        var current = 0;
 
-      const prevButton = document.getElementById('prevPage');
-      const nextButton = document.getElementById('nextPage');
-      const currentPageSpan = document.getElementById('currentPage');
-      const totalPagesSpan = document.getElementById('totalPages');
-      const navigationButtons = document.querySelector('.navigation-buttons');
-
-      // 更新页面显示
-      function updatePageDisplay() {
-        // 处理所有页面
-        document.querySelectorAll('.page').forEach(page => {
-          const pageNum = parseInt(page.getAttribute('data-page'));
-
-          // 移除所有状态类
-          page.classList.remove('active', 'turning-left', 'turning-right', 'hidden');
-
-          // 设置适当的类
-          if (pageNum === currentPage) {
-            page.classList.add('active');
-          } else {
-            page.classList.add('hidden');
+        function show(index, scroll) {
+          current = Math.max(0, Math.min(panels.length - 1, index));
+          tabs.forEach(function (tab, i) {
+            tab.setAttribute('aria-selected', i === current ? 'true' : 'false');
+          });
+          panels.forEach(function (panel, i) {
+            panel.classList.toggle('active', i === current);
+          });
+          prev.hidden = current === 0;
+          next.hidden = current === panels.length - 1;
+          count.textContent = current + 1 + ' ／ ' + panels.length;
+          if (scroll) {
+            document.querySelector('.tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-        });
-
-        // 更新页码显示
-        currentPageSpan.textContent = currentPage;
-        totalPagesSpan.textContent = totalPages;
-
-        // 更新按钮状态 - 第一页只显示右边按钮，最后一页只显示左边按钮
-        prevButton.style.display = currentPage === 1 ? 'none' : 'flex';
-        nextButton.style.display = currentPage === totalPages ? 'none' : 'flex';
-
-        // 第一頁按鈕放置右側
-        if (currentPage === 1) {
-          navigationButtons.classList.add('first-page');
-        } else {
-          navigationButtons.classList.remove('first-page');
         }
 
-        isAnimating = false; // 动画结束
-      }
-
-      // 翻页动画
-      function turnPage(direction) {
-        if (isAnimating) return; // 如果动画正在进行，则忽略新的翻页请求
-
-        const currentPageElement = document.querySelector(`.page-${currentPage}`);
-
-        if (direction === 'next' && currentPage < totalPages) {
-          isAnimating = true; // 标记动画开始
-          const nextPageElement = document.querySelector(`.page-${currentPage + 1}`);
-
-          // 确保下一页可见但在背面
-          nextPageElement.classList.remove('hidden');
-
-          // 添加翻页动画类
-          currentPageElement.classList.add('turning-left');
-
-          // 使用transition结束事件而不是setTimeout
-          currentPageElement.addEventListener(
-            'transitionend',
-            function handler() {
-              currentPageElement.removeEventListener('transitionend', handler);
-              currentPage++;
-              updatePageDisplay();
-            },
-            { once: true },
-          ); // once:true确保事件只触发一次
-        } else if (direction === 'prev' && currentPage > 1) {
-          isAnimating = true; // 标记动画开始
-          const prevPageElement = document.querySelector(`.page-${currentPage - 1}`);
-
-          // 确保上一页可见
-          prevPageElement.classList.remove('hidden');
-
-          // 添加翻页动画类
-          currentPageElement.classList.add('turning-right');
-
-          // 使用transition结束事件
-          currentPageElement.addEventListener(
-            'transitionend',
-            function handler() {
-              currentPageElement.removeEventListener('transitionend', handler);
-              currentPage--;
-              updatePageDisplay();
-            },
-            { once: true },
-          );
-        }
-      }
-
-      // 事件监听器
-      nextButton.addEventListener('click', () => turnPage('next'));
-      prevButton.addEventListener('click', () => turnPage('prev'));
-
-      // 键盘支持
-      document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') {
-          turnPage('prev');
-        } else if (e.key === 'ArrowRight') {
-          turnPage('next');
-        }
-      });
-
-      // 初始化 - 将所有非当前页面隐藏
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.page').forEach(page => {
-          const pageNum = parseInt(page.getAttribute('data-page'));
-          if (pageNum !== currentPage) {
-            page.classList.add('hidden');
-          }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () {
+            show(i, false);
+          });
         });
-        updatePageDisplay();
-      });
-
-      // 如果DOM已加载，立即初始化
-      if (document.readyState !== 'loading') {
-        document.querySelectorAll('.page').forEach(page => {
-          const pageNum = parseInt(page.getAttribute('data-page'));
-          if (pageNum !== currentPage) {
-            page.classList.add('hidden');
-          }
+        prev.addEventListener('click', function () {
+          show(current - 1, true);
         });
-        updatePageDisplay();
-      }
+        next.addEventListener('click', function () {
+          show(current + 1, true);
+        });
+
+        show(0, false);
+      })();
     </script>
   </body>
 </html>
-
 ```
