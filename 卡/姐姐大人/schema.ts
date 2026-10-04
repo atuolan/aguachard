@@ -138,6 +138,10 @@ export const Schema = z.preprocess(
             大事: z.string().prefault(''),
             距上次大事: z.coerce.number().prefault(99),
             袋: z.record(z.string(), z.array(z.string())).prefault({}),
+            // 今天誰要主動發一則小紅書；模型發出來（正文裡出現他的 <rednote> 帖子）就記 已发，不再提醒
+            发文: z.enum(['', '穷云海', '黎靖青']).prefault(''),
+            已发: z.boolean().prefault(false),
+            距上次发文: z.coerce.number().prefault(99),
           })
           .prefault({}),
       })

@@ -35,6 +35,9 @@ export const 日常 = {
   准时: 0.5, // 平日：准时下班 5、早下班 2、加班 3
   早下班: 0.2,
   排班: 0.6, // 週末有排班的機率
+  发文机率: 0.3, // 主動發一則小紅書
+  发文间隔: 2, // 不連續兩天發
+  黎靖青发文: 0.2, // 發文的那天，是黎靖青本人（而不是穷云海）的機率
 };
 
 type 池 = '公司' | '咖啡厅' | '家';
@@ -131,11 +134,14 @@ function 日常结算(stat: Stat, 今天: string, 随机: () => number, log: str
         ? '早下班'
         : '加班';
 
+  抽大事(日, 周末, 随机);
+  抽发文(日, 随机);
+  log.push(`日常 ${今天}：${[日.小事, 日.大事 && `大事「${日.大事}」`, 日.发文 && `${日.发文}发文`].filter(Boolean).join('，')}`);
+}
+
+function 抽大事(日: Stat, 周末: boolean, 随机: () => number): void {
   日.距上次大事 = num(日.距上次大事 ?? 99) + 1;
-  if (日.距上次大事 < 日常.大事间隔 || 随机() >= 日常.大事机率) {
-    log.push(`日常 ${今天}：${日.小事}`);
-    return;
-  }
+  if (日.距上次大事 < 日常.大事间隔 || 随机() >= 日常.大事机率) return;
   const 池们: 池[] = 周末
     ? 日.小事 === '有排班'
       ? ['咖啡厅', '家']
@@ -154,7 +160,24 @@ function 日常结算(stat: Stat, 今天: string, 随机: () => number, log: str
   袋[事.池] = 袋[事.池].filter((n: string) => n !== 名);
   日.大事 = 名;
   日.距上次大事 = 0;
-  log.push(`日常 ${今天}：${日.小事}，大事「${名}」`);
+}
+
+function 抽发文(日: Stat, 随机: () => number): void {
+  日.发文 = '';
+  日.已发 = false;
+  日.距上次发文 = num(日.距上次发文 ?? 99) + 1;
+  if (日.距上次发文 < 日常.发文间隔 || 随机() >= 日常.发文机率) return;
+  日.发文 = 随机() < 日常.黎靖青发文 ? '黎靖青' : '穷云海';
+  日.距上次发文 = 0;
+}
+
+// 正文里出现他发的小红书帖子（9 栏的 <rednote>，发布者是穷云海或黎靖青），今天就算发过了
+const 他的帖子 = /<rednote>\s*[^|<]*\|\s*(穷云海|黎靖青)\s*\|(?:[^|<]*\|){6}[^|<]*<\/rednote>/;
+function 记发文(stat: Stat, 本楼文本: string, log: string[]): void {
+  const 日 = stat._状态?.日常;
+  if (!日?.发文 || 日.已发 || !他的帖子.test(本楼文本)) return;
+  日.已发 = true;
+  log.push(`${日.发文}今天的动态已发`);
 }
 
 function num(v: unknown): number {
@@ -189,7 +212,13 @@ function 套用变化(人: Stat, 变化: Record<string, number>): void {
 // ===== 結算 =====
 // stat 會被直接改寫；prev 是這次更新前的 stat_data（第 0 樓的開場白沒有 prev）。
 // AI楼：這次更新的是 AI 回覆（MVU 對使用者樓也會發更新事件，那種不算試探進度）。
-export function 结算(stat: Stat, prev: Stat | null, AI楼: boolean, 随机: () => number = Math.random): string[] {
+export function 结算(
+  stat: Stat,
+  prev: Stat | null,
+  AI楼: boolean,
+  随机: () => number = Math.random,
+  本楼文本 = '',
+): string[] {
   const log: string[] = [];
   const 人 = stat.黎靖青;
   if (!人) return log;
@@ -291,7 +320,10 @@ export function 结算(stat: Stat, prev: Stat | null, AI楼: boolean, 随机: ()
   场景.事件完成 = '';
   场景.表态 = '';
 
-  if (prev && 旧人) 日常结算(stat, 日期(stat.世界?.时间点), 随机, log);
+  if (prev && 旧人) {
+    日常结算(stat, 日期(stat.世界?.时间点), 随机, log);
+    记发文(stat, 本楼文本, log);
+  }
 
   return log;
 }
@@ -613,6 +645,35 @@ function 大事文(stat: Stat): string | null {
   ].join('\n');
 }
 
+// 今天轮到他主动发一则小红书；发过了（记发文）就不再提醒。内容只给方向，跟着当下的状态走
+function 发文文(stat: Stat): string | null {
+  const 日 = stat._状态?.日常;
+  if (!今天的日常(stat) || !日?.发文 || 日.已发) return null;
+  const 穷 = 日.发文 === '穷云海';
+  const 大事 = 今天的日常(stat)?.大事;
+  const 方向: string[] = 穷
+    ? [
+        '穷云海的账号：照片不露脸，拍布料、手、背影或一角静物；配一句短短的话，安静，有一点诗意。',
+        '绝不透露真实身分、住址、工作，也不暗示他是男性。',
+      ]
+    : [
+        '黎靖青本人的账号：几乎没人关注，他也很少发。一张他生活里的照片，话很少，可能只有几个字，甚至不写。',
+        '和穷云海的账号风格完全不同，看不出是同一个人。',
+      ];
+  if (大事) 方向.push('可以和今天的事有关，但不写明发生了什么。');
+  if (穷 && 阶段到(线上阶段, stat.关系?.线上, '熟网友') && stat['黎靖青/穷云海']?.认出聊天对象 !== '认出') {
+    方向.push('偶尔，这一则可能是只有网友「{网名}」才看得懂的东西。');
+  }
+  if (两头心动(stat)) 方向.push('字里行间带一点说不清的犹豫，不说破。');
+  return [
+    '<今天的动态>',
+    `今天${日.发文}会主动发一则小红书。在今天合适的一回合，于正文末尾用小红书格式发出（发布者写「${日.发文}」），时间配合剧情；发过就不要再发。`,
+    ...方向,
+    '封面字和标题都很短、很淡，不要用〈手机-格式〉说的「突出震撼效果」那种写法。附 3～5 条路人评论（评论人 momo），他可能回其中一条。',
+    '</今天的动态>',
+  ].join('\n');
+}
+
 function 试探余波(stat: Stat): string | null {
   const 试 = stat._状态?.身分试探 ?? {};
   if (试.进行中) return null;
@@ -726,17 +787,19 @@ function 试探事件文(stat: Stat): string | null {
   ].join('\n');
 }
 
-export function 眼下文(stat: Stat): string | null {
+export function 眼下文(stat: Stat, 网名 = ''): string | null {
   const 段: string[] = [];
   const 试 = 试探事件文(stat);
   if (试) 段.push(试);
   const 事 = 大事文(stat);
   if (事) 段.push(事);
+  const 文 = 发文文(stat);
+  if (文) 段.push(文);
   if (stat.黎靖青?.性爱场景中 === true) {
     段.push('<性爱场景>\n当前处于性爱场景。场景结束后，在变量更新里把 黎靖青.性爱场景中 改回 false。\n</性爱场景>');
   }
   if (!段.length) return null;
-  return ['<眼下的事>', '以下是眼下正在发生、要推进的剧情，不是背景；照各段说明写进正文。', '', ...段, '</眼下的事>'].join(
-    '\n',
-  );
+  return ['<眼下的事>', '以下是眼下正在发生、要推进的剧情，不是背景；照各段说明写进正文。', '', ...段, '</眼下的事>']
+    .join('\n')
+    .replaceAll('{网名}', 网名);
 }

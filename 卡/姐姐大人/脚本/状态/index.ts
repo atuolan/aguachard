@@ -44,8 +44,9 @@ function settle(variables: Mvu.MvuData, before: Mvu.MvuData): void {
   const prev = 楼 <= 0 ? null : 规范(_.get(before, 'stat_data'));
   // 舊存檔第一次更新：更新前還沒有 关系，那是補上的預設值，不是真的關係；這一次讓模型直接寫到位
   if (prev && _.get(before, 'stat_data.关系') === undefined) prev.关系 = _.cloneDeep(stat.关系);
-  const AI楼 = getChatMessages(楼)[0]?.role === 'assistant';
-  const log = 结算(stat, prev?.黎靖青 ? prev : null, AI楼);
+  const 本楼 = getChatMessages(楼)[0];
+  const AI楼 = 本楼?.role === 'assistant';
+  const log = 结算(stat, prev?.黎靖青 ? prev : null, AI楼, Math.random, AI楼 ? 本楼.message : '');
   _.set(variables, 'stat_data', stat);
   if (log.length) console.info(LOG, `第 ${楼} 楼：${log.join('；')}`);
 }
@@ -60,7 +61,7 @@ $(async () => {
     const stat = 最新变量();
     if (!stat) return;
     const name = 网名();
-    const 眼下 = 眼下文(stat);
+    const 眼下 = 眼下文(stat, name);
     injectPrompts(
       [
         {

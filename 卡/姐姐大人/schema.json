@@ -226,6 +226,23 @@
                   "type": "string"
                 }
               }
+            },
+            "发文": {
+              "default": "",
+              "type": "string",
+              "enum": [
+                "",
+                "穷云海",
+                "黎靖青"
+              ]
+            },
+            "已发": {
+              "default": false,
+              "type": "boolean"
+            },
+            "距上次发文": {
+              "default": 99,
+              "type": "number"
             }
           }
         }
