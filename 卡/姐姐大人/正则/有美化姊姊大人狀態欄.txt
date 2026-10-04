@@ -5,17 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>黎靖青／窮雲海 狀態欄</title>
+    <!-- 資料直接讀這一樓的變量（AI 不再輸出狀態欄文字）。
+         這段會經過酒館正則替換：程式裡不能出現錢字號接數字或角括號、雙大括號，字串一律用 + 串接 -->
     <style>
-      /* 自定義字體 - 霞鶩文楷 */
       @import url('https://cdn.jsdelivr.net/npm/font-chenyuluoyan/font.css');
 
-      body {
-        font-family: 'ChenYuluoyan', cursive;
-              letter-spacing: 0.05em; /* 增加字距 */
-        font-weight: normal;
-      }
-
-      /* 整體頁面樣式：設置背景、置中顯示、留白 */
       body {
         background: #1a1a1a00;
         display: flex;
@@ -27,15 +21,13 @@
         min-height: 0;
         font-family: 'ChenYuluoyan', cursive;
         font-weight: normal;
-        font-size: 16px; /* 新增全局基準 +1px */
+        font-size: 16px;
+        letter-spacing: 0.05em;
       }
 
-      /* 主狀態面板：顯示角色整體狀態，包含背景圖片和邊框陰影 */
       details.status-panel {
         width: 260px;
-        font-family: 'ChenYuluoyan', cursive;
-              letter-spacing: 0.05em; /* 增加字距 */
-        font-size: 16px; /* 從 15px 調到 16px */
+        font-size: 16px;
         border-radius: 10px;
         border: 1px solid rgba(100, 100, 150, 0.3);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -45,52 +37,44 @@
         position: relative;
       }
 
-      /* 背景特效 */
       details.status-panel::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         background: radial-gradient(circle, rgba(100, 100, 150, 0.1) 10%, transparent 10%);
         opacity: 0.3;
         pointer-events: none;
       }
 
-      /* 面板標題 */
       details.status-panel summary {
         color: #b0b0ff;
-        font-size: 15px; /* 從 14px 調到 15px */
-        text-transform: uppercase;
+        font-size: 15px;
         letter-spacing: 3px;
         cursor: pointer;
         list-style: none;
-        /* --- 新增樣式以修復高度問題 --- */
-        height: 50px; /* 設定一個固定的高度 */
+        height: 50px;
         display: flex;
-        justify-content: center; /* 水平置中文字 */
-        align-items: center; /* 垂直置中文字 */
-        padding: 0; /* 移除 padding，由 flex 控制對齊 */
+        justify-content: center;
+        align-items: center;
+        padding: 0;
       }
-      
+
       details.status-panel summary h3 {
-        margin: 0; /* 清除 h3 的預設邊距 */
-        font-weight: bold; /* 設定為粗體 */
+        margin: 0;
+        font-weight: bold;
       }
 
       details.status-panel summary::-webkit-details-marker {
         display: none;
       }
 
-      /* 狀態項目 */
       .status-item {
         margin-bottom: 15px;
         text-align: center;
       }
 
       .status-item label {
-        font-size: 0.9em; /* 繼承 16px 會變 14.4px */
+        font-size: 0.9em;
         color: #cbd6f0;
         display: block;
         margin-bottom: 5px;
@@ -98,12 +82,25 @@
 
       .status-item span,
       .status-item p {
-        font-size: 1em; /* 繼承 16px 或 16px 的 panel */
+        font-size: 1em;
         margin: 0;
         color: #eeeeee;
       }
 
-      /* 進度條外框 */
+      .tag {
+        display: inline-block;
+        margin: 2px 3px;
+        padding: 1px 8px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.35);
+        color: #eeeeee;
+        font-size: 0.9em;
+      }
+
+      .tag.on {
+        background: rgba(155, 27, 27, 0.55);
+      }
+
       .progress-bar {
         width: 80%;
         margin: 0 auto;
@@ -114,9 +111,9 @@
         margin-top: 5px;
       }
 
-      /* 進度條填充 */
       .progress {
         height: 100%;
+        width: 0;
         transition: width 0.5s ease;
       }
 
@@ -130,7 +127,12 @@
         background: linear-gradient(90deg, #bb33ff, #660099);
       }
 
-      /* 內心想法 */
+      .note {
+        font-size: 0.8em;
+        color: #c0c0ff;
+        margin-top: 3px;
+      }
+
       .thoughts {
         background: rgba(0, 0, 0, 0.3);
         padding: 10px;
@@ -140,7 +142,6 @@
         margin-top: 10px;
       }
 
-      /* 待辦事項按鈕 */
       .todo-toggle {
         background: #4b6d999c;
         color: #fff;
@@ -148,11 +149,9 @@
         border-radius: 5px;
         text-align: center;
         font-weight: bold;
-        cursor: pointer;
         margin-top: 15px;
       }
 
-      /* 待辦清單 */
       .todo-list {
         padding: 10px;
         background: rgba(0, 0, 0, 0.3);
@@ -171,7 +170,6 @@
         border-radius: 5px;
       }
 
-      /* 模式標記 */
       .mode-boss {
         border-left: 3px solid #4b6cb7;
       }
@@ -179,23 +177,15 @@
         border-left: 3px solid #ff6b6b;
       }
 
-      /* 心理狀態標題 */
       summary.psych-summary {
-        background: rgba(255, 255, 255, 0);
         color: #c0c0ff;
         font-size: 1.1em;
         font-weight: bold;
-        padding: 5px 5px;
+        padding: 5px;
         border-radius: 5px;
         cursor: pointer;
-        transition: background 0.3s ease;
       }
 
-      summary.psych-summary:hover {
-        background: rgba(255, 255, 255, 0);
-      }
-
-      /* 響應式設計 */
       @media (max-width: 400px) {
         details.status-panel {
           width: 90%;
@@ -204,82 +194,161 @@
     </style>
   </head>
   <body>
-    <!-- 主狀態面板 -->
-    <details class="status-panel mode-boss">
+    <details class="status-panel mode-boss" id="panel" hidden>
       <summary><h3>黎靖青／窮雲海</h3></summary>
 
       <div class="status-item">
         <label>當前時間點</label>
-        <span>$1</span>
+        <span data-k="时间点"></span>
       </div>
 
       <div class="status-item">
-        <label>當前身份</label>
-        <span>$2</span>
+        <label>當前身分・場合</label>
+        <span data-k="身份场合"></span>
       </div>
 
       <div class="status-item">
-        <label>當前模式（上司/偽娘）</label>
-        <span>$3</span>
+        <label>關係</label>
+        <span data-k="关系"></span>
       </div>
+
+      <div class="status-item">
+        <label>身分認知</label>
+        <span class="tag" data-k="识破"></span><span class="tag" data-k="认出"></span>
+      </div>
+
+      <div class="status-item" data-k="事件"></div>
 
       <details class="status-item" style="border: none; padding: 0">
         <summary class="psych-summary"><h4>心理狀態</h4></summary>
 
-        <div class="status-item heart">
+        <div class="status-item">
           <label>心情</label>
-          <span>$4</span>
+          <span data-k="心情"></span>
         </div>
 
         <div class="status-item">
-          <label>冷淡值：$5</label>
-          <div class="progress-bar">
-            <div class="progress cold-progress"></div>
-          </div>
+          <label data-k="冷淡值"></label>
+          <div class="progress-bar"><div class="progress cold-progress"></div></div>
+          <div class="note" data-k="冷淡备注"></div>
         </div>
 
         <div class="status-item">
-          <label>親密值：$6</label>
-          <div class="progress-bar">
-            <div class="progress intimacy-progress"></div>
-          </div>
+          <label data-k="亲密值"></label>
+          <div class="progress-bar"><div class="progress intimacy-progress"></div></div>
+          <div class="note" data-k="亲密备注"></div>
         </div>
 
         <div class="status-item">
-          <label>興奮值：$7</label>
-          <div class="progress-bar">
-            <div class="progress excitement-progress"></div>
-          </div>
+          <label data-k="兴奋值"></label>
+          <div class="progress-bar"><div class="progress excitement-progress"></div></div>
         </div>
 
         <div class="status-item">
           <label>內心想法</label>
-          <p class="thoughts">$8</p>
+          <p class="thoughts" data-k="内心想法"></p>
         </div>
 
         <div class="todo-toggle">約定與待辦事項</div>
         <div class="todo-list"></div>
       </details>
-
-      <script>
-        const todoItems = '$9'.split('|');
-        const todoList = document.querySelector('.todo-list');
-        todoList.innerHTML = '';
-        todoItems.forEach(item => {
-          if (item.trim()) {
-            const todoItem = document.createElement('div');
-            todoItem.className = 'todo-item';
-            todoItem.textContent = item.trim();
-            todoList.appendChild(todoItem);
-          }
-        });
-      </script>
-      <script>
-        document.querySelector('.cold-progress').style.width = '$5' + '%';
-        document.querySelector('.intimacy-progress').style.width = '$6' + '%';
-        document.querySelector('.excitement-progress').style.width = '$7' + '%';
-      </script>
     </details>
+
+    <script>
+      const 场合名 = { 职场: '職場', 私下: '私下', 营业: '營業' };
+      const 旧模式 = { 上司: '職場', 伪娘: '營業', 私下状态: '私下', 恋人: '私下' };
+
+      function 设(k, text) {
+        document.querySelectorAll('[data-k="' + k + '"]').forEach(el => (el.textContent = text));
+      }
+
+      function 读() {
+        const id = getCurrentMessageId();
+        const vars = getVariables({ type: 'message', message_id: id });
+        return vars && vars.stat_data && vars.stat_data.黎靖青 ? vars.stat_data : null;
+      }
+
+      let 上次 = '';
+      function 画() {
+        let stat = null;
+        try {
+          stat = 读();
+        } catch (e) {
+          stat = null;
+        }
+        const key = JSON.stringify(stat);
+        if (key === 上次) return;
+        上次 = key;
+        const panel = document.getElementById('panel');
+        if (!stat) {
+          panel.hidden = true;
+          return;
+        }
+        panel.hidden = false;
+
+        const 人 = stat.黎靖青 || {};
+        const 关系 = stat.关系 || {};
+        const 状态 = stat._状态 || {};
+        const 试 = 状态.身分试探 || {};
+        const 每日 = 状态.每日 || {};
+        const 穷 = 人.目前身份 === '穷云海';
+        panel.classList.toggle('mode-maid', 穷);
+        panel.classList.toggle('mode-boss', !穷);
+
+        设('时间点', (stat.世界 && stat.世界.时间点) || '');
+        const 场合 = 场合名[人.场合] || 旧模式[人.目前模式] || '';
+        设('身份场合', (穷 ? '窮雲海' : '黎靖青') + (场合 ? '・' + 场合 : ''));
+        const 揭穿 =
+          stat.user && stat.user.识破身份 === '识破' && stat['黎靖青/穷云海'] && stat['黎靖青/穷云海'].认出聊天对象 === '认出';
+        设('关系', '現實：' + (关系.现实 || '—') + (揭穿 ? '' : '　線上：' + (关系.线上 || '—')));
+
+        const 识破 = stat.user && stat.user.识破身份 === '识破';
+        const 认出 = stat['黎靖青/穷云海'] && stat['黎靖青/穷云海'].认出聊天对象 === '认出';
+        设('识破', 识破 ? '你已識破他' : '你未識破他');
+        设('认出', 认出 ? '他已認出你' : '他未認出你');
+        document.querySelector('[data-k="识破"]').classList.toggle('on', 识破);
+        document.querySelector('[data-k="认出"]').classList.toggle('on', 认出);
+
+        let 事件 = '';
+        if (试.进行中) 事件 = '身分試探進行中（' + Math.min(Number(试.进度) || 0, 20) + '／20）';
+        else if (试.结果 === '接受') 事件 = '身分試探：你接受了完整的他';
+        else if (试.结果 === '抗拒') 事件 = '身分試探：你沒有接受他';
+        else if (试.结果 === '回避') 事件 = '身分試探：你迴避了';
+        设('事件', 事件);
+
+        设('心情', 人.心情 || '');
+        const 冷 = Number(人.冷淡值) || 0;
+        const 亲 = Number(人.亲密值) || 0;
+        const 兴 = Number(人.兴奋值) || 0;
+        设('冷淡值', '冷淡值：' + 冷);
+        设('亲密值', '親密值：' + 亲);
+        设('兴奋值', '興奮值：' + 兴);
+        const 锁 = 人.性爱场景中 ? '親密中，暫不變動' : 试.进行中 ? '試探中，暫不變動' : '';
+        设('冷淡备注', 锁 || (每日.冷淡值 && 每日.冷淡值.锁定 ? '今日變動已滿' : 穷 ? '窮雲海身分時不變動' : ''));
+        设('亲密备注', 锁 || (每日.亲密值 && 每日.亲密值.锁定 ? '今日變動已滿' : ''));
+        document.querySelector('.cold-progress').style.width = 冷 + '%';
+        document.querySelector('.intimacy-progress').style.width = 亲 + '%';
+        document.querySelector('.excitement-progress').style.width = 兴 + '%';
+
+        设('内心想法', 人.内心想法 || '');
+        const list = document.querySelector('.todo-list');
+        list.innerHTML = '';
+        String(人.待办事项 || '')
+          .split('|')
+          .map(s => s.trim())
+          .filter(Boolean)
+          .forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'todo-item';
+            div.textContent = item;
+            list.appendChild(div);
+          });
+      }
+
+      // 模型更新變量、swipe、重新處理變量都會改到樓層變量；輪詢比逐一掛事件穩
+      画();
+      setInterval(画, 2000);
+    </script>
   </body>
 </html>
 

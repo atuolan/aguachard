@@ -1,3 +1,19 @@
 [曲目8]
 
 <msg>穷云海|{{user}}|呀~是新来的小客人吗？ 找姐姐有什么心事？|23:09</msg>
+
+<UpdateVariable>
+<Analysis>
+Initial greeting state. First online contact with 穷云海; they do not know each other in real life.
+</Analysis>
+<JSONPatch>
+[
+  { "op": "replace", "path": "/黎靖青/目前身份", "value": "穷云海" },
+  { "op": "replace", "path": "/黎靖青/场合", "value": "私下" },
+  { "op": "replace", "path": "/关系/现实", "value": "陌生" },
+  { "op": "replace", "path": "/关系/线上", "value": "网友" }
+]
+</JSONPatch>
+</UpdateVariable>
+
+<StatusPlaceHolderImpl/>

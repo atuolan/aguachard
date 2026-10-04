@@ -1,0 +1,70 @@
+```
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 音樂關掉時，開場白的 [曲目N] 改由這裡換成一個小齒輪，隨時可以回設定把音樂打開。
+         會經過酒館正則替換：程式裡不能出現錢字號接數字或角括號、雙大括號 -->
+    <style>
+      :root {
+        --fg: #222;
+        --bd: rgba(0, 0, 0, 0.25);
+        --font: inherit;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+      body {
+        display: flex;
+        justify-content: flex-end;
+        padding: 2px;
+        font-family: var(--font);
+        color: var(--fg);
+      }
+      button {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border: 1px solid var(--bd);
+        border-radius: 12px;
+        background: none;
+        color: inherit;
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        opacity: 0.6;
+      }
+      button:hover {
+        opacity: 1;
+      }
+      svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+      }
+    </style>
+  </head>
+  <body>
+    <button title="设定">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.47.47 0 0 0-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61l-2.01-1.58zM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z"/></svg>
+      设定
+    </button>
+    <script>
+      try {
+        const root = getComputedStyle(window.parent.document.documentElement);
+        const 取 = name => root.getPropertyValue(name).trim();
+        if (取('--SmartThemeBodyColor')) document.documentElement.style.setProperty('--fg', 取('--SmartThemeBodyColor'));
+        if (取('--SmartThemeBorderColor')) document.documentElement.style.setProperty('--bd', 取('--SmartThemeBorderColor'));
+        document.documentElement.style.setProperty('--font', getComputedStyle(window.parent.document.body).fontFamily);
+      } catch (e) {
+        // 拿不到父頁面就維持預設
+      }
+      document.querySelector('button').addEventListener('click', () => eventEmit('姊姊大人:打开设定'));
+    </script>
+  </body>
+</html>
+```

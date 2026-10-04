@@ -1,15 +1,55 @@
-<details>
-  <summary>黎靖青/窮雲海 狀態欄</summary>
-
-  ```yaml
-  當前時間點：$1 
-  當前身分：$2 
-  當前模式：$3 
-  心情：$4 
-  冷淡值：$5 
-  親密值：$6 
-  興奮值：$7
-  內心想法：「$8」 
-  約定與待辦事項：$9 
-  ```
-</details>
+```
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 讀這一樓的變量顯示成純文字。會經過酒館正則替換：程式裡不能出現錢字號接數字或角括號、雙大括號 -->
+    <style>
+      body { margin: 0; padding: 4px; background: transparent; color: inherit; font-family: monospace; font-size: 14px; }
+      summary { cursor: pointer; }
+      pre { white-space: pre-wrap; margin: 6px 0 0; }
+    </style>
+  </head>
+  <body>
+    <details id="box" hidden>
+      <summary>黎靖青/窮雲海 狀態欄</summary>
+      <pre id="text"></pre>
+    </details>
+    <script>
+      let 上次 = '';
+      function 画() {
+        let stat = null;
+        try {
+          const vars = getVariables({ type: 'message', message_id: getCurrentMessageId() });
+          stat = vars && vars.stat_data && vars.stat_data.黎靖青 ? vars.stat_data : null;
+        } catch (e) {
+          stat = null;
+        }
+        const key = JSON.stringify(stat);
+        if (key === 上次) return;
+        上次 = key;
+        document.getElementById('box').hidden = !stat;
+        if (!stat) return;
+        const 人 = stat.黎靖青;
+        const 关系 = stat.关系 || {};
+        const 认出 = stat['黎靖青/穷云海'] || {};
+        document.getElementById('text').textContent = [
+          '當前時間點：' + ((stat.世界 && stat.世界.时间点) || ''),
+          '當前身分：' + (人.目前身份 || '') + '・' + (人.场合 || 人.目前模式 || ''),
+          '關係：現實 ' + (关系.现实 || '—') + '／線上 ' + (关系.线上 || '—'),
+          '心情：' + (人.心情 || ''),
+          '冷淡值：' + 人.冷淡值,
+          '親密值：' + 人.亲密值,
+          '興奮值：' + 人.兴奋值,
+          '內心想法：「' + (人.内心想法 || '') + '」',
+          '約定與待辦事項：' + (人.待办事项 || ''),
+          '黎靖青是否認出你是網路聊天對象：' + (认出.认出聊天对象 || ''),
+          '你是否識破窮雲海就是黎靖青：' + ((stat.user && stat.user.识破身份) || ''),
+        ].join('\n');
+      }
+      画();
+      setInterval(画, 2000);
+    </script>
+  </body>
+</html>
+```

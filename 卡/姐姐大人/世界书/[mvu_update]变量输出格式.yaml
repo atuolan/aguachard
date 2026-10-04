@@ -9,14 +9,13 @@
         - remove
         - move
     - don't update field names starts with `_` as they are readonly, such as `_变量`
-    - 身份试探事件(event_data.身份试探)由独立脚本自动处理，禁止在此更新
+    - numbers (冷淡值, 亲密值, 兴奋值) are hidden from you on purpose: always use `delta`, never `replace`, and never guess their current values
   format: |-
     <UpdateVariable>
     <Analysis>$(IN ENGLISH, no more than 80 words)
     - ${calculate time passed: ...}
     - ${decide whether dramatic updates are allowed as it's in a special case or the time passed is more than usual: yes/no}
     - ${analyze every variable based on its corresponding `check`, according only to current reply instead of previous plots: ...}
-    - ${NOTE: event_data.身份试探 is handled by a separate script - do NOT update it here}
     </Analysis>
     <JSONPatch>
     [

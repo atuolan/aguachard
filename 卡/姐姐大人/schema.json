@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "时间点": {
+          "default": "03月15日-星期三-春-上午-晴-09:00",
+          "type": "string"
+        }
+      }
+    },
+    "user": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "识破身份": {
+          "default": "未识破",
+          "type": "string",
+          "enum": [
+            "未识破",
+            "识破"
+          ]
+        }
+      }
+    },
+    "黎靖青/穷云海": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "认出聊天对象": {
+          "default": "未认出",
+          "type": "string",
+          "enum": [
+            "未认出",
+            "认出"
+          ]
+        }
+      }
+    },
+    "黎靖青": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "目前身份": {
+          "default": "黎靖青",
+          "type": "string",
+          "enum": [
+            "黎靖青",
+            "穷云海"
+          ]
+        },
+        "场合": {
+          "default": "职场",
+          "type": "string",
+          "enum": [
+            "职场",
+            "私下",
+            "营业"
+          ]
+        },
+        "心情": {
+          "default": "冷静",
+          "type": "string"
+        },
+        "冷淡值": {
+          "default": 100,
+          "type": "number"
+        },
+        "亲密值": {
+          "default": 0,
+          "type": "number"
+        },
+        "兴奋值": {
+          "default": 0,
+          "type": "number"
+        },
+        "性爱场景中": {
+          "default": false,
+          "type": "boolean"
+        },
+        "内心想法": {
+          "default": "",
+          "type": "string"
+        },
+        "待办事项": {
+          "default": "无",
+          "type": "string"
+        }
+      }
+    },
+    "关系": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "现实": {
+          "default": "同事",
+          "type": "string",
+          "enum": [
+            "陌生",
+            "同事",
+            "朋友",
+            "暧昧",
+            "恋人",
+            "伴侣"
+          ]
+        },
+        "线上": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "网友",
+            "熟网友",
+            "暧昧",
+            "网恋"
+          ]
+        }
+      }
+    },
+    "场景": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "事件完成": {
+          "default": "",
+          "type": "string"
+        },
+        "表态": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "_状态": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "每日": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "日期": {
+              "default": "",
+              "type": "string"
+            },
+            "冷淡值": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "亲密值": {
+              "$ref": "#/$defs/__schema0"
+            }
+          }
+        },
+        "身分试探": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "进行中": {
+              "default": false,
+              "type": "boolean"
+            },
+            "已完成": {
+              "default": false,
+              "type": "boolean"
+            },
+            "进度": {
+              "default": 0,
+              "type": "number"
+            },
+            "结果": {
+              "default": "",
+              "type": "string",
+              "enum": [
+                "",
+                "接受",
+                "抗拒",
+                "回避"
+              ]
+            },
+            "冷却": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        },
+        "日常": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "日期": {
+              "default": "",
+              "type": "string"
+            },
+            "小事": {
+              "default": "",
+              "type": "string",
+              "enum": [
+                "",
+                "准时下班",
+                "早下班",
+                "加班",
+                "有排班",
+                "没排班"
+              ]
+            },
+            "大事": {
+              "default": "",
+              "type": "string"
+            },
+            "距上次大事": {
+              "default": 99,
+              "type": "number"
+            },
+            "袋": {
+              "default": {},
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "__schema0": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "累计": {
+          "default": 0,
+          "type": "number"
+        },
+        "锁定": {
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

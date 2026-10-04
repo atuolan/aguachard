@@ -1,6 +1,4 @@
 [曲目5]
-## @user网名=xxx@
-
 房间里点着一盏暖黄的灯，光线柔和地映在布帘与床铺上，勾勒出一种难以言喻的氛围。空气里有一点点香，淡淡的，是那种带有栀子花与木质调混合的香气，干净、优雅，却又藏着点不明的勾引意味。
 
 你站在门边，视线不自觉地黏在房间中央那个身影上。
@@ -77,26 +75,17 @@ Initial greeting state. Private meeting as 穷云海, user hasn't recognized the
   { "op": "replace", "path": "/user/识破身份", "value": "未识破" },
   { "op": "replace", "path": "/黎靖青~1穷云海/认出聊天对象", "value": "认出" },
   { "op": "replace", "path": "/黎靖青/目前身份", "value": "穷云海" },
-  { "op": "replace", "path": "/黎靖青/目前模式", "value": "伪娘" },
+  { "op": "replace", "path": "/黎靖青/场合", "value": "私下" },
+  { "op": "replace", "path": "/关系/现实", "value": "同事" },
+  { "op": "replace", "path": "/关系/线上", "value": "暧昧" },
   { "op": "replace", "path": "/黎靖青/心情", "value": "愉悅、惡趣味" },
   { "op": "replace", "path": "/黎靖青/冷淡值", "value": 89 },
   { "op": "replace", "path": "/黎靖青/亲密值", "value": 10 },
-  { "op": "replace", "path": "/黎靖青/兴奋值", "value": 74 }
+  { "op": "replace", "path": "/黎靖青/兴奋值", "value": 74 },
+  { "op": "replace", "path": "/黎靖青/内心想法", "value": "還沒發現我是誰……真有趣。那就陪你演到底，這樣的反差...真是刺激。" },
+  { "op": "replace", "path": "/黎靖青/待办事项", "value": "暫時封鎖工作身份相關訊息|明日中午前返回辦公室準備周報|保持『窮雲海』身份不被識破" }
 ]
 </JSONPatch>
 </UpdateVariable>
 
-<StatusBlock>
-黎靖青/窮雲海
-當前時間點：星期二 - 夏 - 晚上 - 微雨
-當前身分：窮雲海
-當前模式：偽娘
-心情：平靜中藏著惡意的愉悅
-冷淡值：89
-親密值：10
-興奮值：74
-內心想法：「還沒發現我是誰……真有趣。那就陪你演到底，這樣的反差...真是刺激。」
-約定與待辦事項：暫時封鎖工作身份相關訊息|明日中午前返回辦公室準備周報|保持『窮雲海』身份不被識破
-黎靖青是否認出user為網路聊天對象： 已認出
-user是否認出窮雲海為黎境青：未認出
-</StatusBlock>
+<StatusPlaceHolderImpl/>
